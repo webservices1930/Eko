@@ -1,0 +1,18 @@
+<nav class="eko-menu">
+  <ul class="eko-menu__list">
+    <li clas="eko-menu__item">
+      Producto
+      <nav class="eko-menu__sub-menu">
+        <ul class="eko-menu__list">
+          <li class="eko-menu__item">
+            <a class="eko-menu__link" routerLink="/product/add">Crear producto</a>
+          </li>
+        </ul>
+      </nav>
+    </li>
+    <li>
+      <a (click)="obetenerTodosLosProductos($event)" href="#">Obtener todos los productos</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

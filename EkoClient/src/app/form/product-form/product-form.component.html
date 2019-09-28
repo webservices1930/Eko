@@ -1,0 +1,71 @@
+<section class="product-form container">
+  <h1>Crear Producto</h1>
+  <form class="row" #f="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="col-12">
+      <label for="">ID</label>
+      <input type="text" class="form-control" [(ngModel)]="nTransporte._id" name="id" required>
+    </div> -->
+    <div class="col-12">
+      <label for="">Descripción</label>
+      <input type="text" class="form-control" [(ngModel)]="nTransporte.descripcion" name="descripcion" required>
+    </div>
+    <h6>
+      <strong class="col-12">Disponibilidad</strong>
+    </h6>
+    <div class="container col-12">
+      <div class="row">
+        <div class="col-6">
+          <label for="">Fecha</label>
+          <input type="text" class="form-control" [(ngModel)]="nDisponibilidad.fecha" name="fecha-dis-0" required>
+        </div>
+        <div class="col-6">
+          <label for="">Cupos disponibles</label>
+          <input type="number" class="form-control" [(ngModel)]="nDisponibilidad.cuposDisponibles" name="fecha-cupos-0" required>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="">Información del destino</label>
+      <input type="text" class="form-control" [(ngModel)]="nTransporte.infoPaisDestino" name="infoPaisDestino" required>
+    </div>
+    <div class="col-6">
+      <label for="">Precio</label>
+      <input type="number" class="form-control" [(ngModel)]="nTransporte.precio" name="precio" required>
+    </div>
+    <div class="col-6">
+      <label for="">Tipo</label>
+      <select class="form-control" [(ngModel)]="nTransporte.tipo" name="tipo" required>
+        <option [ngValue]="" value="" disabled selected>Seleccione el tipo de producto</option>
+        <option [ngValue]="TRANSPORTE" value="TRANSPORTE">TRANSPORTE</option>
+      </select>
+    </div>
+    <div class="col-6">
+      <label for="">Hora de salida</label>
+      <input type="number" class="form-control" [(ngModel)]="nTransporte.horaSalida" name="horaSalida" required>
+    </div>
+    <div class="col-6">
+      <label for="">Hora de llegada</label>
+      <input type="number" class="form-control" [(ngModel)]="nTransporte.horaLLegada" name="horaLLegada" required>
+    </div>
+    <div class="col-12">
+      <label for="">Tipo de transporte</label>
+      <select class="form-control" [(ngModel)]="nTransporte.tipoTransporte" name="tipoTransporte" required>
+        <option [ngValue]="" value="" disabled selected>Seleccione el tipo de transporte</option>
+        <option [ngValue]="TERRESTRE" value="TERRESTRE" >TERRESTRE</option>
+        <option [ngValue]="AEREO" value="AEREO" >AEREO</option>
+        <option [ngValue]="MARITIMO" value="MARITIMO" >MARITIMO</option>
+      </select>
+    </div>
+    <div class="col-6">
+      <label for="">Trayecto</label>
+      <input type="text" class="form-control" [(ngModel)]="nTrayecto" name="trayecto" required>
+    </div>
+    <div class="col-6">
+      <label for="">Duración</label>
+      <input type="number" class="form-control" [(ngModel)]="nTransporte.duracion" name="duracion" required>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-dark btn-lg btn-block" style="margin: 20px 0;">Send</button>
+    </div>
+  </form>
+</section>
