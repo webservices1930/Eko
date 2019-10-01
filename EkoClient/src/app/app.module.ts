@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxSoapModule } from 'ngx-soap';
+import { ReservasComponent } from './reservas/reservas.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ReservasComponent
   ],
   imports: [
     RouterModule,
