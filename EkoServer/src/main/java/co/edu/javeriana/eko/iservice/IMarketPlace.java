@@ -7,9 +7,4 @@ import javax.jws.WebService;
 import co.edu.javeriana.eko.model.MarketPlace;
 
 @WebService
-public interface IMarketPlace {
-	
-	@WebMethod(operationName = "obtenerTodosLosProductos")
-	@WebResult(name="marketPlace")
-	public String obtenerTodosLosProductos();
-}
+public interface IMarketPlace {}

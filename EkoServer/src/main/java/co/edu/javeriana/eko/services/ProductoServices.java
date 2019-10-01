@@ -7,10 +7,9 @@ import org.bson.Document;
 
 import co.edu.javeriana.eko.db.controller.DBController;
 import co.edu.javeriana.eko.iservice.IProductoService;
+import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
-import co.edu.javeriana.eko.xml.manager.UtilsXML;
-import co.edu.javeriana.eko.xml.manager.XMLFilesController;
 
 @WebService(endpointInterface = "co.edu.javeriana.eko.iservice.IProductoService")
 public class ProductoServices implements IProductoService {
@@ -30,27 +29,23 @@ public class ProductoServices implements IProductoService {
 
 	@Override
 	public void agregarProductoTransporte(Transporte nTransporte) {
-		Document nTransporteDoc = Utils.deObjetoADocumento(nTransporte);
+		Document nTransporteDoc = Utils.deObjetoTransporteADocumento(nTransporte);
 		DBController.insertarObjeto("productos-transporte", nTransporteDoc);
-//		XMLFilesController.agregarProductoEnXML(UtilsXML.crearTransporte(nTransporte));
 	}
 
 	@Override
-	public void buscarProductoTransportePorID(String _id) {
-		DBController.buscarEnColeccionPorID("productos-transporte", _id);
-//		return (Transporte) XMLFilesController.buscarProductoEnXMLPorID(_id);
+	public Producto buscarProductoTransportePorID(String _id) {
+		return DBController.buscarEnColeccionPorID("productos-transporte", _id);
 	}
 
 	@Override
 	public void eliminarProductoTransportePorID(String _id) {
 		DBController.eliminarEnColeccionPorID("productos-transporte", _id);
-//		XMLFilesController.eliminarProductoEnXMLPorID(_id);
 	}
 
 	@Override
 	public void actualizarProductoTransporte(Transporte nTransporte) {
 		// TODO Actualizar objeto en MongoDB
-//		XMLFilesController.actualizarProductoEnXMLPorID(UtilsXML.crearTransporte(nTransporte));
 	}
 	
 }

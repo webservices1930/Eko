@@ -7,8 +7,6 @@ import co.edu.javeriana.eko.model.MarketPlace;
 import co.edu.javeriana.eko.utils.Utils;
 import co.edu.javeriana.eko.webservices.MarketPlaceWebServices;
 import co.edu.javeriana.eko.webservices.ProductoWebServices;
-import co.edu.javeriana.eko.xml.manager.UtilsXML;
-import co.edu.javeriana.eko.xml.manager.XMLFilesController;
 
 public class EkoPublisher {
 	
@@ -25,7 +23,7 @@ public class EkoPublisher {
 			Utils.printInfo("Exponiendo servicios");
 
 			// Expone los servicios del Market Place
-			MarketPlaceWebServices.publicarMarketPlaceServices();
+//			MarketPlaceWebServices.publicarMarketPlaceServices();
 			// Expone los servicios de Producto
 			ProductoWebServices.publicarProductoServices();
 			

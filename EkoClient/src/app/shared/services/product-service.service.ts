@@ -89,4 +89,24 @@ export class ProductService {
       httpOptions
     );
   }
+
+  public buscarPorID(id: string) {
+    const httpOptions: object = this.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <buscarProductoTransportePorID xmlns="http://iservice.eko.javeriana.edu.co/">
+          <transporteID xmlns="">` + id + `</transporteID>
+        </buscarProductoTransportePorID>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.baseUrl + 'eko/productos?wsdl',
+      body,
+      httpOptions
+    );
+  }
 }

@@ -15,4 +15,10 @@
     </li>
   </ul>
 </nav>
+
+<div>
+  <label for="">Buscar por ID</label>
+  <input type="text" class="" [(ngModel)]="id" name="id" required>
+  <button type="button" (click)="buscarPorID()">Buscar</button>
+</div>
 <router-outlet></router-outlet>

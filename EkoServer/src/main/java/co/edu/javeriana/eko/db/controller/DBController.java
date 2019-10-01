@@ -9,6 +9,9 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.utils.Utils;
+
 public final class DBController {
 	// Se crea la conexión a la Base de Datos
 	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -53,7 +56,7 @@ public final class DBController {
 	 * @param nombreColeccion
 	 * @param _id
 	 */
-	public static void buscarEnColeccionPorID(String nombreColeccion, String _id) {
+	public static Transporte buscarEnColeccionPorID(String nombreColeccion, String _id) {
 		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
 		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 		
@@ -62,7 +65,7 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 		
 		Document transporte = coleccion.find(query).first();
-		System.out.println(transporte.toJson());
+		return Utils.deDocumentoAObjetoTransporte(transporte);
 	}
 	
 	/**

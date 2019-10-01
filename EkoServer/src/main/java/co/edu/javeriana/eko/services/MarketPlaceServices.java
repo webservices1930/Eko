@@ -4,8 +4,6 @@ import javax.jws.WebService;
 
 import co.edu.javeriana.eko.iservice.IMarketPlace;
 import co.edu.javeriana.eko.model.MarketPlace;
-import co.edu.javeriana.eko.xml.manager.XMLFilesController;
-
 @WebService(endpointInterface = "co.edu.javeriana.eko.iservice.IMarketPlace")
 public class MarketPlaceServices implements IMarketPlace {
 	
@@ -14,11 +12,6 @@ public class MarketPlaceServices implements IMarketPlace {
 	
 	public static MarketPlaceServices getInstance() {
 		return instance;
-	}
-
-	@Override
-	public String obtenerTodosLosProductos() {
-		return XMLFilesController.obtenerTodosLosProductos();
 	}
 
 }

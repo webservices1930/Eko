@@ -5,6 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
+import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Transporte;
 
 @WebService
@@ -18,7 +19,7 @@ public interface IProductoService {
 	
 	@WebMethod(operationName = "buscarProductoTransportePorID")
 	@WebResult(name="productoTransporte")
-	public void buscarProductoTransportePorID(@WebParam(name = "transporteID") String _id);
+	public Producto buscarProductoTransportePorID(@WebParam(name = "transporteID") String _id);
 	
 	@WebMethod(operationName = "eliminarProductoTransportePorID")
 	public void eliminarProductoTransportePorID(@WebParam(name = "transporteID") String _id);

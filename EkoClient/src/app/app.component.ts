@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from './shared/services/product-service.service';
-import { parseString, parser } from 'xml2js';
+import { parseString } from 'xml2js';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import { parseString, parser } from 'xml2js';
 })
 export class AppComponent {
   title = 'EkoClient';
+  id = '';
 
   constructor(private productService: ProductService) {}
 
@@ -21,7 +22,10 @@ export class AppComponent {
     event.preventDefault();
     this.productService.obtenerTodosLosProductos()
     .subscribe(result => {
-      console.log(result);
+      // console.log(result);
+      parseString(result, function (err, res) {
+        console.log(res['S:Envelope']['S:Body'][0]['ns2:obtenerTodosLosProductosResponse'][0]['marketPlace']);
+      });
     },
     error =>{
       console.log('There was an error: ', error);
@@ -29,21 +33,17 @@ export class AppComponent {
     });
   }
 
-  public parseXML(data) {
-    return new Promise(resolve => {
-      var k: string | number,
-        arr = [],
-        parser = new parser();
-        console.log(parser)
-      //   parser.parser(
-      //     {
-      //       trim: true,
-      //       explicitArray: true
-      //     });
-      // parser.parseString(data, function(err, result) {
-      //   console.log(result);
-      //   console.log(err);
-      // });
+  public buscarPorID() {
+    this.productService.buscarPorID(this.id)
+    .subscribe(result => {
+      // console.log(result);
+      parseString(result, function (err, res) {
+        console.log(res);
+      });
+    },
+    error =>{
+      console.log('There was an error: ', error);
+      console.log(error.status);
     });
   }
 }

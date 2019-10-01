@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.producto.Transporte;
@@ -58,7 +59,7 @@ public final class Utils {
 	 * @param transporte
 	 * @return
 	 */
-	public static Document deObjetoADocumento(Transporte transporte) {
+	public static Document deObjetoTransporteADocumento(Transporte transporte) {
 		List<Document> disponibilidad = new ArrayList<Document>();
 		
 		for (Disponibilidad dis : transporte.getDisponibilidad()) {
@@ -78,5 +79,43 @@ public final class Utils {
 				.append("trayecto", transporte.getTrayecto())
 				.append("tipoTransporte", transporte.getTipoTransporte().toString())
 				.append("duracion", transporte.getDuracion());
+	}
+	
+	/**
+	 * Método que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
+	 * 
+	 * @param transporte
+	 * @return
+	 */
+	public static Transporte deDocumentoAObjetoTransporte(Document docTransporte) {
+		Transporte transporte = new Transporte();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		
+		List<Document> docDisponibilidad = (List<Document>) docTransporte.get("disponibilidad");
+		List<String> docTrayecto = (List<String>) docTransporte.get("trayecto");
+		String transporteID = ((ObjectId)docTransporte.getObjectId("_id")).toString();
+		
+		transporte.set_id(transporteID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+		
+		transporte.setTrayecto(docTrayecto);
+		
+		transporte.setDisponibilidad(disponibilidad);
+		transporte.setPrecio(docTransporte.getDouble("precio"));
+		transporte.setInfoPaisDestino(docTransporte.getString("infoPaisDestino"));
+		transporte.setDescripcion(docTransporte.getString("descripcion"));
+		transporte.setTipo(TipoProducto.valueOf(docTransporte.getString("tipo")));
+		transporte.setHoraSalida(docTransporte.getInteger("horaSalida"));
+		transporte.setHoraLlegada(docTransporte.getInteger("horaLlegada"));
+		transporte.setTipoTransporte(TipoTransporte.valueOf(docTransporte.getString("tipoTransporte")));
+		transporte.setDuracion(docTransporte.getInteger("duracion"));
+		
+		return transporte;
 	}
 }
