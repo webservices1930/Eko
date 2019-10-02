@@ -1,5 +1,7 @@
 package co.edu.javeriana.eko.services;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
@@ -7,6 +9,8 @@ import org.bson.Document;
 
 import co.edu.javeriana.eko.db.controller.DBController;
 import co.edu.javeriana.eko.iservice.IProductoService;
+import co.edu.javeriana.eko.model.Calificacion;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
@@ -46,6 +50,33 @@ public class ProductoServices implements IProductoService {
 	@Override
 	public void actualizarProductoTransporte(Transporte nTransporte) {
 		// TODO Actualizar objeto en MongoDB
+	}
+	
+	@Override
+	public void agregarCalificacionProducto(Calificacion nCalificacion) {
+		Document nCalificacionDoc = Utils.deObjetoCalificacionADocumento(nCalificacion);
+		DBController.insertarObjeto("producto-calificacion", nCalificacionDoc);
+		
+		
+	}
+
+	@Override
+	public void eliminarCalificacionProducto( String _id) {
+		DBController.eliminarEnColeccionPorID("productos-calificacion", _id);		
+	}	
+	
+	
+	
+	@Override
+	public void agregarPreguntaProducto(Pregunta nPregunta) {
+		Document nPreguntaDoc = Utils.deObjetoPreguntaADocumento(nPregunta);
+		DBController.insertarObjeto("producto-pregunta", nPreguntaDoc);		
+	}
+	
+	
+	@Override
+	public void eliminarPreguntaProducto(String _id) {
+		DBController.eliminarEnColeccionPorID("productos-pregunta", _id);		
 	}
 	
 }

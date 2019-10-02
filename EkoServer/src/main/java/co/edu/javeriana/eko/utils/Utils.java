@@ -6,7 +6,9 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Transporte;
 
 public final class Utils {
@@ -118,4 +120,41 @@ public final class Utils {
 		
 		return transporte;
 	}
+	
+	/**
+	 * Método que convierte un objeto de tipo Calificacion a un Documento
+	 * 
+	 * @param calificacion
+	 * @return
+	 */
+	public static Document deObjetoCalificacionADocumento(Calificacion calificacion) {		
+		
+		return new Document("valoracion", calificacion.getValoracion())				
+				.append("id_Producto", calificacion.getId_Producto())
+				.append("comentario", calificacion.getComentario())
+				.append("fecha_Creacion", calificacion.getFecha_Creacion());
+	}
+	
+	
+	/**
+	 * Método que convierte un objeto de tipo Pregunta a un Documento
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
+	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {		
+	
+		return new Document("id_Servicio", pregunta.getId_Servicio())
+				.append("descripcion", pregunta.getDescripcion())				
+				.append("respuesta", pregunta.getRespuesta())
+				.append("fecha_Creacion", pregunta.getFecha_Creacion());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -5,6 +5,8 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
+import co.edu.javeriana.eko.model.Calificacion;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Transporte;
 
@@ -26,4 +28,26 @@ public interface IProductoService {
 	
 	@WebMethod(operationName = "actualizarProductoTransporte")
 	public void actualizarProductoTransporte(@WebParam(name = "transporte") Transporte nTransporte);
+	
+	// calificaciones
+	
+	@WebMethod(operationName = "agregarCalificacionProducto")
+	public void agregarCalificacionProducto(@WebParam(name = "calificacion") Calificacion nCalificacion);
+	
+	
+	@WebMethod(operationName = "eliminarCalificacionProducto")
+	public void eliminarCalificacionProducto(@WebParam(name = "calificacionID") String _id);
+	
+	
+	// preguntas
+	
+	@WebMethod(operationName = "agregarPreguntaProducto")
+	public void agregarPreguntaProducto(@WebParam(name = "pregunta") Pregunta nPregunta);
+	
+	
+	@WebMethod(operationName = "eliminarPreguntaProducto")
+	public void eliminarPreguntaProducto(@WebParam(name = "preguntaID") String _id);
+	
+	
+	
 }

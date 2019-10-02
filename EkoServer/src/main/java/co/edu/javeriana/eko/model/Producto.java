@@ -109,7 +109,11 @@ public abstract class Producto {
 	}
 
 	// MÉTODOS
-	public double calcularCalificacionPromedio() {
-		return 0;
+	public double calcularCalificacionPromedio() {		
+		int promedio = 0 ;		
+		for (Calificacion calificacion : this.calificacion) {
+			 promedio += calificacion.getValoracion();
+		}		
+		return promedio/this.calificacion.size();
 	}
 }
