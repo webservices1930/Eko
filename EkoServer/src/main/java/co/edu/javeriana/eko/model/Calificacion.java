@@ -27,6 +27,8 @@ public class Calificacion {
 		this.comentario = comentario;
 		this.fecha_Creacion = fecha_Creacion;
 	}
+	
+	
 	// Getters y setters
 	public String get_id() {
 		return _id;
@@ -58,10 +60,5 @@ public class Calificacion {
 	public void setFecha_Creacion(String fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
 	}	
-	
-	
-	
-	
-	
 
 }

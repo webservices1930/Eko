@@ -2,7 +2,9 @@ package co.edu.javeriana.eko.model.producto;
 
 import java.util.List;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.TipoTransporte;
@@ -17,11 +19,14 @@ public class Transporte extends Producto {
 	// CONSTRUCTORES
 	public Transporte() {
 	}
+	
+	
 
 	public Transporte(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, int horaSalida, int horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
+			TipoProducto tipo, List<Calificacion> calificacion, List<Pregunta> pregunta,
+			int horaSalida, int horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
 			int duracion) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;
@@ -30,9 +35,9 @@ public class Transporte extends Producto {
 	}
 
 	public Transporte(String _id, double precio, String infoPaisDestino,List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, int horaSalida, int horaLlegada, List<String> trayecto,
-			TipoTransporte tipoTransporte, int duracion) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			String descripcion, TipoProducto tipo, List<Calificacion> calificacion, List<Pregunta> pregunta,
+			int horaSalida, int horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte, int duracion) {
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;

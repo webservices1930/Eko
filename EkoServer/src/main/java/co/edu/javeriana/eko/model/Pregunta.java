@@ -55,12 +55,6 @@ public class Pregunta {
 	}
 	public void setFecha_Creacion(String fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
-	}
-	
-	
-	
-	
-	
-	
+	}	
 
 }

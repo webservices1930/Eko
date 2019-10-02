@@ -11,6 +11,8 @@ public abstract class Producto {
 	private double precio;
 	private String infoPaisDestino;
 	private List<Disponibilidad> disponibilidad;
+	private List<Calificacion> calificacion;
+	private List<Pregunta> pregunta;
 	private String descripcion;
 	private TipoProducto tipo;
 
@@ -18,20 +20,24 @@ public abstract class Producto {
 	public Producto() {}
 	
 	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo) {
+			List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo) {
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
 		this.disponibilidad = disponibilidad;
+		this.calificacion = calificacion;
+		this.pregunta = pregunta;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
 	}
 	
 	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo) {
+			List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo) {
 		this._id = _id;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
 		this.disponibilidad = disponibilidad;
+		this.calificacion = calificacion;
+		this.pregunta = pregunta;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
 	}
@@ -84,8 +90,24 @@ public abstract class Producto {
 
 	public void setTipo(TipoProducto tipo) {
 		this.tipo = tipo;
-	}
+	}	
 	
+	public List<Calificacion> getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(List<Calificacion> calificacion) {
+		this.calificacion = calificacion;
+	}
+
+	public List<Pregunta> getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(List<Pregunta> pregunta) {
+		this.pregunta = pregunta;
+	}
+
 	// MÉTODOS
 	public double calcularCalificacionPromedio() {
 		return 0;
