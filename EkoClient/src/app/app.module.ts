@@ -15,6 +15,7 @@ import { MenuComponent } from './nav/menu/menu.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { MarketPlaceComponent } from './market-place/market-place.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppComponent,
     ProductFormComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    MarketPlaceComponent
   ],
   imports: [
     RouterModule,
