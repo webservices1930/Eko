@@ -1,0 +1,58 @@
+.eko-login {
+  $self: &;
+
+  &__header {
+    text-align: center;
+
+    #{$self}__title,
+    #{$self}__subtitle {
+      margin-bottom: 0;
+    }
+
+    #{$self}__title {
+      font-size: 100px;
+      color: #1F8524;
+    }
+
+    #{$self}__subtitle {
+      font-size: 16px;
+      color: #999999;
+    }
+  }
+
+  &__form {
+    max-width: 400px;
+    margin-top: 36px;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+
+    &-title {
+      margin-bottom: 0;
+      padding: 12px;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #A1D6A4;
+      color: #fff;
+    }
+
+    &-wrapper {
+      padding: 24px;
+    }
+
+    .form-control {
+      margin-bottom: 12px;
+
+      &::placeholder {
+        color: #CCCCCC;
+      }
+    }
+
+    .btn {
+      margin-top: 12px;
+    }
+  }
+}

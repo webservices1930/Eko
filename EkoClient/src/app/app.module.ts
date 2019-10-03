@@ -10,12 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxSoapModule } from 'ngx-soap';
+import { LoginComponent } from './user/login/login.component';
+import { MenuComponent } from './nav/menu/menu.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    LoginComponent,
+    MenuComponent
   ],
   imports: [
     RouterModule,
@@ -23,9 +30,12 @@ import { NgxSoapModule } from 'ngx-soap';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxSoapModule
+    NgxSoapModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

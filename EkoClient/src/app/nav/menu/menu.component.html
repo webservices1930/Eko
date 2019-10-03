@@ -1,0 +1,36 @@
+<nav class="eko-menu navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand eko-title" href="#">EKO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="eko-menu__list container navbar-nav">
+      <li class="eko-menu__item eko-menu__item--dropdown nav-item dropdown">
+        <a class="eko-menu__link nav-link dropdown-toggle" id="navbarDropdownMenuLinkProducto" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Producto</a>
+        <nav class="eko-menu__sub-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLinkProducto">
+          <ul class="eko-menu__list">
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link" routerLink="/product/add">Crear producto</a>
+            </li>
+          </ul>
+        </nav>
+      </li>
+      <li class="eko-menu__item eko-menu__item--dropdown nav-item dropdown">
+        <a class="eko-menu__link nav-link dropdown-toggle" id="navbarDropdownMenuLinkUsuario" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
+        <nav class="eko-menu__sub-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUsuario">
+          <ul class="eko-menu__list">
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link" routerLink="/user/login">Iniciar sesión</a>
+            </li>
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link nav-link" routerLink="/" (click)="cerrarSesion()">Cerrar sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </li>
+    </ul>
+  </div>
+</nav>

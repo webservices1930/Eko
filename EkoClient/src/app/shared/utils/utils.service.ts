@@ -1,13 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Transporte } from '../model/Producto/Transporte';
 import { Disponibilidad } from '../model/Disponibilidad';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
+  public baseUrl: string = '/api/';
+
   constructor() { }
+
+  /**
+   * Genera los Headers para una petición SOAP
+   */
+  public crearHeadersXML(): object {
+    return {
+      headers: new HttpHeaders().set('Content-Type', 'text/xml')
+        .append('Access-Control-Allow-Methods', 'GET')
+        .append('Access-Control-Allow-Origin', '*')
+        .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
+      responseType: 'text/html',
+      withCredentials: true
+    };
+  }
 
   /**
    * Toma un objeto de tipo transporte y lo transforma a su interpretación

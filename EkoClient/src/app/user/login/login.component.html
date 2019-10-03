@@ -1,0 +1,20 @@
+<div class="eko-login container">
+  <header class="eko-login__header">
+    <h1 class="eko-login__title eko-title">EKO</h1>
+    <h2 class="eko-login__subtitle">Planes de turismo ecológico a tu medida</h2>
+  </header>
+  <form class="eko-login__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <h3 class="eko-login__form-title">Iniciar sesión</h3>
+    <div class="eko-login__form-wrapper row">
+      <div class="col-12">
+        <input placeholder="Correo electrónico" type="email" class="form-control" formControlName="correo" name="correo" required>
+      </div>
+      <div class="col-12">
+        <input placeholder="Contraseña" type="password" class="form-control" formControlName="contrasena" name="contrasena" required>
+      </div>
+      <div class="col-6 offset-3">
+        <button class="btn btn-dark btn-lg btn-block btn-sm" type="submit">Iniciar sesión</button>
+      </div>
+    </div>
+  </form>
+</div>
