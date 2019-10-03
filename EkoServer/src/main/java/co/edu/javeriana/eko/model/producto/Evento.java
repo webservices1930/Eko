@@ -14,15 +14,15 @@ public class Evento extends Producto{
 	private int horaApertura;
 	private int horaCierre;
 	private int maxPersonas;
-	private float latitud;
-	private float longitud;
+	private double latitud;
+	private double longitud;
 	public Evento() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Evento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
-			int maxPersonas, float latitud, float longitud) {
+			int maxPersonas, double latitud, double longitud) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
@@ -35,7 +35,7 @@ public class Evento extends Producto{
 	}
 	public Evento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
-			int maxPersonas, float latitud, float longitud) {
+			int maxPersonas, double latitud, double longitud) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
@@ -82,16 +82,16 @@ public class Evento extends Producto{
 	public void setMaxPersonas(int maxPersonas) {
 		this.maxPersonas = maxPersonas;
 	}
-	public float getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
-	public void setLatitud(float latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
-	public float getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
-	public void setLongitud(float longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}		
 }

@@ -159,11 +159,52 @@ public final class Utils {
 				.append("numeroBaños", alojamiento.getNumBaños());
 	}
 	
+	/**
+	 * Método que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
+	 * 
+	 * @param alojamiento
+	 * @return
+	 */
+	public static Alojamiento deDocumentoAObjetoAlojamiento(Document docAlojamiento) {
+		Alojamiento alojamiento = new Alojamiento();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		
+		List<Document> docDisponibilidad = (List<Document>) docAlojamiento.get("disponibilidad");		
+		String alojamientoID = ((ObjectId)docAlojamiento.getObjectId("_id")).toString();
+		
+		alojamiento.set_id(alojamientoID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+						
+		alojamiento.setDisponibilidad(disponibilidad);
+		alojamiento.setPrecio(docAlojamiento.getDouble("precio"));
+		alojamiento.setInfoPaisDestino(docAlojamiento.getString("infoPaisDestino"));		
+		alojamiento.setDescripcion(docAlojamiento.getString("descripcion"));
+		alojamiento.setTipo(TipoProducto.valueOf(docAlojamiento.getString("tipo")));
+		alojamiento.setTipoAlojamiento(TipoAlojamiento.valueOf(docAlojamiento.getString("tipoAlojamiento")));
+		alojamiento.setLatitud(docAlojamiento.getDouble("latitud"));	
+		alojamiento.setLongitud(docAlojamiento.getDouble("longitud"));
+		alojamiento.setHabitaciones(docAlojamiento.getInteger("habitaciones"));
+		alojamiento.setDesayuno(docAlojamiento.getBoolean("desayuno"));
+		alojamiento.setAlmuerzo(docAlojamiento.getBoolean("almuerzo"));
+		alojamiento.setCena(docAlojamiento.getBoolean("cena"));
+		alojamiento.setInternet(docAlojamiento.getBoolean("internet"));
+		alojamiento.setTelevision(docAlojamiento.getBoolean("television"));
+		alojamiento.setNumCamas(docAlojamiento.getInteger("numeroCamas"));
+		alojamiento.setNumBaños(docAlojamiento.getInteger("numeroBaños"));
+
+		return alojamiento;
+	}
 	
 	/**
 	 * Método que convierte un objeto de tipo Sitio a un Documento
 	 * 
-	 * @param alojamiento
+	 * @param sitio
 	 * @return
 	 */
 	public static Document deObjetoSitioADocumento(Sitio sitio) {
@@ -191,9 +232,46 @@ public final class Utils {
 	}
 	
 	/**
+	 * Método que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
+	 * 
+	 * @param sitio
+	 * @return
+	 */
+	public static Sitio deDocumentoAObjetoSitio(Document docSitio) {
+		Sitio sitio = new Sitio();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		
+		List<Document> docDisponibilidad = (List<Document>) docSitio.get("disponibilidad");		
+		String sitioID = ((ObjectId)docSitio.getObjectId("_id")).toString();
+		
+		sitio.set_id(sitioID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+						
+		sitio.setDisponibilidad(disponibilidad);
+		sitio.setPrecio(docSitio.getDouble("precio"));
+		sitio.setInfoPaisDestino(docSitio.getString("infoPaisDestino"));		
+		sitio.setDescripcion(docSitio.getString("descripcion"));
+		sitio.setTipo(TipoProducto.valueOf(docSitio.getString("tipo")));
+		sitio.setTipoDeSitio(TipoDeSitio.valueOf(docSitio.getString("tipoSitio")));
+		sitio.setLatitud(docSitio.getDouble("latitud"));	
+		sitio.setLongitud(docSitio.getDouble("longitud"));
+		sitio.setRestriccionEdad(docSitio.getInteger("restriccionEdad"));
+		sitio.setConsumoObligatorio(docSitio.getBoolean("consumoObligatorio"));
+		sitio.setHoraApertura(docSitio.getInteger("horaApertura"));
+		sitio.setHoraCierre(docSitio.getInteger("horaCierre"));
+				
+		return sitio;
+	}
+	/**
 	 * Método que convierte un objeto de tipo Experiencia a un Documento
 	 * 
-	 * @param alojamiento
+	 * @param experiencia
 	 * @return
 	 */
 	public static Document deObjetoExperienciaADocumento(Experiencia experiencia) {
@@ -221,9 +299,47 @@ public final class Utils {
 	}
 	
 	/**
+	 * Método que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
+	 * 
+	 * @param experiencia
+	 * @return
+	 */
+	public static Experiencia deDocumentoAObjetoExperiencia(Document docExperiencia) {
+		Experiencia experiencia= new Experiencia();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		
+		List<Document> docDisponibilidad = (List<Document>) docExperiencia.get("disponibilidad");		
+		String experienciaID = ((ObjectId)docExperiencia.getObjectId("_id")).toString();
+		
+		experiencia.set_id(experienciaID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+						
+		experiencia.setDisponibilidad(disponibilidad);
+		experiencia.setPrecio(docExperiencia.getDouble("precio"));
+		experiencia.setInfoPaisDestino(docExperiencia.getString("infoPaisDestino"));		
+		experiencia.setDescripcion(docExperiencia.getString("descripcion"));
+		experiencia.setTipo(TipoProducto.valueOf(docExperiencia.getString("tipo")));
+		experiencia.setTipoExperiencia(TipoExperiencia.valueOf(docExperiencia.getString("tipoExperiencia")));
+		experiencia.setLatitud(docExperiencia.getDouble("latitud"));	
+		experiencia.setLongitud(docExperiencia.getDouble("longitud"));
+		experiencia.setRestriccionEdad(docExperiencia.getInteger("restriccionEdad"));
+		experiencia.setNivelRiesgo(docExperiencia.getInteger("nivelRiesgo"));
+		experiencia.setDuracion(docExperiencia.getInteger("duracion"));
+		experiencia.setHoraLlegada(docExperiencia.getInteger("horaLlegada"));
+					
+		return experiencia;
+	}
+	
+	/**
 	 * Método que convierte un objeto de tipo Salida a un Documento
 	 * 
-	 * @param alojamiento
+	 * @param salida
 	 * @return
 	 */
 	public static Document deObjetoSalidaADocumento(Salida salida) {
@@ -249,9 +365,45 @@ public final class Utils {
 	}
 	
 	/**
+	 * Método que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * 
+	 * @param salida
+	 * @return
+	 */
+	public static Salida deDocumentoAObjetoSalida(Document docSalida) {
+		Salida salida= new Salida();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		List<String> docTrayecto = (List<String>) docSalida.get("trayecto");
+		List<Document> docDisponibilidad = (List<Document>) docSalida.get("disponibilidad");		
+		String salidaID = ((ObjectId)docSalida.getObjectId("_id")).toString();
+		
+		salida.set_id(salidaID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+						
+		salida.setDisponibilidad(disponibilidad);
+		salida.setPrecio(docSalida.getDouble("precio"));
+		salida.setInfoPaisDestino(docSalida.getString("infoPaisDestino"));		
+		salida.setDescripcion(docSalida.getString("descripcion"));
+		salida.setTipo(TipoProducto.valueOf(docSalida.getString("tipo")));
+		salida.setTipoSalida(TipoSalida.valueOf(docSalida.getString("tipoSalida")));				
+		salida.setRestriccionEdad(docSalida.getInteger("restriccionEdad"));
+		salida.setTrayecto(docTrayecto);
+		salida.setDuracion(docSalida.getInteger("duracion"));
+		salida.setGuia(docSalida.getString("guia"));						
+		
+		return salida;
+	}
+	
+	/**
 	 * Método que convierte un objeto de tipo Evento a un Documento
 	 * 
-	 * @param alojamiento
+	 * @param evento
 	 * @return
 	 */
 	public static Document deObjetoEventoADocumento(Evento evento) {
@@ -277,5 +429,42 @@ public final class Utils {
 				.append("maxPersonas", evento.getMaxPersonas())
 				.append("latitud", evento.getLatitud())
 				.append("longitud", evento.getLongitud());
+	}
+	
+	/**
+	 * Método que convierte un Documento con datos de Evento a un objeto de tipo Evento
+	 * 
+	 * @param evento
+	 * @return
+	 */
+	public static Evento deDocumentoAObjetoEvento(Document docEvento) {
+		Evento evento = new Evento();
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();		
+		List<Document> docDisponibilidad = (List<Document>) docEvento.get("disponibilidad");		
+		String eventoID = ((ObjectId)docEvento.getObjectId("_id")).toString();
+		
+		evento.set_id(eventoID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+						
+		evento.setDisponibilidad(disponibilidad);
+		evento.setPrecio(docEvento.getDouble("precio"));
+		evento.setInfoPaisDestino(docEvento.getString("infoPaisDestino"));		
+		evento.setDescripcion(docEvento.getString("descripcion"));
+		evento.setTipo(TipoProducto.valueOf(docEvento.getString("tipo")));
+		evento.setTipoEvento(TipoEvento.valueOf(docEvento.getString("tipoEvento")));				
+		evento.setRestriccionEdad(docEvento.getInteger("restriccionEdad"));		
+		evento.setNombreEvento(docEvento.getString("nombreEvento"));
+		evento.setHoraApertura(docEvento.getInteger("horaApertura"));						
+		evento.setHoraCierre(docEvento.getInteger("horaCierre"));
+		evento.setMaxPersonas(docEvento.getInteger("maxPersonas"));
+		evento.setLatitud(docEvento.getDouble("latitud"));
+		evento.setLongitud(docEvento.getDouble("longitud"));
+		return evento;
 	}
 }

@@ -9,8 +9,8 @@ import co.edu.javeriana.eko.utils.TipoProducto;
 
 public class Sitio extends Producto{
 	private TipoDeSitio tipoDeSitio;
-	private float latitud;
-	private float longitud;
+	private double latitud;
+	private double longitud;
 	private int restriccionEdad;
 	private boolean consumoObligatorio;
 	private int horaApertura;
@@ -21,7 +21,7 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoDeSitio tipoDeSitio, float latitud, float longitud, int restriccionEdad,
+			TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, int horaApertura, int horaCierre) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoDeSitio = tipoDeSitio;
@@ -34,7 +34,7 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, float latitud, float longitud, int restriccionEdad,
+			String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, int horaApertura, int horaCierre) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoDeSitio = tipoDeSitio;
@@ -54,19 +54,19 @@ public class Sitio extends Producto{
 		this.tipoDeSitio = tipoDeSitio;
 	}
 
-	public float getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(float latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
 
-	public float getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(float longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}
 

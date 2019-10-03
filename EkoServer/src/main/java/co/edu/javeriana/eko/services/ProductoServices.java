@@ -64,7 +64,7 @@ public class ProductoServices implements IProductoService {
 	
 	@Override
 	public Producto buscarProductoAlojamientoPorID(String _id) {
-		return DBController.buscarEnColeccionPorID("productos-alojamiento", _id);
+		return DBController.buscarEnColeccionAlojamientoPorID("productos-alojamiento", _id);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class ProductoServices implements IProductoService {
 	
 	@Override
 	public Producto buscarProductoSitioPorID(String _id) {
-		return DBController.buscarEnColeccionPorID("productos-sitio", _id);
+		return DBController.buscarEnColeccionSitioPorID("productos-sitio", _id);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class ProductoServices implements IProductoService {
 	
 	@Override
 	public Producto buscarProductoExperienciaPorID(String _id) {
-		return DBController.buscarEnColeccionPorID("productos-experiencia", _id);
+		return DBController.buscarEnColeccionExperienciaPorID("productos-experiencia", _id);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class ProductoServices implements IProductoService {
 	
 	@Override
 	public Producto buscarProductoSalidaPorID(String _id) {
-		return DBController.buscarEnColeccionPorID("productos-salida", _id);
+		return DBController.buscarEnColeccionSalidaPorID("productos-salida", _id);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class ProductoServices implements IProductoService {
 	
 	@Override
 	public Producto buscarProductoEventoPorID(String _id) {
-		return DBController.buscarEnColeccionPorID("productos-evento", _id);
+		return DBController.buscarEnColeccionEventoPorID("productos-evento", _id);
 	}
 
 	@Override

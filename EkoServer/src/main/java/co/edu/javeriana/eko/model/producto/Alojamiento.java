@@ -9,8 +9,8 @@ import co.edu.javeriana.eko.utils.TipoProducto;
 
 public class Alojamiento extends Producto{
 	private TipoAlojamiento tipoAlojamiento;
-	private float latitud;
-	private float longitud;
+	private double latitud;
+	private double longitud;
 	private int habitaciones;
 	private boolean desayuno;
 	private boolean almuerzo;
@@ -25,7 +25,7 @@ public class Alojamiento extends Producto{
 	}
 
 	public Alojamiento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, float latitud, float longitud, int habitaciones, boolean desayuno,
+			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
 			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBaños) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		// TODO Auto-generated constructor stub
@@ -43,7 +43,7 @@ public class Alojamiento extends Producto{
 	}
 
 	public Alojamiento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, float latitud, float longitud, int habitaciones, boolean desayuno,
+			String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
 			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBaños) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoAlojamiento = tipoAlojamiento;
@@ -68,19 +68,19 @@ public class Alojamiento extends Producto{
 		this.tipoAlojamiento = tipoAlojamiento;
 	}
 
-	public float getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(float latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
 
-	public float getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(float longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}
 

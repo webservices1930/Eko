@@ -9,6 +9,11 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import co.edu.javeriana.eko.model.producto.Alojamiento;
+import co.edu.javeriana.eko.model.producto.Evento;
+import co.edu.javeriana.eko.model.producto.Experiencia;
+import co.edu.javeriana.eko.model.producto.Salida;
+import co.edu.javeriana.eko.model.producto.Sitio;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -63,9 +68,93 @@ public final class DBController {
 		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
 		BasicDBObject query = new BasicDBObject();
 		query.put("_id", new ObjectId(_id));
-		
+				
 		Document transporte = coleccion.find(query).first();
-		return Utils.deDocumentoAObjetoTransporte(transporte);
+		return Utils.deDocumentoAObjetoTransporte(transporte);		
+	}
+	
+	/**
+	 * Busca en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Alojamiento buscarEnColeccionAlojamientoPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+				
+		Document alojamiento = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoAlojamiento(alojamiento);		
+	}
+	
+	/**
+	 * Busca en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Experiencia buscarEnColeccionExperienciaPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		 
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));				
+		Document experiencia = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoExperiencia(experiencia);		
+	}
+	
+	/**
+	 * Busca en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Salida buscarEnColeccionSalidaPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		 
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));				
+		Document salida = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoSalida(salida);		
+	}
+	
+	/**
+	 * Busca en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Evento buscarEnColeccionEventoPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		 
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));				
+		Document evento = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoEvento(evento);		
+	}
+	
+	/**
+	 * Busca en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Sitio buscarEnColeccionSitioPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+				
+		Document sitio = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoSitio(sitio);		
 	}
 	
 	/**

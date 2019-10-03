@@ -11,8 +11,8 @@ public class Experiencia extends Producto{
 	private TipoExperiencia tipoExperiencia;
 	private int nivelRiesgo;
 	private int restriccionEdad;
-	private float latitud;
-	private float longitud;
+	private double latitud;
+	private double longitud;
 	private int duracion;
 	private int horaLlegada;
 	
@@ -21,7 +21,7 @@ public class Experiencia extends Producto{
 	}
 
 	public Experiencia(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, float latitud, float longitud,
+			TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, double latitud, double longitud,
 			int duracion, int horaLlegada) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoExperiencia = tipoExperiencia;
@@ -34,7 +34,7 @@ public class Experiencia extends Producto{
 	}
 
 	public Experiencia(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, float latitud, float longitud,
+			String descripcion, TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, double latitud, double longitud,
 			int duracion, int horaLlegada) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
 		this.tipoExperiencia = tipoExperiencia;
@@ -70,19 +70,19 @@ public class Experiencia extends Producto{
 		this.restriccionEdad = restriccionEdad;
 	}
 
-	public float getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(float latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
 
-	public float getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(float longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}
 
