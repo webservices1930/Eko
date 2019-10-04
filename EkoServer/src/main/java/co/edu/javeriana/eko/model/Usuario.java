@@ -6,6 +6,7 @@ public abstract class Usuario {
 
     private String nombre;
     private int edad;
+    private String foto;
     private String descripcion;
     private String correo;
     private String contraseña;
@@ -14,9 +15,10 @@ public abstract class Usuario {
 
     public Usuario(){}
 
-    public Usuario (String nombre, int edad, String descripcion, String correo, String contraseña){
+    public Usuario (String nombre, int edad, String foto, String descripcion, String correo, String contraseña){
         this.nombre = nombre;
         this.edad = edad;
+        this.foto = foto;
         this.descripcion=descripcion;
         this.correo=correo;
         this.contraseña=contraseña;
@@ -36,6 +38,14 @@ public abstract class Usuario {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public Object getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getDescripcion() {

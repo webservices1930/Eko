@@ -4,31 +4,35 @@ import co.edu.javeriana.eko.model.Usuario;
 
 public class Proveedor  extends Usuario {
 
-    private int telefono;
+    private String telefono;
     private String paginaWeb;
     private String contactoFacebook;
     private String contactoTwitter;
 
-    public Proveedor(int telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
+    public Proveedor(String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
         this.contactoFacebook = contactoFacebook;
         this.contactoTwitter = contactoTwitter;
     }
 
-    public Proveedor(String nombre, int edad, String descripcion, String correo, String contraseña, int telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
-        super(nombre, edad, descripcion, correo, contraseña);
+    public Proveedor(String nombre, int edad, String foto, String descripcion, String correo, String contraseña, String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
+        super(nombre, edad, foto, descripcion, correo, contraseña);
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
         this.contactoFacebook = contactoFacebook;
         this.contactoTwitter = contactoTwitter;
     }
 
-    public int getTelefono() {
+    public Proveedor() {
+
+    }
+
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
