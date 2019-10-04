@@ -1,14 +1,14 @@
 package co.edu.javeriana.eko.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import co.edu.javeriana.eko.model.Usuario;
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.model.usuario.Cliente;
+import co.edu.javeriana.eko.model.usuario.Proveedor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import co.edu.javeriana.eko.model.Disponibilidad;
-import co.edu.javeriana.eko.model.producto.Transporte;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Utils {
   /* --- Se genera un Singleton de Variables de Entorno --- */
@@ -123,19 +123,41 @@ public final class Utils {
   }
 
   /**
-   * M�todo que convierte un objeto de tipo Usuario a un Documento
+   * M�todo que convierte un objeto de tipo Cliente a un Documento
    *
    * @param usuario
    * @return
    */
-  public static Document deObjetoUsurioADocumento(Usuario usuario) {
+  public static Document deObjetoClienteADocumento(Cliente usuario) {
 
     return new Document("nombre", usuario.getNombre())
         .append("edad", usuario.getEdad())
         .append("foto", usuario.getFoto())
         .append("descripcion", usuario.getDescripcion())
         .append("correo", usuario.getCorreo())
-        .append("contraseña", usuario.getContraseña());
+        .append("contraseña", usuario.getContraseña())
+        .append("tipoUsuario", usuario.getTipoUsuario().toString());
+  }
+
+  /**
+   * M�todo que convierte un objeto de tipo Proveedor a un Documento
+   *
+   * @param usuario
+   * @return
+   */
+  public static Document deObjetoProveedorADocumento(Proveedor usuario) {
+
+    return new Document("nombre", usuario.getNombre())
+        .append("edad", usuario.getEdad())
+        .append("foto", usuario.getFoto())
+        .append("descripcion", usuario.getDescripcion())
+        .append("correo", usuario.getCorreo())
+        .append("contraseña", usuario.getContraseña())
+        .append("contactoTwitter", usuario.getContactoTwitter())
+        .append("contactoFacebook", usuario.getContactoFacebook())
+        .append("telefono", usuario.getTelefono())
+        .append("paginaWen", usuario.getPaginaWeb())
+        .append("tipoUsuario", usuario.getTipoUsuario().toString());
   }
 
   /**
@@ -144,8 +166,8 @@ public final class Utils {
    * @param docUsuario
    * @return
    */
-  public static Usuario deDocumentoAObjetoUsuario(Document docUsuario) {
-    Usuario usuario = new Usuario() {};
+  public static Cliente deDocumentoAObjetoCliente(Document docUsuario) {
+    Cliente usuario = new Cliente();
     usuario.setNombre(docUsuario.getString("nombre"));
     usuario.setEdad(docUsuario.getInteger("edad"));
     usuario.setFoto(docUsuario.getString("foto"));
@@ -153,6 +175,31 @@ public final class Utils {
     usuario.setDescripcion(docUsuario.getString("descripcion"));
     usuario.setCorreo(docUsuario.getString("correo"));
     usuario.setContraseña(docUsuario.getString("contraseña"));
+    usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
+
+    return usuario;
+  }
+
+  /**
+   * M�todo que convierte un Documento con datos de Usuario a un objeto de tipo Usuario
+   *
+   * @param docUsuario
+   * @return
+   */
+  public static Proveedor deDocumentoAObjetoProveedor(Document docUsuario) {
+    Proveedor usuario = new Proveedor();
+    usuario.setNombre(docUsuario.getString("nombre"));
+    usuario.setEdad(docUsuario.getInteger("edad"));
+    usuario.setFoto(docUsuario.getString("foto"));
+    usuario.setNombre(docUsuario.getString("nombre"));
+    usuario.setDescripcion(docUsuario.getString("descripcion"));
+    usuario.setCorreo(docUsuario.getString("correo"));
+    usuario.setContraseña(docUsuario.getString("contraseña"));
+    usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
+    usuario.setPaginaWeb(docUsuario.getString("paginaWeb"));
+    usuario.setContactoFacebook(docUsuario.getString("contactoFacebook"));
+    usuario.setContactoTwitter(docUsuario.getString("contactoTwitter"));
+    usuario.setTelefono(docUsuario.getString("telefono"));
 
     return usuario;
   }

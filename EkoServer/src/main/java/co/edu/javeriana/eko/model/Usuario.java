@@ -1,5 +1,7 @@
 package co.edu.javeriana.eko.model;
 
+import co.edu.javeriana.eko.utils.TipoUsuario;
+
 public abstract class Usuario {
 
     //Variables
@@ -10,18 +12,20 @@ public abstract class Usuario {
     private String descripcion;
     private String correo;
     private String contraseña;
+    private TipoUsuario tipoUsuario;
 
     //Contructor
 
     public Usuario(){}
 
-    public Usuario (String nombre, int edad, String foto, String descripcion, String correo, String contraseña){
+    public Usuario (String nombre, int edad, String foto, String descripcion, String correo, String contraseña, TipoUsuario tipoUsuario){
         this.nombre = nombre;
         this.edad = edad;
         this.foto = foto;
         this.descripcion=descripcion;
         this.correo=correo;
         this.contraseña=contraseña;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getNombre() {
@@ -70,5 +74,13 @@ public abstract class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

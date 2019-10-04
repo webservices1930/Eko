@@ -21,13 +21,13 @@ public class UsuarioService implements IUsuarioService {
 
   @Override
   public void registrarUsuarioCliente(Cliente usuario) {
-    Document nUsuarioDoc = Utils.deObjetoUsurioADocumento(usuario);
+    Document nUsuarioDoc = Utils.deObjetoClienteADocumento(usuario);
     DBController.insertarObjeto("usuario-cliente", nUsuarioDoc);
   }
 
   @Override
   public void registrarUsuarioProveedor(Proveedor usuario) {
-    Document nUsuarioDoc = Utils.deObjetoUsurioADocumento(usuario);
+    Document nUsuarioDoc = Utils.deObjetoProveedorADocumento(usuario);
     DBController.insertarObjeto("usuario-proveedor", nUsuarioDoc);
   }
 
