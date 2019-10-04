@@ -1,6 +1,7 @@
 package co.edu.javeriana.eko.model.usuario;
 
 import co.edu.javeriana.eko.model.Usuario;
+import co.edu.javeriana.eko.utils.TipoUsuario;
 
 public class Proveedor  extends Usuario {
 
@@ -16,8 +17,8 @@ public class Proveedor  extends Usuario {
         this.contactoTwitter = contactoTwitter;
     }
 
-    public Proveedor(String nombre, int edad, String foto, String descripcion, String correo, String contraseña, String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
-        super(nombre, edad, foto, descripcion, correo, contraseña);
+    public Proveedor(String nombre, int edad, String foto, TipoUsuario tipoUsuario, String descripcion, String correo, String contraseña, String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
+        super(nombre, edad, foto, descripcion, correo, contraseña,tipoUsuario);
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
         this.contactoFacebook = contactoFacebook;

@@ -33,4 +33,14 @@ public class UsuarioService implements IUsuarioService {
 
   @Override
   public void iniciarSesion(String correo, String contraseña) {}
+
+  @Override
+  public void eliminarUsuarioPorCorreoCliente(String correo) {
+    DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);
+  }
+
+  @Override
+  public void eliminarUsuarioPorCorreoProveedor(String correo) {
+    DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);
+  }
 }

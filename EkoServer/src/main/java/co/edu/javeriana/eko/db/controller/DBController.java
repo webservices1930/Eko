@@ -1,19 +1,20 @@
 package co.edu.javeriana.eko.db.controller;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
+import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.utils.Utils;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
-import co.edu.javeriana.eko.model.producto.Transporte;
-import co.edu.javeriana.eko.utils.Utils;
+import static com.mongodb.client.model.Filters.eq;
+import static jdk.nashorn.internal.objects.NativeFunction.function;
 
 public final class DBController {
-	// Se crea la conexión a la Base de Datos
+	// Se crea la conexiï¿½n a la Base de Datos
 	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
 	private static String nombreDB = "EkoDB";
 
@@ -25,7 +26,7 @@ public final class DBController {
 	}
 
 	/**
-	 * Busca una colección en la base de datos dado su nombre
+	 * Busca una colecciï¿½n en la base de datos dado su nombre
 	 * 
 	 * @param nombreColeccion
 	 */
@@ -38,10 +39,10 @@ public final class DBController {
 	}
 
 	/**
-	 * Insertar un nuevo Objeto/Documento (JSON) a la colección especificada
+	 * Insertar un nuevo Objeto/Documento (JSON) a la colecciï¿½n especificada
 	 * 
 	 * @param nombreColeccion
-	 * @param nD
+	 * @param nDoc
 	 */
 	public static void insertarObjeto(String nombreColeccion, Document nDoc) {
 		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
@@ -51,7 +52,7 @@ public final class DBController {
 	}
 	
 	/**
-	 * Busca en una colección indicada un objeto por su ID
+	 * Busca en una colecciï¿½n indicada un objeto por su ID
 	 * 
 	 * @param nombreColeccion
 	 * @param _id
@@ -69,7 +70,7 @@ public final class DBController {
 	}
 	
 	/**
-	 * Elimina en una colección indicada un objeto por su ID
+	 * Elimina en una colecciï¿½n indicada un objeto por su ID
 	 * 
 	 * @param nombreColeccion
 	 * @param _id
@@ -86,7 +87,20 @@ public final class DBController {
 	}
 
 	/**
-	 * Cierra la conexión a la Base de Datos de MongoDB
+	 * Elimina en una colecciï¿½n indicada un objeto por su ID
+	 *
+	 * @param nombreColeccion
+	 * @param correo
+	 */
+	public static void eliminarEnColeccionPorCorreo(String nombreColeccion, String correo) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+		coleccion.deleteOne(eq("correo", correo));
+	}
+
+	/**
+	 * Cierra la conexiï¿½n a la Base de Datos de MongoDB
 	 */
 	public static void cerrarConexionMongoDB() {
 		clienteMongo.close();

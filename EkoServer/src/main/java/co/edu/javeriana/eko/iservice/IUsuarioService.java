@@ -19,4 +19,11 @@ public interface IUsuarioService {
   @WebMethod(operationName = "iniciarSesion")
   void iniciarSesion(
       @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+
+  @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
+  public void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
+
+  @WebMethod(operationName = "eliminarUsuarioPorCorreoProveedor")
+  public void eliminarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+
 }
