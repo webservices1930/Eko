@@ -17,9 +17,16 @@ public interface IUsuarioService {
   @WebMethod(operationName = "registrarUsuarioProveedor")
   void registrarUsuarioProveedor(@WebParam(name = "usuario") Proveedor usuario);
 
-  @WebMethod(operationName = "iniciarSesion")
-  void iniciarSesion(
+  @WebMethod(operationName = "iniciarSesionCliente")
+  @WebResult(name = "usuarioCliente")
+  Cliente iniciarSesionCliente(
       @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+
+  @WebMethod(operationName = "iniciarSesionClienteProveedor")
+  @WebResult(name = "usuarioProveedor")
+  Proveedor iniciarSesionProveedor(
+          @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
   void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
