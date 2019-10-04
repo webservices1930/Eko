@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UtilsService } from '../../utils/utils.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../model/Usuario/Usuario';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private cookieService: CookieService
   ) { }
 
   /**
@@ -42,5 +44,30 @@ export class UserService {
     });
 
     return loginObservable;
+  }
+
+  /**
+   * Crea una cookie con la información del usuario para saber que ha iniciado sesión
+   * @param usuario 
+   */
+  public crearCookieUsuario(usuario: Usuario) {
+    this.cookieService.set('user', usuario.correo);
+    this.cookieService.set('login', 'logged');
+  }
+
+  /**
+   * Elimina la cookie que tenía la información del usuario para saber que ha iniciado sesión
+   * @param usuario 
+   */
+  public eliminarCookieUsuario() {
+    this.cookieService.delete('user');
+    this.cookieService.delete('login');
+  }
+
+  /**
+   * Verifica si hay un usuario que ha iniciado sesión
+   */
+  public verificiarSesion() {
+    return this.cookieService.check('login');
   }
 }

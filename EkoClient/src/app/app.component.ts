@@ -13,18 +13,9 @@ export class AppComponent implements OnInit {
   title = 'EkoClient';
   id = '';
 
-  constructor(
-    private cookieService: CookieService,
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-    if (this.cookieService.get('login') === 'logged') {
-      this.router.navigateByUrl('');
-    } else {
-      this.router.navigateByUrl('user/login');
-    }
-  }
+  ngOnInit() {}
 
   /**
    * Llama al servicio para obtener todos los productos del MarketPlace en XML

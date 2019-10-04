@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,14 +8,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   public cerrarSesion() {
-    this.cookieService.delete('user');
-    this.cookieService.delete('login');
+    this.userService.eliminarCookieUsuario();
   }
 
 }

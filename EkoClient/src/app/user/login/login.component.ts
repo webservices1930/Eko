@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
-    private cookieService: CookieService
+    private userService: UserService
   ) {
     this.checkoutForm = this.formBuilder.group({
       correo: '',
@@ -27,14 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(data) {
-    console.warn('Submited', data);
     this.checkoutForm.reset();
 
     this.userService.iniciarSesion(new Usuario())
       .subscribe(result => {
-        console.log(result);
-        this.cookieService.set('user', data.correo);
-        this.cookieService.set('login', 'logged');
+        this.userService.crearCookieUsuario(data as Usuario);
         alert('Sesión iniciada');
       },
       error =>{
