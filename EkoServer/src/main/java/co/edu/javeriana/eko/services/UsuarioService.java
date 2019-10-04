@@ -32,12 +32,12 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public Cliente iniciarSesionCliente(String correo, String contraseña) {
+  public Cliente iniciarSesionCliente(String correo) {
     return(Cliente) DBController.buscarEnColeccionPorCorreo("usuario-cliente",correo);
   }
 
   @Override
-  public Proveedor iniciarSesionProveedor(String correo, String contraseña) {
+  public Proveedor iniciarSesionProveedor(String correo) {
     return (Proveedor) DBController.buscarEnColeccionPorCorreo("usuario-proveedor",correo);
   }
 

@@ -20,12 +20,12 @@ public interface IUsuarioService {
   @WebMethod(operationName = "iniciarSesionCliente")
   @WebResult(name = "usuarioCliente")
   Cliente iniciarSesionCliente(
-      @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+      @WebParam(name = "correo") String correo);
 
-  @WebMethod(operationName = "iniciarSesionClienteProveedor")
+  @WebMethod(operationName = "iniciarSesionProveedor")
   @WebResult(name = "usuarioProveedor")
   Proveedor iniciarSesionProveedor(
-          @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+          @WebParam(name = "correo") String correo);
 
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
