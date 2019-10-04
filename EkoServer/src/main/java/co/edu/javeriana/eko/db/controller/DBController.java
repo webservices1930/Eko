@@ -182,7 +182,6 @@ public final class DBController {
 		coleccion.updateOne(
 				eq("correo", correo),
 				new Document("$set", new Document("telefono", usuario.getTelefono())));
-
 	}
 
   /** Cierra la conexi�n a la Base de Datos de MongoDB */
