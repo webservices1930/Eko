@@ -21,9 +21,21 @@ public interface IUsuarioService {
       @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
-  public void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
+   void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoProveedor")
-  public void eliminarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+   void eliminarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+
+  @WebMethod(operationName = "buscarUsuarioPorCorreoCliente")
+   Cliente buscarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
+
+  @WebMethod(operationName = "buscarUsuarioPorCorreoProveedor")
+   Proveedor buscarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+
+  @WebMethod(operationName = "actualizarUsuarioCliente")
+  void actualizarUsuarioCliente(@WebParam(name = "usuario") Cliente usuario);
+
+  @WebMethod(operationName = "actualizarUsuarioProovedor")
+  void actualizarUsuarioProovedor(@WebParam(name = "usuario") Proveedor usuario);
 
 }

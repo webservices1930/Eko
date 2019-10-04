@@ -43,4 +43,25 @@ public class UsuarioService implements IUsuarioService {
   public void eliminarUsuarioPorCorreoProveedor(String correo) {
     DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);
   }
+
+  @Override
+  public Cliente buscarUsuarioPorCorreoCliente(String correo) {
+    return (Cliente) DBController.buscarEnColeccionPorCorreo("usuario-proveedor", correo);
+  }
+
+  @Override
+  public Proveedor buscarUsuarioPorCorreoProveedor(String correo) {
+    return (Proveedor) DBController.buscarEnColeccionPorCorreo("usuario-proveedor", correo);
+  }
+
+  @Override
+  public void actualizarUsuarioCliente(Cliente usuario) {
+    DBController.actualizarUsuarioCliente("usuario-proveedor",usuario);
+
+  }
+
+  @Override
+  public void actualizarUsuarioProovedor(Proveedor usuario) {
+
+  }
 }
