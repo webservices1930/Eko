@@ -46,7 +46,7 @@ public class UsuarioService implements IUsuarioService {
 
   @Override
   public Cliente buscarUsuarioPorCorreoCliente(String correo) {
-    return (Cliente) DBController.buscarEnColeccionPorCorreo("usuario-proveedor", correo);
+    return (Cliente) DBController.buscarEnColeccionPorCorreo("usuario-cliente", correo);
   }
 
   @Override
@@ -55,13 +55,12 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public void actualizarUsuarioCliente(Cliente usuario) {
-    DBController.actualizarUsuarioCliente("usuario-proveedor",usuario);
-
+  public void actualizarUsuarioCliente(Cliente usuario, String correo) {
+    DBController.actualizarUsuarioCliente("usuario-cliente", usuario, correo);
   }
 
   @Override
-  public void actualizarUsuarioProovedor(Proveedor usuario) {
-
+  public void actualizarUsuarioProovedor(Proveedor usuario, String correo) {
+    DBController.actualizarUsuarioProveedor("usuario-proveedor", usuario, correo);
   }
 }

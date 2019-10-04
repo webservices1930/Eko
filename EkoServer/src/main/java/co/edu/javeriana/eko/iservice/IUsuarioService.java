@@ -5,6 +5,7 @@ import co.edu.javeriana.eko.model.usuario.Proveedor;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService
@@ -21,21 +22,24 @@ public interface IUsuarioService {
       @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
-   void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
+  void eliminarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoProveedor")
-   void eliminarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+  void eliminarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "buscarUsuarioPorCorreoCliente")
-   Cliente buscarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
+  @WebResult(name = "usuarioCliente")
+  Cliente buscarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "buscarUsuarioPorCorreoProveedor")
-   Proveedor buscarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
+  @WebResult(name = "usuarioProveedor")
+  Proveedor buscarUsuarioPorCorreoProveedor(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "actualizarUsuarioCliente")
-  void actualizarUsuarioCliente(@WebParam(name = "usuario") Cliente usuario);
+  void actualizarUsuarioCliente(
+      @WebParam(name = "usuario") Cliente usuario, @WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "actualizarUsuarioProovedor")
-  void actualizarUsuarioProovedor(@WebParam(name = "usuario") Proveedor usuario);
-
+  void actualizarUsuarioProovedor(
+      @WebParam(name = "usuario") Proveedor usuario, @WebParam(name = "correo") String correo);
 }
