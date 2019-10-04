@@ -51,8 +51,9 @@ export class UserService {
    * @param usuario 
    */
   public crearCookieUsuario(usuario: Usuario) {
-    this.cookieService.set('user', usuario.correo);
-    this.cookieService.set('login', 'logged');
+    this.cookieService.set('usuario', usuario.correo);
+    this.cookieService.set('estado', 'ingresado');
+    this.cookieService.set('tipo', usuario.tipoUsuario.toString());
   }
 
   /**
@@ -60,14 +61,15 @@ export class UserService {
    * @param usuario 
    */
   public eliminarCookieUsuario() {
-    this.cookieService.delete('user');
-    this.cookieService.delete('login');
+    this.cookieService.delete('usuario');
+    this.cookieService.delete('estado');
+    this.cookieService.delete('tipo');
   }
 
   /**
    * Verifica si hay un usuario que ha iniciado sesión
    */
   public verificiarSesion() {
-    return this.cookieService.check('login');
+    return this.cookieService.check('estado');
   }
 }

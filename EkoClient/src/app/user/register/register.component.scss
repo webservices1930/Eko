@@ -1,4 +1,4 @@
-.eko-login {
+.eko-register {
   $self: &;
 
   &__header {
@@ -21,7 +21,7 @@
   }
 
   &__form {
-    max-width: 400px;
+    max-width: 960px;
     margin-top: 36px;
     padding: 0;
     background-color: #FFFFFF;

@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onSubmit(data) {
+  public onSubmit(informacionUsuario) {
     this.checkoutForm.reset();
 
-    this.userService.iniciarSesion(new Usuario())
+    this.userService.iniciarSesion(informacionUsuario as Usuario)
       .subscribe(result => {
-        this.userService.crearCookieUsuario(data as Usuario);
+        this.userService.crearCookieUsuario(informacionUsuario as Usuario);
         alert('Sesión iniciada');
         this.router.navigate(['']);
       },
