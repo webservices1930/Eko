@@ -23,10 +23,10 @@
         <nav class="eko-menu__sub-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUsuario">
           <ul class="eko-menu__list">
             <li class="eko-menu__item dropdown-item">
-              <a class="eko-menu__link" routerLink="/user/login">Iniciar sesión</a>
+              <a class="eko-menu__link" routerLink="/user/login" *ngIf="!haySesionDeUsuario">Iniciar sesión</a>
             </li>
             <li class="eko-menu__item dropdown-item">
-              <a class="eko-menu__link nav-link" routerLink="/" (click)="cerrarSesion()">Cerrar sesión</a>
+              <a class="eko-menu__link nav-link" routerLink="/" (click)="cerrarSesion()" *ngIf="haySesionDeUsuario">Cerrar sesión</a>
             </li>
           </ul>
         </nav>

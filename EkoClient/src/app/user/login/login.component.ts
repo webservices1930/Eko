@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.checkoutForm = this.formBuilder.group({
       correo: '',
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         this.userService.crearCookieUsuario(data as Usuario);
         alert('Sesión iniciada');
+        this.router.navigate(['']);
       },
       error =>{
         console.log('There was an error: ', error);
