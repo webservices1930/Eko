@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
     console.log(TipoUsuario.CLIENTE)
     this.tiposDeUsuario = Object.keys(TipoUsuario).filter(key => typeof TipoUsuario[key as any] === 'number');
     this.checkoutForm = this.formBuilder.group({
-      nombre: '',
-      edad: '',
-      descripcion: '',
-      tipoUsuario: '',
-      correo: '',
-      contrasena: '',
-      verificarContrasena: '',
+      nombre: ['', Validators.required],
+      edad: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      tipoUsuario: ['', Validators.required],
+      correo: ['', Validators.required],
+      contrasena: ['', Validators.required],
+      verificarContrasena: ['', Validators.required],
       telefono: '',
       paginaWeb: '',
       contactoFacebook: '',
@@ -40,9 +40,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onSubmit(data) {
-    console.log(data);
-    // this.checkoutForm.reset();
+  public onSubmit(informacionUsuario: Usuario) {
+    this.userService.registrarUsuario(informacionUsuario)
+      .subscribe(result => {
+        alert('Usuario agregado exitosamente')
+      },
+        error => {
+          console.log('There was an error: ', error);
+          console.log(error.status);
+        });
   }
 
 }

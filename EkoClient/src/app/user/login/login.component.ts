@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Router } from '@angular/router';
@@ -18,22 +18,22 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.checkoutForm = this.formBuilder.group({
-      correo: '',
-      contrasena: ''
+      correo: ['', Validators.required],
+      contrasena: ['', Validators.required]
     });
   }
 
   ngOnInit() {
   }
 
-  public onSubmit(informacionUsuario) {
-    this.checkoutForm.reset();
-
+  public onSubmit(informacionUsuario: Usuario) {
+    informacionUsuario.tipoUsuario = 'CLIENTE'
     this.userService.iniciarSesion(informacionUsuario as Usuario)
       .subscribe(result => {
+        console.log('holi')
         this.userService.crearCookieUsuario(informacionUsuario as Usuario);
-        alert('Sesión iniciada');
-        this.router.navigate(['']);
+        this.router.navigate(['home']);
+        window.location.reload();
       },
       error =>{
         console.log('There was an error: ', error);

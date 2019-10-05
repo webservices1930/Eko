@@ -131,7 +131,7 @@ public final class DBController {
         eq("correo", correo), new Document("$set", new Document("nombre", usuario.getNombre())));
     coleccion.updateOne(
         eq("correo", correo),
-        new Document("$set", new Document("contraseña", usuario.getContraseña())));
+        new Document("$set", new Document("contraseña", usuario.getContrasena())));
 
     coleccion.updateOne(
         eq("correo", correo), new Document("$set", new Document("edad", usuario.getEdad())));
@@ -159,7 +159,7 @@ public final class DBController {
 				eq("correo", correo), new Document("$set", new Document("nombre", usuario.getNombre())));
 		coleccion.updateOne(
 				eq("correo", correo),
-				new Document("$set", new Document("contraseña", usuario.getContraseña())));
+				new Document("$set", new Document("contraseña", usuario.getContrasena())));
 
 		coleccion.updateOne(
 				eq("correo", correo), new Document("$set", new Document("edad", usuario.getEdad())));

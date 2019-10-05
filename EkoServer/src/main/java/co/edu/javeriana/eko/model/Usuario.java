@@ -11,20 +11,20 @@ public abstract class Usuario {
     private String foto;
     private String descripcion;
     private String correo;
-    private String contraseña;
+    private String contrasena;
     private TipoUsuario tipoUsuario;
 
     //Contructor
 
     public Usuario(){}
 
-    public Usuario (String nombre, int edad, String foto, String descripcion, String correo, String contraseña, TipoUsuario tipoUsuario){
+    public Usuario (String nombre, int edad, String foto, String descripcion, String correo, String contrasena, TipoUsuario tipoUsuario){
         this.nombre = nombre;
         this.edad = edad;
         this.foto = foto;
         this.descripcion=descripcion;
         this.correo=correo;
-        this.contraseña=contraseña;
+        this.contrasena=contrasena;
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -68,12 +68,12 @@ public abstract class Usuario {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public TipoUsuario getTipoUsuario() {

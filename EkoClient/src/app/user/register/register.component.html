@@ -2,7 +2,8 @@
   <header class="eko-register__header">
     <h1 class="eko-register__title eko-title">EKO</h1>
   </header>
-  <form class="eko-register__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <form class="eko-register__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)"
+    novalidate>
     <h3 class="eko-register__form-title">Formulario de registro</h3>
     <div class="eko-register__form-wrapper row">
       <div class="col-6">
@@ -20,12 +21,12 @@
           required>
       </div>
       <div class="col-6">
-        <input placeholder="Verificar contraseña" type="password" class="form-control"
-          formControlName="verificarContrasena" name="verificarContrasena" required>
-      </div>
-      <div class="col-6">
         <input placeholder="Contraseña" type="password" class="form-control" formControlName="contrasena"
           name="contrasena" required>
+      </div>
+      <div class="col-6">
+        <input placeholder="Verificar contraseña" type="password" class="form-control"
+          formControlName="verificarContrasena" name="verificarContrasena" required>
       </div>
       <div class="col-12">
         <label for="tipo-usuario">Tipo de usuario</label>
@@ -35,24 +36,23 @@
       </div>
       <ng-container *ngIf="this.checkoutForm.get('tipoUsuario').value === 'PROVEEDOR'">
         <div class="col-6">
-          <input placeholder="Teléfono" type="text" class="form-control" formControlName="telefono"
-            name="telefono" required>
+          <input placeholder="Teléfono" type="text" class="form-control" formControlName="telefono" name="telefono">
         </div>
         <div class="col-6">
-          <input placeholder="Página web" type="text" class="form-control" formControlName="paginaWeb"
-            name="paginaWeb" required>
+          <input placeholder="Página web" type="text" class="form-control" formControlName="paginaWeb" name="paginaWeb">
         </div>
         <div class="col-6">
           <input placeholder="Usuario Facebook" type="text" class="form-control" formControlName="contactoFacebook"
-            name="contactoFacebook" required>
+            name="contactoFacebook">
         </div>
         <div class="col-6">
           <input placeholder="Usuario Twitter" type="text" class="form-control" formControlName="contactoTwitter"
-            name="contactoTwitter" required>
+            name="contactoTwitter">
         </div>
       </ng-container>
       <div class="col-6 offset-3">
-        <button class="btn btn-dark btn-lg btn-block btn-sm" type="submit">Registrarse</button>
+        <button [disabled]="checkoutForm.invalid" class="btn btn-dark btn-lg btn-block btn-sm"
+          type="submit">Registrarse</button>
       </div>
     </div>
   </form>

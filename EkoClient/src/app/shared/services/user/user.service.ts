@@ -4,6 +4,7 @@ import { UtilsService } from '../../utils/utils.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../model/Usuario/Usuario';
 import { CookieService } from 'ngx-cookie-service';
+import { Proveedor } from '../../model/Usuario/Proveedor';
 
 @Injectable({
   providedIn: 'root'
@@ -20,30 +21,58 @@ export class UserService {
    * Obtiene todos los productos del Market Place
    */
   public iniciarSesion(usuario: Usuario): Observable<any> {
-    // const httpOptions: object = this.utils.crearHeadersXML();
+    const httpOptions: object = this.utils.crearHeadersXML();
 
-    // const body: string = `
-    // <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    //   <Body>
-    //     <obtenerTodosLosProductos xmlns="http://iservice.eko.javeriana.edu.co/"/>
-    //   </Body>
-    // </Envelope>`;
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <iniciarSesionCliente xmlns="http://iservice.eko.javeriana.edu.co/">
+          <correo xmlns="">` + usuario.correo +`</correo>
+        </iniciarSesionCliente>
+      </Body>
+    </Envelope>`;
 
     // Se realiza una petición POST
-    // return this.http.post(
-    //   this.utils.baseUrl + 'eko/market-place?wsdl',
-    //   body,
-    //   httpOptions
-    // );
+    return this.http.post(
+      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      body,
+      httpOptions
+    );
+  }
 
-    const loginObservable = new Observable((observer) => {
-      observer.next(() => {
-        console.log('holi');
-      });
-      observer.complete();
-    });
+  public registrarUsuario(nUsuario: Usuario): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+    let body: string = '';
 
-    return loginObservable;
+    // Se crea el vody de la petición SOAP
+    if (nUsuario.tipoUsuario === 'CLIENTE') {
+      body = `
+      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+          <registrarUsuarioCliente xmlns="http://iservice.eko.javeriana.edu.co/">
+          ` + this.utils.crearUsuarioXML(nUsuario) +  `
+          </registrarUsuarioCliente>
+        </Body>
+      </Envelope>
+      `;
+    } else if (nUsuario.tipoUsuario === 'PROVEEDOR') {
+      body = `
+      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+          <registrarUsuarioProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
+          ` + this.utils.crearUsuarioProveedorXML(nUsuario as Proveedor) +  `
+          </registrarUsuarioProveedor>
+        </Body>
+      </Envelope>
+      `;
+    }
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      body,
+      httpOptions
+    );
   }
 
   /**
@@ -71,5 +100,12 @@ export class UserService {
    */
   public verificiarSesion() {
     return this.cookieService.check('estado');
+  }
+
+  /**
+   * Verifica si hay un usuario que ha iniciado sesión
+   */
+  public verificarUsuarioProveedor() {
+    return this.cookieService.get('tipo') === 'PROVEEDOR';
   }
 }

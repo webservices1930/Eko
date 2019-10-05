@@ -13,7 +13,7 @@
         <input placeholder="Contraseña" type="password" class="form-control" formControlName="contrasena" name="contrasena" required>
       </div>
       <div class="col-6 offset-3">
-        <button class="btn btn-dark btn-lg btn-block btn-sm" type="submit">Iniciar sesión</button>
+        <button [disabled]="checkoutForm.invalid" class="btn btn-dark btn-lg btn-block btn-sm" type="submit">Iniciar sesión</button>
       </div>
       <div class="col-12 eko-login__form-registrar">
         <label>¿No eres usuario?

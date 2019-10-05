@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   public haySesionDeUsuario: boolean = false;
+  public esUsuarioProveedor: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -19,13 +20,24 @@ export class MenuComponent implements OnInit {
     this.verificarEstadoDeSesion();
   }
 
+  /**
+   * Cierra la sesión de un usuario
+   */
   public cerrarSesion() {
     this.userService.eliminarCookieUsuario();
     this.router.navigate(['user/login']);
+    window.location.reload();
   }
 
+  /**
+   * Verifica si hay un usuario que ha iniciado sesión
+   */
   public verificarEstadoDeSesion() {
     this.haySesionDeUsuario = this.userService.verificiarSesion();
+  }
+
+  public verificarTipoDeUsuario() {
+    this.esUsuarioProveedor = this.userService.verificarUsuarioProveedor();
   }
 
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Transporte } from '../model/Producto/Transporte';
 import { Disponibilidad } from '../model/Disponibilidad';
 import { HttpHeaders } from '@angular/common/http';
+import { Usuario } from '../model/Usuario/Usuario';
+import { Proveedor } from '../model/Usuario/Proveedor';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +70,47 @@ export class UtilsService {
         + trayectos +
       `
     </transporte>`;
+  }
+
+  /**
+   * Toma un objeto de tipo Usuario y lo transforma en su interpretaicón
+   * en XML en el servidor
+   * 
+   * @param usuario
+   */
+  public crearUsuarioXML(usuario: Usuario) {
+    return `
+      <usuario xmlns="">
+        <contrasena>` + usuario.contrasena + `</contrasena>
+        <correo>` + usuario.correo + `</correo>
+        <descripcion>` + usuario.descripcion + `</descripcion>
+        <edad>` + usuario.edad + `</edad>
+        <nombre>` + usuario.nombre + `</nombre>
+        <tipoUsuario>` + usuario.tipoUsuario + `</tipoUsuario>
+      </usuario>
+    `;
+  }
+
+  /**
+   * Toma un objeto de tipo Usuario y lo transforma en su interpretaicón
+   * en XML en el servidor
+   * 
+   * @param usuario
+   */
+  public crearUsuarioProveedorXML(proveedor: Proveedor) {
+    return `
+      <usuario xmlns="">
+        <contrasena>` + proveedor.contrasena + `</contrasena>
+        <correo>` + proveedor.correo + `</correo>
+        <descripcion>` + proveedor.descripcion + `</descripcion>
+        <edad>` + proveedor.edad + `</edad>
+        <nombre>` + proveedor.nombre + `</nombre>
+        <tipoUsuario>` + proveedor.tipoUsuario + `</tipoUsuario>
+        <contactoFacebook>` + proveedor.contactoFacebook + `</contactoFacebook>
+        <contactoTwitter>` + proveedor.contactoTwitter + `</contactoTwitter>
+        <paginaWeb>` + proveedor.paginaWeb + `</paginaWeb>
+        <telefono>` + proveedor.telefono + `</telefono>
+      </usuario>
+    `;
   }
 }
