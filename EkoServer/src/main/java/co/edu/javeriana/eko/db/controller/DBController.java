@@ -86,6 +86,20 @@ public final class DBController {
     return Utils.deDocumentoAObjetoCliente(usuario);
   }
 
+    /**
+     * Busca en una colecci�n indicada un objeto por su correo
+     *
+     * @param nombreColeccion
+     * @param correo
+     */
+    public static Usuario buscarContraseñaUsuario(String nombreColeccion, String correo) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+        Document usuario = coleccion.find(eq("correo", correo)).first();
+        return Utils.deDocumentoAObjetoCliente(usuario);
+    }
+
   /**
    * Elimina en una colecci�n indicada un objeto por su ID
    *
