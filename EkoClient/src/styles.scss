@@ -27,6 +27,28 @@ body {
   }
 }
 
+.eko-link-danger {
+  cursor: pointer;
+  color: rgb(179, 3, 3) !important;
+    
+  &:hover {
+    color: rgb(255, 4, 4) !important;
+  }
+
+  &-button {
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid rgb(179, 3, 3);
+    color: rgb(179, 3, 3) !important;
+    border-radius: 8px;
+    
+    &:hover {
+      border-color: rgb(255, 4, 4);
+      color: rgb(255, 4, 4) !important;
+    }
+  }
+}
+
 .eko-link-light {
   color: #A1D6A4;
   

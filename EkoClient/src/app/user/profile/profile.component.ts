@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private router: Router,
     private utils: UtilsService
   ) {
 
@@ -35,5 +37,18 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() { }
+
+  public eliminarCuenta() {
+    this.userService.eliminarUsuario()
+      .subscribe(result => {
+        this.userService.eliminarCookieUsuario();
+        window.location.reload();
+        this.router.navigate(['user/login']);
+      },
+      error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+  }
 
 }
