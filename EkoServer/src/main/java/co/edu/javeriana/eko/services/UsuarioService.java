@@ -2,6 +2,7 @@ package co.edu.javeriana.eko.services;
 
 import co.edu.javeriana.eko.db.controller.DBController;
 import co.edu.javeriana.eko.iservice.IUsuarioService;
+import co.edu.javeriana.eko.model.Usuario;
 import co.edu.javeriana.eko.model.usuario.Cliente;
 import co.edu.javeriana.eko.model.usuario.Proveedor;
 import co.edu.javeriana.eko.utils.Utils;
@@ -32,28 +33,34 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public Cliente iniciarSesionCliente(String correo) {
-    return(Cliente) DBController.buscarEnColeccionPorCorreo("usuario-cliente",correo);
+  public Usuario iniciarSesion(String correo, String contraseña) {
+    if (contraseña.equals(buscarContraseñaUsuario(correo))) {
+      return DBController.buscarEnColeccionPorCorreo("usuario-cliente", correo);
+    } else return null;
   }
 
   @Override
-  public Proveedor iniciarSesionProveedor(String correo) {
-    return (Proveedor) DBController.buscarEnColeccionPorCorreo("usuario-proveedor",correo);
+  public void eliminarUsuarioPorCorreoCliente(String correo,String contraseña) {
+    if (contraseña.equals(buscarContraseñaUsuario(correo))) {
+    DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);}
   }
 
   @Override
-  public void eliminarUsuarioPorCorreoCliente(String correo) {
-    DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);
-  }
-
-  @Override
-  public void eliminarUsuarioPorCorreoProveedor(String correo) {
-    DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);
+  public void eliminarUsuarioPorCorreoProveedor(String correo, String contraseña) {
+    if (contraseña.equals(buscarContraseñaUsuario(correo))) {
+    DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);}
   }
 
   @Override
   public Cliente buscarUsuarioPorCorreoCliente(String correo) {
     return (Cliente) DBController.buscarEnColeccionPorCorreo("usuario-cliente", correo);
+  }
+
+  @Override
+  public String buscarContraseñaUsuario(String correo) {
+    Usuario user;
+    user = DBController.buscarContraseñaUsuario("usuario-cliente", correo);
+    return user.getContraseña();
   }
 
   @Override
