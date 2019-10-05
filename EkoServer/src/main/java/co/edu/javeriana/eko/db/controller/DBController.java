@@ -97,6 +97,11 @@ public final class DBController {
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 
         Document usuario = coleccion.find(eq("correo", correo)).first();
+        
+        if (usuario == null) {
+        	return null;
+        }
+        
         return Utils.deDocumentoAObjetoCliente(usuario);
     }
 

@@ -64,6 +64,10 @@ public class UsuarioService implements IUsuarioService {
   public String buscarContrasenaUsuarioCliente(String correo) {
     Usuario user;
     user = DBController.buscarContrasenaUsuario("usuario-cliente", correo);
+    if (user == null) {
+    	return null;
+    }
+    
     return user.getContrasena();
   }
 
@@ -71,6 +75,11 @@ public class UsuarioService implements IUsuarioService {
   public String buscarContrasenaUsuarioProveedor(String correo) {
     Usuario user;
     user = DBController.buscarContrasenaUsuario("usuario-proveedor", correo);
+    
+    if (user == null) {
+    	return null;
+    }
+    
     return user.getContrasena();
   }
 

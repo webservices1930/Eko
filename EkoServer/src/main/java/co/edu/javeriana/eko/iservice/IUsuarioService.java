@@ -35,10 +35,6 @@ public interface IUsuarioService {
   @WebResult(name = "usuarioCliente")
   Cliente buscarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
 
-  @WebMethod(operationName = "buscarContrasenaUsuario")
-  @WebResult(name = "contrasena")
-  String buscarContrasenaUsuario(@WebParam(name = "correo") String correo);
-  
   @WebMethod(operationName = "buscarContrasenaUsuarioCliente")
   @WebResult(name = "contrasena")
   String buscarContrasenaUsuarioCliente(@WebParam(name = "correo") String correo);
