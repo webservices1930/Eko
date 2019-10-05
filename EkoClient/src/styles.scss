@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: rgb(246, 246, 246);
+}
+
+.eko-title {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.eko-link {
+  color: #1F8524;
+    
+  &:hover {
+    color: #A1D6A4;
+  }
+
+  &-button {
+    padding: 8px;
+    border: 1px solid #1F8524;
+    color: #1F8524;
+    border-radius: 8px;
+    
+    &:hover {
+      border-color: #A1D6A4;
+      color: #A1D6A4;
+    }
+  }
+}
+
+.eko-link-light {
+  color: #A1D6A4;
+  
+  &:hover {
+    color: #1F8524;
+  }
+  
+  &-button {
+    padding: 8px;
+    border-color: #A1D6A4;
+    color: #A1D6A4;
+    border-radius: 8px;
+    
+    &:hover {
+      border: 1px solid #1F8524;
+      color: #1F8524;
+    }
+  }
+}

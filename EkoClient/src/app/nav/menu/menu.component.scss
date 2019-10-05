@@ -1,0 +1,55 @@
+.eko-menu {
+  $self: &;
+
+  background-color: #333333 !important;
+  margin-bottom: 20px;
+
+  .eko-title {
+    color: #6EFF75;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+
+    .dropdown-menu,
+    .dropdown-item {
+      min-width: auto;
+    }
+
+    #{$self}__item {
+      float: left;
+      padding: 0;
+
+      &--dropdown {
+        cursor: pointer;
+
+        &:hover {
+          background-color: #444444;
+        }
+      }
+
+      #{$self}__link {
+        color: #FFFFFF;
+        padding: 14px 16px;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #666666;
+        }
+      }
+
+      #{$self}__sub-menu {
+        margin: 0;
+        padding: 0;
+        background-color: #444444;
+        border: 0;
+        border-radius: 0;
+
+        #{$self}__link {
+          display: block;
+        }
+      }
+    }
+  }
+}

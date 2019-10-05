@@ -17,8 +17,8 @@ public class Proveedor  extends Usuario {
         this.contactoTwitter = contactoTwitter;
     }
 
-    public Proveedor(String nombre, int edad, String foto, TipoUsuario tipoUsuario, String descripcion, String correo, String contraseña, String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
-        super(nombre, edad, foto, descripcion, correo, contraseña,tipoUsuario);
+    public Proveedor(String nombre, int edad, String foto, TipoUsuario tipoUsuario, String descripcion, String correo, String contrasena, String telefono, String paginaWeb, String contactoFacebook, String contactoTwitter) {
+        super(nombre, edad, foto, descripcion, correo, contrasena,tipoUsuario);
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
         this.contactoFacebook = contactoFacebook;

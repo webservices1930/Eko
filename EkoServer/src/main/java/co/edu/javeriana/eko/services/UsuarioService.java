@@ -33,24 +33,24 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public Usuario iniciarSesion(String correo, String contraseña) {
-    if (contraseña.equals(buscarContraseñaUsuarioCliente(correo))) {
+  public Usuario iniciarSesion(String correo, String contrasena) {
+    if (contrasena.equals(buscarContrasenaUsuarioCliente(correo))) {
       return DBController.buscarEnColeccionPorCorreo("usuario-cliente", correo);
-    } else if (contraseña.equals(buscarContraseñaUsuarioProveedor(correo))) {
+    } else if (contrasena.equals(buscarContrasenaUsuarioProveedor(correo))) {
       return DBController.buscarEnColeccionPorCorreo("usuario-proveedor", correo);
     } else return null;
   }
 
   @Override
-  public void eliminarUsuarioPorCorreoCliente(String correo, String contraseña) {
-    if (contraseña.equals(buscarContraseñaUsuarioCliente(correo))) {
+  public void eliminarUsuarioPorCorreoCliente(String correo, String contrasena) {
+    if (contrasena.equals(buscarContrasenaUsuarioCliente(correo))) {
       DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);
     }
   }
 
   @Override
-  public void eliminarUsuarioPorCorreoProveedor(String correo, String contraseña) {
-    if (contraseña.equals(buscarContraseñaUsuarioProveedor(correo))) {
+  public void eliminarUsuarioPorCorreoProveedor(String correo, String contrasena) {
+    if (contrasena.equals(buscarContrasenaUsuarioProveedor(correo))) {
       DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);
     }
   }
@@ -61,17 +61,26 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public String buscarContraseñaUsuarioCliente(String correo) {
+  public String buscarContrasenaUsuarioCliente(String correo) {
     Usuario user;
-    user = DBController.buscarContraseñaUsuario("usuario-cliente", correo);
-    return user.getContraseña();
+    user = DBController.buscarContrasenaUsuario("usuario-cliente", correo);
+    if (user == null) {
+    	return null;
+    }
+    
+    return user.getContrasena();
   }
 
   @Override
-  public String buscarContraseñaUsuarioProveedor(String correo) {
+  public String buscarContrasenaUsuarioProveedor(String correo) {
     Usuario user;
-    user = DBController.buscarContraseñaUsuario("usuario-proveedor", correo);
-    return user.getContraseña();
+    user = DBController.buscarContrasenaUsuario("usuario-proveedor", correo);
+    
+    if (user == null) {
+    	return null;
+    }
+    
+    return user.getContrasena();
   }
 
   @Override

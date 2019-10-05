@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Transporte } from '../../shared/model/Producto/Transporte';
 import { Disponibilidad } from '../../shared/model/Disponibilidad';
 import { NgForm } from '@angular/forms';
-import { ProductService } from 'src/app/shared/services/product-service.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -24,7 +24,7 @@ export class ProductFormComponent implements OnInit {
     this.nTransporte.trayecto.push(this.nTrayecto);
 
     this.productService.agregarProducto(this.nTransporte)
-      .subscribe(result => {;
+      .subscribe(result => {
         alert('Producto agregado exitosamente')
       },
       error =>{
