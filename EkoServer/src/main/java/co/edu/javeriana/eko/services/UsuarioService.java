@@ -34,21 +34,25 @@ public class UsuarioService implements IUsuarioService {
 
   @Override
   public Usuario iniciarSesion(String correo, String contrasena) {
-    if (contrasena.equals(buscarContrasenaUsuario(correo))) {
+    if (contrasena.equals(buscarContrasenaUsuarioCliente(correo))) {
       return DBController.buscarEnColeccionPorCorreo("usuario-cliente", correo);
+    } else if (contrasena.equals(buscarContrasenaUsuarioProveedor(correo))) {
+      return DBController.buscarEnColeccionPorCorreo("usuario-proveedor", correo);
     } else return null;
   }
 
   @Override
-  public void eliminarUsuarioPorCorreoCliente(String correo,String contrasena) {
-    if (contrasena.equals(buscarContrasenaUsuario(correo))) {
-    DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);}
+  public void eliminarUsuarioPorCorreoCliente(String correo, String contrasena) {
+    if (contrasena.equals(buscarContrasenaUsuarioCliente(correo))) {
+      DBController.eliminarEnColeccionPorCorreo("usuario-cliente", correo);
+    }
   }
 
   @Override
   public void eliminarUsuarioPorCorreoProveedor(String correo, String contrasena) {
-    if (contrasena.equals(buscarContrasenaUsuario(correo))) {
-    DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);}
+    if (contrasena.equals(buscarContrasenaUsuarioProveedor(correo))) {
+      DBController.eliminarEnColeccionPorCorreo("usuario-proveedor", correo);
+    }
   }
 
   @Override
@@ -57,9 +61,16 @@ public class UsuarioService implements IUsuarioService {
   }
 
   @Override
-  public String buscarContrasenaUsuario(String correo) {
+  public String buscarContrasenaUsuarioCliente(String correo) {
     Usuario user;
     user = DBController.buscarContrasenaUsuario("usuario-cliente", correo);
+    return user.getContrasena();
+  }
+
+  @Override
+  public String buscarContrasenaUsuarioProveedor(String correo) {
+    Usuario user;
+    user = DBController.buscarContrasenaUsuario("usuario-proveedor", correo);
     return user.getContrasena();
   }
 

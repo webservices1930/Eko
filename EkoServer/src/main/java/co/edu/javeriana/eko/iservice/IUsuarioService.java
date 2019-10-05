@@ -38,6 +38,14 @@ public interface IUsuarioService {
   @WebMethod(operationName = "buscarContrasenaUsuario")
   @WebResult(name = "contrasena")
   String buscarContrasenaUsuario(@WebParam(name = "correo") String correo);
+  
+  @WebMethod(operationName = "buscarContrasenaUsuarioCliente")
+  @WebResult(name = "contrasena")
+  String buscarContrasenaUsuarioCliente(@WebParam(name = "correo") String correo);
+
+  @WebMethod(operationName = "buscarContrasenaUsuarioProveedor")
+  @WebResult(name = "contrasena")
+  String buscarContrasenaUsuarioProveedor(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "buscarUsuarioPorCorreoProveedor")
   @WebResult(name = "usuarioProveedor")
