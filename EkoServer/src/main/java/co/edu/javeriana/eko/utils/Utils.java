@@ -1,5 +1,6 @@
 package co.edu.javeriana.eko.utils;
 
+import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.Usuario;
 import co.edu.javeriana.eko.model.producto.Transporte;
@@ -202,7 +203,7 @@ public final class Utils {
 				.append("internet", alojamiento.isInternet())
 				.append("television", alojamiento.isTelevision())
 				.append("numeroCamas", alojamiento.getNumCamas())
-				.append("numeroBa�os", alojamiento.getNumBa�os());
+				.append("numeroBanios", alojamiento.getNumBanios());
 	}
 	
 	/**
@@ -242,7 +243,7 @@ public final class Utils {
 		alojamiento.setInternet(docAlojamiento.getBoolean("internet"));
 		alojamiento.setTelevision(docAlojamiento.getBoolean("television"));
 		alojamiento.setNumCamas(docAlojamiento.getInteger("numeroCamas"));
-		alojamiento.setNumBa�os(docAlojamiento.getInteger("numeroBa�os"));
+		alojamiento.setNumBanios(docAlojamiento.getInteger("numeroBanios"));
 		alojamiento.setIdUsuario(docAlojamiento.getString("idUsuario"));
 
 		return alojamiento;
@@ -521,8 +522,7 @@ public final class Utils {
 		evento.setLongitud(docEvento.getDouble("longitud"));
 		evento.setIdUsuario(docEvento.getString("idUsuario"));
 		return evento;
-
-		return transporte;
+		
 	}
 
 	/**
@@ -618,4 +618,61 @@ public final class Utils {
 
 		return usuario;
 	}
+	
+	/**
+	 * Metodo que convierte un objeto de tipo Catalogoa un Documento
+	 * 
+	 * @param catalogo
+	 * @return
+	 */
+	public static Document deObjetoCatalogoADocumento(Catalogo catalogo) {
+		List<Document> productos = new ArrayList<Document>();
+		List<Document> disponibilidad = new ArrayList<Document>();
+		
+		for (String p: catalogo.getProductos()) {					
+			
+			productos.add(					
+					new Document("idProducto", p)							
+			);
+		}
+		
+		return new Document("descripcion", catalogo.getDescripcion())
+				.append("idUsuario", catalogo.getIdUsuario())
+				.append("nombre", catalogo.getNombre())
+				.append("precio", catalogo.getPrecio())
+				.append("productos", productos);
+	}
+	
+	/**
+	 * Meodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
+	 * 
+	 * @param catalogo
+	 * @return
+	 */
+	public static Catalogo deDocumentoAObjetoCatalogo(Document docCatalogo) {
+		Catalogo catalogo= new Catalogo();		
+		List<String> productos = new ArrayList<String>();
+		List<Document> docProductos = (List<Document>) docCatalogo.get("productos");	
+		
+		String catalogoID = ((ObjectId)docCatalogo.getObjectId("_id")).toString();
+		
+		catalogo.set_id(catalogoID);
+		
+		for (Document docProd : docProductos) {
+			String p = "";
+			p = docProd.getString("idProducto");			
+			productos.add(p);
+		}
+						
+		catalogo.setDescripcion(docCatalogo.getString("descripcion"));
+		catalogo.setIdUsuario(docCatalogo.getString("idUsuario"));
+		catalogo.setNombre(docCatalogo.getString("nombre"));
+		catalogo.setPrecio(docCatalogo.getDouble("precio"));
+		catalogo.setProductos(productos);
+	
+		return catalogo;
+		
+	}
+	
+	
 }

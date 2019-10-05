@@ -18,7 +18,7 @@ public class Alojamiento extends Producto{
 	private boolean internet;
 	private boolean television;
 	private int numCamas;
-	private int numBaños;	
+	private int numBanios;	
 	
 
 
@@ -28,7 +28,7 @@ public class Alojamiento extends Producto{
 
 	public Alojamiento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBaños, String idUsuario) {
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		// TODO Auto-generated constructor stub
 		this.tipoAlojamiento = tipoAlojamiento;
@@ -41,12 +41,12 @@ public class Alojamiento extends Producto{
 		this.internet = internet;
 		this.television = television;
 		this.numCamas = numCamas;
-		this.numBaños = numBaños;		
+		this.numBanios = numBanios;		
 	}
 
 	public Alojamiento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBaños, String idUsuario) {
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
@@ -58,7 +58,7 @@ public class Alojamiento extends Producto{
 		this.internet = internet;
 		this.television = television;
 		this.numCamas = numCamas;
-		this.numBaños = numBaños;		
+		this.numBanios = numBanios;		
 		// TODO Auto-generated constructor stub
 	}
 
@@ -142,12 +142,12 @@ public class Alojamiento extends Producto{
 		this.numCamas = numCamas;
 	}
 
-	public int getNumBaños() {
-		return numBaños;
+	public int getNumBanios() {
+		return numBanios;
 	}
 
-	public void setNumBaños(int numBaños) {
-		this.numBaños = numBaños;
+	public void setNumBanios(int numBanios) {
+		this.numBanios = numBanios;
 	}
 	
 	

@@ -20,6 +20,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Alojamiento;
 import co.edu.javeriana.eko.model.producto.Evento;
@@ -231,6 +232,76 @@ public final class DBController {
 		return Utils.deDocumentoAObjetoSitio(sitio);		
 	}
 
+	/**
+	 * Busca en una colecci�n indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Catalogo buscarEnColeccionCatalogoPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+				
+		Document catalogo= coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoCatalogo(catalogo);		
+	}
+	
+	
+	/**
+	 * 
+	 * Busca todos los productos de una coleccion
+	 * 
+	 * */
+	public static List<Catalogo> obtenerCatalogos(String nombreColeccion){
+		List<Catalogo> catalogos = new ArrayList<Catalogo>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		MongoCursor<Document> cursor = coleccion.find().cursor();
+		
+		try {
+			while(cursor.hasNext()) {
+				Catalogo p = new Catalogo() {};
+				Document doc = cursor.next();				
+				p = Utils.deDocumentoAObjetoCatalogo(doc);				
+				catalogos.add(p);
+			}
+		}finally {
+			cursor.close();
+		}
+		return catalogos;
+	}
+	
+	/**
+	 * 
+	 * Busca todos los productos de un usuario
+	 * 
+	 * */
+	public static List<Catalogo> obtenerCatalogoPorUsuario(String nombreColeccion, String _id){
+		List<Catalogo> catalogos = new ArrayList<Catalogo>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		BasicDBObject query = new BasicDBObject();		
+		query.put("idUsuario", _id);
+		MongoCursor<Document> cursor = coleccion.find(query).cursor();
+		try {
+			while(cursor.hasNext()) {
+				Catalogo p = new Catalogo() {};
+				Document doc = cursor.next();				
+				p = Utils.deDocumentoAObjetoCatalogo(doc);				
+				catalogos.add(p);
+			}
+		}finally {
+			cursor.close();
+		}
+		return catalogos;
+	}
+	
+	
+	
 	/**
 	 * Busca en una colecci�n indicada un objeto por su correo
 	 *
