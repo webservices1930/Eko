@@ -92,7 +92,7 @@ public final class DBController {
      * @param nombreColeccion
      * @param correo
      */
-    public static Usuario buscarContraseñaUsuario(String nombreColeccion, String correo) {
+    public static Usuario buscarContrasenaUsuario(String nombreColeccion, String correo) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 
@@ -145,7 +145,7 @@ public final class DBController {
         eq("correo", correo), new Document("$set", new Document("nombre", usuario.getNombre())));
     coleccion.updateOne(
         eq("correo", correo),
-        new Document("$set", new Document("contraseña", usuario.getContrasena())));
+        new Document("$set", new Document("contrasena", usuario.getContrasena())));
 
     coleccion.updateOne(
         eq("correo", correo), new Document("$set", new Document("edad", usuario.getEdad())));
@@ -173,7 +173,7 @@ public final class DBController {
 				eq("correo", correo), new Document("$set", new Document("nombre", usuario.getNombre())));
 		coleccion.updateOne(
 				eq("correo", correo),
-				new Document("$set", new Document("contraseña", usuario.getContrasena())));
+				new Document("$set", new Document("contrasena", usuario.getContrasena())));
 
 		coleccion.updateOne(
 				eq("correo", correo), new Document("$set", new Document("edad", usuario.getEdad())));

@@ -135,7 +135,7 @@ public final class Utils {
         .append("foto", usuario.getFoto())
         .append("descripcion", usuario.getDescripcion())
         .append("correo", usuario.getCorreo())
-        .append("contraseña", usuario.getContrasena())
+        .append("contrasena", usuario.getContrasena())
         .append("tipoUsuario", usuario.getTipoUsuario().toString());
   }
 
@@ -152,7 +152,7 @@ public final class Utils {
         .append("foto", usuario.getFoto())
         .append("descripcion", usuario.getDescripcion())
         .append("correo", usuario.getCorreo())
-        .append("contraseña", usuario.getContrasena())
+        .append("contrasena", usuario.getContrasena())
         .append("contactoTwitter", usuario.getContactoTwitter())
         .append("contactoFacebook", usuario.getContactoFacebook())
         .append("telefono", usuario.getTelefono())
@@ -174,7 +174,7 @@ public final class Utils {
     usuario.setNombre(docUsuario.getString("nombre"));
     usuario.setDescripcion(docUsuario.getString("descripcion"));
     usuario.setCorreo(docUsuario.getString("correo"));
-    usuario.setContrasena(docUsuario.getString("contraseña"));
+    usuario.setContrasena(docUsuario.getString("contrasena"));
     usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
 
     return usuario;
@@ -194,7 +194,7 @@ public final class Utils {
     usuario.setNombre(docUsuario.getString("nombre"));
     usuario.setDescripcion(docUsuario.getString("descripcion"));
     usuario.setCorreo(docUsuario.getString("correo"));
-    usuario.setContrasena(docUsuario.getString("contraseña"));
+    usuario.setContrasena(docUsuario.getString("contrasena"));
     usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
     usuario.setPaginaWeb(docUsuario.getString("paginaWeb"));
     usuario.setContactoFacebook(docUsuario.getString("contactoFacebook"));

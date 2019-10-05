@@ -21,23 +21,23 @@ public interface IUsuarioService {
   @WebMethod(operationName = "iniciarSesion")
   @WebResult(name = "usuario")
   Usuario iniciarSesion(
-      @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+      @WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoCliente")
   void eliminarUsuarioPorCorreoCliente(
-      @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+      @WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena);
 
   @WebMethod(operationName = "eliminarUsuarioPorCorreoProveedor")
   void eliminarUsuarioPorCorreoProveedor(
-      @WebParam(name = "correo") String correo, @WebParam(name = "contraseña") String contraseña);
+      @WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena);
 
   @WebMethod(operationName = "buscarUsuarioPorCorreoCliente")
   @WebResult(name = "usuarioCliente")
   Cliente buscarUsuarioPorCorreoCliente(@WebParam(name = "correo") String correo);
 
-  @WebMethod(operationName = "buscarContraseñaUsuario")
-  @WebResult(name = "contraseña")
-  String buscarContraseñaUsuario(@WebParam(name = "correo") String correo);
+  @WebMethod(operationName = "buscarContrasenaUsuario")
+  @WebResult(name = "contrasena")
+  String buscarContrasenaUsuario(@WebParam(name = "correo") String correo);
 
   @WebMethod(operationName = "buscarUsuarioPorCorreoProveedor")
   @WebResult(name = "usuarioProveedor")

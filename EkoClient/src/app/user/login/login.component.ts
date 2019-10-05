@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Router } from '@angular/router';
+import { UtilsService } from 'src/app/shared/utils/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private utils: UtilsService,
     private router: Router
   ) {
     this.checkoutForm = this.formBuilder.group({
@@ -27,18 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(informacionUsuario: Usuario) {
-    informacionUsuario.tipoUsuario = 'CLIENTE'
     this.userService.iniciarSesion(informacionUsuario as Usuario)
       .subscribe(result => {
-        console.log('holi')
+        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
+        let usuario: Usuario = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:iniciarSesionResponse'][0]['usuario'][0];
+        console.log(usuario);
         this.userService.crearCookieUsuario(informacionUsuario as Usuario);
-        this.router.navigate(['home']);
         window.location.reload();
+        this.router.navigate(['home']);
       },
-      error =>{
-        console.log('There was an error: ', error);
-        console.log(error.status);
-      });
+        error => {
+          console.log('There was an error: ', error);
+          console.log(error.status);
+        });
   }
 
 }

@@ -26,9 +26,10 @@ export class UserService {
     const body: string = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
       <Body>
-        <iniciarSesionCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-          <correo xmlns="">` + usuario.correo +`</correo>
-        </iniciarSesionCliente>
+        <iniciarSesion xmlns="http://iservice.eko.javeriana.edu.co/">
+          <correo xmlns="">` + usuario.correo + `</correo>
+          <contrasena xmlns="">` + usuario.contrasena + `</contrasena>
+        </iniciarSesion>
       </Body>
     </Envelope>`;
 
@@ -82,7 +83,7 @@ export class UserService {
   public crearCookieUsuario(usuario: Usuario) {
     this.cookieService.set('usuario', usuario.correo);
     this.cookieService.set('estado', 'ingresado');
-    this.cookieService.set('tipo', usuario.tipoUsuario.toString());
+    this.cookieService.set('tipo', usuario.tipoUsuario);
   }
 
   /**

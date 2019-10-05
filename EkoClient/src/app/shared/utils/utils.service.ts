@@ -4,6 +4,7 @@ import { Disponibilidad } from '../model/Disponibilidad';
 import { HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../model/Usuario/Usuario';
 import { Proveedor } from '../model/Usuario/Proveedor';
+import { parseString } from 'xml2js';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,21 @@ export class UtilsService {
   public baseUrl: string = '/api/';
 
   constructor() { }
+
+  /**
+   * Retorna un Objeto XML dado un string
+   * 
+   * @param stringXML 
+   */
+  public convertirXMLEnObjeto(stringXML: string): Object {
+    let objetoXML: Object = {};
+
+    parseString(stringXML, function (err, respuesta) {
+      objetoXML = respuesta;
+    });
+
+    return objetoXML;
+  }
 
   /**
    * Genera los Headers para una petición SOAP
