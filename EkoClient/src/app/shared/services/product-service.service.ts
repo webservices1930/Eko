@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UtilsService } from '../utils/utils.service';
 import { Transporte } from '../model/Producto/Transporte';
 import { Observable } from 'rxjs';
+import { Alojamiento } from '../model/Producto/Alojamiento';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class ProductService {
   /**
    * Dado un Producto realiza la petición SOAP necesaria
    * para agregar un producto al servidor
-   * 
-   * @param nTransporte 
+   *
+   * @param nTransporte
    */
   public agregarProducto(nProducto: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
@@ -45,6 +46,37 @@ export class ProductService {
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
+        accionXML = `
+          <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
+          + this.utils.crearTransporteXML(nProducto as Transporte) +
+          `</agregarProductoTransporte>`;
+        break;
+      case 'ALOJAMIENTO':
+        accionXML = `
+          <agregarProductoAlojamiento xmlns="http://iservice.eko.javeriana.edu.co/">`
+          + this.utils.crearAlojamientoXML(nProducto as Alojamiento) +
+          `</agregarProductoAlojamiento>`;
+        break;
+      case 'EVENTO':
+        accionXML = `
+          <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
+          + this.utils.crearTransporteXML(nProducto as Transporte) +
+          `</agregarProductoTransporte>`;
+        break;
+      case 'EXPERIENCIA':
+        accionXML = `
+          <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
+          + this.utils.crearTransporteXML(nProducto as Transporte) +
+          `</agregarProductoTransporte>`;
+        break;
+
+      case 'SALIDA':
+        accionXML = `
+          <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
+          + this.utils.crearTransporteXML(nProducto as Transporte) +
+          `</agregarProductoTransporte>`;
+        break;
+      case 'SITIO':
         accionXML = `
           <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
           + this.utils.crearTransporteXML(nProducto as Transporte) +
