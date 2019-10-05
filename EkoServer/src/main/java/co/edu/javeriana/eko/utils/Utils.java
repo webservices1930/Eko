@@ -1,8 +1,10 @@
 package co.edu.javeriana.eko.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Usuario;
+import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.model.usuario.Cliente;
+import co.edu.javeriana.eko.model.usuario.Proveedor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -14,55 +16,60 @@ import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
 import co.edu.javeriana.eko.model.producto.Transporte;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Utils {
 	/* --- Se genera un Singleton de Variables de Entorno --- */
 	private static final Utils instance = new Utils();
-	
+
 	public static Utils getInstance() {
 		return instance;
 	}
-	
+
 	/**
 	 * Imprime un texto en azul
+	 *
 	 * @param info
 	 */
 	public static void printInfo(String info) {
 		System.out.println(
-//				VariablesDeEntorno.ANSI_BLUE +
+				// VariablesDeEntorno.ANSI_BLUE +
 				"[INFO]: " + info
-//				+ VariablesDeEntorno.ANSI_RESET
+		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
-	
+
 	/**
 	 * Imprime el texto en rojo
+	 *
 	 * @param err
 	 */
 	public static void printErr(String err) {
 		System.err.println(
-//				VariablesDeEntorno.ANSI_RED +
+				// VariablesDeEntorno.ANSI_RED +
 				"[ERROR]: " + err
-//				+ VariablesDeEntorno.ANSI_RESET
+		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
-	
+
 	/**
 	 * Imprime el texto en ver
+	 *
 	 * @param success
 	 */
 	public static void printSuccess(String success) {
 		System.out.println(
-//				VariablesDeEntorno.ANSI_GREEN +
-				"[ÉXITO]: " + success
-//				+ VariablesDeEntorno.ANSI_RESET
+				// VariablesDeEntorno.ANSI_GREEN +
+				"[ï¿½XITO]: " + success
+		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
 	
 	
 
 	/**
-	 * Método que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
+	 * Mï¿½todo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
 	 * 
 	 * @param transporte
 	 * @return
@@ -94,20 +101,19 @@ public final class Utils {
 		return producto;
 	}
 	
+
 	/**
-	 * Método que convierte un objeto de tipo Transporte a un Documento
-	 * 
+	 * Mï¿½todo que convierte un objeto de tipo Transporte a un Documento
+	 *
 	 * @param transporte
 	 * @return
 	 */
 	public static Document deObjetoTransporteADocumento(Transporte transporte) {
 		List<Document> disponibilidad = new ArrayList<Document>();
-		
+
 		for (Disponibilidad dis : transporte.getDisponibilidad()) {
-			disponibilidad.add(
-					new Document("fecha", dis.getFecha())
-					.append("cuposDisponibles", dis.getCuposDisponibles())
-			);
+			disponibilidad
+					.add(new Document("fecha", dis.getFecha()).append("cuposDisponibles", dis.getCuposDisponibles()));
 		}
 		
 		return new Document("precio", transporte.getPrecio())			
@@ -122,32 +128,33 @@ public final class Utils {
 				.append("tipoTransporte", transporte.getTipoTransporte().toString())
 				.append("duracion", transporte.getDuracion());
 	}
-	
+
 	/**
-	 * Método que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
-	 * 
-	 * @param transporte
+	 * Mï¿½todo que convierte un Documento con datos de Transporte a un objeto de
+	 * tipo Transporte
+	 *
+	 * @param docTransporte
 	 * @return
 	 */
 	public static Transporte deDocumentoAObjetoTransporte(Document docTransporte) {
 		Transporte transporte = new Transporte();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		
+
 		List<Document> docDisponibilidad = (List<Document>) docTransporte.get("disponibilidad");
 		List<String> docTrayecto = (List<String>) docTransporte.get("trayecto");
-		String transporteID = ((ObjectId)docTransporte.getObjectId("_id")).toString();
-		
+		String transporteID = ((ObjectId) docTransporte.getObjectId("_id")).toString();
+
 		transporte.set_id(transporteID);
-		
+
 		for (Document docDis : docDisponibilidad) {
 			Disponibilidad nDis = new Disponibilidad();
 			nDis.setFecha((String) docDis.get("fecha"));
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
 		}
-		
+
 		transporte.setTrayecto(docTrayecto);
-		
+
 		transporte.setDisponibilidad(disponibilidad);
 		transporte.setPrecio(docTransporte.getDouble("precio"));
 		transporte.setInfoPaisDestino(docTransporte.getString("infoPaisDestino"));
@@ -164,7 +171,7 @@ public final class Utils {
 	
 	
 	/**
-	 * Método que convierte un objeto de tipo Alojamiento a un Documento
+	 * Mï¿½todo que convierte un objeto de tipo Alojamiento a un Documento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -195,11 +202,11 @@ public final class Utils {
 				.append("internet", alojamiento.isInternet())
 				.append("television", alojamiento.isTelevision())
 				.append("numeroCamas", alojamiento.getNumCamas())
-				.append("numeroBaños", alojamiento.getNumBaños());
+				.append("numeroBaï¿½os", alojamiento.getNumBaï¿½os());
 	}
 	
 	/**
-	 * Método que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
+	 * Mï¿½todo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -235,14 +242,14 @@ public final class Utils {
 		alojamiento.setInternet(docAlojamiento.getBoolean("internet"));
 		alojamiento.setTelevision(docAlojamiento.getBoolean("television"));
 		alojamiento.setNumCamas(docAlojamiento.getInteger("numeroCamas"));
-		alojamiento.setNumBaños(docAlojamiento.getInteger("numeroBaños"));
+		alojamiento.setNumBaï¿½os(docAlojamiento.getInteger("numeroBaï¿½os"));
 		alojamiento.setIdUsuario(docAlojamiento.getString("idUsuario"));
 
 		return alojamiento;
 	}
 	
 	/**
-	 * Método que convierte un objeto de tipo Sitio a un Documento
+	 * Mï¿½todo que convierte un objeto de tipo Sitio a un Documento
 	 * 
 	 * @param sitio
 	 * @return
@@ -273,7 +280,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
+	 * Mï¿½todo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
 	 * 
 	 * @param sitio
 	 * @return
@@ -311,7 +318,7 @@ public final class Utils {
 		return sitio;
 	}
 	/**
-	 * Método que convierte un objeto de tipo Experiencia a un Documento
+	 * Mï¿½todo que convierte un objeto de tipo Experiencia a un Documento
 	 * 
 	 * @param experiencia
 	 * @return
@@ -342,7 +349,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
+	 * Mï¿½todo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
 	 * 
 	 * @param experiencia
 	 * @return
@@ -381,7 +388,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un objeto de tipo Salida a un Documento
+	 * Mï¿½todo que convierte un objeto de tipo Salida a un Documento
 	 * 
 	 * @param salida
 	 * @return
@@ -410,7 +417,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * Mï¿½todo que convierte un Documento con datos de Salida a un objeto de tipo Salida
 	 * 
 	 * @param salida
 	 * @return
@@ -447,7 +454,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un objeto de tipo Evento a un Documento
+	 * Mï¿½todo que convierte un objeto de tipo Evento a un Documento
 	 * 
 	 * @param evento
 	 * @return
@@ -479,7 +486,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Método que convierte un Documento con datos de Evento a un objeto de tipo Evento
+	 * Mï¿½todo que convierte un Documento con datos de Evento a un objeto de tipo Evento
 	 * 
 	 * @param evento
 	 * @return
@@ -514,5 +521,101 @@ public final class Utils {
 		evento.setLongitud(docEvento.getDouble("longitud"));
 		evento.setIdUsuario(docEvento.getString("idUsuario"));
 		return evento;
+
+		return transporte;
+	}
+
+	/**
+	 * Mï¿½todo que convierte un objeto de tipo Cliente a un Documento
+	 *
+	 * @param usuario
+	 * @return
+	 */
+	public static Document deObjetoClienteADocumento(Cliente usuario) {
+
+		return new Document("nombre", usuario.getNombre()).append("edad", usuario.getEdad())
+				.append("foto", usuario.getFoto()).append("descripcion", usuario.getDescripcion())
+				.append("correo", usuario.getCorreo()).append("contrasena", usuario.getContrasena())
+				.append("tipoUsuario", usuario.getTipoUsuario().toString());
+	}
+
+	/**
+	 * Mï¿½todo que convierte un objeto de tipo Proveedor a un Documento
+	 *
+	 * @param usuario
+	 * @return
+	 */
+	public static Document deObjetoProveedorADocumento(Proveedor usuario) {
+
+		return new Document("nombre", usuario.getNombre()).append("edad", usuario.getEdad())
+				.append("foto", usuario.getFoto()).append("descripcion", usuario.getDescripcion())
+				.append("correo", usuario.getCorreo()).append("contrasena", usuario.getContrasena())
+				.append("contactoTwitter", usuario.getContactoTwitter())
+				.append("contactoFacebook", usuario.getContactoFacebook()).append("telefono", usuario.getTelefono())
+				.append("paginaWeb", usuario.getPaginaWeb()).append("tipoUsuario", usuario.getTipoUsuario().toString());
+	}
+
+	/**
+	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Usuario
+	 *
+	 * @param docUsuario
+	 * @return
+	 */
+	public static Usuario deDocumentoAObjetoUsuario(Document docUsuario) {
+
+		if (docUsuario.getString("tipoUsuario").equals("CLIENTE")) {
+			return deDocumentoAObjetoCliente(docUsuario);
+		} else if (docUsuario.getString("tipoUsuario").equals("PROVEEDOR")) {
+			return deDocumentoAObjetoProveedor(docUsuario);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Usuario
+	 *
+	 * @param docUsuario
+	 * @return
+	 */
+	public static Cliente deDocumentoAObjetoCliente(Document docUsuario) {
+		Cliente usuario = new Cliente();
+		usuario.setNombre(docUsuario.getString("nombre"));
+		usuario.setEdad(docUsuario.getInteger("edad"));
+		usuario.setFoto(docUsuario.getString("foto"));
+		usuario.setNombre(docUsuario.getString("nombre"));
+		usuario.setDescripcion(docUsuario.getString("descripcion"));
+		usuario.setCorreo(docUsuario.getString("correo"));
+		usuario.setContrasena(docUsuario.getString("contrasena"));
+		usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
+
+		return usuario;
+	}
+
+	/**
+	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Usuario
+	 *
+	 * @param docUsuario
+	 * @return
+	 */
+	public static Proveedor deDocumentoAObjetoProveedor(Document docUsuario) {
+		Proveedor usuario = new Proveedor();
+		usuario.setNombre(docUsuario.getString("nombre"));
+		usuario.setEdad(docUsuario.getInteger("edad"));
+		usuario.setFoto(docUsuario.getString("foto"));
+		usuario.setNombre(docUsuario.getString("nombre"));
+		usuario.setDescripcion(docUsuario.getString("descripcion"));
+		usuario.setCorreo(docUsuario.getString("correo"));
+		usuario.setContrasena(docUsuario.getString("contrasena"));
+		usuario.setTipoUsuario(TipoUsuario.valueOf(docUsuario.getString("tipoUsuario")));
+		usuario.setPaginaWeb(docUsuario.getString("paginaWeb"));
+		usuario.setContactoFacebook(docUsuario.getString("contactoFacebook"));
+		usuario.setContactoTwitter(docUsuario.getString("contactoTwitter"));
+		usuario.setTelefono(docUsuario.getString("telefono"));
+
+		return usuario;
 	}
 }

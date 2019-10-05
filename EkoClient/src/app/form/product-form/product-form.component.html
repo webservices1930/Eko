@@ -32,22 +32,22 @@
       <label for="">Precio</label>
       <input type="number" class="form-control" [(ngModel)]="nTransporte.precio" name="precio" required>
     </div>
-    <div class="col-6">
+    <!-- <div class="col-6">
       <label for="">Tipo</label>
       <select class="form-control" [(ngModel)]="nTransporte.tipo" name="tipo" required>
         <option [ngValue]="" value="" disabled selected>Seleccione el tipo de producto</option>
         <option [ngValue]="TRANSPORTE" value="TRANSPORTE">TRANSPORTE</option>
       </select>
-    </div>
+    </div> -->
     <div class="col-6">
       <label for="">Hora de salida</label>
       <input type="number" class="form-control" [(ngModel)]="nTransporte.horaSalida" name="horaSalida" required>
     </div>
     <div class="col-6">
       <label for="">Hora de llegada</label>
-      <input type="number" class="form-control" [(ngModel)]="nTransporte.horaLLegada" name="horaLLegada" required>
+      <input type="number" class="form-control" [(ngModel)]="nTransporte.horaLlegada" name="horaLlegada" required>
     </div>
-    <div class="col-12">
+    <!-- <div class="col-12">
       <label for="">Tipo de transporte</label>
       <select class="form-control" [(ngModel)]="nTransporte.tipoTransporte" name="tipoTransporte" required>
         <option [ngValue]="" value="" disabled selected>Seleccione el tipo de transporte</option>
@@ -55,7 +55,7 @@
         <option [ngValue]="AEREO" value="AEREO" >AEREO</option>
         <option [ngValue]="MARITIMO" value="MARITIMO" >MARITIMO</option>
       </select>
-    </div>
+    </div> -->
     <div class="col-6">
       <label for="">Trayecto</label>
       <input type="text" class="form-control" [(ngModel)]="nTrayecto" name="trayecto" required>

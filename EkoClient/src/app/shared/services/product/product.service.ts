@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UtilsService } from '../utils/utils.service';
-import { Transporte } from '../model/Producto/Transporte';
+import { HttpClient } from '@angular/common/http';
+import { UtilsService } from '../../utils/utils.service';
+import { Transporte } from '../../model/Producto/Transporte';
 import { Observable } from 'rxjs';
 import { Alojamiento } from '../model/Producto/Alojamiento';
 
@@ -10,26 +10,10 @@ import { Alojamiento } from '../model/Producto/Alojamiento';
 })
 export class ProductService {
 
-  private baseUrl: string = '/api/';
-
   constructor(
     private http: HttpClient,
     private utils: UtilsService
   ) { }
-
-  /**
-   * Genera los Headers para una petición SOAP
-   */
-  public crearHeadersXML(): object {
-    return {
-      headers: new HttpHeaders().set('Content-Type', 'text/xml')
-        .append('Access-Control-Allow-Methods', 'GET')
-        .append('Access-Control-Allow-Origin', '*')
-        .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
-      responseType: 'text/html',
-      withCredentials: true
-    };
-  }
 
   /**
    * Dado un Producto realiza la petición SOAP necesaria
@@ -39,7 +23,7 @@ export class ProductService {
    */
   public agregarProducto(nProducto: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.crearHeadersXML();
+    const httpOptions: object = this.utils.crearHeadersXML();
 
     let accionXML: string = '';
 
@@ -98,14 +82,17 @@ export class ProductService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.baseUrl + 'eko/producto?wsdl',
+      this.utils.baseUrl + 'eko/producto?wsdl',
       body,
       httpOptions
     );
   }
 
+  /**
+   * Obtiene todos los productos del Market Place
+   */
   public obtenerTodosLosProductos(): Observable<any> {
-    const httpOptions: object = this.crearHeadersXML();
+    const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
@@ -116,14 +103,18 @@ export class ProductService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.baseUrl + 'eko/market-place?wsdl',
+      this.utils.baseUrl + 'eko/market-place?wsdl',
       body,
       httpOptions
     );
   }
 
+  /**
+   * Busca un producto de tipo Transporte por su ID en el Market Place
+   * @param id
+   */
   public buscarPorID(id: string) {
-    const httpOptions: object = this.crearHeadersXML();
+    const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
@@ -136,7 +127,7 @@ export class ProductService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.baseUrl + 'eko/productos?wsdl',
+      this.utils.baseUrl + 'eko/productos?wsdl',
       body,
       httpOptions
     );

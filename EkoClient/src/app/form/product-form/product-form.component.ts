@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Transporte } from '../../shared/model/Producto/Transporte';
 import { Disponibilidad } from '../../shared/model/Disponibilidad';
 import { NgForm } from '@angular/forms';
-import { ProductService } from 'src/app/shared/services/product-service.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -11,9 +11,9 @@ import { ProductService } from 'src/app/shared/services/product-service.service'
 })
 export class ProductFormComponent implements OnInit {
 
-  private nTrayecto: string = '';
-  private nTransporte: Transporte = new Transporte();
-  private nDisponibilidad: Disponibilidad = new Disponibilidad();
+  public nTrayecto: string = '';
+  public nTransporte: Transporte = new Transporte();
+  public nDisponibilidad: Disponibilidad = new Disponibilidad();
 
   constructor(private productService: ProductService) {}
 
@@ -24,7 +24,7 @@ export class ProductFormComponent implements OnInit {
     this.nTransporte.trayecto.push(this.nTrayecto);
 
     this.productService.agregarProducto(this.nTransporte)
-      .subscribe(result => {;
+      .subscribe(result => {
         alert('Producto agregado exitosamente')
       },
       error =>{
