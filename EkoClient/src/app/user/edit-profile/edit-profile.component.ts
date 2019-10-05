@@ -13,9 +13,9 @@ import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  private checkoutForm: FormGroup;
-  private tiposDeUsuario: string[];
-  private usuario: Usuario = new Usuario();
+  public checkoutForm: FormGroup;
+  public tiposDeUsuario: string[];
+  public usuario: Usuario = new Usuario();
 
   constructor(
     private formBuilder: FormBuilder,

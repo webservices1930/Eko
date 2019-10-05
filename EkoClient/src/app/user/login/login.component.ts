@@ -11,7 +11,7 @@ import { UtilsService } from 'src/app/shared/utils/utils.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private checkoutForm: FormGroup;
+  public checkoutForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

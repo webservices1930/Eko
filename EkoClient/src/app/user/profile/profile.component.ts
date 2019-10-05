@@ -3,6 +3,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Router } from '@angular/router';
+import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  private usuario: Usuario = new Usuario();
+  public usuario: Usuario | Proveedor = new Usuario();
 
   constructor(
     private userService: UserService,
