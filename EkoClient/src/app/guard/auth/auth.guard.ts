@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
 
   public canActivate() {
     if (!this.userService.verificiarSesion()) {
+      console.log('holi')
       return true;
     } else {
       this.router.navigate(['home']);

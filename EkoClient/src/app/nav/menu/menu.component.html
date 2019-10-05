@@ -1,5 +1,5 @@
 <nav class="eko-menu navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand eko-title" routerLink="/home" routerLinkActive="router-link-active" >EKO</a>
+  <a class="navbar-brand eko-title" routerLink="/home" routerLinkActive="router-link-active">EKO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,12 @@
             </li>
             <li class="eko-menu__item dropdown-item">
               <a class="eko-menu__link" routerLink="/user/register" *ngIf="!haySesionDeUsuario">Registrarse</a>
+            </li>
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link" routerLink="/user/profile" *ngIf="haySesionDeUsuario">Perfil</a>
+            </li>
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link" routerLink="/user/edit" *ngIf="haySesionDeUsuario">Editar perfil</a>
             </li>
             <li class="eko-menu__item dropdown-item">
               <a class="eko-menu__link nav-link" routerLink="/" (click)="cerrarSesion()"

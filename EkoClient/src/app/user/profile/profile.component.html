@@ -1,0 +1,45 @@
+<article class="eko-profile">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="eko-profile__wrapper col-lg-8 col-11">
+        <header class="eko-profile__header">
+          <figure class="eko-profile__header-img-container">
+            <img src="https://api.adorable.io/avatars/400/{{this.usuario.nombre}}">
+            <a class="eko-profile__header-edit-btn eko-link-button" routerLink="/user/edit" routerLinkActive="router-link-active" >Editar perfil</a>
+          </figure>
+          <div class="eko-profile__header-info">
+            <h2 class="eko-profile__header-title">{{ this.usuario.nombre }} ({{ this.usuario.edad }} años)</h2>
+            <h3 class="eko-profile__header-tipo-usuario">{{ this.usuario.tipoUsuario }}</h3>
+            <a class="eko-profile__header-correo eko-link" href="mailto:{{ this.usuario.correo }}?subject = Contacto">{{ this.usuario.correo }}</a>
+          </div>
+        </header>
+        <div class="eko-profile__info-container">
+          <p>{{ this.usuario.descripcion }}</p>
+        </div>
+        <footer class="eko-profile__footer" *ngIf="this.usuario.tipoUsuario == 'PROVEEDOR'">
+          <div class="eko-profile__footer-info">
+            <i class="fa fa-phone"></i>
+            <label>
+              {{ this.usuario.telefono }}
+            </label>
+          </div>
+          <div class="eko-profile__footer-info">
+            <a href="https://{{ this.usuario.paginaWeb }}" class="fa fa-globe" target="_blank">
+            </a>
+            <a class="eko-profile__footer-info-link eko-link" href="https://{{ this.usuario.paginaWeb }}" target="_blank">{{ this.usuario.paginaWeb }}</a>
+          </div>
+          <div class="eko-profile__footer-info">
+            <a href="https://www.facebook.com/{{ this.usuario.contactoFacebook }}" class="fa fa-facebook" target="_blank">
+            </a>
+            <a class="eko-profile__footer-info-link eko-link" href="https://www.facebook.com/{{ this.usuario.contactoFacebook }}" target="_blank">{{ this.usuario.contactoFacebook }}</a>
+          </div>
+          <div class="eko-profile__footer-info">
+            <a href="https://twitter.com/{{ this.usuario.contactoTwitter }}" class="fa fa-twitter" target="_blank">
+            </a>
+            <a class="eko-profile__footer-info-link eko-link" href="https://twitter.com/{{ this.usuario.contactoTwitter }}" target="_blank">{{ this.usuario.contactoTwitter }}</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</article>

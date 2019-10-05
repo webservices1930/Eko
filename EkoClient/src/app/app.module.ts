@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { MarketPlaceComponent } from './market-place/market-place.component';
 import { RegisterComponent } from './user/register/register.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { RegisterComponent } from './user/register/register.component';
     LoginComponent,
     MenuComponent,
     MarketPlaceComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     RouterModule,

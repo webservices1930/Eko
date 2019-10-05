@@ -25,8 +25,8 @@ export class MenuComponent implements OnInit {
    */
   public cerrarSesion() {
     this.userService.eliminarCookieUsuario();
-    this.router.navigate(['user/login']);
     window.location.reload();
+    this.router.navigate(['user/login']);
   }
 
   /**

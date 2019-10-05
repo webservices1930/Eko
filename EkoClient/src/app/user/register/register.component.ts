@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    console.log(TipoUsuario.CLIENTE)
     this.tiposDeUsuario = Object.keys(TipoUsuario).filter(key => typeof TipoUsuario[key as any] === 'number');
     this.checkoutForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -43,7 +42,8 @@ export class RegisterComponent implements OnInit {
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.registrarUsuario(informacionUsuario)
       .subscribe(result => {
-        alert('Usuario agregado exitosamente')
+        alert('Usuario agregado exitosamente');
+        this.router.navigate(['user/login']);
       },
         error => {
           console.log('There was an error: ', error);

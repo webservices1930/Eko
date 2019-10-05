@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
         let usuario: Usuario = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:iniciarSesionResponse'][0]['usuario'][0];
-        console.log(usuario);
-        this.userService.crearCookieUsuario(informacionUsuario as Usuario);
+
+        this.userService.crearCookieUsuario(usuario as Usuario);
+        
         window.location.reload();
         this.router.navigate(['home']);
       },
