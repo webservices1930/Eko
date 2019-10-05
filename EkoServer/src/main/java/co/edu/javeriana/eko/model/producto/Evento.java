@@ -22,8 +22,8 @@ public class Evento extends Producto{
 	}
 	public Evento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
-			int maxPersonas, double latitud, double longitud) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			int maxPersonas, double latitud, double longitud, String idUsuario) {
+		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
 		this.restriccionEdad = restriccionEdad;
@@ -35,8 +35,8 @@ public class Evento extends Producto{
 	}
 	public Evento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
-			int maxPersonas, double latitud, double longitud) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			int maxPersonas, double latitud, double longitud, String idUsuario) {
+		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
 		this.restriccionEdad = restriccionEdad;

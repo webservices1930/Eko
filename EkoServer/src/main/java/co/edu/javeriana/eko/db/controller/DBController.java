@@ -1,5 +1,8 @@
 package co.edu.javeriana.eko.db.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -7,14 +10,17 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
+import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Alojamiento;
 import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
 import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
 
 public final class DBController {
@@ -36,12 +42,59 @@ public final class DBController {
 	 */
 	public static void buscarCollection(String nombreColeccion) {
 		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
-		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
-		Document myDoc = coleccion.find().first();
-		System.out.println(myDoc.toJson());
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
 	}
 
+	/**
+	 * 
+	 * Busca todos los productos de una coleccion
+	 * 
+	 * */
+	public static List<Producto> obtenerProductos(String nombreColeccion){
+		List<Producto> productos = new ArrayList<Producto>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		MongoCursor<Document> cursor = coleccion.find().cursor();
+		
+		try {
+			while(cursor.hasNext()) {
+				Producto p = new Producto() {};
+				Document doc = cursor.next();				
+				p = Utils.deDocumentoAObjetoProducto(doc);				
+				productos.add(p);
+			}
+		}finally {
+			cursor.close();
+		}
+		return productos;
+	}
+	
+	/**
+	 * 
+	 * Busca todos los productos de un usuario
+	 * 
+	 * */
+	public static List<Producto> obtenerProductosPorUsuario(String nombreColeccion, String _id){
+		List<Producto> productos = new ArrayList<Producto>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		BasicDBObject query = new BasicDBObject();		
+		query.put("idusuario", _id);
+		MongoCursor<Document> cursor = coleccion.find(query).cursor();
+		try {
+			while(cursor.hasNext()) {
+				Producto p = new Producto() {};
+				Document doc = cursor.next();				
+				p = Utils.deDocumentoAObjetoProducto(doc);				
+				productos.add(p);
+			}
+		}finally {
+			cursor.close();
+		}
+		return productos;
+	}
+	
+	
 	/**
 	 * Insertar un nuevo Objeto/Documento (JSON) a la colección especificada
 	 * 
@@ -53,8 +106,17 @@ public final class DBController {
 		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 		
 		coleccion.insertOne(nDoc);
+		
 	}
 	
+	public static void actualizarObjeto(String nombreColeccion, Document nDoc, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		BasicDBObject query = new BasicDBObject();		
+		query.put("_id", new ObjectId(_id));		
+		coleccion.findOneAndReplace(query, nDoc);
+	}
+		
 	/**
 	 * Busca en una colección indicada un objeto por su ID
 	 * 

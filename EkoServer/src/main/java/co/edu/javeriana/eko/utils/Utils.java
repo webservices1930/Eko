@@ -7,6 +7,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Alojamiento;
 import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
@@ -58,6 +59,41 @@ public final class Utils {
 		);
 	}
 	
+	
+
+	/**
+	 * Método que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
+	 * 
+	 * @param transporte
+	 * @return
+	 */
+	public static Producto deDocumentoAObjetoProducto(Document docProducto) {
+		Producto producto= new Producto() {};
+		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
+		
+		List<Document> docDisponibilidad = (List<Document>) docProducto.get("disponibilidad");		
+		String transporteID = ((ObjectId)docProducto.getObjectId("_id")).toString();
+		
+		producto.set_id(transporteID);
+		
+		for (Document docDis : docDisponibilidad) {
+			Disponibilidad nDis = new Disponibilidad();
+			nDis.setFecha((String) docDis.get("fecha"));
+			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
+			disponibilidad.add(nDis);
+		}
+				
+		
+		producto.setDisponibilidad(disponibilidad);
+		producto.setPrecio(docProducto.getDouble("precio"));
+		producto.setInfoPaisDestino(docProducto.getString("infoPaisDestino"));
+		producto.setDescripcion(docProducto.getString("descripcion"));
+		producto.setTipo(TipoProducto.valueOf(docProducto.getString("tipo")));
+		producto.setIdUsuario(docProducto.getString("idUsuario"));
+	
+		return producto;
+	}
+	
 	/**
 	 * Método que convierte un objeto de tipo Transporte a un Documento
 	 * 
@@ -74,7 +110,8 @@ public final class Utils {
 			);
 		}
 		
-		return new Document("precio", transporte.getPrecio())
+		return new Document("precio", transporte.getPrecio())			
+				.append("idusuario", transporte.getIdUsuario())
 				.append("infoPaisDestino", transporte.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", transporte.getDescripcion())
@@ -120,6 +157,7 @@ public final class Utils {
 		transporte.setHoraLlegada(docTransporte.getInteger("horaLlegada"));
 		transporte.setTipoTransporte(TipoTransporte.valueOf(docTransporte.getString("tipoTransporte")));
 		transporte.setDuracion(docTransporte.getInteger("duracion"));
+		transporte.setIdUsuario(docTransporte.getString("idUsuario"));
 		
 		return transporte;
 	}
@@ -142,6 +180,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", alojamiento.getPrecio())
+				.append("idusuario", alojamiento.getIdUsuario())
 				.append("infoPaisDestino", alojamiento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", alojamiento.getDescripcion())
@@ -197,6 +236,7 @@ public final class Utils {
 		alojamiento.setTelevision(docAlojamiento.getBoolean("television"));
 		alojamiento.setNumCamas(docAlojamiento.getInteger("numeroCamas"));
 		alojamiento.setNumBaños(docAlojamiento.getInteger("numeroBaños"));
+		alojamiento.setIdUsuario(docAlojamiento.getString("idUsuario"));
 
 		return alojamiento;
 	}
@@ -218,6 +258,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", sitio.getPrecio())
+				.append("idusuario", sitio.getIdUsuario())
 				.append("infoPaisDestino", sitio.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", sitio.getDescripcion())
@@ -265,6 +306,7 @@ public final class Utils {
 		sitio.setConsumoObligatorio(docSitio.getBoolean("consumoObligatorio"));
 		sitio.setHoraApertura(docSitio.getInteger("horaApertura"));
 		sitio.setHoraCierre(docSitio.getInteger("horaCierre"));
+		sitio.setIdUsuario(docSitio.getString("idUsuario"));
 				
 		return sitio;
 	}
@@ -286,6 +328,7 @@ public final class Utils {
 		
 		return new Document("precio", experiencia.getPrecio())
 				.append("infoPaisDestino", experiencia.getInfoPaisDestino())
+				.append("idusuario", experiencia.getIdUsuario())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", experiencia.getDescripcion())
 				.append("tipo", experiencia.getTipo().toString())
@@ -332,6 +375,7 @@ public final class Utils {
 		experiencia.setNivelRiesgo(docExperiencia.getInteger("nivelRiesgo"));
 		experiencia.setDuracion(docExperiencia.getInteger("duracion"));
 		experiencia.setHoraLlegada(docExperiencia.getInteger("horaLlegada"));
+		experiencia.setIdUsuario(docExperiencia.getString("idUsuario"));
 					
 		return experiencia;
 	}
@@ -353,6 +397,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", salida.getPrecio())
+				.append("idusuario", salida.getIdUsuario())
 				.append("infoPaisDestino", salida.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", salida.getDescripcion())
@@ -395,7 +440,8 @@ public final class Utils {
 		salida.setRestriccionEdad(docSalida.getInteger("restriccionEdad"));
 		salida.setTrayecto(docTrayecto);
 		salida.setDuracion(docSalida.getInteger("duracion"));
-		salida.setGuia(docSalida.getString("guia"));						
+		salida.setGuia(docSalida.getString("guia"));	
+		salida.setIdUsuario(docSalida.getString("idUsuario"));
 		
 		return salida;
 	}
@@ -417,6 +463,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", evento.getPrecio())
+				.append("idusuario", evento.getIdUsuario())
 				.append("infoPaisDestino", evento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("descripcion", evento.getDescripcion())
@@ -465,6 +512,7 @@ public final class Utils {
 		evento.setMaxPersonas(docEvento.getInteger("maxPersonas"));
 		evento.setLatitud(docEvento.getDouble("latitud"));
 		evento.setLongitud(docEvento.getDouble("longitud"));
+		evento.setIdUsuario(docEvento.getString("idUsuario"));
 		return evento;
 	}
 }

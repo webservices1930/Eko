@@ -1,5 +1,7 @@
 package co.edu.javeriana.eko.iservice;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -19,6 +21,19 @@ public interface IProductoService {
 	@WebMethod(operationName = "calificacionPromedio")
 	public double calcularCalificacionPromedio();
 	
+	
+	
+	@WebMethod(operationName = "obtenerProductos")
+	@WebResult(name="listadoProductos")
+	public List<Producto> obtenerProductos();	
+	
+	@WebMethod(operationName = "buscarProductoPorId")
+	@WebResult(name="producto")	
+	public Producto buscarProductoPorId(@WebParam(name = "productoID")String _id);
+	
+	@WebMethod(operationName = "obtenerProductosPorUsuario")
+	@WebResult(name="listaProductosUsuario")	
+	public List<Producto> obtenerProductosPorUsuario(@WebParam(name = "usuarioID")  String _idUsuario);
 	
 	//** TRANSPORTE **//
 	@WebMethod(operationName = "agregarProductoTransporte")

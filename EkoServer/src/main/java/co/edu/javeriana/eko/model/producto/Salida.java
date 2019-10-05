@@ -19,8 +19,8 @@ public class Salida extends Producto{
 	}
 
 	public Salida(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario) {
+		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoSalida = tipoSalida;
 		this.duracion = duracion;
 		this.trayecto = trayecto;
@@ -29,8 +29,8 @@ public class Salida extends Producto{
 	}
 
 	public Salida(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			String descripcion, TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario) {
+		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoSalida = tipoSalida;
 		this.duracion = duracion;
 		this.trayecto = trayecto;

@@ -22,8 +22,8 @@ public class Experiencia extends Producto{
 
 	public Experiencia(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, double latitud, double longitud,
-			int duracion, int horaLlegada) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			int duracion, int horaLlegada, String idUsuario) {
+		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoExperiencia = tipoExperiencia;
 		this.nivelRiesgo = nivelRiesgo;
 		this.restriccionEdad = restriccionEdad;
@@ -35,8 +35,8 @@ public class Experiencia extends Producto{
 
 	public Experiencia(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo, TipoExperiencia tipoExperiencia, int nivelRiesgo, int restriccionEdad, double latitud, double longitud,
-			int duracion, int horaLlegada) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			int duracion, int horaLlegada, String idUsuario) {
+		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoExperiencia = tipoExperiencia;
 		this.nivelRiesgo = nivelRiesgo;
 		this.restriccionEdad = restriccionEdad;
