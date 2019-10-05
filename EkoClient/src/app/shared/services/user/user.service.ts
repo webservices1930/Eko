@@ -84,9 +84,6 @@ export class UserService {
     const httpOptions: object = this.utils.crearHeadersXML();
     let body: string = '';
     
-    console.log('USER', nUsuario)
-    console.log('TIPO', nUsuario.tipoUsuario)
-
     // Se crea el vody de la petición SOAP
     if (nUsuario.tipoUsuario == 'CLIENTE') {
       body = `
@@ -112,8 +109,6 @@ export class UserService {
       `;
     }
 
-    console.log('BODY', body);
-
     // Se realiza una petición POST
     return this.http.post(
       this.utils.baseUrl + 'eko/usuarios?wsdl',
@@ -122,6 +117,9 @@ export class UserService {
     );
   }
 
+  /**
+   * Obtiene la información de un usuario por medio de su correo electrónico
+   */
   public obtenerInformacionUsuarioActualPorCorreo(): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
     let body: string = '';
@@ -158,6 +156,47 @@ export class UserService {
   }
 
   /**
+   * Elimina al usuario en sesion del sistema
+   * @param nUsuario 
+   */
+  public eliminarUsuario(): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+    let body: string = '';
+
+    // Se crea el vody de la petición SOAP
+    if (this.cookieService.get('tipo') === 'CLIENTE') {
+      body = `
+      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+          <eliminarUsuarioPorCorreoCliente xmlns="http://iservice.eko.javeriana.edu.co/">
+            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
+            <contrasena xmlns="">` + this.cookieService.get('contrasena') + `</contrasena>
+          </eliminarUsuarioPorCorreoCliente>
+        </Body>
+      </Envelope>
+      `;
+    } else if (this.cookieService.get('tipo') === 'PROVEEDOR') {
+      body = `
+      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+          <eliminarUsuarioPorCorreoProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
+            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
+            <contrasena xmlns="">` + this.cookieService.get('contrasena') + `</contrasena>
+          </eliminarUsuarioPorCorreoProveedor>
+        </Body>
+      </Envelope>
+      `;
+    }
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  /**
    * Crea una cookie con la información del usuario para saber que ha iniciado sesión
    * @param usuario 
    */
@@ -165,6 +204,7 @@ export class UserService {
     this.cookieService.set('usuario', usuario.correo);
     this.cookieService.set('estado', 'ingresado');
     this.cookieService.set('tipo', usuario.tipoUsuario);
+    this.cookieService.set('contrasena', usuario.contrasena);
   }
 
   /**
@@ -175,6 +215,7 @@ export class UserService {
     this.cookieService.delete('usuario');
     this.cookieService.delete('estado');
     this.cookieService.delete('tipo');
+    this.cookieService.delete('contrasena');
   }
 
   /**

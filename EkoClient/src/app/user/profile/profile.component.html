@@ -5,7 +5,10 @@
         <header class="eko-profile__header">
           <figure class="eko-profile__header-img-container">
             <img src="https://api.adorable.io/avatars/400/{{this.usuario.nombre}}">
-            <a class="eko-profile__header-edit-btn eko-link-button" routerLink="/user/edit" routerLinkActive="router-link-active" >Editar perfil</a>
+            <div class="eko-profile__header-btn-group">
+              <a class="eko-profile__header-delete-btn eko-btn eko-link-danger-button" (click)="eliminarCuenta()">Eliminar cuenta</a>
+              <a class="eko-profile__header-edit-btn eko-btn eko-link-button" routerLink="/user/edit" routerLinkActive="router-link-active" >Editar perfil</a>
+            </div>
           </figure>
           <div class="eko-profile__header-info">
             <h2 class="eko-profile__header-title">{{ this.usuario.nombre }} ({{ this.usuario.edad }} años)</h2>
