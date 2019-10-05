@@ -11,9 +11,9 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 })
 export class ProductFormComponent implements OnInit {
 
-  private nTrayecto: string = '';
-  private nTransporte: Transporte = new Transporte();
-  private nDisponibilidad: Disponibilidad = new Disponibilidad();
+  public nTrayecto: string = '';
+  public nTransporte: Transporte = new Transporte();
+  public nDisponibilidad: Disponibilidad = new Disponibilidad();
 
   constructor(private productService: ProductService) {}
 

@@ -12,8 +12,8 @@ import { TipoUsuario } from 'src/app/shared/model/TipoUsuario';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  private checkoutForm: FormGroup;
-  private tiposDeUsuario: string[];
+  public checkoutForm: FormGroup;
+  public tiposDeUsuario: string[];
 
   constructor(
     private formBuilder: FormBuilder,
