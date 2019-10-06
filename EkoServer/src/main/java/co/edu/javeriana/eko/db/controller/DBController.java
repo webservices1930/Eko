@@ -1,5 +1,6 @@
 package co.edu.javeriana.eko.db.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -9,9 +10,11 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -69,6 +72,42 @@ public final class DBController {
 		
 		Document transporte = coleccion.find(query).first();
 		return Utils.deDocumentoAObjetoTransporte(transporte);
+	}
+	
+	/**
+	 * Busca en una colección de reserva indicada un cliente por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static List<Reserva> buscarEnColeccionReservaPorClienteID(String nombreColeccion, String _id) {
+		/*MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("id_cliente", _id);
+		
+		Document reserva = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoReserva(reserva);*/
+		
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		BasicDBObject query = new BasicDBObject();		
+		query.put("id_cliente", _id);
+		MongoCursor<Document> cursor = coleccion.find(query).cursor();
+		try {
+			while(cursor.hasNext()) {
+				Reserva r = new Reserva() {};
+				Document doc = cursor.next();				
+				r = Utils.deDocumentoAObjetoReserva(doc);				
+				reservas.add(r);
+			}
+		}finally {
+			cursor.close();
+		}
+		return reservas;
 	}
 	
 	/**

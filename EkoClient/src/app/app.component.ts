@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from './shared/services/product-service.service';
 import { parseString } from 'xml2js';
+import { ReservaService } from './shared/services/reserva-service.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import { parseString } from 'xml2js';
 export class AppComponent {
   title = 'EkoClient';
   id = '';
+  idreservas='';
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private reservaService: ReservaService) {}
 
   /**
    * Llama al servicio para obtener todos los productos del MarketPlace en XML
@@ -45,5 +47,20 @@ export class AppComponent {
       console.log('There was an error: ', error);
       console.log(error.status);
     });
+  }
+
+  public obtenerReservasCliente(){
+    this.reservaService.buscarPorID(this.idreservas)
+    .subscribe(result=>{
+      parseString(result, function (err, res) {
+        console.log(res);
+        alert("Reservas de un cliente encontradas con exito");
+      });
+    },
+    error =>{
+      console.log('There was an error: ', error);
+      console.log(error.status);
+    });
+    console.log(this.idreservas);
   }
 }

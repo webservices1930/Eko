@@ -23,7 +23,7 @@ public class EkoPublisher {
 			Utils.printInfo("Exponiendo servicios");
 
 			// Expone los servicios del Market Place
-//			MarketPlaceWebServices.publicarMarketPlaceServices();
+     		MarketPlaceWebServices.publicarMarketPlaceServices();
 			// Expone los servicios de Producto
 			ProductoWebServices.publicarProductoServices();
 			

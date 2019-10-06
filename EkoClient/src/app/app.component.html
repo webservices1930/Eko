@@ -17,7 +17,9 @@
       <a (click)="obetenerTodosLosProductos($event)" href="#">Obtener todos los productos</a>
     </li>
     <li class="eko-menu__item">
-      <a class="eko-menu__link" routerLink="#">Mis reservas</a>
+      <label for="id">Buscar reservas por ID cliente</label>
+      <input type="text" class="" [(ngModel)]="idreservas" name="id" required>
+      <button type="button" (click)="obtenerReservasCliente()">Mis reservas</button>
     </li>
   </ul>
 </nav>
