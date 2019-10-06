@@ -1,13 +1,6 @@
-import { Disponibilidad } from '../Disponibilidad';
+import { Producto } from './Producto';
 
-export class Transporte {
-  public _id: string;
-  public precio;
-  public infoPaisDestino: string;
-  public disponibilidad: Disponibilidad[];
-  public descripcion: string;
-  public tipo: string;
-
+export class Transporte extends Producto {
   public horaSalida: number;
   public horaLlegada: number;
   public trayecto: string[];
@@ -15,12 +8,7 @@ export class Transporte {
   public duracion: number;
 
   constructor() {
-      this._id = '';
-      this.precio = 0;
-      this.infoPaisDestino = '';
-      this.disponibilidad = new Array<Disponibilidad>();
-      this.descripcion = '';
-      this.tipo = '';
+      super();
       this.horaLlegada = 0;
       this.horaSalida = 0;
       this.trayecto = new Array<string>();
@@ -28,18 +16,3 @@ export class Transporte {
       this.duracion = 0;
   }
 }
-
- // constructor(
-  //   n_id,
-  //   nPrecio,
-  //   nInfoPaisDestino,
-  //   nDisponibilidad,
-  //   nDescripcion,
-  //   nTipo) {
-  //     this._id = n_id;
-  //     this.precio = nPrecio;
-  //     this.infoPaisDestino = nInfoPaisDestino;
-  //     this.disponibilidad = nDisponibilidad;
-  //     this.descripcion = nDescripcion;
-  //     this.tipo = nTipo;
-  // }
