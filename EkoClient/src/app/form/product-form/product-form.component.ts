@@ -14,6 +14,11 @@ import { Salida } from 'src/app/shared/model/Producto/Salida';
 import { Sitio } from 'src/app/shared/model/Producto/Sitio';
 import { TipoTransporte } from 'src/app/shared/model/TipoTransporte';
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { TipoAlojamiento } from 'src/app/shared/model/TipoAlojamiento';
+import { TipoDeEvento } from 'src/app/shared/model/TipoDeEvento';
+import { TipoExperiencia } from 'src/app/shared/model/TipoExperiencia';
+import { TipoSalida } from 'src/app/shared/model/TipoSalida';
+import { TipoDeSitio } from 'src/app/shared/model/TipoDeSitio';
 
 @Component({
   selector: 'app-product-form',
@@ -85,18 +90,23 @@ export class ProductFormComponent implements OnInit {
     switch (this.tipo) {
       case 'ALOJAMIENTO':
         this.producto = new Alojamiento();
+        this.tiposProductoEspecifico = this.utils.valoresDeEnum(TipoAlojamiento);
         break;
       case 'EVENTO':
         this.producto = new Evento();
+        this.tiposProductoEspecifico = this.utils.valoresDeEnum(TipoDeEvento);
         break;
       case 'EXPERIENCIA':
         this.producto = new Experiencia();
+        this.tiposProductoEspecifico = this.utils.valoresDeEnum(TipoExperiencia);
         break;
       case 'SALIDA':
         this.producto = new Salida();
+        this.tiposProductoEspecifico = this.utils.valoresDeEnum(TipoSalida);
         break;
       case 'SITIO':
         this.producto = new Sitio();
+        this.tiposProductoEspecifico = this.utils.valoresDeEnum(TipoDeSitio);
         break;
       case 'TRANSPORTE':
         this.producto = new Transporte();

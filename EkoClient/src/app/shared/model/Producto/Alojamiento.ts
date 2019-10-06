@@ -10,8 +10,8 @@ export class Alojamiento extends Producto {
   public cena: boolean;
   public internet: boolean;
   public television: boolean;
-  public numeroCamas: number;
-  public numeroBaños: number;
+  public numCamas: number;
+  public numBanios: number;
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ export class Alojamiento extends Producto {
     this.cena = false;
     this.internet = false;
     this.television = false;
-    this.numeroCamas = 0;
-    this.numeroBaños = 0;
+    this.numCamas = 0;
+    this.numBanios = 0;
   }
 }

@@ -130,7 +130,7 @@ export class UtilsService {
         <descripcion>` + nAlojamiento.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nAlojamiento.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nAlojamiento.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nAlojamiento.precio + `</precio>
         <tipo>ALOJAMIENTO</tipo>
@@ -141,8 +141,8 @@ export class UtilsService {
         <internet>` + nAlojamiento.internet + `</internet>
         <latitud>` + nAlojamiento.latitud + `</latitud>
         <longitud>` + nAlojamiento.longitud + `</longitud>
-        <numBaños>` + nAlojamiento.numeroBaños + `</numBaños>
-        <numCamas>` + nAlojamiento.numeroCamas + `</numCamas>
+        <numBanios>` + nAlojamiento.numBanios + `</numBanios>
+        <numCamas>` + nAlojamiento.numCamas + `</numCamas>
         <television>` + nAlojamiento.television + `</television>
         <tipoAlojamiento>` + nAlojamiento.tipoAlojamiento + `</tipoAlojamiento>
     </alojamiento>`;
@@ -173,7 +173,7 @@ export class UtilsService {
         <descripcion>` + nEvento.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nEvento.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nEvento.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nEvento.precio + `</precio>
         <tipo>EVENTO</tipo>
@@ -213,7 +213,7 @@ export class UtilsService {
         <descripcion>` + nExperiencia.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nExperiencia.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nExperiencia.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nExperiencia.precio + `</precio>
         <tipo>EXPERIENCIA</tipo>
@@ -258,7 +258,7 @@ export class UtilsService {
         <descripcion>` + nSalida.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nSalida.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nSalida.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nSalida.precio + `</precio>
         <tipo>SALIDA</tipo>
@@ -296,7 +296,7 @@ export class UtilsService {
         <descripcion>` + nSitio.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nSitio.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nSitio.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nSitio.precio + `</precio>
         <tipo>SITIO</tipo>
