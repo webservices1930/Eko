@@ -7,6 +7,7 @@ export class Transporte extends Producto {
   public tipoTransporte: string;
   public duracion: number;
 
+
   constructor() {
       super();
       this.horaLlegada = '';

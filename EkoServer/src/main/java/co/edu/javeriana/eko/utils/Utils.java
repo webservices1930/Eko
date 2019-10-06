@@ -16,6 +16,7 @@ import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,7 @@ public final class Utils {
 	public static void printSuccess(String success) {
 		System.out.println(
 				// VariablesDeEntorno.ANSI_GREEN +
-				"[ÉXITO]: " + success
+				"[ï¿½XITO]: " + success
 		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
@@ -674,5 +675,40 @@ public final class Utils {
 		
 	}
 	
+	
+	/**
+	 * Mï¿½todo que convierte un objeto de tipo Reserva a un Documento
+	 * 
+	 * @param Reserva
+	 * @return
+	 */
+	public static Document deObjetoReservaADocumento(Reserva reserva) {
+
+		return new Document("fecha", reserva.getFechas())
+				.append("id_cliente", reserva.getClienteid())
+				.append("id_producto", reserva.getProductoid());
+	}
+	
+	/**
+	 * Mï¿½todo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
+	 * 
+	 * @param reserva
+	 * @return
+	 */
+	public static Reserva deDocumentoAObjetoReserva(Document docReserva) {
+		Reserva reserva=new Reserva();
+		
+		//List<String> docFecha = (List<String>) docReserva.get("fecha");
+		String reservaID = ((ObjectId)docReserva.getObjectId("_id")).toString();
+		
+		reserva.set_id(reservaID);
+		
+		reserva.setFechas(docReserva.getString("fecha"));
+		
+		reserva.setClienteid(docReserva.getString("id_cliente"));
+		
+		reserva.setProductoid(docReserva.getString("id_producto"));
+		return reserva;
+	}
 	
 }

@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [NoAuthGuard] },
   { path: 'user/edit', component: EditProfileComponent, canActivate: [NoAuthGuard] },
-  { path: 'home', component: MarketPlaceComponent, canActivate: [NoAuthGuard] }
+  { path: 'home', component: MarketPlaceComponent, canActivate: [NoAuthGuard] },
+  { path: 'product/add', component: ProductFormComponent }
 ];
 
 
