@@ -7,6 +7,7 @@ export abstract class Producto {
   public disponibilidad: Disponibilidad[];
   public descripcion: string;
   public tipo: string;
+  public idUsuario: string;
 
   constructor() {
       this._id = '';
@@ -15,5 +16,6 @@ export abstract class Producto {
       this.disponibilidad = new Array<Disponibilidad>();
       this.descripcion = '';
       this.tipo = '';
+      this.idUsuario = '';
   }
 }

@@ -1,5 +1,5 @@
 export enum TipoAlojamiento {
-  HABITACIÓN,
+  HABITACION,
   APARTAMENTO,
   CASA
 }

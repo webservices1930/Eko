@@ -219,6 +219,13 @@ export class UserService {
   }
 
   /**
+   * Devuelte el correo del usuario en serion
+   */
+  public obtenerCorreoUsuario() {
+    return this.cookieService.get('usuario');
+  }
+
+  /**
    * Verifica si hay un usuario que ha iniciado sesión
    */
   public verificiarSesion() {

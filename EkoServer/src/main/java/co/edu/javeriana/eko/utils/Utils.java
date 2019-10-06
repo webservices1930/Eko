@@ -162,8 +162,8 @@ public final class Utils {
 		transporte.setInfoPaisDestino(docTransporte.getString("infoPaisDestino"));
 		transporte.setDescripcion(docTransporte.getString("descripcion"));
 		transporte.setTipo(TipoProducto.valueOf(docTransporte.getString("tipo")));
-		transporte.setHoraSalida(docTransporte.getInteger("horaSalida"));
-		transporte.setHoraLlegada(docTransporte.getInteger("horaLlegada"));
+		transporte.setHoraSalida(docTransporte.getString("horaSalida"));
+		transporte.setHoraLlegada(docTransporte.getString("horaLlegada"));
 		transporte.setTipoTransporte(TipoTransporte.valueOf(docTransporte.getString("tipoTransporte")));
 		transporte.setDuracion(docTransporte.getInteger("duracion"));
 		transporte.setIdUsuario(docTransporte.getString("idUsuario"));

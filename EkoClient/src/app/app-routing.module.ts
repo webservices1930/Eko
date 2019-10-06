@@ -10,7 +10,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 
 const routes: Routes = [
-  { path: 'product/add', component: ProductFormComponent, canActivate: [NoAuthGuard] },
+  { path: 'product/add', component: ProductFormComponent },
   { path: 'user/login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'user/register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [NoAuthGuard] },
