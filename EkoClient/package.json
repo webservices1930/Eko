@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.7",
     "@angular/platform-browser-dynamic": "~8.2.7",
     "@angular/router": "~8.2.7",
+    "bootstrap": "^4.3.1",
     "crypto-js": "^3.1.9-1",
     "ngx-cookie-service": "^2.2.0",
     "ngx-soap": "^0.6.0",
