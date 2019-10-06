@@ -277,4 +277,14 @@ public class ProductoServices implements IProductoService {
 		else
 			System.out.println("Reservas llenas");
 	}
+	
+	@Override
+	public List<Reserva> buscarReservasClientePorID(String _id) {
+		return DBController.buscarEnColeccionReservaPorClienteID("reservas", _id);
+	}
+	
+	@Override
+	public void eliminarReservaPorID(String _id) {
+		DBController.eliminarEnColeccionPorID("reservas", _id);
+	}
 }

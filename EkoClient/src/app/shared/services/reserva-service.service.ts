@@ -32,23 +32,5 @@ export class ReservaService {
 
 
 
-  public buscarPorID(id: string) {
-    const httpOptions: object = this.crearHeadersXML();
 
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <buscarReservasClientePorID xmlns="http://iservice.eko.javeriana.edu.co/">
-          <clienteID xmlns="">` + id + `</clienteID>
-        </buscarReservasClientePorID>
-      </Body>
-    </Envelope>`;
-
-    // Se realiza una petición POST
-    return this.http.post(
-      this.baseUrl + 'eko/market-place?wsdl',
-      body,
-      httpOptions
-    );
-  }
 }

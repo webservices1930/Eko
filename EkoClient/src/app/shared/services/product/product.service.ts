@@ -343,4 +343,43 @@ export class ProductService {
     );
   }
 
+  public buscarReservaPorUsuario(id: string) {
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <buscarReservasClientePorID xmlns="http://iservice.eko.javeriana.edu.co/">
+          <clienteID xmlns="">` + id + `</clienteID>
+        </buscarReservasClientePorID>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public eliminarReserva(id: string) {
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <eliminarReservaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
+          <reservaID xmlns="">` + id + `</reservaID>
+        </eliminarReservaPorID>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
 }

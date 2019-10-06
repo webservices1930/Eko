@@ -130,4 +130,12 @@ public interface IProductoService {
 	
 	@WebMethod(operationName = "agregarReserva")
 	public void agregarReserva(@WebParam(name = "reserva") Reserva nReserva);
+	
+	@WebMethod(operationName = "buscarReservasClientePorID")
+	@WebResult(name="reservasCliente")
+	public List<Reserva> buscarReservasClientePorID(@WebParam(name = "clienteID") String _id);
+	
+	@WebMethod(operationName = "eliminarReservaPorID")
+	public void eliminarReservaPorID(@WebParam(name = "reservaID") String _id);
+	
 }

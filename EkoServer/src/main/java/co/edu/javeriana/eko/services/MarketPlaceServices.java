@@ -20,8 +20,5 @@ public class MarketPlaceServices implements IMarketPlace {
 	}
 
 	// Métodos para exportar
-	@Override
-	public List<Reserva> buscarReservasClientePorID(String _id) {
-		return DBController.buscarEnColeccionReservaPorClienteID("reservas", _id);
-	}
+	
 }

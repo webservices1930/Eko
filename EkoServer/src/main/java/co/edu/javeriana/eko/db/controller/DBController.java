@@ -20,7 +20,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-<<<<<<< HEAD
 import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Alojamiento;
@@ -28,10 +27,8 @@ import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
-=======
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.Reserva;
->>>>>>> 7bac48e58982aef94362df539d797691c7fd2624
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
@@ -263,15 +260,7 @@ public final class DBController {
 	 * @param _id
 	 */
 	public static List<Reserva> buscarEnColeccionReservaPorClienteID(String nombreColeccion, String _id) {
-		/*MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
-		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 		
-		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
-		BasicDBObject query = new BasicDBObject();
-		query.put("id_cliente", _id);
-		
-		Document reserva = coleccion.find(query).first();
-		return Utils.deDocumentoAObjetoReserva(reserva);*/
 		
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);

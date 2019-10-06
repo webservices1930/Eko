@@ -14,8 +14,5 @@ import co.edu.javeriana.eko.model.Reserva;
 @WebService
 public interface IMarketPlace {
 	
-	@WebMethod(operationName = "buscarReservasClientePorID")
-	@WebResult(name="reservasCliente")
-	public List<Reserva> buscarReservasClientePorID(@WebParam(name = "clienteID") String _id);
 	
 }
