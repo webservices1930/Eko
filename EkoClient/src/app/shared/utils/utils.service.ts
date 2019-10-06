@@ -10,6 +10,7 @@ import { Evento } from '../model/Producto/Evento';
 import { Experiencia } from '../model/Producto/Experiencia';
 import { Salida } from '../model/Producto/Salida';
 import { Sitio } from '../model/Producto/Sitio';
+import { Reserva } from '../model/Reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class UtilsService {
 
   /**
    * Devuelve los valores en string de un enum
-   * 
+   *
    * @param tipoEnum
    */
   public valoresDeEnum(tipoEnum): string[] {
@@ -81,6 +82,9 @@ export class UtilsService {
       trayectos += '<trayecto>' + trayecto + '</trayecto>';
     });
 
+    console.log(nTransporte.infoPaisDestino);
+    console.log(nTransporte.descripcion);
+
     // Construye todo el XML con los datos del producto
     return `
       <transporte xmlns="">
@@ -88,7 +92,7 @@ export class UtilsService {
         <descripcion>` + nTransporte.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nTransporte.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nTransporte.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nTransporte.precio + `</precio>
         <tipo>TRANSPORTE</tipo>
@@ -346,4 +350,28 @@ export class UtilsService {
       </usuario>
     `;
   }
+  /*
+   * Toma un objeto de tipo reserva y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearReservaXML(nReserva: Reserva): string {
+
+   // let fechas: string = '';
+
+
+
+    // Añade todos los tags de fechas de la reserva
+   /* nReserva.fechas.forEach(fecha => {
+      fechas += '<fecha>' + fecha + '</fecha>';
+    });*/
+    // Construye todo el XML con los datos de la reserva
+    return `
+    <reserva xmlns="">
+    <_id>` + nReserva._id + `</_id>
+      <fecha>` + nReserva.fechas + `</fecha>
+      <clienteid>`+nReserva.clienteid+`</clienteid>
+       <productoid>`+nReserva.productoid+`</productoid>
+    </reserva>`;
+  }
+
 }

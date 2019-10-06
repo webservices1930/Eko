@@ -4,4 +4,5 @@ public enum TipoDeSitio {
 	MUSEO,
 	PARQUE,
 	GALERIA
+	
 }
