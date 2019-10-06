@@ -89,7 +89,7 @@ public final class DBController {
 	
 	
 	/**
-	 * Elimina en una colección indicada un objeto por su ID
+	 * Busca en una colección indicada un objeto por su ID
 	 * 
 	 * @param nombreColeccion
 	 * @param _id
