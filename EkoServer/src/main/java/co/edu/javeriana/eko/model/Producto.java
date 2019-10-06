@@ -62,7 +62,7 @@ public abstract class Producto {
 	}
 
 	public void setInfoPaisDestino(String infoPaisDestino) {
-		infoPaisDestino = infoPaisDestino;
+		this.infoPaisDestino = infoPaisDestino;
 	}
 
 	public List<Disponibilidad> getDisponibilidad() {
