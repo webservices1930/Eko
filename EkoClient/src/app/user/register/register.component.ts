@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {
     this.tiposDeUsuario = this.utils.valoresDeEnum(TipoUsuario);
+
     this.checkoutForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
@@ -46,11 +47,10 @@ export class RegisterComponent implements OnInit {
       .subscribe(result => {
         alert('Usuario agregado exitosamente');
         this.router.navigate(['user/login']);
-      },
-        error => {
-          console.log('There was an error: ', error);
-          console.log(error.status);
-        });
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
   }
 
 }

@@ -82,6 +82,9 @@ export class UtilsService {
       trayectos += '<trayecto>' + trayecto + '</trayecto>';
     });
 
+    console.log(nTransporte.infoPaisDestino);
+    console.log(nTransporte.descripcion);
+
     // Construye todo el XML con los datos del producto
     return `
       <transporte xmlns="">
@@ -89,7 +92,7 @@ export class UtilsService {
         <descripcion>` + nTransporte.descripcion + `</descripcion>
         `
         + disponibilidad +
-        `
+        `<idUsuario>` + nTransporte.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nTransporte.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nTransporte.precio + `</precio>
         <tipo>TRANSPORTE</tipo>
