@@ -16,6 +16,20 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import co.edu.javeriana.eko.model.Carrito;
+import co.edu.javeriana.eko.model.Catalogo;
+import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.producto.Alojamiento;
+import co.edu.javeriana.eko.model.producto.Evento;
+import co.edu.javeriana.eko.model.producto.Experiencia;
+import co.edu.javeriana.eko.model.producto.Salida;
+import co.edu.javeriana.eko.model.producto.Sitio;
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Reserva;
+import co.edu.javeriana.eko.model.Pregunta;
+import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.utils.TipoProducto;
+import co.edu.javeriana.eko.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +39,8 @@ import static com.mongodb.client.model.Filters.eq;
 public final class DBController {
 	// Se crea la conexi�n a la Base de Datos
 
-	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://paella:paella@ekodb-shard-00-00-rroku.gcp.mongodb.net:27017,ekodb-shard-00-01-rroku.gcp.mongodb.net:27017,ekodb-shard-00-02-rroku.gcp.mongodb.net:27017/admin?ssl=true&replicaSet=EkoDB-shard-0&authSource=admin&retryWrites=true&w=majority"));
-
+//	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://paella:paella@ekodb-shard-00-00-rroku.gcp.mongodb.net:27017,ekodb-shard-00-01-rroku.gcp.mongodb.net:27017,ekodb-shard-00-02-rroku.gcp.mongodb.net:27017/admin?ssl=true&replicaSet=EkoDB-shard-0&authSource=admin&retryWrites=true&w=majority"));
+	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
 	private static String nombreDB = "EkoDB";
 
 	/* --- Se genera un Singleton del Controlador de la Base de Datos --- */
@@ -56,7 +70,6 @@ public final class DBController {
 		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
 		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 		MongoCursor<Document> cursor = coleccion.find().cursor();
-
 		try {
 			while (cursor.hasNext()) {
 				Producto p = new Producto() {
@@ -437,6 +450,27 @@ public final class DBController {
 		coleccion.updateOne(eq("correo", correo),
 				new Document("$set", new Document("descripcion", usuario.getDescripcion())));
 	}
+	
+	/**
+	 * Busca en una colecci�n indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	
+	public static Pregunta buscarPreguntaPorID (String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document pregunta = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoPregunta(pregunta);
+	}
+	
+	
 
 	/**
 	 * Actualiza en una colecci�n indicada un objeto por su correo
@@ -472,4 +506,27 @@ public final class DBController {
 	public static void cerrarConexionMongoDB() {
 		clienteMongo.close();
 	}
+	
+	
+	/**
+	 * Busca en una colecci�n indicada un objeto por su ID
+	 *
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static Carrito buscarCarritoEnColeccionPorID(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("idUsuario", _id);
+				
+
+		Document carrito = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoCarrito(carrito);		
+	}
+	
+
 }
+

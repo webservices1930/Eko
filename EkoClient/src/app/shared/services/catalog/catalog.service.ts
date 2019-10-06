@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { UtilsService } from '../../utils/utils.service';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Catalogo } from '../../model/Catalogo/catalogo';
+import {Injectable} from '@angular/core';
+import {UtilsService} from '../../utils/utils.service';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Catalogo} from '../../model/Catalogo/catalogo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,10 @@ export class CatalogService {
   constructor(
     private http: HttpClient,
     private utils: UtilsService
-  ) { }
+  ) {
+  }
 
-   /**
+  /**
    * Dado un Producto realiza la petición SOAP necesaria
    * para agregar un producto al servidor
    *
@@ -40,8 +41,8 @@ export class CatalogService {
             <nombre>` + nCatalogo.nombre + `</nombre>
             <precio>` + nCatalogo.precio + `</precio>
             `
-            + productos +
-            `
+      + productos +
+      `
             <_id>` + nCatalogo + `</_id>
           </nCatalogo>
         </agregarCatalogo>
@@ -77,7 +78,7 @@ export class CatalogService {
     );
   }
 
-   /**
+  /**
    * Busca un catalogo de tipo Transporte por su ID en el Market Place
    * @param id
    */
@@ -152,8 +153,8 @@ export class CatalogService {
             <nombre>` + nCatalogo.nombre + `</nombre>
             <precio>` + nCatalogo.precio + `</precio>
             `
-            + productos +
-            `
+      + productos +
+      `
             <_id>` + nCatalogo + `</_id>
           </catalogo>
         </actualizarCatalogo>

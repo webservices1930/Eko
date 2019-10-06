@@ -74,22 +74,250 @@
           <div class="row">
             <div class="col-12">
               <label for="">Trayecto</label>
-              <input type="text" class="form-control" [(ngModel)]="trayecto.valor"  name="trayecto-{{j}}" required>
+              <input type="text" class="form-control" [(ngModel)]="trayecto.valor" name="trayecto-{{j}}" required>
             </div>
           </div>
         </div>
         <div class="col-6">
-          <button class="btn btn-success btn-sm btn-block" style="margin: 20px 0;"
-            (click)="agregarTrayecto()">Agregar trayecto</button>
+          <button class="btn btn-success btn-sm btn-block" style="margin: 20px 0;" (click)="agregarTrayecto()">Agregar
+            trayecto</button>
         </div>
         <div class="col-6">
-          <button class="btn btn-danger btn-sm btn-block" style="margin: 20px 0;"
-            (click)="eliminarTrayecto()">Eliminar último trayecto</button>
+          <button class="btn btn-danger btn-sm btn-block" style="margin: 20px 0;" (click)="eliminarTrayecto()">Eliminar
+            último trayecto</button>
+        </div>
+      </ng-container>
+      <!-- ALOJAMIENTO -->
+      <ng-container *ngIf="tipo === 'ALOJAMIENTO'">
+        <div class="col-12">
+          <label for="tiposAlojamiento">Tipo de alojamiento</label>
+          <select class="form-control" [(ngModel)]="producto.tipoAlojamiento" name="tiposAlojamiento" required>
+            <option *ngFor="let tipoAlojamiento of tiposProductoEspecifico" [ngValue]="tipoAlojamiento">
+              {{tipoAlojamiento}}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="">Latitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.latitud" name="latitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Longitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Número de habitaciones</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.habitaciones" name="habitaciones" required>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.desayuno" name="desayuno">
+            <label class="form-check-label" for="desayuno">
+              Desayuno
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.almuerzo" name="almuerzo">
+            <label class="form-check-label" for="almuerzo">
+              Almuerzo
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.cena" name="cena">
+            <label class="form-check-label" for="cena">
+              Cena
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.internet" name="internet">
+            <label class="form-check-label" for="internet">
+              Internet
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.television" name="television">
+            <label class="form-check-label" for="television">
+              Televisión
+            </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="">Número de camas</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.numeroCamas" name="numCamas" required>
+        </div>
+        <div class="col-6">
+          <label for="">Número de baños</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.numeroBanos" name="numBanios" required>
+        </div>
+      </ng-container>
+      <!-- EVENTO -->
+      <ng-container *ngIf="tipo === 'EVENTO'">
+        <div class="col-12">
+          <label for="tiposEvento">Tipo de Evento</label>
+          <select class="form-control" [(ngModel)]="producto.tipoEvento" name="tiposEvento" required>
+            <option *ngFor="let tipoEvento of tiposProductoEspecifico" [ngValue]="tipoEvento">
+              {{tipoEvento}}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="">Nombre del evento</label>
+          <input type="text" class="form-control" [(ngModel)]="producto.nombreEvento" name="nombreEvento" required>
+        </div>
+        <div class="col-6">
+          <label for="">Restriccion de edad</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.restriccionEdad" name="restriccionEdad"
+            required>
+        </div>
+        <div class="col-6">
+          <label for="">Hora de apertura</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.horaApertura" name="horaApertura" required>
+        </div>
+        <div class="col-6">
+          <label for="">Hora de cierre</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.horaCierre" name="horaCierre" required>
+        </div>
+        <div class="col-6">
+          <label for="">Número máximo de personas</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.maxPersonas" name="maxPersonas" required>
+        </div>
+        <div class="col-6">
+          <label for="">Latitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.latitud" name="latitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Longitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
+        </div>
+      </ng-container>
+      <!-- EXPERIENCIA -->
+      <ng-container *ngIf="tipo === 'EXPERIENCIA'">
+        <div class="col-12">
+          <label for="tiposExperiencia">Tipo de Evento</label>
+          <select class="form-control" [(ngModel)]="producto.tipoExperiencia" name="tiposExperiencia" required>
+            <option *ngFor="let tipoExperiencia of tiposProductoEspecifico" [ngValue]="tipoExperiencia">
+              {{tipoExperiencia}}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="">Nivel de riesgo</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.nivelRiesgo" name="nivelRiesgo" required>
+        </div>
+        <div class="col-6">
+          <label for="">Restriccion de edad</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.restriccionEdad" name="restriccionEdad"
+            required>
+        </div>
+        <div class="col-6">
+          <label for="">Latitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.latitud" name="latitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Longitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Duración</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.duracion" name="duracion" required>
+        </div>
+        <div class="col-6">
+          <label for="">Hora de lelgada</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.horaLlegada" name="horaLlegada" required>
+        </div>
+      </ng-container>
+      <!-- SALIDA -->
+      <ng-container *ngIf="tipo === 'SALIDA'">
+        <div class="col-12">
+          <label for="tiposSalida">Tipo de Evento</label>
+          <select class="form-control" [(ngModel)]="producto.tipoSalida" name="tiposSalida" required>
+            <option *ngFor="let tipoSalida of tiposProductoEspecifico" [ngValue]="tipoSalida">
+              {{tipoSalida}}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="">Duración</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.duracion" name="duracion" required>
+        </div>
+        <div class="col-6">
+          <label for="">Restriccion de edad</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.restriccionEdad" name="restriccionEdad"
+            required>
+        </div>
+        <div class="container col-12" *ngFor="let trayecto of listaTrayecto; let j = index">
+          <div class="row">
+            <div class="col-12">
+              <label for="">Trayecto</label>
+              <input type="text" class="form-control" [(ngModel)]="trayecto.valor" name="trayecto-{{j}}" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-success btn-sm btn-block" style="margin: 20px 0;" (click)="agregarTrayecto()">Agregar
+            trayecto</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-danger btn-sm btn-block" style="margin: 20px 0;" (click)="eliminarTrayecto()">Eliminar
+            último trayecto</button>
+        </div>
+        <div class="col-12">
+          <label for="">Guía</label>
+          <input type="text" class="form-control" [(ngModel)]="producto.guia" name="guia" required>
+        </div>
+      </ng-container>
+      <!-- SITIO -->
+      <ng-container *ngIf="tipo === 'SITIO'">
+        <div class="col-6">
+          <label for="tiposSitio">Tipo de Evento</label>
+          <select class="form-control" [(ngModel)]="producto.tipoSitio" name="tiposSitio" required>
+            <option *ngFor="let tipoSitio of tiposProductoEspecifico" [ngValue]="tipoSitio">
+              {{tipoSitio}}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="producto.consumoObligatorio"
+              name="consumoObligatorio">
+            <label class="form-check-label" for="cena">
+              Consumo obligatorio
+            </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="">Latitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.latitud" name="latitud" required>
+        </div>
+        <div class="col-6">
+          <label for="">Longitud</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
+        </div>
+        <div class="col-12">
+          <label for="">Restriccion de edad</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.restriccionEdad" name="restriccionEdad"
+            required>
+        </div>
+        <div class="col-6">
+          <label for="">Hora de apertura</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.horaApertura" name="horaApertura" required>
+        </div>
+        <div class="col-6">
+          <label for="">Hora de cierre</label>
+          <input type="number" class="form-control" [(ngModel)]="producto.horaCierre" name="horaCierre" required>
         </div>
       </ng-container>
       <div class="col-12">
         <button class="btn btn-dark btn-lg btn-block" style="margin: 20px 0;" (click)="onSubmit()">Crear</button>
-          <!-- <button class="btn btn-dark btn-lg btn-block" style="margin: 20px 0;" (click)="onSubmit()"
+        <!-- <button class="btn btn-dark btn-lg btn-block" style="margin: 20px 0;" (click)="onSubmit()"
           [disabled]="!f.valid">Crear</button> -->
       </div>
     </div>
