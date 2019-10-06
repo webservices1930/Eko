@@ -13,8 +13,8 @@ public class Sitio extends Producto{
 	private double longitud;
 	private int restriccionEdad;
 	private boolean consumoObligatorio;
-	private int horaApertura;
-	private int horaCierre;
+	private String horaApertura;
+	private String horaCierre;
 	
 	public Sitio() {		
 	
@@ -22,7 +22,7 @@ public class Sitio extends Producto{
 
 	public Sitio(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
-			boolean consumoObligatorio, int horaApertura, int horaCierre, String idUsuario) {
+			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoDeSitio = tipoDeSitio;
 		this.latitud = latitud;
@@ -35,7 +35,7 @@ public class Sitio extends Producto{
 
 	public Sitio(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
-			boolean consumoObligatorio, int horaApertura, int horaCierre, String idUsuario) {
+			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoDeSitio = tipoDeSitio;
 		this.latitud = latitud;
@@ -86,19 +86,19 @@ public class Sitio extends Producto{
 		this.consumoObligatorio = consumoObligatorio;
 	}
 
-	public int getHoraApertura() {
+	public String getHoraApertura() {
 		return horaApertura;
 	}
 
-	public void setHoraApertura(int horaApertura) {
+	public void setHoraApertura(String horaApertura) {
 		this.horaApertura = horaApertura;
 	}
 
-	public int getHoraCierre() {
+	public String getHoraCierre() {
 		return horaCierre;
 	}
 
-	public void setHoraCierre(int horaCierre) {
+	public void setHoraCierre(String horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 	

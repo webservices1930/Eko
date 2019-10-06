@@ -11,8 +11,8 @@ public class Evento extends Producto{
 	private TipoEvento tipoEvento;
 	private String nombreEvento;
 	private int restriccionEdad;
-	private int horaApertura;
-	private int horaCierre;
+	private String horaApertura;
+	private String horaCierre;
 	private int maxPersonas;
 	private double latitud;
 	private double longitud;
@@ -21,7 +21,7 @@ public class Evento extends Producto{
 
 	}
 	public Evento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
+			TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, String horaApertura, String horaCierre,
 			int maxPersonas, double latitud, double longitud, String idUsuario) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoEvento = tipoEvento;
@@ -34,7 +34,7 @@ public class Evento extends Producto{
 		this.longitud = longitud;
 	}
 	public Evento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,
+			String descripcion, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, String horaApertura, String horaCierre,
 			int maxPersonas, double latitud, double longitud, String idUsuario) {
 		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.tipoEvento = tipoEvento;
@@ -64,16 +64,16 @@ public class Evento extends Producto{
 	public void setRestriccionEdad(int restriccionEdad) {
 		this.restriccionEdad = restriccionEdad;
 	}
-	public int getHoraApertura() {
+	public String getHoraApertura() {
 		return horaApertura;
 	}
-	public void setHoraApertura(int horaApertura) {
+	public void setHoraApertura(String horaApertura) {
 		this.horaApertura = horaApertura;
 	}
-	public int getHoraCierre() {
+	public String getHoraCierre() {
 		return horaCierre;
 	}
-	public void setHoraCierre(int horaCierre) {
+	public void setHoraCierre(String horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 	public int getMaxPersonas() {

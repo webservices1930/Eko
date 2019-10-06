@@ -6,8 +6,8 @@ export class Sitio extends Producto {
   public longitud: number;
   public restriccionEdad: number;
   public consumoObligatorio: boolean;
-  public horaApertura: number;
-  public horaCierre: number;
+  public horaApertura: string;
+  public horaCierre: string;
 
   constructor() {
     super();
@@ -17,7 +17,7 @@ export class Sitio extends Producto {
     this.longitud = 0;
     this.restriccionEdad = 0;
     this.consumoObligatorio = false;
-    this.horaApertura = 0;
-    this.horaCierre = 0;
+    this.horaApertura = '';
+    this.horaCierre = '';
   }
 }
