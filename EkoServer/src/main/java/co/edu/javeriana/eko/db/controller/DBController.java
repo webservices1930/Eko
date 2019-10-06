@@ -34,7 +34,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 public final class DBController {
 	// Se crea la conexi�n a la Base de Datos
-	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://paella:paella@ekodb-shard-00-00-rroku.gcp.mongodb.net:27017,ekodb-shard-00-01-rroku.gcp.mongodb.net:27017,ekodb-shard-00-02-rroku.gcp.mongodb.net:27017/admin?ssl=true&replicaSet=EkoDB-shard-0&authSource=admin&retryWrites=true&w=majority"));
 	private static String nombreDB = "EkoDB";
 
 	/* --- Se genera un Singleton del Controlador de la Base de Datos --- */

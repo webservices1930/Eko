@@ -18,7 +18,7 @@ public class Evento extends Producto{
 	private double longitud;
 	public Evento() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Evento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, int horaApertura, int horaCierre,

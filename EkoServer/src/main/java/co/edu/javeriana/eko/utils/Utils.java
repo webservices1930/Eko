@@ -62,7 +62,7 @@ public final class Utils {
 	public static void printSuccess(String success) {
 		System.out.println(
 				// VariablesDeEntorno.ANSI_GREEN +
-				"[ÉXITO]: " + success
+				"[ï¿½XITO]: " + success
 		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
@@ -70,7 +70,7 @@ public final class Utils {
 	
 
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
+	 * Metodo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
 	 * 
 	 * @param transporte
 	 * @return
@@ -104,7 +104,7 @@ public final class Utils {
 	
 
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Transporte a un Documento
+	 * Metodo que convierte un objeto de tipo Transporte a un Documento
 	 *
 	 * @param transporte
 	 * @return
@@ -131,7 +131,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Transporte a un objeto de
+	 * Metodo que convierte un Documento con datos de Transporte a un objeto de
 	 * tipo Transporte
 	 *
 	 * @param docTransporte
@@ -172,7 +172,7 @@ public final class Utils {
 	
 	
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Alojamiento a un Documento
+	 * Metodo que convierte un objeto de tipo Alojamiento a un Documento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -207,7 +207,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
+	 * Metodo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -250,7 +250,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Sitio a un Documento
+	 * Metodo que convierte un objeto de tipo Sitio a un Documento
 	 * 
 	 * @param sitio
 	 * @return
@@ -281,7 +281,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
+	 * Metodo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
 	 * 
 	 * @param sitio
 	 * @return
@@ -319,7 +319,7 @@ public final class Utils {
 		return sitio;
 	}
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Experiencia a un Documento
+	 * Metodo que convierte un objeto de tipo Experiencia a un Documento
 	 * 
 	 * @param experiencia
 	 * @return
@@ -350,7 +350,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
+	 * Metodo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
 	 * 
 	 * @param experiencia
 	 * @return
@@ -389,7 +389,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Salida a un Documento
+	 * Metodo que convierte un objeto de tipo Salida a un Documento
 	 * 
 	 * @param salida
 	 * @return
@@ -418,7 +418,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * Metodo que convierte un Documento con datos de Salida a un objeto de tipo Salida
 	 * 
 	 * @param salida
 	 * @return
@@ -455,7 +455,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Evento a un Documento
+	 * Metodo que convierte un objeto de tipo Evento a un Documento
 	 * 
 	 * @param evento
 	 * @return
@@ -487,7 +487,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Evento a un objeto de tipo Evento
+	 * Metodo que convierte un Documento con datos de Evento a un objeto de tipo Evento
 	 * 
 	 * @param evento
 	 * @return
@@ -526,7 +526,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Cliente a un Documento
+	 * Metodo que convierte un objeto de tipo Cliente a un Documento
 	 *
 	 * @param usuario
 	 * @return
@@ -540,7 +540,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un objeto de tipo Proveedor a un Documento
+	 * Metodo que convierte un objeto de tipo Proveedor a un Documento
 	 *
 	 * @param usuario
 	 * @return
@@ -556,7 +556,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
@@ -574,7 +574,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
@@ -595,7 +595,7 @@ public final class Utils {
 	}
 
 	/**
-	 * Mï¿½todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
