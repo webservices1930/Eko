@@ -1,14 +1,10 @@
 package co.edu.javeriana.eko.db.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
+import co.edu.javeriana.eko.model.Catalogo;
+import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.Usuario;
-import co.edu.javeriana.eko.model.producto.Transporte;
-import co.edu.javeriana.eko.model.usuario.Cliente;
+import co.edu.javeriana.eko.model.producto.*;
 import co.edu.javeriana.eko.model.usuario.Proveedor;
 import co.edu.javeriana.eko.utils.Utils;
 import com.mongodb.BasicDBObject;
@@ -20,18 +16,10 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import co.edu.javeriana.eko.model.Catalogo;
-import co.edu.javeriana.eko.model.Producto;
-import co.edu.javeriana.eko.model.producto.Alojamiento;
-import co.edu.javeriana.eko.model.producto.Evento;
-import co.edu.javeriana.eko.model.producto.Experiencia;
-import co.edu.javeriana.eko.model.producto.Salida;
-import co.edu.javeriana.eko.model.producto.Sitio;
-import co.edu.javeriana.eko.model.Disponibilidad;
-import co.edu.javeriana.eko.model.Reserva;
-import co.edu.javeriana.eko.model.producto.Transporte;
-import co.edu.javeriana.eko.utils.TipoProducto;
-import co.edu.javeriana.eko.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
+
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoTransporte;
 import static com.mongodb.client.model.Filters.eq;
 
 public final class DBController {
@@ -148,7 +136,8 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 
 		Document transporte = coleccion.find(query).first();
-		return Utils.deDocumentoAObjetoTransporte(transporte);
+		Transporte transporte1 = deDocumentoAObjetoTransporte(transporte);
+		return transporte1;
 	}
 
 	/**
