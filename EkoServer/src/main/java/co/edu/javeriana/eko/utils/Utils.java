@@ -1,5 +1,6 @@
 package co.edu.javeriana.eko.utils;
 
+import co.edu.javeriana.eko.model.Carrito;
 import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.Usuario;
@@ -71,7 +72,7 @@ public final class Utils {
 	
 
 	/**
-	 * M�todo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
+	 * Metodo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
 	 * 
 	 * @param transporte
 	 * @return
@@ -105,7 +106,7 @@ public final class Utils {
 	
 
 	/**
-	 * M�todo que convierte un objeto de tipo Transporte a un Documento
+	 * Metodo que convierte un objeto de tipo Transporte a un Documento
 	 *
 	 * @param transporte
 	 * @return
@@ -132,7 +133,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un Documento con datos de Transporte a un objeto de
+	 * Metodo que convierte un Documento con datos de Transporte a un objeto de
 	 * tipo Transporte
 	 *
 	 * @param docTransporte
@@ -173,7 +174,7 @@ public final class Utils {
 	
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Alojamiento a un Documento
+	 * Metodo que convierte un objeto de tipo Alojamiento a un Documento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -208,7 +209,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
+	 * Metodo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
 	 * 
 	 * @param alojamiento
 	 * @return
@@ -251,7 +252,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Sitio a un Documento
+	 * Metodo que convierte un objeto de tipo Sitio a un Documento
 	 * 
 	 * @param sitio
 	 * @return
@@ -282,7 +283,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
+	 * Metodo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
 	 * 
 	 * @param sitio
 	 * @return
@@ -320,7 +321,7 @@ public final class Utils {
 		return sitio;
 	}
 	/**
-	 * M�todo que convierte un objeto de tipo Experiencia a un Documento
+	 * Metodo que convierte un objeto de tipo Experiencia a un Documento
 	 * 
 	 * @param experiencia
 	 * @return
@@ -351,7 +352,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
+	 * Metodo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
 	 * 
 	 * @param experiencia
 	 * @return
@@ -390,7 +391,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Salida a un Documento
+	 * Metodo que convierte un objeto de tipo Salida a un Documento
 	 * 
 	 * @param salida
 	 * @return
@@ -419,7 +420,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * Metodo que convierte un Documento con datos de Salida a un objeto de tipo Salida
 	 * 
 	 * @param salida
 	 * @return
@@ -456,7 +457,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Evento a un Documento
+	 * Metodo que convierte un objeto de tipo Evento a un Documento
 	 * 
 	 * @param evento
 	 * @return
@@ -488,7 +489,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Evento a un objeto de tipo Evento
+	 * Metodo que convierte un Documento con datos de Evento a un objeto de tipo Evento
 	 * 
 	 * @param evento
 	 * @return
@@ -527,7 +528,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un objeto de tipo Cliente a un Documento
+	 * Metodo que convierte un objeto de tipo Cliente a un Documento
 	 *
 	 * @param usuario
 	 * @return
@@ -541,7 +542,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un objeto de tipo Proveedor a un Documento
+	 * Metodo que convierte un objeto de tipo Proveedor a un Documento
 	 *
 	 * @param usuario
 	 * @return
@@ -557,7 +558,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
@@ -575,7 +576,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
@@ -596,7 +597,7 @@ public final class Utils {
 	}
 
 	/**
-	 * M�todo que convierte un Documento con datos de Usuario a un objeto de tipo
+	 * Metodo que convierte un Documento con datos de Usuario a un objeto de tipo
 	 * Usuario
 	 *
 	 * @param docUsuario
@@ -645,7 +646,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Meodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
+	 * Metodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
 	 * 
 	 * @param catalogo
 	 * @return
@@ -677,7 +678,7 @@ public final class Utils {
 	
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Reserva a un Documento
+	 * Metodo que convierte un objeto de tipo Reserva a un Documento
 	 * 
 	 * @param Reserva
 	 * @return
@@ -690,7 +691,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
+	 * Metodo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
 	 * 
 	 * @param reserva
 	 * @return
@@ -711,4 +712,49 @@ public final class Utils {
 		return reserva;
 	}
 	
+	
+	/**
+	 * Metodo que convierte un objeto de tipo Carrito a un Documento
+	 * 
+	 * @param carrito
+	 * @return
+	 */
+	public static Document deObjetoCarritoADocumento(Carrito carrito) {
+		List<Document> productos= new ArrayList<Document>();
+		
+		for (String p: carrito.getProductos()) {
+			productos.add(new Document("producto", p));
+		}		
+		return new Document("idUsuario", carrito.getIdUsuario())
+				.append("productos", productos);
+				
+	}
+	
+	/**
+	 * Metodo que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * 
+	 * @param salida
+	 * @return
+	 */
+	public static Carrito deDocumentoAObjetoCarrito(Document docCarrito) {
+		Carrito carrito = new Carrito();
+		List<String> productos = new ArrayList<String>();
+		List<Document> docProductos= (List<Document>) docCarrito.get("productos");	
+		
+		String salidaID = ((ObjectId)docCarrito.getObjectId("_id")).toString();
+		
+		carrito.set_id(salidaID);
+		
+		for (Document prod: docProductos) {
+			String p = prod.getString("producto");
+			productos.add(p);
+		}
+						
+		carrito.setIdUsuario(docCarrito.getString("idUsuario"));
+		carrito.setProductos(productos);
+		
+		
+		return carrito;
+	}	
 }
+
