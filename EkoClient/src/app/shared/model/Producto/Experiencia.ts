@@ -7,7 +7,7 @@ export class Experiencia extends Producto {
   public latitud: number;
   public longitud: number;
   public duracion: number;
-  public horaLlegada: number;
+  public horaLlegada: string;
 
   constructor() {
     super();
@@ -18,6 +18,6 @@ export class Experiencia extends Producto {
     this.latitud = 0;
     this.longitud = 0;
     this.duracion = 0;
-    this.horaLlegada = 0;
+    this.horaLlegada = '';
   }
 }
