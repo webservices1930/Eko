@@ -6,6 +6,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 
 @WebService
@@ -26,4 +27,7 @@ public interface IProductoService {
 	
 	@WebMethod(operationName = "actualizarProductoTransporte")
 	public void actualizarProductoTransporte(@WebParam(name = "transporte") Transporte nTransporte);
+	
+	@WebMethod(operationName = "agregarReserva")
+	public void agregarReserva(@WebParam(name = "reserva") Reserva nReserva);
 }

@@ -14,6 +14,7 @@ export class Transporte {
   public tipoTransporte: string;
   public duracion: number;
 
+
   constructor() {
       this._id = '';
       this.precio = 0;

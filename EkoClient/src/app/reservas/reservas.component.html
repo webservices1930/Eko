@@ -1,1 +1,11 @@
-<p>reservas works!</p>
+
+ <form name="myForm"  #f="ngForm" (ngSubmit)="onSubmitReserva()" >
+    <label for="fechaReserva">Escribe una fecha de reserva:</label>
+    <input type="text" class="form-control" id="fechaReserva" name="fecha" [(ngModel)]="reserva.fechas"
+        placeholder="yyyy-mm-dd" required >
+    <label for="idCliente">Escribe el ID del cliente:</label>
+    <input type="text" class="form-control" id="idCliente" name="idcli" [(ngModel)]="reserva.clienteid" required >
+    <label for="idProducto">Escribe el ID del producto:</label>
+    <input type="text" class="form-control" id="idProducto" name="idpro" [(ngModel)]="reserva.productoid" required >
+    <button class="btn btn-dark btn-lg btn-block" style="margin: 20px 0;">Send</button>
+ </form>

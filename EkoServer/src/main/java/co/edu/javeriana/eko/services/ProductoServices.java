@@ -8,6 +8,7 @@ import org.bson.Document;
 import co.edu.javeriana.eko.db.controller.DBController;
 import co.edu.javeriana.eko.iservice.IProductoService;
 import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -48,4 +49,13 @@ public class ProductoServices implements IProductoService {
 		// TODO Actualizar objeto en MongoDB
 	}
 	
+	@Override
+	public void agregarReserva(Reserva nReserva) {
+		Document nReservaDoc = Utils.deObjetoReservaADocumento(nReserva);
+		//System.out.println("aqui"+nReserva.getFechas());
+		if(DBController.modificarCapacidadProducto("productos-transporte", nReserva.getProductoid())==true)
+		DBController.insertarObjeto("reservas", nReservaDoc);
+		else
+			System.out.println("Reservas llenas");
+	}
 }

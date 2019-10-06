@@ -1,5 +1,7 @@
 package co.edu.javeriana.eko.db.controller;
 
+import java.util.List;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -9,6 +11,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -83,6 +86,38 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 		
 		coleccion.deleteOne(query);
+	}
+	
+	
+	/**
+	 * Modificar los cupos disponibles del producto
+	 */
+	public static boolean modificarCapacidadProducto(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		int cupos=-1;
+		boolean cupohay = true;
+		
+		
+		//Se crea el query para modificar la disponibilidad del producto
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document producto = coleccion.find(query).first();
+		/*List<Document> docDisponibilidad = (List<Document>) producto.get("disponibilidad");
+		for (Document docDis : docDisponibilidad) {
+			cupos=docDis.getInteger("cuposDisponibles");
+		}*/
+		
+		if(cupos==0) {
+			System.out.println("No se puede reservar mas");
+			cupohay=false;
+		}else {
+			cupos--;
+			System.out.println(cupos);
+			//coleccion.findOneAndReplace(query, producto);
+		}
+		return cupohay;
 	}
 
 	/**

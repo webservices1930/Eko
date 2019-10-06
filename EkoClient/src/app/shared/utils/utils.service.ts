@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Transporte } from '../model/Producto/Transporte';
 import { Disponibilidad } from '../model/Disponibilidad';
+import { Reserva } from '../model/Reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +53,29 @@ export class UtilsService {
       `
     </transporte>`;
   }
+
+  /**
+   * Toma un objeto de tipo reserva y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearReservaXML(nReserva: Reserva): string {
+
+   // let fechas: string = '';
+
+    
+
+    // Añade todos los tags de fechas de la reserva
+   /* nReserva.fechas.forEach(fecha => {
+      fechas += '<fecha>' + fecha + '</fecha>';
+    });*/
+    // Construye todo el XML con los datos de la reserva
+    return `
+    <reserva xmlns="">
+    <_id>` + nReserva._id + `</_id>
+      <fecha>` + nReserva.fechas + `</fecha>
+      <clienteid>`+nReserva.clienteid+`</clienteid>
+       <productoid>`+nReserva.productoid+`</productoid>
+    </reserva>`;
+  }
+
 }
