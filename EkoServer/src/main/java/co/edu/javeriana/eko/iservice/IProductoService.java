@@ -49,5 +49,10 @@ public interface IProductoService {
 	public void eliminarPreguntaProducto(@WebParam(name = "preguntaID") String _id);
 	
 	
+	@WebMethod(operationName = "buscarPreguntaProductoPorID")
+	@WebResult(name="productoPregunta")
+	public Pregunta buscarPreguntaProductoPorID(@WebParam(name = "preguntaID") String _id);
+	
+	
 	
 }

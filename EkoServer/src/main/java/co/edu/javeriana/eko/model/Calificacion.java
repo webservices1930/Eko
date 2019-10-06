@@ -10,25 +10,38 @@ public class Calificacion {
 	private String _id;	
 	private int valoracion;
 	private String id_Producto;
+	private String id_Usuario;
 	private String comentario;
 	private String fecha_Creacion;
 	
 	
 	// Constructores
-	public Calificacion() {}
+	public Calificacion() {}	
 	
 	
-	public Calificacion(String _id, int valoracion, String id_Producto, String comentario, 
+	public Calificacion(String _id, int valoracion, String id_Producto, String id_Usuario, String comentario,
 			String fecha_Creacion) {
 		
 		this._id = _id;
 		this.valoracion = valoracion;
 		this.id_Producto = id_Producto;
+		this.id_Usuario = id_Usuario;
 		this.comentario = comentario;
 		this.fecha_Creacion = fecha_Creacion;
 	}
-	
-	
+
+
+
+	public String getId_Usuario() {
+		return id_Usuario;
+	}
+
+
+	public void setId_Usuario(String id_Usuario) {
+		this.id_Usuario = id_Usuario;
+	}
+
+
 	// Getters y setters
 	public String get_id() {
 		return _id;

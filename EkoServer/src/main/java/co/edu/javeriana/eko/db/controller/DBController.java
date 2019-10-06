@@ -9,6 +9,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -84,6 +85,29 @@ public final class DBController {
 		
 		coleccion.deleteOne(query);
 	}
+	
+	
+	
+	/**
+	 * Elimina en una colección indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	
+	public static Pregunta buscarPreguntaPorID (String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document pregunta = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoPregunta(pregunta);
+	}
+	
+	
 
 	/**
 	 * Cierra la conexión a la Base de Datos de MongoDB

@@ -79,4 +79,9 @@ public class ProductoServices implements IProductoService {
 		DBController.eliminarEnColeccionPorID("productos-pregunta", _id);		
 	}
 	
+	@Override
+	public Pregunta buscarPreguntaProductoPorID(String _id) {
+		return DBController.buscarPreguntaPorID("productos-pregunta", _id);
+	}
+	
 }

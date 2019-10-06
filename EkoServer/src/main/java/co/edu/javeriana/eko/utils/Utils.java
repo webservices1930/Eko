@@ -137,6 +137,25 @@ public final class Utils {
 	
 	
 	/**
+	 * Método que convierte un Documento con datos de Calificacion a un objeto de tipo Calificacion
+	 * 
+	 * @param calificacion
+	 * @return
+	 */
+	public static Document deDocumentoAObjetoCalificacion(Document docCalificacion) {
+		Calificacion calificacion = new Calificacion();		
+		
+		return new Document("valoracion", calificacion.getValoracion())
+		        .append("id_Producto", calificacion.getId_Producto())
+		        .append("id_Usuario", calificacion.getId_Usuario())
+		        .append("comentario", calificacion.getComentario())
+		        .append("fecha_Creacion", calificacion.getFecha_Creacion());
+		 
+		
+	}
+	
+	
+	/**
 	 * Método que convierte un objeto de tipo Pregunta a un Documento
 	 * 
 	 * @param pregunta
@@ -144,11 +163,33 @@ public final class Utils {
 	 */
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {		
 	
-		return new Document("id_Servicio", pregunta.getId_Servicio())
+		return new Document("id_Producto", pregunta.getId_Producto())
+				.append("id_Usuario", pregunta.getId_Usuario())
 				.append("descripcion", pregunta.getDescripcion())				
 				.append("respuesta", pregunta.getRespuesta())
 				.append("fecha_Creacion", pregunta.getFecha_Creacion());
 	}
+
+	/**
+	 * Método que convierte un Documento con datos de Pregunta a un objeto de tipo Pregunta
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
+	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
+		
+		Pregunta pregunta = new Pregunta();		
+		
+		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
+		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));
+		pregunta.setDescripcion(docPregunta.getString("descripcion"));
+		pregunta.setRespuesta(docPregunta.getString("respuesta"));
+		pregunta.setFecha_Creacion(docPregunta.getString("fecha_Creacion"));			
+		
+		return pregunta;
+		
+	}
+	
 	
 	
 	
