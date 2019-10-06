@@ -142,15 +142,16 @@ public final class Utils {
 	 * @param calificacion
 	 * @return
 	 */
-	public static Document deDocumentoAObjetoCalificacion(Document docCalificacion) {
-		Calificacion calificacion = new Calificacion();		
+	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
+		Calificacion calificacion = new Calificacion();					
 		
-		return new Document("valoracion", calificacion.getValoracion())
-		        .append("id_Producto", calificacion.getId_Producto())
-		        .append("id_Usuario", calificacion.getId_Usuario())
-		        .append("comentario", calificacion.getComentario())
-		        .append("fecha_Creacion", calificacion.getFecha_Creacion());
-		 
+		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
+		calificacion.setId_Usuario(docCalificacion.getString("id_Producto"));
+		calificacion.setId_Usuario(docCalificacion.getString("id_Usuario"));
+		calificacion.setComentario(docCalificacion.getString("comentario"));
+		calificacion.setFecha_Creacion(docCalificacion.getString("fecha_Creacion"));			
+		
+		return calificacion;		
 		
 	}
 	
