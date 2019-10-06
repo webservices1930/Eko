@@ -60,7 +60,7 @@ public class ProductoServices implements IProductoService {
 				return producto;
 			}		
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		try {
 			producto = buscarProductoAlojamientoPorID(_id);
@@ -68,7 +68,7 @@ public class ProductoServices implements IProductoService {
 				return producto;
 			}			
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		try {
 			producto = buscarProductoEventoPorID(_id);		
@@ -77,7 +77,7 @@ public class ProductoServices implements IProductoService {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		try {
 			producto = buscarProductoExperienciaPorID(_id);		
@@ -86,7 +86,7 @@ public class ProductoServices implements IProductoService {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		try {
 			producto = buscarProductoSalidaPorID(_id);
@@ -95,7 +95,7 @@ public class ProductoServices implements IProductoService {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		try {
 			producto = buscarProductoSitioPorID(_id);				
@@ -104,7 +104,7 @@ public class ProductoServices implements IProductoService {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 
 		return producto;
