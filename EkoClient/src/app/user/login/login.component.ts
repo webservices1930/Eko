@@ -4,7 +4,6 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/shared/utils/utils.service';
-import { CarritoService } from '../../shared/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +17,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private utils: UtilsService,
-    private router: Router,
-    private carritoService: CarritoService
+    private router: Router
   ) {
     this.checkoutForm = this.formBuilder.group({
       correo: ['', Validators.required],
@@ -27,12 +25,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.carritoService.buscarPorIDUsuario("1")
-      .subscribe(res => {
-        console.log(res);
-      });
-  }
+  ngOnInit() {}
 
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.iniciarSesion(informacionUsuario as Usuario)
