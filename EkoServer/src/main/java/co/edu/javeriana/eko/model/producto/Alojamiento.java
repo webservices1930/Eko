@@ -30,7 +30,6 @@ public class Alojamiento extends Producto{
 			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
 			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario) {
 		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
-		// TODO Auto-generated constructor stub
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -58,8 +57,7 @@ public class Alojamiento extends Producto{
 		this.internet = internet;
 		this.television = television;
 		this.numCamas = numCamas;
-		this.numBanios = numBanios;		
-		// TODO Auto-generated constructor stub
+		this.numBanios = numBanios;
 	}
 
 	public TipoAlojamiento getTipoAlojamiento() {

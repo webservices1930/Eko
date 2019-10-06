@@ -5,6 +5,8 @@ import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.Usuario;
 import co.edu.javeriana.eko.model.producto.Transporte;
+import co.edu.javeriana.eko.model.*;
+import co.edu.javeriana.eko.model.producto.*;
 import co.edu.javeriana.eko.model.usuario.Cliente;
 import co.edu.javeriana.eko.model.usuario.Proveedor;
 import org.bson.Document;
@@ -76,7 +78,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Transporte a un objeto de tipo Transporte
 	 * 
-	 * @param transporte
+	 * @param docProducto
 	 * @return
 	 */
 	public static Producto deDocumentoAObjetoProducto(Document docProducto) {
@@ -213,7 +215,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Alojamiento a un objeto de tipo Alojamiento
 	 * 
-	 * @param alojamiento
+	 * @param docAlojamiento
 	 * @return
 	 */
 	public static Alojamiento deDocumentoAObjetoAlojamiento(Document docAlojamiento) {
@@ -287,7 +289,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Sitio a un objeto de tipo Sitio
 	 * 
-	 * @param sitio
+	 * @param docSitio
 	 * @return
 	 */
 	public static Sitio deDocumentoAObjetoSitio(Document docSitio) {
@@ -356,7 +358,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Experiencia a un objeto de tipo Experiencia
 	 * 
-	 * @param experiencia
+	 * @param docExperiencia
 	 * @return
 	 */
 	public static Experiencia deDocumentoAObjetoExperiencia(Document docExperiencia) {
@@ -424,7 +426,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Salida a un objeto de tipo Salida
 	 * 
-	 * @param salida
+	 * @param docSalida
 	 * @return
 	 */
 	public static Salida deDocumentoAObjetoSalida(Document docSalida) {
@@ -493,7 +495,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Evento a un objeto de tipo Evento
 	 * 
-	 * @param evento
+	 * @param docEvento
 	 * @return
 	 */
 	public static Evento deDocumentoAObjetoEvento(Document docEvento) {
@@ -650,7 +652,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
 	 * 
-	 * @param catalogo
+	 * @param docCatalogo
 	 * @return
 	 */
 	public static Catalogo deDocumentoAObjetoCatalogo(Document docCatalogo) {
@@ -682,7 +684,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un objeto de tipo Reserva a un Documento
 	 * 
-	 * @param Reserva
+	 * @param reserva
 	 * @return
 	 */
 	public static Document deObjetoReservaADocumento(Reserva reserva) {
@@ -695,7 +697,7 @@ public final class Utils {
 	/**
 	 * Metodo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
 	 * 
-	 * @param reserva
+	 * @param docReserva
 	 * @return
 	 */
 	public static Reserva deDocumentoAObjetoReserva(Document docReserva) {

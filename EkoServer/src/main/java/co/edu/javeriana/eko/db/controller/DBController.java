@@ -1,14 +1,10 @@
 package co.edu.javeriana.eko.db.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
+import co.edu.javeriana.eko.model.Catalogo;
+import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.Usuario;
-import co.edu.javeriana.eko.model.producto.Transporte;
-import co.edu.javeriana.eko.model.usuario.Cliente;
+import co.edu.javeriana.eko.model.producto.*;
 import co.edu.javeriana.eko.model.usuario.Proveedor;
 import co.edu.javeriana.eko.utils.Utils;
 import com.mongodb.BasicDBObject;
@@ -34,13 +30,17 @@ import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
+
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoTransporte;
 import static com.mongodb.client.model.Filters.eq;
 
 public final class DBController {
 	// Se crea la conexi�n a la Base de Datos
-//	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI(
-			"mongodb://paella:paella@ekodb-shard-00-00-rroku.gcp.mongodb.net:27017,ekodb-shard-00-01-rroku.gcp.mongodb.net:27017,ekodb-shard-00-02-rroku.gcp.mongodb.net:27017/admin?ssl=true&replicaSet=EkoDB-shard-0&authSource=admin&retryWrites=true&w=majority"));
+
+//	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://paella:paella@ekodb-shard-00-00-rroku.gcp.mongodb.net:27017,ekodb-shard-00-01-rroku.gcp.mongodb.net:27017,ekodb-shard-00-02-rroku.gcp.mongodb.net:27017/admin?ssl=true&replicaSet=EkoDB-shard-0&authSource=admin&retryWrites=true&w=majority"));
+	private static MongoClient clienteMongo = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
 	private static String nombreDB = "EkoDB";
 
 	/* --- Se genera un Singleton del Controlador de la Base de Datos --- */
@@ -150,7 +150,8 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 
 		Document transporte = coleccion.find(query).first();
-		return Utils.deDocumentoAObjetoTransporte(transporte);
+		Transporte transporte1 = deDocumentoAObjetoTransporte(transporte);
+		return transporte1;
 	}
 
 	/**
