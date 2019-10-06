@@ -1,1 +1,10 @@
-/target/
+# Intellij IDEA
+target/
+.idea/
+*.iml
+
+# Eclipse
+.settings
+.project
+.classpath
+/bin/

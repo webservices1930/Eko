@@ -8,8 +8,8 @@ import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.TipoTransporte;
 
 public class Transporte extends Producto {
-	private int horaSalida;
-	private int horaLlegada;
+	private String horaSalida;
+	private String horaLlegada;
 	private List<String> trayecto;
 	private TipoTransporte tipoTransporte;
 	private int duracion;
@@ -19,9 +19,9 @@ public class Transporte extends Producto {
 	}
 
 	public Transporte(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, int horaSalida, int horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
-			int duracion) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
+			int duracion, String idUsuario) {
+		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;
@@ -30,9 +30,9 @@ public class Transporte extends Producto {
 	}
 
 	public Transporte(String _id, double precio, String infoPaisDestino,List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, int horaSalida, int horaLlegada, List<String> trayecto,
-			TipoTransporte tipoTransporte, int duracion) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo);
+			String descripcion, TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto,
+			TipoTransporte tipoTransporte, int duracion, String idUsuario) {
+		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;
@@ -41,19 +41,19 @@ public class Transporte extends Producto {
 	}
 
 	// GETTERS Y SETTERS
-	public int getHoraSalida() {
+	public String getHoraSalida() {
 		return horaSalida;
 	}
 
-	public void setHoraSalida(int horaSalida) {
+	public void setHoraSalida(String horaSalida) {
 		this.horaSalida = horaSalida;
 	}
 
-	public int getHoraLlegada() {
+	public String getHoraLlegada() {
 		return horaLlegada;
 	}
 
-	public void setHoraLlegada(int horaLlegada) {
+	public void setHoraLlegada(String horaLlegada) {
 		this.horaLlegada = horaLlegada;
 	}
 
