@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.iniciarSesion(informacionUsuario as Usuario)
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
         let usuario: Usuario = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:iniciarSesionResponse'][0]['usuario'][0];
 
         this.userService.crearCookieUsuario(usuario as Usuario);
-        
+
         window.location.reload();
         this.router.navigate(['home']);
       },
