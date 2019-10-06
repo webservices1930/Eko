@@ -1,13 +1,6 @@
-import { Disponibilidad } from '../Disponibilidad';
+import { Producto } from './Producto';
 
-export class Salida {
-  public _id: string;
-  public precio;
-  public infoPaisDestino: string;
-  public disponibilidad: Disponibilidad[];
-  public descripcion: string;
-  public tipo: string;
-
+export class Salida extends Producto {
   public tipoSalida: string;
   public duracion: number;
   public trayecto: string[];
@@ -15,17 +8,12 @@ export class Salida {
   public guia: string;
 
   constructor() {
-      this._id = '';
-      this.precio = 0;
-      this.infoPaisDestino = '';
-      this.disponibilidad = new Array<Disponibilidad>();
-      this.descripcion = '';
-      this.tipo = '';
+    super();
 
-      this.tipoSalida = '';
-      this.duracion = 0;
-      this.trayecto = new Array<string>();
-      this.restriccionEdad = 0;
-      this.guia = '';
+    this.tipoSalida = '';
+    this.duracion = 0;
+    this.trayecto = new Array<string>();
+    this.restriccionEdad = 0;
+    this.guia = '';
   }
 }

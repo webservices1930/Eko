@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
 import { TipoUsuario } from 'src/app/shared/model/TipoUsuario';
+import { UtilsService } from 'src/app/shared/utils/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +19,10 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private utils: UtilsService,
     private router: Router
   ) {
-    this.tiposDeUsuario = Object.keys(TipoUsuario).filter(key => typeof TipoUsuario[key as any] === 'number');
+    this.tiposDeUsuario = this.utils.valoresDeEnum(TipoUsuario);
     this.checkoutForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
