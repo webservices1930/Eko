@@ -30,6 +30,7 @@ import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
 import co.edu.javeriana.eko.model.Disponibilidad;
 import co.edu.javeriana.eko.model.Reserva;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
@@ -449,6 +450,27 @@ public final class DBController {
 		coleccion.updateOne(eq("correo", correo),
 				new Document("$set", new Document("descripcion", usuario.getDescripcion())));
 	}
+	
+	/**
+	 * Busca en una colecci�n indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	
+	public static Pregunta buscarPreguntaPorID (String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document pregunta = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoPregunta(pregunta);
+	}
+	
+	
 
 	/**
 	 * Actualiza en una colecci�n indicada un objeto por su correo

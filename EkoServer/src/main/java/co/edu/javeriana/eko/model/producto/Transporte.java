@@ -2,7 +2,9 @@ package co.edu.javeriana.eko.model.producto;
 
 import java.util.List;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.TipoTransporte;
@@ -17,6 +19,8 @@ public class Transporte extends Producto {
 	// CONSTRUCTORES
 	public Transporte() {
 	}
+	
+	
 
 	public Transporte(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, int horaSalida, int horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
@@ -81,7 +85,7 @@ public class Transporte extends Producto {
 		this.duracion = duracion;
 	}
 
-	// MÉTODOS
+	// Mï¿½TODOS
 	public void ObtenerTrayecto() {
 		System.out.println(" --- El trayecto ha sido asignado ---");
 	}
