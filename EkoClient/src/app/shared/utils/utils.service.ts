@@ -6,6 +6,10 @@ import { Usuario } from '../model/Usuario/Usuario';
 import { Proveedor } from '../model/Usuario/Proveedor';
 import { parseString } from 'xml2js';
 import { Alojamiento } from '../model/Producto/Alojamiento';
+import { Evento } from '../model/Producto/Evento';
+import { Experiencia } from '../model/Producto/Experiencia';
+import { Salida } from '../model/Producto/Salida';
+import { Sitio } from '../model/Producto/Sitio';
 
 @Injectable({
   providedIn: 'root'
@@ -71,14 +75,14 @@ export class UtilsService {
     // Construye todo el XML con los datos del producto
     return `
       <transporte xmlns="">
-      <_id>` + nTransporte._id + `</_id>
+        <_id>` + nTransporte._id + `</_id>
         <descripcion>` + nTransporte.descripcion + `</descripcion>
         `
         + disponibilidad +
         `
         <infoPaisDestino>` + nTransporte.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nTransporte.precio + `</precio>
-        <tipo>` + nTransporte.tipo + `</tipo>
+        <tipo>TRANSPORTE</tipo>
         <duracion>` + nTransporte.duracion + `</duracion>
         <horaLlegada>` + nTransporte.horaLlegada + `</horaLlegada>
         <horaSalida>` + nTransporte.horaSalida + `</horaSalida>
@@ -107,27 +111,192 @@ export class UtilsService {
     });
 
     // Construye todo el XML con los datos del producto
-    return `<alojamiento xmlns="">
-      <descripcion>` + nAlojamiento.descripcion + `</descripcion>
-      `
-      + disponibilidad +
-      `
-      <infoPaisDestino>` + nAlojamiento.infoPaisDestino + `</infoPaisDestino>
-      <precio>` + nAlojamiento.precio + `</precio>
-      <tipo>ALOJAMIENTO</tipo>
-      <almuerzo>` + nAlojamiento.almuerzo + `</almuerzo>
-      <cena>` + nAlojamiento.cena + `</cena>
-      <desayuno>` + nAlojamiento.desayuno + `</desayuno>
-      <habitaciones>` + nAlojamiento.habitaciones + `</habitaciones>
-      <internet>` + nAlojamiento.internet + `</internet>
-      <latitud>` + nAlojamiento.latitud + `</latitud>
-      <longitud>` + nAlojamiento.longitud + `</longitud>
-      <numBaños>` + nAlojamiento.numeroBaños + `</numBaños>
-      <numCamas>` + nAlojamiento.numeroCamas + `</numCamas>
-      <television>` + nAlojamiento.television + `</television>
-      <tipoAlojamiento>` + nAlojamiento.tipoAlojamiento + `</tipoAlojamiento>
-  </alojamiento>`;
+    return `
+    <alojamiento xmlns="">
+        <_id>` + nAlojamiento._id + `</_id>
+        <descripcion>` + nAlojamiento.descripcion + `</descripcion>
+        `
+        + disponibilidad +
+        `
+        <infoPaisDestino>` + nAlojamiento.infoPaisDestino + `</infoPaisDestino>
+        <precio>` + nAlojamiento.precio + `</precio>
+        <tipo>ALOJAMIENTO</tipo>
+        <almuerzo>` + nAlojamiento.almuerzo + `</almuerzo>
+        <cena>` + nAlojamiento.cena + `</cena>
+        <desayuno>` + nAlojamiento.desayuno + `</desayuno>
+        <habitaciones>` + nAlojamiento.habitaciones + `</habitaciones>
+        <internet>` + nAlojamiento.internet + `</internet>
+        <latitud>` + nAlojamiento.latitud + `</latitud>
+        <longitud>` + nAlojamiento.longitud + `</longitud>
+        <numBaños>` + nAlojamiento.numeroBaños + `</numBaños>
+        <numCamas>` + nAlojamiento.numeroCamas + `</numCamas>
+        <television>` + nAlojamiento.television + `</television>
+        <tipoAlojamiento>` + nAlojamiento.tipoAlojamiento + `</tipoAlojamiento>
+    </alojamiento>`;
   }
+
+
+   /**
+   * Toma un objeto de tipo EVENTO y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearEventoXML(nEvento: Evento): string {
+    let disponibilidad: string = '';
+
+    // Añade todos los tags de las disponibilidades del producto
+    nEvento.disponibilidad.forEach(dispo => {
+      let dis: Disponibilidad = dispo;
+
+      disponibilidad += '<disponibilidad>';
+      disponibilidad += '<cuposDisponibles>' + dis.cuposDisponibles + '</cuposDisponibles>';
+      disponibilidad += '<fecha>' + dis.fecha + '</fecha>';
+      disponibilidad += '</disponibilidad>';
+    });
+
+    // Construye todo el XML con los datos del producto
+    return `
+    <evento xmlns="">
+    <_id>` + nEvento._id + `</_id>
+        <descripcion>` + nEvento.descripcion + `</descripcion>
+        `
+        + disponibilidad +
+        `
+        <infoPaisDestino>` + nEvento.infoPaisDestino + `</infoPaisDestino>
+        <precio>` + nEvento.precio + `</precio>
+        <tipo>EVENTO</tipo>
+        <horaApertura>` + nEvento.horaApertura + `</horaApertura>
+        <horaCierre>` + nEvento.horaCierre + `</horaCierre>
+        <latitud>` + nEvento.latitud + `</latitud>
+        <longitud>` + nEvento.longitud + `</longitud>
+        <maxPersonas>` + nEvento.maxPersonas + `</maxPersonas>
+        <nombreEvento>` + nEvento.nombreEvento + `</nombreEvento>
+        <restriccionEdad>` + nEvento.restriccionEdad + `</restriccionEdad>
+        <tipoEvento>` + nEvento.tipoEvento + `</tipoEvento>
+    </evento>`;
+  }
+
+
+   /**
+   * Toma un objeto de tipo EXPERIENIA y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearExperienciaXML(nExperiencia: Experiencia): string {
+    let disponibilidad: string = '';
+
+    // Añade todos los tags de las disponibilidades del producto
+    nExperiencia.disponibilidad.forEach(dispo => {
+      let dis: Disponibilidad = dispo;
+
+      disponibilidad += '<disponibilidad>';
+      disponibilidad += '<cuposDisponibles>' + dis.cuposDisponibles + '</cuposDisponibles>';
+      disponibilidad += '<fecha>' + dis.fecha + '</fecha>';
+      disponibilidad += '</disponibilidad>';
+    });
+
+    // Construye todo el XML con los datos del producto
+    return `
+    <experiencia xmlns="">
+        <_id>` + nExperiencia._id + `</_id>
+        <descripcion>` + nExperiencia.descripcion + `</descripcion>
+        `
+        + disponibilidad +
+        `
+        <infoPaisDestino>` + nExperiencia.infoPaisDestino + `</infoPaisDestino>
+        <precio>` + nExperiencia.precio + `</precio>
+        <tipo>EXPERIENCIA</tipo>
+        <duracion>` + nExperiencia.duracion + `</duracion>
+        <horaLlegada>` + nExperiencia.horaLlegada + `</horaLlegada>
+        <latitud>` + nExperiencia.latitud + `</latitud>
+        <longitud>` + nExperiencia.longitud + `</longitud>
+        <nivelRiesgo>` + nExperiencia.nivelRiesgo + `</nivelRiesgo>
+        <restriccionEdad>` + nExperiencia.restriccionEdad + `</restriccionEdad>
+        <tipoExperiencia>` + nExperiencia.tipoExperiencia + `</tipoExperiencia>
+    </experiencia>`;
+  }
+
+  /**
+   * Toma un objeto de tipo SALIDA y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearSalidaXML(nSalida: Salida): string {
+    let disponibilidad: string = '';
+    let trayecto: string = '';
+    // Añade todos los tags de las disponibilidades del producto
+    nSalida.disponibilidad.forEach(dispo => {
+      let dis: Disponibilidad = dispo;
+
+      disponibilidad += '<disponibilidad>';
+      disponibilidad += '<cuposDisponibles>' + dis.cuposDisponibles + '</cuposDisponibles>';
+      disponibilidad += '<fecha>' + dis.fecha + '</fecha>';
+      disponibilidad += '</disponibilidad>';
+    });
+
+    nSalida.trayecto.forEach( trayect => {
+      let t: string = trayect;
+      trayecto += '<trayecto>';
+      trayecto += t;
+      trayecto += '</trayecto>';
+    });
+
+    // Construye todo el XML con los datos del producto
+    return `
+    <salida xmlns="">
+        <_id>` + nSalida._id + `</_id>
+        <descripcion>` + nSalida.descripcion + `</descripcion>
+        `
+        + disponibilidad +
+        `
+        <infoPaisDestino>` + nSalida.infoPaisDestino + `</infoPaisDestino>
+        <precio>` + nSalida.precio + `</precio>
+        <tipo>SALIDA</tipo>
+        <duracion>` + nSalida.duracion + `</duracion>
+        <guia>` + nSalida.guia + `</guia>
+        <restriccionEdad>` + nSalida.restriccionEdad + `</restriccionEdad>
+        <tipoSalida>` + nSalida.tipoSalida + `</tipoSalida>
+        `
+        + trayecto +
+        `
+    </salida>`;
+  }
+/**
+   * Toma un objeto de tipo SITIO y lo transforma a su interpretación
+   * en XML en el servidor
+   */
+  public crearSitioXML(nSitio: Sitio): string {
+    let disponibilidad: string = '';
+
+    // Añade todos los tags de las disponibilidades del producto
+    nSitio.disponibilidad.forEach(dispo => {
+      let dis: Disponibilidad = dispo;
+
+      disponibilidad += '<disponibilidad>';
+      disponibilidad += '<cuposDisponibles>' + dis.cuposDisponibles + '</cuposDisponibles>';
+      disponibilidad += '<fecha>' + dis.fecha + '</fecha>';
+      disponibilidad += '</disponibilidad>';
+    });
+
+
+    // Construye todo el XML con los datos del producto
+    return `
+    <sitio xmlns="">
+        <_id>` + nSitio._id + `</_id>
+        <descripcion>` + nSitio.descripcion + `</descripcion>
+        `
+        + disponibilidad +
+        `
+        <infoPaisDestino>` + nSitio.infoPaisDestino + `</infoPaisDestino>
+        <precio>` + nSitio.precio + `</precio>
+        <tipo>SITIO</tipo>
+        <consumoObligatorio>` + nSitio.consumoObligatorio +`</consumoObligatorio>
+        <horaApertura>` + nSitio.horaApertura + `</horaApertura>
+        <horaCierre>` + nSitio.horaCierre + `</horaCierre>
+        <latitud>` + nSitio.latitud + `</latitud>
+        <longitud>` + nSitio.longitud + `</longitud>
+        <restriccionEdad>` + nSitio.restriccionEdad + `</restriccionEdad>
+        <tipoDeSitio>` + nSitio.tipoSitio + `</tipoDeSitio>
+    </sitio>`;
+  }
+
   /* Toma un objeto de tipo Usuario y lo transforma en su interpretaicón
    * en XML en el servidor
    *
