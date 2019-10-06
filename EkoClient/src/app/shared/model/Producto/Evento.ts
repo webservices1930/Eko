@@ -1,13 +1,6 @@
-import { Disponibilidad } from '../Disponibilidad';
+import { Producto } from './Producto';
 
-export class Evento {
-  public _id: string;
-  public precio;
-  public infoPaisDestino: string;
-  public disponibilidad: Disponibilidad[];
-  public descripcion: string;
-  public tipo: string;
-
+export class Evento extends Producto {
   public tipoEvento: string;
   public nombreEvento: string;
   public restriccionEdad: number;
@@ -18,20 +11,15 @@ export class Evento {
   public longitud: number;
 
   constructor() {
-      this._id = '';
-      this.precio = 0;
-      this.infoPaisDestino = '';
-      this.disponibilidad = new Array<Disponibilidad>();
-      this.descripcion = '';
-      this.tipo = '';
+    super();
 
-      this.tipoEvento = '';
-      this.nombreEvento = '';
-      this.restriccionEdad = 0;
-      this.horaApertura = 0;
-      this.horaCierre = 0;
-      this.maxPersonas = 0;
-      this.latitud = 0;
-      this.longitud = 0;
+    this.tipoEvento = '';
+    this.nombreEvento = '';
+    this.restriccionEdad = 0;
+    this.horaApertura = 0;
+    this.horaCierre = 0;
+    this.maxPersonas = 0;
+    this.latitud = 0;
+    this.longitud = 0;
   }
 }

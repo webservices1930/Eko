@@ -62,7 +62,7 @@ public final class Utils {
 	public static void printSuccess(String success) {
 		System.out.println(
 				// VariablesDeEntorno.ANSI_GREEN +
-				"[ï¿½XITO]: " + success
+				"[ÉXITO]: " + success
 		// + VariablesDeEntorno.ANSI_RESET
 		);
 	}
