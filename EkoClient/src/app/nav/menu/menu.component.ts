@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.verificarEstadoDeSesion();
+    this.verificarTipoDeUsuario();
   }
 
   /**
@@ -36,6 +37,9 @@ export class MenuComponent implements OnInit {
     this.haySesionDeUsuario = this.userService.verificiarSesion();
   }
 
+  /**
+   * Verifica si el usuario que está en sersión es proveedor o no
+   */
   public verificarTipoDeUsuario() {
     this.esUsuarioProveedor = this.userService.verificarUsuarioProveedor();
   }

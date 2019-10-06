@@ -1,13 +1,6 @@
-import { Disponibilidad } from '../Disponibilidad';
+import { Producto } from './Producto';
 
-export class Sitio {
-  public _id: string;
-  public precio;
-  public infoPaisDestino: string;
-  public disponibilidad: Disponibilidad[];
-  public descripcion: string;
-  public tipo: string;
-
+export class Sitio extends Producto {
   public tipoSitio: string;
   public latitud: number;
   public longitud: number;
@@ -17,19 +10,14 @@ export class Sitio {
   public horaCierre: number;
 
   constructor() {
-      this._id = '';
-      this.precio = 0;
-      this.infoPaisDestino = '';
-      this.disponibilidad = new Array<Disponibilidad>();
-      this.descripcion = '';
-      this.tipo = '';
+    super();
 
-      this.tipoSitio = '';
-      this.latitud = 0;
-      this.longitud = 0;
-      this.restriccionEdad = 0;
-      this.consumoObligatorio = false;
-      this.horaApertura = 0;
-      this.horaCierre = 0;
+    this.tipoSitio = '';
+    this.latitud = 0;
+    this.longitud = 0;
+    this.restriccionEdad = 0;
+    this.consumoObligatorio = false;
+    this.horaApertura = 0;
+    this.horaCierre = 0;
   }
 }

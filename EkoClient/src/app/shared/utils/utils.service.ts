@@ -21,6 +21,15 @@ export class UtilsService {
   constructor() { }
 
   /**
+   * Devuelve los valores en string de un enum
+   * 
+   * @param tipoEnum
+   */
+  public valoresDeEnum(tipoEnum): string[] {
+    return Object.keys(tipoEnum).filter(key => typeof tipoEnum[key as any] === 'number');
+  }
+
+  /**
    * Retorna un Objeto XML dado un string
    *
    * @param stringXML
