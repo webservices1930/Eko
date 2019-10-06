@@ -16,6 +16,7 @@ import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.Utils;
 
@@ -29,7 +30,7 @@ public class ProductoServices implements IProductoService {
 		return instance;
 	}
 	
-	// Métodos para exportar
+	// Mï¿½todos para exportar
 	@Override
 	public double calcularCalificacionPromedio() {
 		return Math.random()*10 + 1;
@@ -267,4 +268,13 @@ public class ProductoServices implements IProductoService {
 		DBController.actualizarObjeto("productos-evento", nEventoDoc, nEvento.get_id());
 	}
 	
+	@Override
+	public void agregarReserva(Reserva nReserva) {
+		Document nReservaDoc = Utils.deObjetoReservaADocumento(nReserva);
+		//System.out.println("aqui"+nReserva.getFechas());
+		if(DBController.modificarCapacidadProducto("productos-transporte", nReserva.getProductoid())==true)
+		DBController.insertarObjeto("reservas", nReservaDoc);
+		else
+			System.out.println("Reservas llenas");
+	}
 }

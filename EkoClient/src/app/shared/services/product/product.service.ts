@@ -8,6 +8,7 @@ import { Evento } from '../../model/Producto/Evento';
 import { Experiencia } from '../../model/Producto/Experiencia';
 import { Salida } from '../../model/Producto/Salida';
 import { Sitio } from '../../model/Producto/Sitio';
+import { Reserva } from '../../model/Reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -309,4 +310,37 @@ export class ProductService {
       httpOptions
     );
   }
+
+ /**
+   * Dado una reserva realiza la petición SOAP necesaria
+   * para agregar una reserva al servidor
+   */
+  public agregarReserva(nReserva: any): Observable<any>{
+    // Se especifíca que la petición se hará por XML
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    let accionXML: string = '';
+
+    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    accionXML = `
+      <agregarReserva xmlns="http://iservice.eko.javeriana.edu.co/">`
+        + this.utils.crearReservaXML(nReserva as Reserva) +
+      `</agregarReserva>`;
+
+    // Se crea la establece la información que se enviará al servidor
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>`
+      + accionXML +
+      `</Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
 }

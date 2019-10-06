@@ -13,6 +13,7 @@ import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
+import co.edu.javeriana.eko.model.Reserva;
 import co.edu.javeriana.eko.model.producto.Transporte;
 
 @WebService
@@ -126,4 +127,7 @@ public interface IProductoService {
 	@WebMethod(operationName = "actualizarProductoEvento")
 	public void actualizarProductoEvento(@WebParam(name = "evento") Evento nEvento);
 	
+	
+	@WebMethod(operationName = "agregarReserva")
+	public void agregarReserva(@WebParam(name = "reserva") Reserva nReserva);
 }

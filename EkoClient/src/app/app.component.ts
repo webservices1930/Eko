@@ -3,6 +3,7 @@ import { ProductService } from './shared/services/product/product.service';
 import { parseString } from 'xml2js';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { ReservaService } from './shared/services/reserva-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'EkoClient';
   id = '';
+  idreservas='';
 
   constructor(private router: Router) {}
 
@@ -19,8 +21,8 @@ export class AppComponent implements OnInit {
 
   /**
    * Llama al servicio para obtener todos los productos del MarketPlace en XML
-   * 
-   * @param event 
+   *
+   * @param event
    */
   // public obetenerTodosLosProductos(event: Event) {
   //   event.preventDefault();

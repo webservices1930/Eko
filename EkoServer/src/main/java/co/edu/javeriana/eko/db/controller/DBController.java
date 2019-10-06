@@ -20,6 +20,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+<<<<<<< HEAD
 import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.model.producto.Alojamiento;
@@ -27,6 +28,10 @@ import co.edu.javeriana.eko.model.producto.Evento;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 import co.edu.javeriana.eko.model.producto.Salida;
 import co.edu.javeriana.eko.model.producto.Sitio;
+=======
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Reserva;
+>>>>>>> 7bac48e58982aef94362df539d797691c7fd2624
 import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
@@ -252,6 +257,43 @@ public final class DBController {
 	
 	
 	/**
+	 * Busca en una colecci�n de reserva indicada un cliente por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	public static List<Reserva> buscarEnColeccionReservaPorClienteID(String nombreColeccion, String _id) {
+		/*MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("id_cliente", _id);
+		
+		Document reserva = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoReserva(reserva);*/
+		
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);			
+		BasicDBObject query = new BasicDBObject();		
+		query.put("id_cliente", _id);
+		MongoCursor<Document> cursor = coleccion.find(query).cursor();
+		try {
+			while(cursor.hasNext()) {
+				Reserva r = new Reserva() {};
+				Document doc = cursor.next();				
+				r = Utils.deDocumentoAObjetoReserva(doc);				
+				reservas.add(r);
+			}
+		}finally {
+			cursor.close();
+		}
+		return reservas;
+	}
+	
+	/**
+	 * Elimina en una colecci�n indicada un objeto por su ID
 	 * 
 	 * Busca todos los productos de una coleccion
 	 * 
@@ -350,6 +392,38 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 
 		coleccion.deleteOne(query);
+	}
+	
+	
+	/**
+	 * Modificar los cupos disponibles del producto
+	 */
+	public static boolean modificarCapacidadProducto(String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		int cupos=-1;
+		boolean cupohay = true;
+		
+		
+		//Se crea el query para modificar la disponibilidad del producto
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document producto = coleccion.find(query).first();
+		/*List<Document> docDisponibilidad = (List<Document>) producto.get("disponibilidad");
+		for (Document docDis : docDisponibilidad) {
+			cupos=docDis.getInteger("cuposDisponibles");
+		}*/
+		
+		if(cupos==0) {
+			System.out.println("No se puede reservar mas");
+			cupohay=false;
+		}else {
+			cupos--;
+			System.out.println(cupos);
+			//coleccion.findOneAndReplace(query, producto);
+		}
+		return cupohay;
 	}
 
 	/**
