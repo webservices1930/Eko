@@ -5,6 +5,7 @@ import javax.xml.ws.Endpoint;
 import co.edu.javeriana.eko.db.controller.DBController;
 import co.edu.javeriana.eko.model.MarketPlace;
 import co.edu.javeriana.eko.utils.Utils;
+import co.edu.javeriana.eko.webservices.CatalogoWebService;
 import co.edu.javeriana.eko.webservices.MarketPlaceWebServices;
 import co.edu.javeriana.eko.webservices.ProductoWebServices;
 import co.edu.javeriana.eko.webservices.UsuarioWebServices;
@@ -30,6 +31,7 @@ public class EkoPublisher {
 
       ProductoWebServices.publicarProductoServices();
       UsuarioWebServices.publicarUsuarios();
+      CatalogoWebService.publicarCatalogoServices();
 
       Utils.printSuccess("Servicios expuestos");
     } catch (Exception e) {

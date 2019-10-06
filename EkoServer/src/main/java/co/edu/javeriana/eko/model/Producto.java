@@ -10,6 +10,7 @@ public abstract class Producto {
 	private String _id;
 	private double precio;
 	private String infoPaisDestino;
+	private String idUsuario;
 	private List<Disponibilidad> disponibilidad;
 	private String descripcion;
 	private TipoProducto tipo;
@@ -18,22 +19,24 @@ public abstract class Producto {
 	public Producto() {}
 	
 	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo) {
+			String descripcion, TipoProducto tipo, String idUsuario) {
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
 		this.disponibilidad = disponibilidad;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
+		this.idUsuario = idUsuario;
 	}
 	
 	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo) {
+			String descripcion, TipoProducto tipo, String idUsuario) {
 		this._id = _id;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
 		this.disponibilidad = disponibilidad;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
+		this.idUsuario = idUsuario;
 	}
 
 	// GETTERS Y SETTERS
@@ -90,4 +93,13 @@ public abstract class Producto {
 	public double calcularCalificacionPromedio() {
 		return 0;
 	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
 }
