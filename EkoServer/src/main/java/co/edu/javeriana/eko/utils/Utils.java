@@ -318,8 +318,8 @@ public final class Utils {
 		sitio.setLongitud(docSitio.getDouble("longitud"));
 		sitio.setRestriccionEdad(docSitio.getInteger("restriccionEdad"));
 		sitio.setConsumoObligatorio(docSitio.getBoolean("consumoObligatorio"));
-		sitio.setHoraApertura(docSitio.getInteger("horaApertura"));
-		sitio.setHoraCierre(docSitio.getInteger("horaCierre"));
+		sitio.setHoraApertura(docSitio.getString("horaApertura"));
+		sitio.setHoraCierre(docSitio.getString("horaCierre"));
 		sitio.setIdUsuario(docSitio.getString("idUsuario"));
 				
 		return sitio;
@@ -388,7 +388,7 @@ public final class Utils {
 		experiencia.setRestriccionEdad(docExperiencia.getInteger("restriccionEdad"));
 		experiencia.setNivelRiesgo(docExperiencia.getInteger("nivelRiesgo"));
 		experiencia.setDuracion(docExperiencia.getInteger("duracion"));
-		experiencia.setHoraLlegada(docExperiencia.getInteger("horaLlegada"));
+		experiencia.setHoraLlegada(docExperiencia.getString("horaLlegada"));
 		experiencia.setIdUsuario(docExperiencia.getString("idUsuario"));
 					
 		return experiencia;
@@ -521,8 +521,8 @@ public final class Utils {
 		evento.setTipoEvento(TipoEvento.valueOf(docEvento.getString("tipoEvento")));				
 		evento.setRestriccionEdad(docEvento.getInteger("restriccionEdad"));		
 		evento.setNombreEvento(docEvento.getString("nombreEvento"));
-		evento.setHoraApertura(docEvento.getInteger("horaApertura"));						
-		evento.setHoraCierre(docEvento.getInteger("horaCierre"));
+		evento.setHoraApertura(docEvento.getString("horaApertura"));						
+		evento.setHoraCierre(docEvento.getString("horaCierre"));
 		evento.setMaxPersonas(docEvento.getInteger("maxPersonas"));
 		evento.setLatitud(docEvento.getDouble("latitud"));
 		evento.setLongitud(docEvento.getDouble("longitud"));
