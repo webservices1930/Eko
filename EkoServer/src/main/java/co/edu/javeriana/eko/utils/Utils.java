@@ -1,5 +1,10 @@
 package co.edu.javeriana.eko.utils;
 
+import co.edu.javeriana.eko.model.Carrito;
+import co.edu.javeriana.eko.model.Catalogo;
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Usuario;
+import co.edu.javeriana.eko.model.producto.Transporte;
 import co.edu.javeriana.eko.model.*;
 import co.edu.javeriana.eko.model.producto.*;
 import co.edu.javeriana.eko.model.usuario.Cliente;
@@ -7,6 +12,17 @@ import co.edu.javeriana.eko.model.usuario.Proveedor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import co.edu.javeriana.eko.model.Calificacion;
+import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Producto;
+import co.edu.javeriana.eko.model.producto.Alojamiento;
+import co.edu.javeriana.eko.model.producto.Evento;
+import co.edu.javeriana.eko.model.producto.Experiencia;
+import co.edu.javeriana.eko.model.producto.Salida;
+import co.edu.javeriana.eko.model.producto.Sitio;
+import co.edu.javeriana.eko.model.Reserva;
+import co.edu.javeriana.eko.model.Pregunta;
+import co.edu.javeriana.eko.model.producto.Transporte;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -634,7 +650,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * Meodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
+	 * Metodo que convierte un Documento con datos de Catalogo a un objeto de tipo Catalogo
 	 * 
 	 * @param docCatalogo
 	 * @return
@@ -666,7 +682,7 @@ public final class Utils {
 	
 	
 	/**
-	 * M�todo que convierte un objeto de tipo Reserva a un Documento
+	 * Metodo que convierte un objeto de tipo Reserva a un Documento
 	 * 
 	 * @param reserva
 	 * @return
@@ -679,7 +695,7 @@ public final class Utils {
 	}
 	
 	/**
-	 * M�todo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
+	 * Metodo que convierte un Documento con datos de Reserva a un objeto de tipo Reserva
 	 * 
 	 * @param docReserva
 	 * @return
@@ -700,4 +716,119 @@ public final class Utils {
 		return reserva;
 	}
 	
+	
+	/**
+	 * Metodo que convierte un objeto de tipo Carrito a un Documento
+	 * 
+	 * @param carrito
+	 * @return
+	 */
+	public static Document deObjetoCarritoADocumento(Carrito carrito) {
+		List<Document> productos= new ArrayList<Document>();
+		
+		for (String p: carrito.getProductos()) {
+			productos.add(new Document("producto", p));
+		}		
+		return new Document("idUsuario", carrito.getIdUsuario())
+				.append("productos", productos);
+				
+	}
+	
+	/**
+	 * Metodo que convierte un Documento con datos de Salida a un objeto de tipo Salida
+	 * 
+	 * @param salida
+	 * @return
+	 */
+	public static Carrito deDocumentoAObjetoCarrito(Document docCarrito) {
+		Carrito carrito = new Carrito();
+		List<String> productos = new ArrayList<String>();
+		List<Document> docProductos= (List<Document>) docCarrito.get("productos");	
+		
+		String salidaID = ((ObjectId)docCarrito.getObjectId("_id")).toString();
+		
+		carrito.set_id(salidaID);
+		
+		for (Document prod: docProductos) {
+			String p = prod.getString("producto");
+			productos.add(p);
+		}
+						
+		carrito.setIdUsuario(docCarrito.getString("idUsuario"));
+		carrito.setProductos(productos);
+		
+		
+		return carrito;
+	}	
+	/**
+	 * M�todo que convierte un objeto de tipo Calificacion a un Documento
+	 * 
+	 * @param calificacion
+	 * @return
+	 */
+	public static Document deObjetoCalificacionADocumento(Calificacion calificacion) {		
+		
+		return new Document("valoracion", calificacion.getValoracion())				
+				.append("id_Producto", calificacion.getId_Producto())
+				.append("comentario", calificacion.getComentario())
+				.append("fecha_Creacion", calificacion.getFecha_Creacion());
+	}
+	
+	
+	/**
+	 * M�todo que convierte un Documento con datos de Calificacion a un objeto de tipo Calificacion
+	 * 
+	 * @param calificacion
+	 * @return
+	 */
+	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
+		Calificacion calificacion = new Calificacion();					
+		
+		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
+		calificacion.setId_Usuario(docCalificacion.getString("id_Producto"));
+		calificacion.setId_Usuario(docCalificacion.getString("id_Usuario"));
+		calificacion.setComentario(docCalificacion.getString("comentario"));
+		calificacion.setFecha_Creacion(docCalificacion.getString("fecha_Creacion"));			
+		
+		return calificacion;		
+		
+	}
+	
+	
+	/**
+	 * M�todo que convierte un objeto de tipo Pregunta a un Documento
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
+	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {		
+	
+		return new Document("id_Producto", pregunta.getId_Producto())
+				.append("id_Usuario", pregunta.getId_Usuario())
+				.append("descripcion", pregunta.getDescripcion())				
+				.append("respuesta", pregunta.getRespuesta())
+				.append("fecha_Creacion", pregunta.getFecha_Creacion());
+	}
+
+	/**
+	 * M�todo que convierte un Documento con datos de Pregunta a un objeto de tipo Pregunta
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
+	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
+		
+		Pregunta pregunta = new Pregunta();		
+		
+		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
+		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));
+		pregunta.setDescripcion(docPregunta.getString("descripcion"));
+		pregunta.setRespuesta(docPregunta.getString("respuesta"));
+		pregunta.setFecha_Creacion(docPregunta.getString("fecha_Creacion"));			
+		
+		return pregunta;
+		
+	}
+
 }
+
