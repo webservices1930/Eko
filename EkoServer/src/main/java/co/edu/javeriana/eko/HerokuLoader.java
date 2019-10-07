@@ -1,5 +1,6 @@
 package co.edu.javeriana.eko;
 
+import co.edu.javeriana.eko.services.CarritoService;
 import co.edu.javeriana.eko.services.CatalogoService;
 import co.edu.javeriana.eko.services.ProductoServices;
 import co.edu.javeriana.eko.services.UsuarioService;
@@ -28,7 +29,7 @@ public class HerokuLoader {
 
     //Carrito
     String uriCarrito ="/eko/carrito";
-    CatalogoService carritoService = new CatalogoService();
+    CarritoService carritoService = new CarritoService();
     Endpoint.publish(host + port + uriCarrito, carritoService);
   }
 }
