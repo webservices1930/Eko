@@ -19,6 +19,12 @@ import { MarketPlaceComponent } from './market-place/market-place.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { ProductViewSmallComponent } from './product/product-view-small/product-view-small.component';
+import { ProductViewComponent } from './product/product-view/product-view.component';
+import { CarViewComponent } from './car/car-view/car-view.component';
+import { QuestionFormComponent } from './question/question-form/question-form.component';
+import { RateFormComponent } from './rate/rate-form/rate-form.component';
+import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
 
 
 @NgModule({
@@ -30,7 +36,13 @@ import { EditProfileComponent } from './user/edit-profile/edit-profile.component
     MarketPlaceComponent,
     RegisterComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ProductViewSmallComponent,
+    ProductViewComponent,
+    CarViewComponent,
+    QuestionFormComponent,
+    RateFormComponent,
+    ProductFormEditComponent
   ],
   imports: [
     RouterModule,

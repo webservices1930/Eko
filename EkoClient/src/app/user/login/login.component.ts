@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.iniciarSesion(informacionUsuario as Usuario)
@@ -37,11 +37,10 @@ export class LoginComponent implements OnInit {
 
         window.location.reload();
         this.router.navigate(['home']);
-      },
-        error => {
-          console.log('There was an error: ', error);
-          console.log(error.status);
-        });
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
   }
 
 }
