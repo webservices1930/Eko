@@ -150,6 +150,15 @@ public interface IProductoService {
 	public void eliminarCalificacionProducto(@WebParam(name = "calificacionID") String _id);
 	
 	
+	@WebMethod(operationName = "buscarCalificacionesProductoPorID")
+	@WebResult(name="productoCalificaciones")
+	public Calificacion buscarCalificacionesProductoPorID(@WebParam(name = "productoID") String _id);
+	
+	@WebMethod(operationName = "actualizarCalificacionProducto")
+	public void actualizarCalificacionProducto(@WebParam(name = "calificacion") Calificacion nCalificacion);
+	
+	
+	
 	// preguntas
 	
 	@WebMethod(operationName = "agregarPreguntaProducto")
@@ -164,6 +173,7 @@ public interface IProductoService {
 	@WebResult(name="productoPregunta")
 	public Pregunta buscarPreguntaProductoPorID(@WebParam(name = "preguntaID") String _id);
 	
-	
+	@WebMethod(operationName = "actualizarPreguntaProducto")
+	public void actualizarPreguntaProducto(@WebParam(name = "pregunta") Pregunta nPregunta);
 	
 }

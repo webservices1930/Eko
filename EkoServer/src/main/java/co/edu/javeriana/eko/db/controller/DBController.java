@@ -16,6 +16,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Carrito;
 import co.edu.javeriana.eko.model.Catalogo;
 import co.edu.javeriana.eko.model.Producto;
@@ -470,6 +471,27 @@ public final class DBController {
 		Document pregunta = coleccion.find(query).first();
 		return Utils.deDocumentoAObjetoPregunta(pregunta);
 	}
+	
+	/**
+	 * Busca en una colecci�n indicada un objeto por su ID
+	 * 
+	 * @param nombreColeccion
+	 * @param _id
+	 */
+	
+	public static Calificacion buscarCalificacionesProductoPorID (String nombreColeccion, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		
+		// Se crea el query con un objeto ID del tipo que utiliza MongoDB
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(_id));
+		
+		Document calificacion = coleccion.find(query).first();
+		return Utils.deDocumentoAObjetoCalificacion(calificacion);
+	}
+	
+	
 	
 	
 

@@ -305,6 +305,19 @@ public class ProductoServices implements IProductoService {
 	}	
 	
 	
+	@Override
+	public Calificacion buscarCalificacionesProductoPorID(String _id) {
+		return DBController.buscarCalificacionesProductoPorID("productos-calificacion", _id);
+	}
+	
+	
+	@Override
+	public void actualizarCalificacionProducto(Calificacion nCalificacion) {
+		Document nCalificacionDoc = Utils.deObjetoCalificacionADocumento(nCalificacion);		
+		DBController.actualizarObjeto("productos-pregunta", nCalificacionDoc, nCalificacion.get_id());
+	}
+	
+	
 	
 	@Override
 	public void agregarPreguntaProducto(Pregunta nPregunta) {
@@ -322,5 +335,15 @@ public class ProductoServices implements IProductoService {
 	public Pregunta buscarPreguntaProductoPorID(String _id) {
 		return DBController.buscarPreguntaPorID("productos-pregunta", _id);
 	}
+	
+	
+	
+	@Override
+	public void actualizarPreguntaProducto(Pregunta nPregunta) {
+		Document nPreguntaDoc = Utils.deObjetoPreguntaADocumento(nPregunta);		
+		DBController.actualizarObjeto("productos-pregunta", nPreguntaDoc, nPregunta.get_id());
+	}
+
+	
 	
 }
