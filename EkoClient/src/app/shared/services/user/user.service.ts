@@ -35,7 +35,7 @@ export class UserService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      this.utils.baseUrl + 'eko/usuario?wsdl',
       body,
       httpOptions
     );
@@ -74,7 +74,7 @@ export class UserService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      this.utils.baseUrl + 'eko/usuario?wsdl',
       body,
       httpOptions
     );
@@ -111,7 +111,7 @@ export class UserService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      this.utils.baseUrl + 'eko/usuario?wsdl',
       body,
       httpOptions
     );
@@ -149,7 +149,7 @@ export class UserService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      this.utils.baseUrl + 'eko/usuario?wsdl',
       body,
       httpOptions
     );
@@ -190,7 +190,7 @@ export class UserService {
 
     // Se realiza una petición POST
     return this.http.post(
-      this.utils.baseUrl + 'eko/usuarios?wsdl',
+      this.utils.baseUrl + 'eko/usuario?wsdl',
       body,
       httpOptions
     );

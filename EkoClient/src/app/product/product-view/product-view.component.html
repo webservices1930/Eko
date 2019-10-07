@@ -1,0 +1,130 @@
+<article class="eko-producto-small" *ngIf="productoCargado">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-11">
+        <figure>
+          <img src="https://source.unsplash.com/collection/{{id}}/1600x900">
+        </figure>
+        <p>{{ producto.descripcion }}</p>
+        <p>Información del pais destino: {{ producto.infoPaisDestino }}</p>
+        <p>Precio: {{ producto.precio }}</p>
+        <h6>Disponibilidad</h6>
+        <div *ngFor="let disponibilidad of producto.disponibilidad">
+            <p>fecha: {{ disponibilidad.fecha }}</p>
+            <p>cuposDisponibles: {{ disponibilidad.cuposDisponibles }}</p>
+        </div>
+        <p>Tipo: {{ producto.tipo }}</p>
+        <p>Usuario: {{ producto.idusuario }}</p>
+        <ng-container *ngIf="tipo === 'ALOJAMIENTO'">
+          <p>Tipo alojamiento: {{ producto.tipoAlojamiento }}</p>
+          <p>latitud: {{ producto.latitud }}</p>
+          <p>longitud: {{ producto.longitud }}</p>
+          <p>habitaciones: {{ producto.habitaciones }}</p>
+          <p>Desayuno:
+            <ng-container *ngIf="producto.desayuno">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.desayuno">
+              NO
+            </ng-container>
+          </p>
+          <p>almuerzo:
+            <ng-container *ngIf="producto.almuerzo">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.almuerzo">
+              NO
+            </ng-container>
+          </p>
+          <p>cena:
+            <ng-container *ngIf="producto.cena">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.cena">
+              NO
+            </ng-container>
+          </p>
+          <p>internet:
+            <ng-container *ngIf="producto.internet">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.internet">
+              NO
+            </ng-container>
+          </p>
+          <p>television:
+            <ng-container *ngIf="producto.television">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.television">
+              NO
+            </ng-container>
+          </p>
+          <p>numCamas: {{ producto.numCamas }}</p>
+          <p>numBanios: {{ producto.numBanios }}</p>
+        </ng-container>
+        <ng-container *ngIf="tipo === 'EVENTO'">
+          <p>Tipo evento: {{ producto.tipoEvento }}</p>
+          <p>nombreEvento: {{ producto.nombreEvento }}</p>
+          <p>restriccionEdad: {{ producto.restriccionEdad }}</p>
+          <p>horaApertura: {{ producto.horaApertura }}</p>
+          <p>horaCierre: {{ producto.horaCierre }}</p>
+          <p>maxPersonas: {{ producto.maxPersonas }}</p>
+          <p>latitud: {{ producto.latitud }}</p>
+          <p>longitud: {{ producto.longitud }}</p>
+        </ng-container>
+        <ng-container *ngIf="tipo === 'EXPERIENCIA'">
+          <p>Tipo experiencia: {{ producto.tipoExperiencia }}</p>
+          <p>nivelRiesgo: {{ producto.nivelRiesgo }}</p>
+          <p>restriccionEdad: {{ producto.restriccionEdad }}</p>
+          <p>latitud: {{ producto.latitud }}</p>
+          <p>longitud: {{ producto.longitud }}</p>
+          <p>duracion: {{ producto.duracion }}</p>
+          <p>horaLlegada: {{ producto.horaLlegada }}</p>
+        </ng-container>
+        <ng-container *ngIf="tipo === 'SALIDA'">
+          <p>Tipo salida: {{ producto.tipoSalida }}</p>
+          <p>duracion: {{ producto.duracion }}</p>
+          <h6>Trayecto</h6>
+          <div *ngFor="let trayecto of producto.trayecto; let i = index">
+              <p>{{i}}: {{ trayecto }}</p>
+          </div>
+          <p>restriccionEdad: {{ producto.restriccionEdad }}</p>
+          <p>guia: {{ producto.guia }}</p>
+        </ng-container>
+        <ng-container *ngIf="tipo === 'SITIO'">
+          <p>Tipo sitio: {{ producto.tipoSitio }}</p>
+          <p>latitud: {{ producto.latitud }}</p>
+          <p>longitud: {{ producto.longitud }}</p>
+          <p>restriccionEdad: {{ producto.restriccionEdad }}</p>
+          <p>Consumo obligatorio:
+            <ng-container *ngIf="producto.consumoObligatorio">
+              SI
+            </ng-container>
+            <ng-container *ngIf="!producto.consumoObligatorio">
+              NO
+            </ng-container>
+          </p>
+          <p>horaApertura: {{ producto.horaApertura }}</p>
+          <p>horaCierre: {{ producto.horaCierre }}</p>
+        </ng-container>
+        <ng-container *ngIf="tipo === 'TRANSPORTE'">
+          <p>Tipo transporte: {{ producto.tipoTransporte }}</p>
+          <p>duracion: {{ producto.duracion }}</p>
+          <p>horaSalida: {{ producto.horaSalida }}</p>
+          <p>horaLlegada: {{ producto.horaLlegada }}</p>
+          <h6>Trayecto</h6>
+          <div *ngFor="let trayecto of producto.trayecto; let i = index">
+              <p>{{i}}: {{ trayecto }}</p>
+          </div>
+        </ng-container>
+        <a class="eko-link" (click)="agregarAlCarrito()">Añadir al carrito</a>
+        <br>
+        <br>
+        <br>
+        <app-rate-form [idProducto]="producto._id"></app-rate-form>
+        <app-question-form [idProducto]="producto._id"></app-question-form>
+      </div>
+    </div>
+  </div>
+</article>

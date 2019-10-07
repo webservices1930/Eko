@@ -9,6 +9,8 @@ import { Experiencia } from '../../model/Producto/Experiencia';
 import { Salida } from '../../model/Producto/Salida';
 import { Sitio } from '../../model/Producto/Sitio';
 import { Reserva } from '../../model/Reserva';
+import { Pregunta } from '../../model/Pregunta';
+import { Calificacion } from '../../model/Calificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -77,8 +79,6 @@ export class ProductService {
         break;
     }
 
-    console.log(accionXML)
-
     // Se crea la establece la información que se enviará al servidor
     const body: string = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
@@ -120,7 +120,7 @@ export class ProductService {
    * Busca un producto de tipo Transporte por su ID en el Market Place
    * @param id
    */
-  public buscarPorID(id: string) {
+  public buscarPorID(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -146,7 +146,7 @@ export class ProductService {
    * Busca el listado de productos de un Usuario
    * @param id
    */
-  public buscarPorIDUsuario(id: string) {
+  public buscarPorIDUsuario(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -167,12 +167,12 @@ export class ProductService {
   }
 
 
-   /**
-   * Dado un Producto realiza la petición SOAP necesaria
-   * para actualizar un producto al servidor
-   *
-   * @param nProducto
-   */
+  /**
+  * Dado un Producto realiza la petición SOAP necesaria
+  * para actualizar un producto al servidor
+  *
+  * @param nProducto
+  */
   public actualizarProducto(nProducto: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
     const httpOptions: object = this.utils.crearHeadersXML();
@@ -232,6 +232,8 @@ export class ProductService {
       `</Body>
     </Envelope>`;
 
+    console.log(body)
+
     // Se realiza una petición POST
     return this.http.post(
       this.utils.baseUrl + 'eko/producto?wsdl',
@@ -240,56 +242,58 @@ export class ProductService {
     );
   }
 
-    /**
-   * Dado un Producto realiza la petición SOAP necesaria
-   * para eliminar un producto al servidor
-   *
-   * @param nProducto
-   */
+  /**
+ * Dado un Producto realiza la petición SOAP necesaria
+ * para eliminar un producto al servidor
+ *
+ * @param nProducto
+ */
   public eliminarProducto(nProducto: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
     const httpOptions: object = this.utils.crearHeadersXML();
-
+    console.log(nProducto._id);
     let accionXML: string = '';
+
+    console.log(nProducto)
 
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
         accionXML = `
-          <eliminarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoTransportePorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <transporteID xmlns="">` + nProducto._id + `</transporteID>
-          </eliminarProductoTransporte>`;
+          </eliminarProductoTransportePorID>`;
         break;
       case 'ALOJAMIENTO':
         accionXML = `
-          <eliminarProductoAlojamiento xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoAlojamientoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <alojamientoID xmlns="">` + nProducto._id + `</alojamientoID>
-          </eliminarProductoAlojamiento>`;
+          </eliminarProductoAlojamientoPorID>`;
         break;
       case 'EVENTO':
         accionXML = `
-          <eliminarProductoEvento xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoEventoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <eventoID xmlns="">` + nProducto._id + `</eventoID>
-          </eliminarProductoEvento>`;
+          </eliminarProductoEventoPorID>`;
         break;
       case 'EXPERIENCIA':
         accionXML = `
-          <eliminarProductoExperiencia xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoExperienciaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <experienciaID xmlns="">` + nProducto._id + `</experienciaID>
-          </eliminarProductoExperiencia>`;
+          </eliminarProductoExperienciaPorID>`;
         break;
 
       case 'SALIDA':
         accionXML = `
-          <eliminarProductoSalida xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoSalidaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <salidaID xmlns="">` + nProducto._id + `</salidaID>
-          </eliminarProductoSalida>`;
+          </eliminarProductoSalidaPorID>`;
         break;
       case 'SITIO':
         accionXML = `
-          <eliminarProductoSitio xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoSitioPorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <sitioID  xmlns="">` + nProducto._id + `</sitioID>
-          </eliminarProductoSitio>`;
+          </eliminarProductoSitioPorID>`;
         break;
 
       default:
@@ -313,11 +317,11 @@ export class ProductService {
     );
   }
 
- /**
-   * Dado una reserva realiza la petición SOAP necesaria
-   * para agregar una reserva al servidor
-   */
-  public agregarReserva(nReserva: any): Observable<any>{
+  /**
+    * Dado una reserva realiza la petición SOAP necesaria
+    * para agregar una reserva al servidor
+    */
+  public agregarReserva(nReserva: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
     const httpOptions: object = this.utils.crearHeadersXML();
 
@@ -326,7 +330,7 @@ export class ProductService {
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     accionXML = `
       <agregarReserva xmlns="http://iservice.eko.javeriana.edu.co/">`
-        + this.utils.crearReservaXML(nReserva as Reserva) +
+      + this.utils.crearReservaXML(nReserva as Reserva) +
       `</agregarReserva>`;
 
     // Se crea la establece la información que se enviará al servidor
@@ -345,7 +349,7 @@ export class ProductService {
     );
   }
 
-  public buscarReservaPorUsuario(id: string) {
+  public buscarReservaPorUsuario(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -365,7 +369,7 @@ export class ProductService {
     );
   }
 
-  public eliminarReserva(id: string) {
+  public eliminarReserva(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -374,6 +378,120 @@ export class ProductService {
         <eliminarReservaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
           <reservaID xmlns="">` + id + `</reservaID>
         </eliminarReservaPorID>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public agregarPreguntaProducto(nPregunta: Pregunta): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+    let accionXML: string = '';
+
+    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    accionXML = `
+      <agregarPreguntaProducto xmlns="http://iservice.eko.javeriana.edu.co/">`
+      + this.utils.crearPreguntaXML(nPregunta as Pregunta) +
+      `</agregarPreguntaProducto>`;
+
+    // Se crea la establece la información que se enviará al servidor
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>`
+      + accionXML +
+      `</Body>
+    </Envelope>`;
+
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public eliminarPreguntaProducto(id: string): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <eliminarPreguntaProducto xmlns="http://iservice.eko.javeriana.edu.co/">
+          <preguntaID xmlns="">` + id + `</preguntaID>
+        </eliminarPreguntaProducto>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public buscarPreguntaProducto(id: string): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <buscarPreguntaProductoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
+          <preguntaID xmlns="">` + id + `</preguntaID>
+        </buscarPreguntaProductoPorID>
+      </Body>
+    </Envelope>`;
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public agregarCalificacionProducto(nCalificacion: Calificacion): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+    let accionXML: string = '';
+
+    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    accionXML = `
+      <agregarCalificacionProducto xmlns="http://iservice.eko.javeriana.edu.co/">`
+      + this.utils.crearCalificacionXML(nCalificacion as Calificacion) +
+      `</agregarCalificacionProducto>`;
+
+    // Se crea la establece la información que se enviará al servidor
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>`
+      + accionXML +
+      `</Body>
+    </Envelope>`;
+
+
+    // Se realiza una petición POST
+    return this.http.post(
+      this.utils.baseUrl + 'eko/producto?wsdl',
+      body,
+      httpOptions
+    );
+  }
+
+  public eliminarCalificacionProducto(id: string): Observable<any> {
+    const httpOptions: object = this.utils.crearHeadersXML();
+
+    const body: string = `
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+      <Body>
+        <eliminarCalificacionProducto xmlns="http://iservice.eko.javeriana.edu.co/">
+          <calificacionID xmlns="">` + id + `</calificacionID>
+        </eliminarCalificacionProducto>
       </Body>
     </Envelope>`;
 

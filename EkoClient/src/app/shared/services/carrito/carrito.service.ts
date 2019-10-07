@@ -57,7 +57,7 @@ export class CarritoService {
    * Busca el carrito de un Usuario
    * @param id
    */
-  public buscarPorIDUsuario(id: string) {
+  public buscarPorIDUsuario(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `

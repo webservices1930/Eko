@@ -4,6 +4,7 @@ import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { Usuario } from 'src/app/shared/model/Usuario/Usuario';
 import { Router } from '@angular/router';
 import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +13,10 @@ import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
 })
 export class ProfileComponent implements OnInit {
   public usuario: Usuario | Proveedor = new Usuario();
+  public productos: any[] = [];
 
   constructor(
+    private productService: ProductService,
     private userService: UserService,
     private router: Router,
     private utils: UtilsService
@@ -29,11 +32,20 @@ export class ProfileComponent implements OnInit {
         } else if (infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'] !== undefined) {
           this.usuario = infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'][0]['usuarioProveedor'][0];
         }
-      },
-        error => {
-          console.log('There was an error: ', error);
-          console.log(error.status);
-        });
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+
+
+    this.productService.buscarPorIDUsuario(this.userService.obtenerCorreoUsuario())
+      .subscribe(result => {
+        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
+        this.productos = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerProductosPorUsuarioResponse'][0]['listaProductosUsuario'];
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
 
   }
 
@@ -46,10 +58,10 @@ export class ProfileComponent implements OnInit {
         window.location.reload();
         this.router.navigate(['user/login']);
       },
-      error => {
-        console.log('There was an error: ', error);
-        console.log(error.status);
-      });
+        error => {
+          console.log('There was an error: ', error);
+          console.log(error.status);
+        });
   }
 
 }
