@@ -114,9 +114,12 @@
           <p>duracion: {{ producto.duracion }}</p>
           <p>horaSalida: {{ producto.horaSalida }}</p>
           <p>horaLlegada: {{ producto.horaLlegada }}</p>
-          <p>trayecto: {{ producto.trayecto }}</p>
+          <h6>Trayecto</h6>
+          <div *ngFor="let trayecto of producto.trayecto; let i = index">
+              <p>{{i}}: {{ trayecto }}</p>
+          </div>
         </ng-container>
-        <a href="#" (click)="reservar(producto._id, producto.tipo)">Añadir al carrito</a>
+        <a class="eko-link" (click)="agregarAlCarrito()">Añadir al carrito</a>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://ekoserver.herokuapp.com",
+    "target": "https://ekoserver.herokuapp.com",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

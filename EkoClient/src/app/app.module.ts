@@ -21,6 +21,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { ProductViewSmallComponent } from './product/product-view-small/product-view-small.component';
 import { ProductViewComponent } from './product/product-view/product-view.component';
+import { CarViewComponent } from './car/car-view/car-view.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ProductViewComponent } from './product/product-view/product-view.compon
     ProfileComponent,
     EditProfileComponent,
     ProductViewSmallComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    CarViewComponent
   ],
   imports: [
     RouterModule,

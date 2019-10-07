@@ -118,7 +118,7 @@ export class ProductService {
    * Busca un producto de tipo Transporte por su ID en el Market Place
    * @param id
    */
-  public buscarPorID(id: string) {
+  public buscarPorID(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `

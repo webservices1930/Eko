@@ -9,6 +9,7 @@ import { AuthGuard } from './guard/auth/auth.guard';
 import { ProfileComponent } from './user/profile/profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { ProductViewComponent } from './product/product-view/product-view.component';
+import { CarViewComponent } from './car/car-view/car-view.component';
 
 const routes: Routes = [
   { path: 'product/add', component: ProductFormComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'user/edit', component: EditProfileComponent, canActivate: [NoAuthGuard] },
   { path: 'home', component: MarketPlaceComponent, canActivate: [NoAuthGuard] },
   { path: 'product/add', component: ProductFormComponent },
-  { path: 'product/:tipo/:id', component: ProductViewComponent }
+  { path: 'product/:tipo/:id', component: ProductViewComponent },
+  { path: 'car', component: CarViewComponent }
 ];
 
 

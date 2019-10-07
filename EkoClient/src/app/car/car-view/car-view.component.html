@@ -1,0 +1,11 @@
+<article *ngIf="hayCarrito">
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let producto of productos">
+        <div class="col-12">
+          {{producto._id}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</article>

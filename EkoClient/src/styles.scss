@@ -12,21 +12,23 @@ img {
 }
 
 .eko-link {
-  color: #1F8524;
+  color: #1F8524 !important;
+  cursor: pointer;
     
   &:hover {
-    color: #A1D6A4;
+    color: #A1D6A4 !important;
   }
 
   &-button {
+    cursor: pointer;
     padding: 8px;
-    border: 1px solid #1F8524;
-    color: #1F8524;
+    border: 1px solid #1F8524 !important;
+    color: #1F8524 !important;
     border-radius: 8px;
     
     &:hover {
-      border-color: #A1D6A4;
-      color: #A1D6A4;
+      border-color: #A1D6A4 !important;
+      color: #A1D6A4 !important;
     }
   }
 }
