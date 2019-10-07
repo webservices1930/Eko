@@ -22,6 +22,7 @@ import { EditProfileComponent } from './user/edit-profile/edit-profile.component
 import { ProductViewSmallComponent } from './product/product-view-small/product-view-small.component';
 import { ProductViewComponent } from './product/product-view/product-view.component';
 import { CarViewComponent } from './car/car-view/car-view.component';
+import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CarViewComponent } from './car/car-view/car-view.component';
     EditProfileComponent,
     ProductViewSmallComponent,
     ProductViewComponent,
-    CarViewComponent
+    CarViewComponent,
+    ProductFormEditComponent
   ],
   imports: [
     RouterModule,

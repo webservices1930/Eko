@@ -247,47 +247,47 @@ export class ProductService {
   public eliminarProducto(nProducto: any): Observable<any> {
     // Se especifíca que la petición se hará por XML
     const httpOptions: object = this.utils.crearHeadersXML();
-
+    console.log(nProducto._id);
     let accionXML: string = '';
 
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
         accionXML = `
-          <eliminarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoTransportePorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <transporteID xmlns="">` + nProducto._id + `</transporteID>
-          </eliminarProductoTransporte>`;
+          </eliminarProductoTransportePorID>`;
         break;
       case 'ALOJAMIENTO':
         accionXML = `
-          <eliminarProductoAlojamiento xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoAlojamientoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <alojamientoID xmlns="">` + nProducto._id + `</alojamientoID>
-          </eliminarProductoAlojamiento>`;
+          </eliminarProductoAlojamientoPorID>`;
         break;
       case 'EVENTO':
         accionXML = `
-          <eliminarProductoEvento xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoEventoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <eventoID xmlns="">` + nProducto._id + `</eventoID>
-          </eliminarProductoEvento>`;
+          </eliminarProductoEventoPorID>`;
         break;
       case 'EXPERIENCIA':
         accionXML = `
-          <eliminarProductoExperiencia xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoExperienciaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
            <experienciaID xmlns="">` + nProducto._id + `</experienciaID>
-          </eliminarProductoExperiencia>`;
+          </eliminarProductoExperienciaPorID>`;
         break;
 
       case 'SALIDA':
         accionXML = `
-          <eliminarProductoSalida xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoSalidaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <salidaID xmlns="">` + nProducto._id + `</salidaID>
-          </eliminarProductoSalida>`;
+          </eliminarProductoSalidaPorID>`;
         break;
       case 'SITIO':
         accionXML = `
-          <eliminarProductoSitio xmlns="http://iservice.eko.javeriana.edu.co/">
+          <eliminarProductoSitioPorID xmlns="http://iservice.eko.javeriana.edu.co/">
             <sitioID  xmlns="">` + nProducto._id + `</sitioID>
-          </eliminarProductoSitio>`;
+          </eliminarProductoSitioPorID>`;
         break;
 
       default:
