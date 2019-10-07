@@ -13,13 +13,16 @@ import { Sitio } from '../model/Producto/Sitio';
 import { Reserva } from '../model/Reserva';
 import { Pregunta } from '../model/Pregunta';
 import { Calificacion } from '../model/Calificacion';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  public baseUrl: string = '/api/';
+  public baseUrl: string = 'https://ekoserver.herokuapp.com/';
+  // public baseUrl: string = '/api/';
+  // public baseUrl: string = environment.apiURL;
 
   constructor() { }
 
@@ -53,8 +56,8 @@ export class UtilsService {
   public crearHeadersXML(): object {
     return {
       headers: new HttpHeaders().set('Content-Type', 'text/xml')
-        .append('Access-Control-Allow-Methods', 'GET')
         .append('Access-Control-Allow-Origin', '*')
+        .append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
         .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
       responseType: 'text/html',
       withCredentials: true

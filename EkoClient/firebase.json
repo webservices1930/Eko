@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "dist/EkoClient",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": {
+      "source": "/api/{,**}",
+      "destination": "https://ekoserver.herokuapp.com/",
+      "type": 301
+    }
+  }
+}

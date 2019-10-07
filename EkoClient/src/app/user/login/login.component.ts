@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.iniciarSesion(informacionUsuario as Usuario)
       .subscribe(result => {
+        console.log(result)
         const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
         let usuario: Usuario = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:iniciarSesionResponse'][0]['usuario'][0];
 
