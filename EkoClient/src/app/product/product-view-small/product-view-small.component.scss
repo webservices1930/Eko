@@ -1,0 +1,43 @@
+.eko-producto-small {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  figure {
+    margin-bottom: 0;
+  }
+
+  &__info {
+    padding: 12px 8px;
+
+    &-text {
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    &-type {
+      color: #A1D6A4;
+      margin-bottom: 4px;
+    }
+
+    &-price {
+      margin-bottom: 0;
+    }
+  }
+
+  &__btn {
+    display: block;
+    text-align: center;
+    padding: 4px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #FFF;
+    background-color: #A1D6A4;
+
+    &:hover {
+      background-color: #1F8524;
+    }
+  }
+}

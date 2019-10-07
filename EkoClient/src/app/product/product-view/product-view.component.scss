@@ -1,0 +1,50 @@
+.eko-producto {
+  $self: &;
+
+  margin-top: -20px;
+  color: #333;
+
+  .eko-title {
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  &__fig {
+    margin-bottom: 0;
+  }
+
+  &__container {
+    padding: 24px 0;
+    background-color: #FFFFFF;
+
+    #{$self}__type {
+      margin-bottom: 32px;
+      color: #A1D6A4;
+      text-align: center;
+    }
+
+    #{$self}__text {
+      margin-bottom: 0;
+    }
+  }
+
+  &__disponibilidad {
+    display: table;
+    width: 100%;
+    margin: 16px 0;
+
+    &-row {
+      display: table-row;
+
+      p {
+        display: table-cell;
+        border: 1px solid #ccc;
+        padding: 4px 12px;
+
+        &#{$self}__text-title {
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
