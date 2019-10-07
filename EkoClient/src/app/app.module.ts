@@ -24,6 +24,7 @@ import { ProductViewComponent } from './product/product-view/product-view.compon
 import { CarViewComponent } from './car/car-view/car-view.component';
 import { QuestionFormComponent } from './question/question-form/question-form.component';
 import { RateFormComponent } from './rate/rate-form/rate-form.component';
+import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RateFormComponent } from './rate/rate-form/rate-form.component';
     ProductViewComponent,
     CarViewComponent,
     QuestionFormComponent,
-    RateFormComponent
+    RateFormComponent,
+    ProductFormEditComponent
   ],
   imports: [
     RouterModule,
