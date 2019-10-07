@@ -23,8 +23,12 @@ public class HerokuLoader {
 
     //Catalogo
     String uriCatalogo ="/eko/catalogo";
-    CatalogoService catalogoUsuario = new CatalogoService();
-    Endpoint.publish(host + port + uriCatalogo, catalogoUsuario);
+    CatalogoService catalogoService = new CatalogoService();
+    Endpoint.publish(host + port + uriCatalogo, catalogoService);
 
+    //Carrito
+    String uriCarrito ="/eko/carrito";
+    CatalogoService carritoService = new CatalogoService();
+    Endpoint.publish(host + port + uriCarrito, carritoService);
   }
 }
