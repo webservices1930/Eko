@@ -16,17 +16,16 @@ export class MarketPlaceComponent implements OnInit {
     private utils: UtilsService,
     private userService: UserService,
     private router: Router
-    ) {
-      this.productService.obtenerTodosLosProductos()
+  ) {
+    this.productService.obtenerTodosLosProductos()
       .subscribe(result => {
         const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
         this.productos = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerProductosResponse'][0]['listadoProductos'];
-        console.log(this.productos);
       }, error => {
-          console.log('There was an error: ', error);
-          console.log(error.status);
-        });
-    }
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+  }
 
   ngOnInit() {
   }

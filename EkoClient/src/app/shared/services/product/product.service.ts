@@ -146,7 +146,7 @@ export class ProductService {
    * Busca el listado de productos de un Usuario
    * @param id
    */
-  public buscarPorIDUsuario(id: string) {
+  public buscarPorIDUsuario(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -231,6 +231,8 @@ export class ProductService {
       + accionXML +
       `</Body>
     </Envelope>`;
+
+    console.log(body)
 
     // Se realiza una petición POST
     return this.http.post(

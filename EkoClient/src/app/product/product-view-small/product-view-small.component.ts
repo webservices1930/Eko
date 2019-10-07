@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProductViewSmallComponent implements OnInit {
   @Input() producto: any;
+  @Input() canEdit: boolean = false;
 
   constructor(private router: Router) {}
 

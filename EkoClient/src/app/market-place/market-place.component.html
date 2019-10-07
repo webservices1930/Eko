@@ -2,7 +2,7 @@
   <div class="row">
     <ng-container *ngFor="let producto of productos">
       <div class="col-4">
-        <app-product-view-small [producto]="producto"></app-product-view-small>
+        <app-product-view-small [producto]="producto" [canEdit]="false"></app-product-view-small>
       </div>
     </ng-container>
   </div>

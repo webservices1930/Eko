@@ -279,6 +279,7 @@ export class UtilsService {
      */
   public crearSitioXML(nSitio: Sitio): string {
     let disponibilidad: string = '';
+    let tipoSitio: string = '';
 
     // Añade todos los tags de las disponibilidades del producto
     nSitio.disponibilidad.forEach(dispo => {
@@ -290,6 +291,11 @@ export class UtilsService {
       disponibilidad += '</disponibilidad>';
     });
 
+    if (nSitio.tipoSitio === undefined) {
+      tipoSitio = nSitio['tipoDeSitio'];
+    } else {
+      tipoSitio = nSitio.tipoSitio;
+    }
 
     // Construye todo el XML con los datos del producto
     return `
@@ -308,7 +314,7 @@ export class UtilsService {
         <latitud>` + nSitio.latitud + `</latitud>
         <longitud>` + nSitio.longitud + `</longitud>
         <restriccionEdad>` + nSitio.restriccionEdad + `</restriccionEdad>
-        <tipoDeSitio>` + nSitio.tipoSitio + `</tipoDeSitio>
+        <tipoDeSitio>` + tipoSitio + `</tipoDeSitio>
     </sitio>`;
   }
 

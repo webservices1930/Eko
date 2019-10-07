@@ -66,9 +66,9 @@ export class ProductFormEditComponent implements OnInit {
           .subscribe(prod2 => {
             const infoRespuesta2 = this.utils.convertirXMLEnObjeto(prod2 as string);
             this.producto = infoRespuesta2['S:Envelope']['S:Body'][0]['ns2:buscarProductoPorIdResponse'][0]['producto'][0];
-            switch(this.tipo){
-              case'ALOJAMIENTO':
-              this.producto.tipoAlojamiento = this.producto.tipoAlojamiento[0];
+            switch (this.tipo) {
+              case 'ALOJAMIENTO':
+                this.producto.tipoAlojamiento = this.producto.tipoAlojamiento[0];
                 break;
               case 'SITIO':
                 this.producto.tipoDeSitio = this.producto.tipoDeSitio[0];
@@ -81,7 +81,7 @@ export class ProductFormEditComponent implements OnInit {
                 this.producto.tipoEvento = this.producto.tipoEvento[0];
                 break;
               case 'SALIDA':
-                  this.producto.tipoSalida = this.producto.tipoSalida[0];
+                this.producto.tipoSalida = this.producto.tipoSalida[0];
                 break;
               case 'EXPERIENCIA':
                 this.producto.tipoExperiencia = this.producto.tipoExperiencia[0];
@@ -173,7 +173,9 @@ export class ProductFormEditComponent implements OnInit {
     this.producto.tipo = this.tipo;
     this.producto.idUsuario = this.userService.obtenerCorreoUsuario();
 
-    if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA' ) {
+    console.log(this.producto)
+
+    if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA') {
       console.log('Trayecto');
       this.producto.trayecto = [];
       this.listaTrayecto.forEach(trayecto => {
@@ -192,7 +194,7 @@ export class ProductFormEditComponent implements OnInit {
       });
   }
 
-  public eliminar(){
+  public eliminar() {
     this.producto._id = this.id;
     this.producto.precio = this.precio;
     this.producto.infoPaisDestino = this.infoPaisDestino;
@@ -201,7 +203,7 @@ export class ProductFormEditComponent implements OnInit {
     this.producto.tipo = this.tipo;
     this.producto.idUsuario = this.userService.obtenerCorreoUsuario();
 
-    if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA' ) {
+    if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA') {
       console.log('Trayecto');
       this.producto.trayecto = [];
       this.listaTrayecto.forEach(trayecto => {
@@ -211,7 +213,7 @@ export class ProductFormEditComponent implements OnInit {
 
     console.log(this.producto);
     this.productService.eliminarProducto(this.producto)
-      .subscribe(result =>{
+      .subscribe(result => {
         alert('Producto eliminado exitosamente');
       }, error => {
         console.log('There was an error', error);
