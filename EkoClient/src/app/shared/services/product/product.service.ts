@@ -77,8 +77,6 @@ export class ProductService {
         break;
     }
 
-    console.log(accionXML)
-
     // Se crea la establece la información que se enviará al servidor
     const body: string = `
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">

@@ -19,6 +19,8 @@ import { MarketPlaceComponent } from './market-place/market-place.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { ProductViewSmallComponent } from './product/product-view-small/product-view-small.component';
+import { ProductViewComponent } from './product/product-view/product-view.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { EditProfileComponent } from './user/edit-profile/edit-profile.component
     MarketPlaceComponent,
     RegisterComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ProductViewSmallComponent,
+    ProductViewComponent
   ],
   imports: [
     RouterModule,

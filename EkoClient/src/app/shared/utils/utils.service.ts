@@ -17,7 +17,7 @@ import { Reserva } from '../model/Reserva';
 })
 export class UtilsService {
 
-  public baseUrl: string = '/api/';
+  public baseUrl: string = 'http://ekoserver.herokuapp.com/';
 
   constructor() { }
 
