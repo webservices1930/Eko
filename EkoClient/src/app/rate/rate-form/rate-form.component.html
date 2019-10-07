@@ -1,0 +1,17 @@
+<section class="eko-pregunta-form">
+  <form class="eko-pregunta-form__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <h3 class="eko-pregunta-form__form-title">Enviar una pregunta</h3>
+    <div class="col-12">
+      <label for="">Valoracion</label>
+      <input type="number" class="form-control" formControlName="valoracion" name="valoracion" required>
+    </div>
+    <div class="col-12">
+      <textarea placeholder="Comentario" type="text" class="form-control" formControlName="comentario"
+        name="comentario" required></textarea>
+    </div>
+    <div class="col-6 offset-3">
+      <button [disabled]="checkoutForm.invalid" class="btn btn-dark btn-lg btn-block btn-sm" type="submit">Enviar
+        pregunta</button>
+    </div>
+  </form>
+</section>

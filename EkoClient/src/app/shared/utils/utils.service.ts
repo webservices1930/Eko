@@ -11,6 +11,8 @@ import { Experiencia } from '../model/Producto/Experiencia';
 import { Salida } from '../model/Producto/Salida';
 import { Sitio } from '../model/Producto/Sitio';
 import { Reserva } from '../model/Reserva';
+import { Pregunta } from '../model/Pregunta';
+import { Calificacion } from '../model/Calificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -91,8 +93,8 @@ export class UtilsService {
         <_id>` + nTransporte._id + `</_id>
         <descripcion>` + nTransporte.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nTransporte.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nTransporte.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nTransporte.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nTransporte.precio + `</precio>
         <tipo>TRANSPORTE</tipo>
@@ -101,7 +103,7 @@ export class UtilsService {
         <horaSalida>` + nTransporte.horaSalida + `</horaSalida>
         <tipoTransporte>` + nTransporte.tipoTransporte + `</tipoTransporte>
         `
-        + trayectos +
+      + trayectos +
       `
     </transporte>`;
   }
@@ -129,8 +131,8 @@ export class UtilsService {
         <_id>` + nAlojamiento._id + `</_id>
         <descripcion>` + nAlojamiento.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nAlojamiento.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nAlojamiento.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nAlojamiento.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nAlojamiento.precio + `</precio>
         <tipo>ALOJAMIENTO</tipo>
@@ -149,10 +151,10 @@ export class UtilsService {
   }
 
 
-   /**
-   * Toma un objeto de tipo EVENTO y lo transforma a su interpretación
-   * en XML en el servidor
-   */
+  /**
+  * Toma un objeto de tipo EVENTO y lo transforma a su interpretación
+  * en XML en el servidor
+  */
   public crearEventoXML(nEvento: Evento): string {
     let disponibilidad: string = '';
 
@@ -172,8 +174,8 @@ export class UtilsService {
     <_id>` + nEvento._id + `</_id>
         <descripcion>` + nEvento.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nEvento.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nEvento.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nEvento.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nEvento.precio + `</precio>
         <tipo>EVENTO</tipo>
@@ -189,10 +191,10 @@ export class UtilsService {
   }
 
 
-   /**
-   * Toma un objeto de tipo EXPERIENIA y lo transforma a su interpretación
-   * en XML en el servidor
-   */
+  /**
+  * Toma un objeto de tipo EXPERIENIA y lo transforma a su interpretación
+  * en XML en el servidor
+  */
   public crearExperienciaXML(nExperiencia: Experiencia): string {
     let disponibilidad: string = '';
 
@@ -212,8 +214,8 @@ export class UtilsService {
         <_id>` + nExperiencia._id + `</_id>
         <descripcion>` + nExperiencia.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nExperiencia.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nExperiencia.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nExperiencia.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nExperiencia.precio + `</precio>
         <tipo>EXPERIENCIA</tipo>
@@ -244,7 +246,7 @@ export class UtilsService {
       disponibilidad += '</disponibilidad>';
     });
 
-    nSalida.trayecto.forEach( trayect => {
+    nSalida.trayecto.forEach(trayect => {
       let t: string = trayect;
       trayecto += '<trayecto>';
       trayecto += t;
@@ -257,8 +259,8 @@ export class UtilsService {
         <_id>` + nSalida._id + `</_id>
         <descripcion>` + nSalida.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nSalida.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nSalida.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nSalida.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nSalida.precio + `</precio>
         <tipo>SALIDA</tipo>
@@ -267,14 +269,14 @@ export class UtilsService {
         <restriccionEdad>` + nSalida.restriccionEdad + `</restriccionEdad>
         <tipoSalida>` + nSalida.tipoSalida + `</tipoSalida>
         `
-        + trayecto +
-        `
+      + trayecto +
+      `
     </salida>`;
   }
-/**
-   * Toma un objeto de tipo SITIO y lo transforma a su interpretación
-   * en XML en el servidor
-   */
+  /**
+     * Toma un objeto de tipo SITIO y lo transforma a su interpretación
+     * en XML en el servidor
+     */
   public crearSitioXML(nSitio: Sitio): string {
     let disponibilidad: string = '';
 
@@ -295,12 +297,12 @@ export class UtilsService {
         <_id>` + nSitio._id + `</_id>
         <descripcion>` + nSitio.descripcion + `</descripcion>
         `
-        + disponibilidad +
-        `<idUsuario>` + nSitio.idUsuario + `</idUsuario>
+      + disponibilidad +
+      `<idUsuario>` + nSitio.idUsuario + `</idUsuario>
         <infoPaisDestino>` + nSitio.infoPaisDestino + `</infoPaisDestino>
         <precio>` + nSitio.precio + `</precio>
         <tipo>SITIO</tipo>
-        <consumoObligatorio>` + nSitio.consumoObligatorio +`</consumoObligatorio>
+        <consumoObligatorio>` + nSitio.consumoObligatorio + `</consumoObligatorio>
         <horaApertura>` + nSitio.horaApertura + `</horaApertura>
         <horaCierre>` + nSitio.horaCierre + `</horaCierre>
         <latitud>` + nSitio.latitud + `</latitud>
@@ -356,22 +358,56 @@ export class UtilsService {
    */
   public crearReservaXML(nReserva: Reserva): string {
 
-   // let fechas: string = '';
+    // let fechas: string = '';
 
 
 
     // Añade todos los tags de fechas de la reserva
-   /* nReserva.fechas.forEach(fecha => {
-      fechas += '<fecha>' + fecha + '</fecha>';
-    });*/
+    /* nReserva.fechas.forEach(fecha => {
+       fechas += '<fecha>' + fecha + '</fecha>';
+     });*/
     // Construye todo el XML con los datos de la reserva
     return `
     <reserva xmlns="">
     <_id>` + nReserva._id + `</_id>
       <fechas>` + nReserva.fechas + `</fechas>
-      <clienteid>`+nReserva.clienteid+`</clienteid>
-       <productoid>`+nReserva.productoid+`</productoid>
+      <clienteid>`+ nReserva.clienteid + `</clienteid>
+       <productoid>`+ nReserva.productoid + `</productoid>
     </reserva>`;
+  }
+
+  /**
+   * Toma un objeto pregunta y lo transporta en su interpretación en XML
+   * en el servidor
+   * @param nPregunta 
+   */
+  public crearPreguntaXML(nPregunta: Pregunta) {
+    return `
+    <pregunta xmlns="">
+      <descripcion>` + nPregunta.descripcion + `</descripcion>
+      <fecha_Creacion>` + nPregunta.fecha_Creacion + `</fecha_Creacion>
+      <id_Producto>` + nPregunta.id_Producto + `</id_Producto>
+      <id_Usuario>` + nPregunta.id_Usuario + `</id_Usuario>
+      <respuesta>` + nPregunta.respuesta + `</respuesta>
+      <_id>` + nPregunta._id + `</_id>
+    </pregunta>`;
+  }
+
+  /**
+   * Toma un objeto pregunta y lo transporta en su interpretación en XML
+   * en el servidor
+   * @param nPregunta 
+   */
+  public crearCalificacionXML(nCalificacion: Calificacion) {
+    return `
+    <calificacion xmlns="">
+      <comentario>` + nCalificacion.comentario + `</comentario>
+      <fecha_Creacion>` + nCalificacion.fecha_Creacion + `</fecha_Creacion>
+      <id_Producto>` + nCalificacion.id_Producto + `</id_Producto>
+      <id_Usuario>` + nCalificacion.id_Usuario + `</id_Usuario>
+      <valoracion>` + nCalificacion.valoracion + `</valoracion>
+      <_id>` + nCalificacion._id + `</_id>
+    </calificacion>`;
   }
 
 }
