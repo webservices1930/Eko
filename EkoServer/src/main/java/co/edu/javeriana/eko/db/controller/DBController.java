@@ -135,6 +135,19 @@ public final class DBController {
 		query.put("_id", new ObjectId(_id));
 		coleccion.findOneAndReplace(query, nDoc);
 	}
+	
+	
+	
+	public static void actualizarPC(String nombreColeccion, Document nDoc, String _id) {
+		MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+		MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+		BasicDBObject query = new BasicDBObject();
+		query.put("id_Producto", new ObjectId(_id));
+		coleccion.findOneAndReplace(query, nDoc);
+	}
+	
+	
+	
 
 	/**
 	 * Busca en una colecci�n indicada un objeto por su ID

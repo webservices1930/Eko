@@ -312,9 +312,10 @@ public class ProductoServices implements IProductoService {
 	
 	
 	@Override
-	public void actualizarCalificacionProducto(Calificacion nCalificacion) {
+	public void actualizarCalificacionProducto(Calificacion nCalificacion , String _id) {
+		Producto producto = buscarProductoPorId( _id);
 		Document nCalificacionDoc = Utils.deObjetoCalificacionADocumento(nCalificacion);		
-		DBController.actualizarObjeto("productos-pregunta", nCalificacionDoc, nCalificacion.get_id());
+		DBController.actualizarObjeto("productos-calificacion", nCalificacionDoc, producto.get_id());
 	}
 	
 	
@@ -339,10 +340,14 @@ public class ProductoServices implements IProductoService {
 	
 	
 	@Override
-	public void actualizarPreguntaProducto(Pregunta nPregunta) {
+	public void actualizarPreguntaProducto(Pregunta nPregunta , String _id) {
+		Producto producto = buscarProductoPorId( _id);
 		Document nPreguntaDoc = Utils.deObjetoPreguntaADocumento(nPregunta);		
-		DBController.actualizarObjeto("productos-pregunta", nPreguntaDoc, nPregunta.get_id());
+		DBController.actualizarPC("productos-pregunta", nPreguntaDoc, producto.get_id());
 	}
+	
+	
+	
 
 	
 	

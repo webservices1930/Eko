@@ -155,7 +155,7 @@ public interface IProductoService {
 	public Calificacion buscarCalificacionesProductoPorID(@WebParam(name = "productoID") String _id);
 	
 	@WebMethod(operationName = "actualizarCalificacionProducto")
-	public void actualizarCalificacionProducto(@WebParam(name = "calificacion") Calificacion nCalificacion);
+	public void actualizarCalificacionProducto(@WebParam(name = "calificacion") Calificacion nCalificacion , @WebParam(name = "preguntaID") String _id);
 	
 	
 	
@@ -174,6 +174,6 @@ public interface IProductoService {
 	public Pregunta buscarPreguntaProductoPorID(@WebParam(name = "preguntaID") String _id);
 	
 	@WebMethod(operationName = "actualizarPreguntaProducto")
-	public void actualizarPreguntaProducto(@WebParam(name = "pregunta") Pregunta nPregunta);
+	public void actualizarPreguntaProducto(@WebParam(name = "pregunta") Pregunta nPregunta, @WebParam(name = "preguntaID") String _id);
 	
 }
