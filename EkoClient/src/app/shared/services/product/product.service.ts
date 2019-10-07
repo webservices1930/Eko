@@ -250,6 +250,8 @@ export class ProductService {
 
     let accionXML: string = '';
 
+    console.log(nProducto)
+
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
@@ -343,7 +345,7 @@ export class ProductService {
     );
   }
 
-  public buscarReservaPorUsuario(id: string) {
+  public buscarReservaPorUsuario(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `
@@ -363,7 +365,7 @@ export class ProductService {
     );
   }
 
-  public eliminarReserva(id: string) {
+  public eliminarReserva(id: string): Observable<any> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     const body: string = `

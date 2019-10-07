@@ -368,7 +368,7 @@ export class UtilsService {
     return `
     <reserva xmlns="">
     <_id>` + nReserva._id + `</_id>
-      <fecha>` + nReserva.fechas + `</fecha>
+      <fechas>` + nReserva.fechas + `</fechas>
       <clienteid>`+nReserva.clienteid+`</clienteid>
        <productoid>`+nReserva.productoid+`</productoid>
     </reserva>`;
