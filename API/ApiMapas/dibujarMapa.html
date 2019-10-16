@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Details</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 4.6284578, lng: -74.06490769999999}, // cambiamos latitud y longuitd por lo que nos da la primera API ( api.txt)
+          zoom: 15
+        });
+
+        var request = {
+          placeId: 'ChIJnxw_GaiZP44RB0wTD2QxNPk',  // cambiamos por placeid que nos da la primera api ( api.txt)
+          fields: ['name', 'formatted_address', 'place_id', 'geometry','formatted_phone_number','website','opening_hours']
+        };
+
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails(request, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location
+            });
+            google.maps.event.addListener(marker, 'click', function() {  // aqui dibujamos la informacion que queremo que aparezca 
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Telefono: ' + place.formatted_phone_number + '<br>' + 
+                place.formatted_address + '<br>' +  place.opening_hours + '<br>' +  place.website + '</div>');
+              infowindow.open(map, this);
+            });
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk
+&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>

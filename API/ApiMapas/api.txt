@@ -1,0 +1,47 @@
+APIKEY :AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk
+
+
+
+https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=
+Universidad%20Javeriana%20Bogota%20Colombia               // Cambiar por nombre del alojamiento/transporte 
+&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry,place_id&key=AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk
+
+Esta API te dara: 
+
+{
+   "candidates": [
+      {
+         "formatted_address": "Cra. 7 #No. 40 - 62, Bogotá, Cundinamarca, Colombia",
+         "geometry": {
+            "location": {
+               "lat": 4.6284578,  // necesitamos esto para dibujarlo en el mapa 
+               "lng": -74.06490769999999 // necesitamos esto para dibujarlo en el mapa 
+            },
+            "viewport": {
+               "northeast": {
+                  "lat": 4.629911329892722,
+                  "lng": -74.06362687010729
+               },
+               "southwest": {
+                  "lat": 4.627211670107278,
+                  "lng": -74.06632652989272
+               }
+            }
+         },
+         "name": "Pontificia Universidad Javeriana",
+         "photos": [
+            {
+               "height": 3096,
+               "html_attributions": [
+                  "<a href=\"https://maps.google.com/maps/contrib/112244682468399361915/photos\">Oscar Bastidas Delgado</a>"
+               ], // con la referencia de la foto podemos sacar la foto esta en el foto.txt como hacerlo 
+               "photo_reference": "CmRaAAAAqStSyD7-pLgvILOX4KWIPW1V97fwhFKRrIXVgXFuoIBByN5zepoHMwLo9_PhIYboiARUq5YfvVBa39xWx8mLf1e0L2NmtqnXB6SpAiY5DpzLzbb9QJR25AcVrIUVZVZsEhALN9N8CB4A1m8S6GRshdY5GhS1vSj-T8pOPMVcQFtIw0Iq2FxmAg",
+               "width": 4128
+            }
+         ],
+         "place_id": "ChIJnxw_GaiZP44RB0wTD2QxNPk",  // necesitamos esto para dibujarlo en el mapa 
+         "rating": 4.5
+      }
+   ],
+   "status": "OK"
+}
