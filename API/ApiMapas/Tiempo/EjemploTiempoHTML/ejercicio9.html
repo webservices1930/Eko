@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Laura Marcela Sánchez Peláez">
+    <meta name="description" content="Perros vs Gatos">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="ejercicio9.js"></script>
+    <title>Meteo</title>
+    <link rel="stylesheet" type="text/css" href="ejercicio9.css">
+</head>
+
+<body>
+    <section>
+        <h1>Tabla con contenido meteorológico actual</h1>
+        <table id="tabla" class="table">
+            <tbody>
+                <tr class="encabezado">
+                    <th></th>
+                    <th>Ciudad</th>
+                    <th>Pais</th>
+                    <th>CoordLat °</th>
+                    <th>CorrdLon °</th>
+                    <th>Temperatura ℃</th>
+                    <th>Temperatura Maximo ℃</th>
+                    <th>Temperatura Minima ℃</th>
+                    <th>Presión hPa</th>
+                    <th>Humedad %</th>
+                    <th>Amanece hora local</th>
+                    <th>Oscurece hora local</th>
+                    <th>Velocidad Viento (m/s)</th>
+                    <th>Hora Medida</th>
+                    <th>Fecha Medida</th>
+                    <th>Visibilidad (m)</th>
+                    <th>Nubosidad %</th>
+                    <th>Descripción</th>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        <button onclick="meteoValencia.verXML()">Obtener datos meteorológicos Valencia</button>
+        <button  onclick="meteoCali.verXML()">Obtener datos meteorológicos Cali</button>
+        <button  onclick="meteoSincelejo.verXML()">Obtener datos meteorológicos Sincelejo</button>
+        <button  onclick="meteoBogota.verXML()">Obtener datos meteorológicos Bogota</button>
+        <button  onclick="meteoOviedo.verXML()">Obtener datos meteorológicos Oviedo</button>
+    </section>
+    <footer>
+        <a href="https://validator.w3.org/check?uri=referer"><img src="https://www.w3.org/html/logo/badge/html5-badge-h-solo.png"
+                alt="HTML5 Válido" title="HTML5 Válido" height="64" width="63" /></a>
+        <p>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" />
+            </a>
+        </p>
+
+    </footer>
+</body>
+
+</html>
