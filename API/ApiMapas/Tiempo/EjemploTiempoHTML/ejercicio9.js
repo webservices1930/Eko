@@ -1,7 +1,7 @@
 'use strict'
 class Meteo {
   constructor() {
-    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
+    this.apikey = '?'
     this.ciudad = 'Oviedo'
     this.tipo = "&mode=xml";
     this.codigoPais = 'ES'
@@ -9,7 +9,7 @@ class Meteo {
     this.idioma = '&lang=es'
     this.url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.ciudad + this.tipo + this.unidades + this.idioma + "&APPID=" + this.apikey;
     this.correcto = "Â¡Todo correcto! JSON recibido de <a href='http://openweathermap.org'>OpenWeatherMap</a>"
-	//http://api.openweathermap.org/data/2.5/forecast?q=Oviedo&mode=xml&units=metric&lang=es&APPID=bf5d5874078f74e1bf2157e6ee127492 
+	//http://api.openweathermap.org/data/2.5/forecast?q=Oviedo&mode=xml&units=metric&lang=es&APPID=? 
 	// da el tiempo por horas. 
   }
   cargarDatos() {
@@ -95,7 +95,7 @@ class Meteo {
 
 class MeteoBogota {
   constructor() {
-    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
+    this.apikey = '?'
     this.ciudad = 'Bogota'
     this.tipo = "&mode=xml";
     this.codigoPais = 'COL'
@@ -186,7 +186,7 @@ class MeteoBogota {
 
 class MeteoCali {
   constructor() {
-    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
+    this.apikey = '?'
     this.ciudad = 'Cali'
     this.tipo = "&mode=xml";
     this.codigoPais = 'COL'
@@ -277,7 +277,7 @@ class MeteoCali {
 
 class MetoValencia {
   constructor() {
-    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
+    this.apikey = '?'
     this.ciudad = 'Valencia'
     this.tipo = "&mode=xml";
     this.codigoPais = 'ES'
@@ -369,7 +369,7 @@ class MetoValencia {
 
 class MeteoSincelejo {
   constructor() {
-    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
+    this.apikey = '?'
     this.ciudad = 'Sincelejo'
     this.tipo = "&mode=xml";
     this.codigoPais = 'COL'
