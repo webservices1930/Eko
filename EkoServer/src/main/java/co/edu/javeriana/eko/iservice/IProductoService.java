@@ -129,7 +129,8 @@ public interface IProductoService {
 	@WebMethod(operationName = "actualizarProductoEvento")
 	public void actualizarProductoEvento(@WebParam(name = "evento") Evento nEvento);
 	
-	
+	//Reserva
+
 	@WebMethod(operationName = "agregarReserva")
 	public void agregarReserva(@WebParam(name = "reserva") Reserva nReserva);
 	
@@ -139,7 +140,15 @@ public interface IProductoService {
 	
 	@WebMethod(operationName = "eliminarReservaPorID")
 	public void eliminarReservaPorID(@WebParam(name = "reservaID") String _id);
-	
+
+	@WebMethod(operationName = "actualizarReserva")
+	public void actualizarReserva(@WebParam(name = "reserva") Reserva nReserva);
+
+	@WebMethod(operationName = "cancelarReserva")
+	public void cancelarReserva(@WebParam(name = "reserva") Reserva nReserva);
+
+
+
 	// calificaciones
 	
 	@WebMethod(operationName = "agregarCalificacionProducto")
