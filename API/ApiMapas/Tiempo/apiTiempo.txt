@@ -1,6 +1,6 @@
 http://api.openweathermap.org/data/2.5/weather?q=
 Oviedo   // aqui ponemos nombre ciudad 
-&mode=xml&units=metric&units=metric &lang=es&APPID=bf5d5874078f74e1bf2157e6ee127492
+&mode=xml&units=metric&units=metric &lang=es&APPID=APITIEMPO(PREGUNTAMELA)
 // TIEMPO EN EL MOMENTO QUE SE SOLICITA 
  
 
@@ -53,7 +53,7 @@ Oviedo   // aqui ponemos nombre ciudad
 
 http://api.openweathermap.org/data/2.5/forecast?q=
 Oviedo // aqui ponemos ejemplo ciudad 
-&mode=json&units=metric&lang=es&APPID=bf5d5874078f74e1bf2157e6ee127492 
+&mode=json&units=metric&lang=es&APPID=APITIEMPOPREGUNTAMELA
 //TIMPO POR HORAS 
 {
     "cod": "200",
