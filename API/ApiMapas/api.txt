@@ -1,10 +1,10 @@
-APIKEY :AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk
+APIKEY : PREGUNTAMELA 
 
 
 
 https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=
 Universidad%20Javeriana%20Bogota%20Colombia               // Cambiar por nombre del alojamiento/transporte 
-&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry,place_id&key=AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk
+&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry,place_id&key=APIKEY
 
 Esta API te dara: 
 
