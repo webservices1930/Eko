@@ -19,7 +19,7 @@ import { Calificacion } from '../model/Calificacion';
 })
 export class UtilsService {
 
-  public baseUrl: string = '/api/';
+  public baseUrl: string = 'http://localhost:8080/api/';
 
   constructor() { }
 
