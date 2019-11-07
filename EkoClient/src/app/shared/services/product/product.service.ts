@@ -33,6 +33,7 @@ export class ProductService {
     const httpOptions: object = this.utils.crearHeadersXML();
 
     let accionXML: string = '';
+    let urlDestino: string = this.utils.baseUrl + 'productos';
 
     // Se crea el cuerpo de la petición dependiendo del tipo de producto
     switch (nProducto['tipo']) {
@@ -41,6 +42,7 @@ export class ProductService {
           <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
           + this.utils.crearTransporteXML(nProducto as Transporte) +
           `</agregarProductoTransporte>`;
+        urlDestino += '/transporte'
         break;
       case 'ALOJAMIENTO':
         accionXML = `
@@ -88,11 +90,8 @@ export class ProductService {
     </Envelope>`;
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
-    );
+    console.log(urlDestino);
+    return this.http.post(urlDestino, nProducto, { withCredentials: true });
   }
 
   /**
