@@ -122,7 +122,7 @@ public final class DBController {
      * @param nombreColeccion
      * @param _id
      */
-    public static Transporte buscarEnColeccionPorID(String nombreColeccion, String _id) {
+    public static Transporte buscarEnColeccionTransportePorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
 

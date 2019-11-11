@@ -7,6 +7,7 @@ import co.edu.javeriana.eko.utils.TipoProducto;
 public abstract class Producto {
 	
 	// VARIABLES
+	private String titulo;
 	private String _id;
 	private double precio;
 	private String infoPaisDestino;
@@ -21,8 +22,8 @@ public abstract class Producto {
 	public Producto() {}
 	
 	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, String idUsuario) {
-			
+			String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+		this.titulo = titulo;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
 		this.disponibilidad = disponibilidad;
@@ -34,7 +35,8 @@ public abstract class Producto {
 	}
 	
 	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, String idUsuario) {			
+			String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+		this.titulo = titulo;
 		this._id = _id;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
@@ -50,6 +52,14 @@ public abstract class Producto {
 
 	public String get_id() {
 		return _id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public void set_id(String _id) {

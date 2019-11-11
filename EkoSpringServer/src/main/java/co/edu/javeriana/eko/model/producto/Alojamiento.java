@@ -28,8 +28,8 @@ public class Alojamiento extends Producto{
 
 	public Alojamiento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
+		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -45,8 +45,8 @@ public class Alojamiento extends Producto{
 
 	public Alojamiento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario);
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
+		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;

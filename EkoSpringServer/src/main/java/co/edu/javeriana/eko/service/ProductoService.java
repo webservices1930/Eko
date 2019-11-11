@@ -60,7 +60,30 @@ public class ProductoService implements IProductoService {
 
 	@Override
 	public Producto obtenerProducto(String nombreColeccion, String idProducto) {
-		return DBController.buscarEnColeccionPorID(nombreColeccion, idProducto);
+		switch (nombreColeccion) {
+		case "productos-alojamiento":
+			return DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, idProducto);
+
+		case "productos-evento":
+			return DBController.buscarEnColeccionEventoPorID(nombreColeccion, idProducto);
+
+		case "productos-experiencia":
+			return DBController.buscarEnColeccionExperienciaPorID(nombreColeccion, idProducto);
+
+		case "productos-salida":
+			return DBController.buscarEnColeccionSalidaPorID(nombreColeccion, idProducto);
+
+		case "productos-sitio":
+			return DBController.buscarEnColeccionSitioPorID(nombreColeccion, idProducto);
+
+		case "productos-transporte":
+			return DBController.buscarEnColeccionTransportePorID(nombreColeccion, idProducto);
+
+		default:
+			break;
+		}
+		
+		return null;
 	}
 
 	@Override

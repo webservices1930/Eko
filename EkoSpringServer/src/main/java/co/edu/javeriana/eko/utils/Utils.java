@@ -97,7 +97,7 @@ public final class Utils {
 			disponibilidad.add(nDis);
 		}
 				
-		
+		producto.setTitulo(docProducto.getString("titulo"));
 		producto.setDisponibilidad(disponibilidad);
 		producto.setPrecio(docProducto.getDouble("precio"));
 		producto.setInfoPaisDestino(docProducto.getString("infoPaisDestino"));
@@ -123,7 +123,10 @@ public final class Utils {
 					.add(new Document("fecha", dis.getFecha()).append("cuposDisponibles", dis.getCuposDisponibles()));
 		}
 		
-		return new Document("precio", transporte.getPrecio())			
+		System.out.println(transporte.getTitulo());
+		
+		return new Document("precio", transporte.getPrecio())	
+				.append("titulo", transporte.getTitulo())
 				.append("idusuario", transporte.getIdUsuario())
 				.append("infoPaisDestino", transporte.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
@@ -162,6 +165,7 @@ public final class Utils {
 
 		transporte.setTrayecto(docTrayecto);
 
+		transporte.setTitulo(docTransporte.getString("titulo"));
 		transporte.setDisponibilidad(disponibilidad);
 		transporte.setPrecio(docTransporte.getDouble("precio"));
 		transporte.setInfoPaisDestino(docTransporte.getString("infoPaisDestino"));
@@ -194,6 +198,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", alojamiento.getPrecio())
+				.append("titulo", alojamiento.getTitulo())
 				.append("idusuario", alojamiento.getIdUsuario())
 				.append("infoPaisDestino", alojamiento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
@@ -233,7 +238,8 @@ public final class Utils {
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
 		}
-						
+
+		alojamiento.setTitulo(docAlojamiento.getString("titulo"));
 		alojamiento.setDisponibilidad(disponibilidad);
 		alojamiento.setPrecio(docAlojamiento.getDouble("precio"));
 		alojamiento.setInfoPaisDestino(docAlojamiento.getString("infoPaisDestino"));		
@@ -272,6 +278,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", sitio.getPrecio())
+				.append("titulo", sitio.getTitulo())
 				.append("idusuario", sitio.getIdUsuario())
 				.append("infoPaisDestino", sitio.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
@@ -308,6 +315,7 @@ public final class Utils {
 			disponibilidad.add(nDis);
 		}
 						
+		sitio.setTitulo(docSitio.getString("titulo"));
 		sitio.setDisponibilidad(disponibilidad);
 		sitio.setPrecio(docSitio.getDouble("precio"));
 		sitio.setInfoPaisDestino(docSitio.getString("infoPaisDestino"));		
@@ -341,6 +349,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", experiencia.getPrecio())
+				.append("titulo", experiencia.getTitulo())
 				.append("infoPaisDestino", experiencia.getInfoPaisDestino())
 				.append("idusuario", experiencia.getIdUsuario())
 				.append("disponibilidad", disponibilidad)
@@ -377,6 +386,7 @@ public final class Utils {
 			disponibilidad.add(nDis);
 		}
 						
+		experiencia.setTitulo(docExperiencia.getString("titulo"));
 		experiencia.setDisponibilidad(disponibilidad);
 		experiencia.setPrecio(docExperiencia.getDouble("precio"));
 		experiencia.setInfoPaisDestino(docExperiencia.getString("infoPaisDestino"));		
@@ -411,6 +421,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", salida.getPrecio())
+				.append("titulo", salida.getTitulo())
 				.append("idusuario", salida.getIdUsuario())
 				.append("infoPaisDestino", salida.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
@@ -444,7 +455,8 @@ public final class Utils {
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
 		}
-						
+			
+		salida.setTitulo(docSalida.getString("titulo"));
 		salida.setDisponibilidad(disponibilidad);
 		salida.setPrecio(docSalida.getDouble("precio"));
 		salida.setInfoPaisDestino(docSalida.getString("infoPaisDestino"));		
@@ -477,6 +489,7 @@ public final class Utils {
 		}
 		
 		return new Document("precio", evento.getPrecio())
+				.append("titulo", evento.getTitulo())
 				.append("idusuario", evento.getIdUsuario())
 				.append("infoPaisDestino", evento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
@@ -512,7 +525,8 @@ public final class Utils {
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
 		}
-						
+		
+		evento.setTitulo(docEvento.getString("titulo"));
 		evento.setDisponibilidad(disponibilidad);
 		evento.setPrecio(docEvento.getDouble("precio"));
 		evento.setInfoPaisDestino(docEvento.getString("infoPaisDestino"));		
