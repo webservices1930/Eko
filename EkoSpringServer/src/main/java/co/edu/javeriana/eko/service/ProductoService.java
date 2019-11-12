@@ -21,6 +21,36 @@ import co.edu.javeriana.eko.utils.Utils;
 public class ProductoService implements IProductoService {
 
 	@Override
+	public List<Producto> obtenerTodosProductos() {
+		System.out.println("Productos Transporte");
+		List<Producto> productos = new ArrayList<Producto>();
+		
+		productos.addAll(DBController.obtenerProductos("productos-transporte"));
+		productos.addAll(DBController.obtenerProductos("productos-alojamiento"));
+		productos.addAll(DBController.obtenerProductos("productos-evento"));
+		productos.addAll(DBController.obtenerProductos("productos-experiencia"));
+		productos.addAll(DBController.obtenerProductos("productos-salida"));
+		productos.addAll(DBController.obtenerProductos("productos-sitio"));
+		return productos;
+	}
+	
+	
+	@Override
+	public List<Producto> obtenerProductosPorUsuario(String _idUsuario) {
+		System.out.println("Productos Usuario " + _idUsuario);
+		List<Producto> productos = new ArrayList<Producto>();
+		
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-transporte",_idUsuario));
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-alojamiento",_idUsuario));
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-evento",_idUsuario));
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-experiencia",_idUsuario));
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-salida",_idUsuario));
+		productos.addAll(DBController.obtenerProductosPorUsuario("productos-sitio",_idUsuario));
+		return productos;
+	}
+	
+	
+	@Override
 	public void crearProducto(Producto nProducto) {
 		switch (nProducto.getTipo()) {
 		case ALOJAMIENTO:
@@ -127,6 +157,65 @@ public class ProductoService implements IProductoService {
 		default:
 			break;
 		}
+	}
+	@Override
+	public Producto buscarProductoPorId(String _id) {
+		System.out.println("Buscar Producto por ID");
+		Producto producto = new Producto() {};		
+		try {
+			producto = obtenerProducto("productos-alojamiento", _id);	
+			if(producto.get_id()!="") {
+				return producto;
+			}		
+		}catch (Exception e) {
+
+		}
+		try {
+			producto = obtenerProducto("productos-evento", _id);	
+			if(producto.get_id()!="") {
+				return producto;
+			}			
+		}catch (Exception e) {
+
+		}
+		try {
+			producto = obtenerProducto("productos-experiencia", _id);		
+			if(producto.get_id()!="") {
+				return producto;
+			}
+			
+		} catch (Exception e) {
+
+		}
+		try {
+			producto = obtenerProducto("productos-salida", _id);		
+			if(producto.get_id()!="") {
+				return producto;
+			}
+			
+		} catch (Exception e) {
+
+		}
+		try {
+			producto = obtenerProducto("productos-sitio", _id);	
+			if(producto.get_id()!="") {
+				return producto;
+			}
+			
+		} catch (Exception e) {
+
+		}
+		try {
+			producto = obtenerProducto("productos-transporte", _id);				
+			if(producto.get_id()!="") {
+				return producto;
+			}
+			
+		} catch (Exception e) {
+
+		}
+
+		return producto;
 	}
 
 }
