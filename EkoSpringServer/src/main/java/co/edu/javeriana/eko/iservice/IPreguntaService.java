@@ -4,7 +4,7 @@ import co.edu.javeriana.eko.model.Pregunta;
 
 public interface IPreguntaService {
 
-	void crearPregunta(String nombreColeccion, Pregunta nPregunta);
+	public void crearPregunta(Pregunta nPregunta);
 
 	
 	

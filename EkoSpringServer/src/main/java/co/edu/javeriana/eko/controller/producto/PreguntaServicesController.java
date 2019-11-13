@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.javeriana.eko.iservice.IPreguntaService;
 import co.edu.javeriana.eko.iservice.IProductoService;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Experiencia;
 
 
@@ -21,14 +23,14 @@ import co.edu.javeriana.eko.model.producto.Experiencia;
 public class PreguntaServicesController {
 	
 	@Autowired
-	IProductoService productoService;
+	IPreguntaService preguntaService;
 
-	private String nombreColeccionProductoExperiencia = "productos-pregunta";
+	private String nombreColeccionProductoPregunta = "productos-pregunta";
 
 	@RequestMapping(value = "/api/productos/pregunta", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> agregarProducto(@RequestBody Experiencia nProducto) {
-		productoService.crearProducto(nProducto);
-		return new ResponseEntity<String>("{\"respuesta\": \"Se ha agregado correctamente el producto.\"}",
+	public ResponseEntity<String> agregarPregunta(@RequestBody Pregunta nPregunta) {
+		preguntaService.crearPregunta(nPregunta);
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha anexado correctamente la pregunta al producto.\"}",
 				HttpStatus.OK);
 	}
 	

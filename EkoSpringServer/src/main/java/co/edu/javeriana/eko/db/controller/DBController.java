@@ -547,5 +547,27 @@ public final class DBController {
     }
 
 
+    /**
+     * Inserta en una colecci�n indicada un objeto por su correo
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void insertarPregunta(String nombreColeccion, Pregunta nPregunta) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", nPregunta.getId_Producto() );
+        
+        Document docProducto = coleccion.find(query).first();
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Pregunta> preguntas = producto.getPregunta();
+        preguntas.add(nPregunta);        
+        producto.setPregunta(preguntas);         
+        
+        actualizarProducto(producto);
+        
+    }
 }
 
