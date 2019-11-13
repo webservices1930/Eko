@@ -42,9 +42,9 @@ public class ClienteServicesController {
 
 
     @RequestMapping(value = "/api/usuario/cliente", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String>  obtenerContrasenaUsuarioCliente(@RequestParam("contrasena") String contrasena) {
+    public ResponseEntity<String>  obtenerContrasenaUsuarioCliente(@RequestParam("correo") String correo) {
         return new ResponseEntity<String>(
-                 usuarioService.buscarContrasenaUsuarioCliente(contrasena),
+                 usuarioService.buscarContrasenaUsuarioCliente(correo),
                 HttpStatus.OK);
     }
 

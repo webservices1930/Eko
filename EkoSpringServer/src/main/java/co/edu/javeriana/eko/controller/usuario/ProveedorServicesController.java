@@ -38,9 +38,9 @@ public class ProveedorServicesController {
     }
 
     @RequestMapping(value = "/api/usuario/proveedor", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String>  obtenerContrasenaUsuarioProveedor(@RequestParam ("contrasena") String contrasena ) {
+    public ResponseEntity<String>  obtenerContrasenaUsuarioProveedor(@RequestParam ("correo") String correo ) {
         return new ResponseEntity<String>(
-                usuarioService.buscarContrasenaUsuarioProveedor(contrasena),
+                usuarioService.buscarContrasenaUsuarioProveedor(correo),
                 HttpStatus.OK);
     }
 
