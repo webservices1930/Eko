@@ -27,21 +27,21 @@ public class CalificacionServicesController {
 	private String nombreColeccionProductoPregunta = "productos-calificacion";
 
 	@RequestMapping(value = "/api/productos/calificacion", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> agregarPregunta(@RequestBody Calificacion nCalificacion) {
+	public ResponseEntity<String> agregarCalificacion(@RequestBody Calificacion nCalificacion) {
 		calificacionService.crearCalificacion(nCalificacion);
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha anexado correctamente la calificación al producto.\"}",
 				HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idCalificacion}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> eliminarPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idCalificacion") String idCalificacion ) {
+	public ResponseEntity<String> eliminarCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idCalificacion") String idCalificacion ) {
 		calificacionService.eliminarCalificacion(idProducto, idCalificacion );
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente la calificacion.\"}",
 				HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idPregunta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Calificacion> obtenerProducto(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta) {
+	public ResponseEntity<Calificacion> obtenerCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta) {
 		return new ResponseEntity<Calificacion>(
 				(Calificacion) calificacionService.obtenerCalificacion(idProducto, idPregunta),
 				HttpStatus.OK);
