@@ -24,16 +24,17 @@ public class PreguntaService implements IPreguntaService {
 		Boolean validator = true;	
 		String nombreColeccion;
 		
+		
 		if(validator) {
 			
-			nombreColeccion = "productos-alojamiento";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			nombreColeccion = "productos-transporte";
+			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, nPregunta.getId_Producto());			
 			if(producto.get_id()!="") {					
 				DBController.insertarPregunta(nombreColeccion, nPregunta);
 				validator = false;
 			}		
 		}
-			
+		
 		if(validator) {
 			
 			nombreColeccion = "productos-evento";
@@ -82,11 +83,7 @@ public class PreguntaService implements IPreguntaService {
 				DBController.insertarPregunta(nombreColeccion, nPregunta);
 				validator = false;
 			}		
-		}	
-		
-			
-		
-		
+		}		
 	}
 	
 	

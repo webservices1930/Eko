@@ -2,7 +2,9 @@ package co.edu.javeriana.eko.model.producto;
 
 import java.util.List;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.TipoSalida;
@@ -19,8 +21,8 @@ public class Salida extends Producto{
 	}
 
 	public Salida(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+			List<Calificacion> calificacion, List<Pregunta> pregunta,TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario, String titulo) {
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoSalida = tipoSalida;
 		this.duracion = duracion;
 		this.trayecto = trayecto;
@@ -29,8 +31,8 @@ public class Salida extends Producto{
 	}
 
 	public Salida(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+			List<Calificacion> calificacion, List<Pregunta> pregunta,String descripcion, TipoProducto tipo, TipoSalida tipoSalida, int duracion, List<String> trayecto, int restriccionEdad, String guia, String idUsuario, String titulo) {
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoSalida = tipoSalida;
 		this.duracion = duracion;
 		this.trayecto = trayecto;

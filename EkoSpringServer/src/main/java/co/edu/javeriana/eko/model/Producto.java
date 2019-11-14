@@ -22,7 +22,7 @@ public abstract class Producto {
 	public Producto() {}
 	
 	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+			List<Calificacion> calificacion, List<Pregunta> pregunta ,String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
 		this.titulo = titulo;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
@@ -34,8 +34,8 @@ public abstract class Producto {
 		this.idUsuario = idUsuario;
 	}
 	
-	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad 
+			,List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
 		this.titulo = titulo;
 		this._id = _id;
 		this.precio = precio;
