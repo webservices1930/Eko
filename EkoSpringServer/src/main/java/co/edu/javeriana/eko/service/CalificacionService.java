@@ -15,70 +15,100 @@ public class CalificacionService implements ICalificacionService {
 	@Override
 	public void crearCalificacion(Calificacion nCalificacion) {
 		
+		Producto producto = new Producto() {};			
+		String coleccion = nombreColeccion(nCalificacion.getId_Producto());
+		DBController.insertarCalificacion(coleccion, nCalificacion);
+		
+	}
+	
+	
+	public void eliminarCalificacion(String idProducto, String idCalificacion ) {
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(idProducto);
+		DBController.eliminarCalificacion(coleccion, idProducto, idCalificacion);
+		
+	}
+	
+	public Calificacion obtenerCalificacion (String idProducto, String idCalificacion) {
+		
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(idProducto);
+		return DBController.obtenerCalificacion(coleccion, idProducto, idCalificacion);		 
+		
+	}
+	
+	public void actualizarCalificacion(Calificacion nCalificacion) {		
+		
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(nCalificacion.getId_Producto());
+		DBController.actualizarCalificacion(coleccion, nCalificacion);		
+		
+	}
+	
+	
+	private String nombreColeccion(String id) {
+		
 		Producto producto = new Producto() {};		
 		Boolean validator = true;	
 		String nombreColeccion;
 		
-		
 		if(validator) {
 			
 			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, nCalificacion.getId_Producto());			
+			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, id);			
 			if(producto.get_id()!="") {					
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-evento";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nCalificacion.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-experiencia";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nCalificacion.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-salida";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nCalificacion.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-sitio";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nCalificacion.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nCalificacion.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarCalificacion(nombreColeccion, nCalificacion);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}		
-	}
+		
+		
+		return "";
+	} 
+	
 
 }

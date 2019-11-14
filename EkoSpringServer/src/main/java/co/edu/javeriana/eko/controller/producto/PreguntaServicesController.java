@@ -15,6 +15,7 @@ import co.edu.javeriana.eko.iservice.IPreguntaService;
 import co.edu.javeriana.eko.iservice.IProductoService;
 import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.producto.Experiencia;
+import co.edu.javeriana.eko.model.producto.Transporte;
 
 
 
@@ -31,6 +32,27 @@ public class PreguntaServicesController {
 	public ResponseEntity<String> agregarPregunta(@RequestBody Pregunta nPregunta) {
 		preguntaService.crearPregunta(nPregunta);
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha anexado correctamente la pregunta al producto.\"}",
+				HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/api/productos/pregunta/{idProducto}/{idPregunta}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> eliminarPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta ) {
+		preguntaService.eliminarPregunta(idProducto, idPregunta );
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente la pregunta.\"}",
+				HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/api/productos/pregunta/{idProducto}/{idPregunta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta) {
+		return new ResponseEntity<Pregunta>(
+				(Pregunta) preguntaService.obtenerPregunta(idProducto, idPregunta),
+				HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/api/productos/pregunta", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> actualizarPregunta(@RequestBody Pregunta nPregunta) {
+		preguntaService.actualizarPregunta(nPregunta);
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente la pregunta.\"}",
 				HttpStatus.OK);
 	}
 	

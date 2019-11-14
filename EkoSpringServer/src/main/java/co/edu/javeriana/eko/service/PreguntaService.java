@@ -18,76 +18,104 @@ import co.edu.javeriana.eko.utils.Utils;
 public class PreguntaService implements IPreguntaService {
 	
 	@Override
-	public void crearPregunta(Pregunta nPregunta) {
+	public void crearPregunta(Pregunta nPregunta) {		
+		
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(nPregunta.getId_Producto());
+		DBController.insertarPregunta(coleccion, nPregunta);		
+		
+	}	
+	
+	
+	public void eliminarPregunta(String idProducto, String idPregunta ) {
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(idProducto);
+		DBController.eliminarPregunta(coleccion, idProducto, idPregunta);
+		
+	}
+	
+	public Pregunta obtenerPregunta (String idProducto, String idPregunta) {
+		
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(idProducto);
+		return DBController.obtenerPregunta(coleccion, idProducto, idPregunta);		 
+		
+	}
+	
+	public void actualizarPregunta(Pregunta nPregunta) {		
+		
+		Producto producto = new Producto() {};				
+		String coleccion = nombreColeccion(nPregunta.getId_Producto());
+		DBController.actualizarPregunta(coleccion, nPregunta);		
+		
+	}
+	
+	
+	
+	
+	private String nombreColeccion(String id) {
 		
 		Producto producto = new Producto() {};		
 		Boolean validator = true;	
 		String nombreColeccion;
 		
-		
 		if(validator) {
 			
 			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, nPregunta.getId_Producto());			
+			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, id);			
 			if(producto.get_id()!="") {					
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-evento";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-experiencia";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-salida";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-sitio";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}
 		
 		if(validator) {
 			
 			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, nPregunta.getId_Producto());	
+			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
-				DBController.insertarPregunta(nombreColeccion, nPregunta);
-				validator = false;
+				return nombreColeccion;
 			}		
 		}		
-	}
-	
-	
-	
+		
+		
+		return "";
+	} 
 	
 
 	
