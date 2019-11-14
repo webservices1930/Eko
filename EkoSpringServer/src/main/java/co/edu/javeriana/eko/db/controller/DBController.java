@@ -265,6 +265,17 @@ public final class DBController {
         }
         return reservas;
     }
+    
+    
+    public static Reserva buscarEnColeccionReservaPorID(String nombreColeccion, String _id) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+        Document reserva = coleccion.find(query).first();
+        return Utils.deDocumentoAObjetoReserva(reserva);
+    }
 
     /**
      * Elimina en una colecci�n indicada un objeto por su ID
@@ -369,7 +380,7 @@ public final class DBController {
     /**
      * Modificar los cupos disponibles del producto
      */
-    public static void modificarCapacidadProductoAñadir(Producto producto) {
+    public static void modificarCapacidadProductoAnadir(Producto producto) {
         int cupos = 0;
         int disponibilidad = 0;
         List<Disponibilidad> listaProductoCopia = producto.getDisponibilidad();

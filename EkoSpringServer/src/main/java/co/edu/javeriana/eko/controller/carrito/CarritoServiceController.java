@@ -1,4 +1,4 @@
-package co.edu.javeriana.eko.controller;
+package co.edu.javeriana.eko.controller.carrito;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

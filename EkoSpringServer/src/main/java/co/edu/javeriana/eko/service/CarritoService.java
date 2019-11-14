@@ -10,7 +10,7 @@ import co.edu.javeriana.eko.model.producto.Alojamiento;
 import co.edu.javeriana.eko.utils.Utils;
 
 @Service
-public class CarrtoService implements ICarritoService {
+public class CarritoService implements ICarritoService {
 
 	@Override
 	public void crearCarrito(Carrito nCarrito) {
