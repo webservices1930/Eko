@@ -25,7 +25,7 @@ public class ClienteServicesController {
 
 
 
-    @RequestMapping(value = "/api/usuario/cliente", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/usuarios/cliente", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> eliminarUsuarioPorCorreoCliente(@RequestParam ("correo") String correo, @RequestParam ("contrasena") String contrasena ) {
         usuarioService.eliminarUsuarioPorCorreoCliente(correo,contrasena);
         return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente el Cliente.\"}",
@@ -33,7 +33,7 @@ public class ClienteServicesController {
     }
 
 
-    @RequestMapping(value = "/api/usuario/cliente/correo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/usuarios/cliente/correo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Cliente>  obtenerUsuarioPorCorreoCliente(@RequestParam("correo") String correo) {
         return new ResponseEntity<Cliente>(
                 (Cliente) usuarioService.buscarUsuarioPorCorreoCliente(correo),
@@ -41,7 +41,7 @@ public class ClienteServicesController {
     }
 
 
-    @RequestMapping(value = "/api/usuario/cliente", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/usuarios/cliente", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String>  obtenerContrasenaUsuarioCliente(@RequestParam("correo") String correo) {
         return new ResponseEntity<String>(
                  usuarioService.buscarContrasenaUsuarioCliente(correo),
@@ -49,7 +49,7 @@ public class ClienteServicesController {
     }
 
 
-    @RequestMapping(value = "/api/usuario/cliente", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/usuarios/cliente", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> actualizarUsuarioCliente(@RequestBody Cliente cliente,@PathVariable("correo") String correo) {
         usuarioService.actualizarUsuarioCliente(cliente,correo);
         return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente el cliente.\"}",

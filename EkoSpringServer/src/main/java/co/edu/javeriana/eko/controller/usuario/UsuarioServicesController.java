@@ -15,7 +15,7 @@ public class UsuarioServicesController {
     @Autowired
     IUsuarioService usuarioService;
 
-    @RequestMapping(value = "/api/usuario", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/usuarios", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> iniciarSesion(@RequestParam ("correo") String correo, @RequestParam ("contrasena") String contrasena) {
         return new ResponseEntity<Usuario>(
                 (Usuario) usuarioService.iniciarSesion(correo,contrasena),

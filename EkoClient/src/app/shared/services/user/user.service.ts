@@ -10,34 +10,25 @@ import { Proveedor } from '../../model/Usuario/Proveedor';
   providedIn: 'root'
 })
 export class UserService {
-
+  
   constructor(
     private http: HttpClient,
     private utils: UtilsService,
     private cookieService: CookieService
-  ) { }
+    ) { }
+    
+  private usuariosURI: string = this.utils.baseUrl + 'usuarios';
 
   /**
    * Obtiene todos los productos del Market Place
    */
   public iniciarSesion(usuario: Usuario): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <iniciarSesion xmlns="http://iservice.eko.javeriana.edu.co/">
-          <correo xmlns="">` + usuario.correo + `</correo>
-          <contrasena xmlns="">` + usuario.contrasena + `</contrasena>
-        </iniciarSesion>
-      </Body>
-    </Envelope>`;
-
+    let finalURI: string = this.usuariosURI + '?correo=' + usuario.correo + '&contrasena=' + usuario.contrasena;
+    
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.get<any>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
@@ -45,38 +36,21 @@ export class UserService {
    * Registra a un nuevo usuario en el sistema
    * @param nUsuario 
    */
-  public registrarUsuario(nUsuario: Usuario): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let body: string = '';
-
+  public registrarUsuario(nUsuario: Usuario): Observable<string> {
+    let finalURI: string = this.usuariosURI;
+    
     // Se crea el vody de la petición SOAP
     if (nUsuario.tipoUsuario === 'CLIENTE') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <registrarUsuarioCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioXML(nUsuario) +  `
-          </registrarUsuarioCliente>
-        </Body>
-      </Envelope>
-      `;
+      finalURI += '/cliente';
     } else if (nUsuario.tipoUsuario === 'PROVEEDOR') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <registrarUsuarioProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioProveedorXML(nUsuario as Proveedor) +  `
-          </registrarUsuarioProveedor>
-        </Body>
-      </Envelope>
-      `;
+      finalURI += '/proveedor';
     }
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.post<string>(
+      finalURI,
+      nUsuario,
+      { withCredentials: true }
     );
   }
 
