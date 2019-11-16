@@ -218,4 +218,29 @@ public class ProductoService implements IProductoService {
 		return producto;
 	}
 
+
+	@Override
+	public List<Producto> buscarPorCadena(String query) {
+		
+		List<Producto> temporal = obtenerTodosProductos();
+		List<Producto> resultado = new ArrayList<Producto>();
+		
+		for(Producto p: temporal) {
+			String aux = p.getDescripcion()+" "+p.getInfoPaisDestino()+" "+p.getPrecio()+" "+p.getTitulo()+" "+p.getTipo();
+			aux.toLowerCase();
+			if(aux.contains(query)) {
+				System.out.println(aux);
+				resultado.add(p);
+			}
+		}
+		return resultado;
+		
+	}
+
+
+	@Override
+	public String twitterApi(String query) {
+		return DBController.twitterAPI(query);
+	}
+
 }
