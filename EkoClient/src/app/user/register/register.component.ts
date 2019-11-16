@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     this.checkoutForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
+      foto: ['', Validators.required],
       descripcion: ['', Validators.required],
       tipoUsuario: ['', Validators.required],
       correo: ['', Validators.required],
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
   public onSubmit(informacionUsuario: Usuario) {
     this.userService.registrarUsuario(informacionUsuario)
       .subscribe(result => {
-        alert('Usuario agregado exitosamente');
+        alert('Usuario registrado exitosamente');
         this.router.navigate(['user/login']);
       }, error => {
         console.log('There was an error: ', error);

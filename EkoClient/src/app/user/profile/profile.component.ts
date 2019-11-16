@@ -23,15 +23,8 @@ export class ProfileComponent implements OnInit {
   ) {
 
     this.userService.obtenerInformacionUsuarioActualPorCorreo()
-      .subscribe(result => {
-        let infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        infoRespuesta = infoRespuesta['S:Envelope']['S:Body'][0];
-
-        if (infoRespuesta['ns2:buscarUsuarioPorCorreoClienteResponse'] !== undefined) {
-          this.usuario = infoRespuesta['ns2:buscarUsuarioPorCorreoClienteResponse'][0]['usuarioCliente'][0];
-        } else if (infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'] !== undefined) {
-          this.usuario = infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'][0]['usuarioProveedor'][0];
-        }
+      .subscribe(usuarioResponse => {
+        this.usuario = usuarioResponse;
       }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);

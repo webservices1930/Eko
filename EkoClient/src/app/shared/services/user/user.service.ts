@@ -10,34 +10,25 @@ import { Proveedor } from '../../model/Usuario/Proveedor';
   providedIn: 'root'
 })
 export class UserService {
-
+  
   constructor(
     private http: HttpClient,
     private utils: UtilsService,
     private cookieService: CookieService
-  ) { }
+    ) { }
+    
+  private usuariosURI: string = this.utils.baseUrl + 'usuarios';
 
   /**
    * Obtiene todos los productos del Market Place
    */
   public iniciarSesion(usuario: Usuario): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <iniciarSesion xmlns="http://iservice.eko.javeriana.edu.co/">
-          <correo xmlns="">` + usuario.correo + `</correo>
-          <contrasena xmlns="">` + usuario.contrasena + `</contrasena>
-        </iniciarSesion>
-      </Body>
-    </Envelope>`;
-
+    let finalURI: string = this.usuariosURI + '?correo=' + usuario.correo + '&contrasena=' + usuario.contrasena;
+    
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.get<any>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
@@ -45,38 +36,21 @@ export class UserService {
    * Registra a un nuevo usuario en el sistema
    * @param nUsuario 
    */
-  public registrarUsuario(nUsuario: Usuario): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let body: string = '';
-
-    // Se crea el vody de la petición SOAP
+  public registrarUsuario(nUsuario: Usuario): Observable<string> {
+    let finalURI: string = this.usuariosURI;
+    
+    // Se establece la URI para la petición
     if (nUsuario.tipoUsuario === 'CLIENTE') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <registrarUsuarioCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioXML(nUsuario) +  `
-          </registrarUsuarioCliente>
-        </Body>
-      </Envelope>
-      `;
+      finalURI += '/cliente';
     } else if (nUsuario.tipoUsuario === 'PROVEEDOR') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <registrarUsuarioProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioProveedorXML(nUsuario as Proveedor) +  `
-          </registrarUsuarioProveedor>
-        </Body>
-      </Envelope>
-      `;
+      finalURI += '/proveedor';
     }
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.post<string>(
+      finalURI,
+      nUsuario,
+      { withCredentials: true }
     );
   }
 
@@ -120,38 +94,23 @@ export class UserService {
   /**
    * Obtiene la información de un usuario por medio de su correo electrónico
    */
-  public obtenerInformacionUsuarioActualPorCorreo(): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let body: string = '';
-
-    // Se crea el vody de la petición SOAP
-    if (this.cookieService.get('tipo') === 'CLIENTE') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <buscarUsuarioPorCorreoCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
-          </buscarUsuarioPorCorreoCliente>
-        </Body>
-      </Envelope>
-      `;
-    } else if (this.cookieService.get('tipo') === 'PROVEEDOR') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <buscarUsuarioPorCorreoProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
-            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
-          </buscarUsuarioPorCorreoProveedor>
-        </Body>
-      </Envelope>
-      `;
+  public obtenerInformacionUsuarioActualPorCorreo(): Observable<Usuario> {
+    let finalURI: string = this.usuariosURI;
+    let tipoUsuario = this.cookieService.get('tipo');
+    
+    // Se establece la URI para la petición
+    if (tipoUsuario === 'CLIENTE') {
+      finalURI += '/cliente/correo';
+    } else if (tipoUsuario === 'PROVEEDOR') {
+      finalURI += '/proveedor/correo';
     }
 
+    finalURI += '?correo=' + this.cookieService.get('usuario');
+
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.get<Usuario>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
@@ -159,40 +118,23 @@ export class UserService {
    * Elimina al usuario en sesion del sistema
    * @param nUsuario 
    */
-  public eliminarUsuario(): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let body: string = '';
-
-    // Se crea el vody de la petición SOAP
-    if (this.cookieService.get('tipo') === 'CLIENTE') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <eliminarUsuarioPorCorreoCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
-            <contrasena xmlns="">` + this.cookieService.get('contrasena') + `</contrasena>
-          </eliminarUsuarioPorCorreoCliente>
-        </Body>
-      </Envelope>
-      `;
-    } else if (this.cookieService.get('tipo') === 'PROVEEDOR') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <eliminarUsuarioPorCorreoProveedor xmlns="http://iservice.eko.javeriana.edu.co/">
-            <correo xmlns="">` + this.cookieService.get('usuario') + `</correo>
-            <contrasena xmlns="">` + this.cookieService.get('contrasena') + `</contrasena>
-          </eliminarUsuarioPorCorreoProveedor>
-        </Body>
-      </Envelope>
-      `;
+  public eliminarUsuario(): Observable<string> {
+    let finalURI: string = this.usuariosURI;
+    let tipoUsuario = this.cookieService.get('tipo');
+    
+    // Se establece la URI para la petición
+    if (tipoUsuario === 'CLIENTE') {
+      finalURI += '/cliente';
+    } else if (tipoUsuario === 'PROVEEDOR') {
+      finalURI += '/proveedor';
     }
 
+    finalURI += '?correo=' + this.cookieService.get('usuario') + '&contrasena=' + this.cookieService.get('contrasena');
+
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.delete<string>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
