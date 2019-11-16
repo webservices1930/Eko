@@ -54,40 +54,23 @@ export class UserService {
     );
   }
 
-  public actualizarUsuario(nUsuario: Usuario): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let body: string = '';
-    
-    // Se crea el vody de la petición SOAP
-    if (nUsuario.tipoUsuario == 'CLIENTE') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <actualizarUsuarioCliente xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioXML(nUsuario) +  `
-          <correo xmlns="">` + nUsuario.correo +  `</correo>
-          </actualizarUsuarioCliente>
-        </Body>
-      </Envelope>
-      `;
-    } else if (nUsuario.tipoUsuario == 'PROVEEDOR') {
-      body = `
-      <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-        <Body>
-          <actualizarUsuarioProovedor xmlns="http://iservice.eko.javeriana.edu.co/">
-          ` + this.utils.crearUsuarioProveedorXML(nUsuario as Proveedor) +  `
-          <correo xmlns="">` + nUsuario.correo +  `</correo>
-          </actualizarUsuarioProovedor>
-        </Body>
-      </Envelope>
-      `;
+  public actualizarUsuario(nUsuario: Usuario): Observable<string> {
+    let finalURI: string = this.usuariosURI;
+
+    // Se establece la URI para la petición
+    if (nUsuario.tipoUsuario === 'CLIENTE') {
+      finalURI += '/cliente';
+    } else if (nUsuario.tipoUsuario === 'PROVEEDOR') {
+      finalURI += '/proveedor';
     }
 
+    finalURI += '/' + this.cookieService.get('usuario');
+
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/usuario?wsdl',
-      body,
-      httpOptions
+    return this.http.put<string>(
+      finalURI,
+      nUsuario,
+      { withCredentials: true }
     );
   }
 

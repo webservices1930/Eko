@@ -49,8 +49,8 @@ public class ClienteServicesController {
     }
 
 
-    @RequestMapping(value = "/api/usuarios/cliente", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> actualizarUsuarioCliente(@RequestBody Cliente cliente,@PathVariable("correo") String correo) {
+    @RequestMapping(value = "/api/usuarios/cliente/{correo}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> actualizarUsuarioCliente(@RequestBody Cliente cliente, @PathVariable("correo") String correo) {
         usuarioService.actualizarUsuarioCliente(cliente,correo);
         return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente el cliente.\"}",
                 HttpStatus.OK);
