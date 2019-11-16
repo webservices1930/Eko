@@ -5,6 +5,16 @@ import co.edu.javeriana.eko.model.producto.*;
 import co.edu.javeriana.eko.model.usuario.Proveedor;
 import co.edu.javeriana.eko.utils.TipoProducto;
 import co.edu.javeriana.eko.utils.Utils;
+import twitter4j.JSONArray;
+import twitter4j.JSONObject;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.TwitterObjectFactory;
+import twitter4j.conf.ConfigurationBuilder;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -544,6 +554,45 @@ public final class DBController {
 
         Document carrito = coleccion.find(query).first();
         return Utils.deDocumentoAObjetoCarrito(carrito);
+    }
+
+    
+    public static String twitterAPI(String query)  {
+    	String res = "";
+    	ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.setDaemonEnabled(true)
+        	.setOAuthConsumerKey("pqshFC0Lty6Xk7XHfTvcfR3g0")
+        	.setOAuthConsumerSecret("U3LHX2PTq4VK9RbujNRr86IIcdoeCIQ7kBKTbz7lpEgVwrA9i0")
+        	.setOAuthAccessToken("175229799-yoMqJPVn28XLwxnkLK9UX7IHK9rO65p0w9msKv2O")
+        	.setOAuthAccessTokenSecret("U0Yn39cHmg5zfix4Om1okdlKI6QTP8cLtNSSwo0S6xejU")
+        	.setJSONStoreEnabled(true);
+        
+        TwitterFactory tf = new TwitterFactory(configurationBuilder.build());
+        twitter4j.Twitter twitter = tf.getInstance();
+        List<Status> status;
+		try {
+			//status = twitter.getHomeTimeline();
+			Query q = new Query(query);
+			QueryResult result = twitter.search(q);
+			status = result.getTweets();
+			JSONArray tweets = new JSONArray();
+			for(Status s: status) {
+				JSONObject j = new JSONObject();
+				j.append("userName", s.getUser().getName())
+				.append("text", s.getText())
+				.append("creation", s.getCreatedAt());
+				tweets.put(j);
+			}
+			res = TwitterObjectFactory.getRawJSON(status);
+			//System.out.println(res);
+			System.out.println(tweets.toString());
+			return tweets.toString();
+
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
     }
 
 
