@@ -586,7 +586,7 @@ public final class DBController {
         List<Status> status;
 		try {
 			//status = twitter.getHomeTimeline();
-			Query q = new Query(query);
+			Query q = new Query("("+query+")AND(lang:es)");
 			QueryResult result = twitter.search(q);
 			status = result.getTweets();
 			JSONArray tweets = new JSONArray();
