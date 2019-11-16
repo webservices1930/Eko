@@ -130,7 +130,6 @@ export class UserService {
     }
 
     finalURI += '?correo=' + this.cookieService.get('usuario') + '&contrasena=' + this.cookieService.get('contrasena');
-    console.log(finalURI)
 
     // Se realiza una petición POST
     return this.http.delete<string>(
