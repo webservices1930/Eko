@@ -18,4 +18,8 @@ public interface IProductoService {
 	public void actualizarProducto(Producto nProducto);
 	
 	public Producto buscarProductoPorId(String _id);
+	
+	public List<Producto> buscarPorCadena(String cadena);
+	
+	public String twitterApi(String cadena);
 }

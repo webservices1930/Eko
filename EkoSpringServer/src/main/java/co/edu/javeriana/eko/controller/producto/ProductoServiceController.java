@@ -42,4 +42,18 @@ public class ProductoServiceController {
 				(Producto) productoService.buscarProductoPorId(idProducto),
 				HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/api/productos/buscar/{cadena}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> buscarEnProductos(@PathVariable("cadena") String cadena){
+		return  new ResponseEntity(
+				productoService.buscarPorCadena(cadena),
+				HttpStatus.OK); 
+	}
+	
+	@RequestMapping(value="/api/productos/twitter/{query}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> twitterApi(@PathVariable("query") String query){
+		return  new ResponseEntity(
+				productoService.twitterApi(query),
+				HttpStatus.OK); 
+	}
 }
