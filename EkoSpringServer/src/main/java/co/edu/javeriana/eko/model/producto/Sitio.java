@@ -2,7 +2,9 @@ package co.edu.javeriana.eko.model.producto;
 
 import java.util.List;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.utils.TipoDeSitio;
 import co.edu.javeriana.eko.utils.TipoProducto;
@@ -21,9 +23,9 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
+			List<Calificacion> calificacion, List<Pregunta> pregunta, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoDeSitio = tipoDeSitio;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -34,9 +36,9 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
+			List<Calificacion> calificacion, List<Pregunta> pregunta,String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoDeSitio = tipoDeSitio;
 		this.latitud = latitud;
 		this.longitud = longitud;

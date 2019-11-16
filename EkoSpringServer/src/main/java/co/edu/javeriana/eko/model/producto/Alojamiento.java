@@ -2,7 +2,9 @@ package co.edu.javeriana.eko.model.producto;
 
 import java.util.List;
 
+import co.edu.javeriana.eko.model.Calificacion;
 import co.edu.javeriana.eko.model.Disponibilidad;
+import co.edu.javeriana.eko.model.Pregunta;
 import co.edu.javeriana.eko.model.Producto;
 import co.edu.javeriana.eko.utils.TipoAlojamiento;
 import co.edu.javeriana.eko.utils.TipoProducto;
@@ -27,9 +29,9 @@ public class Alojamiento extends Producto{
 	}
 
 	public Alojamiento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
+			List<Calificacion> calificacion, List<Pregunta> pregunta,TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
 			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -44,9 +46,9 @@ public class Alojamiento extends Producto{
 	}
 
 	public Alojamiento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
+			List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
 			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
