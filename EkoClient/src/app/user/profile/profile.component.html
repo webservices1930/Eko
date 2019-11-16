@@ -4,7 +4,7 @@
       <div class="eko-profile__wrapper col-lg-8 col-11">
         <header class="eko-profile__header">
           <figure class="eko-profile__header-img-container">
-            <img src="https://api.adorable.io/avatars/400/{{this.usuario.nombre}}">
+            <img src="{{ this.usuario.foto }}">
             <div class="eko-profile__header-btn-group">
               <a class="eko-profile__header-delete-btn eko-btn eko-link-danger-button"
                 (click)="eliminarCuenta()">Eliminar cuenta</a>

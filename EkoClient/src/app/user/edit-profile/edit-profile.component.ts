@@ -26,20 +26,13 @@ export class EditProfileComponent implements OnInit {
     this.tiposDeUsuario = Object.keys(TipoUsuario).filter(key => typeof TipoUsuario[key as any] === 'number');
 
     this.userService.obtenerInformacionUsuarioActualPorCorreo()
-      .subscribe(result => {
-        let infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        infoRespuesta = infoRespuesta['S:Envelope']['S:Body'][0];
-        
-        if (infoRespuesta['ns2:buscarUsuarioPorCorreoClienteResponse'] !== undefined) {
-          this.usuario = infoRespuesta['ns2:buscarUsuarioPorCorreoClienteResponse'][0]['usuarioCliente'][0];
-        } else if (infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'] !== undefined) {
-          this.usuario = new Proveedor();
-          this.usuario = infoRespuesta['ns2:buscarUsuarioPorCorreoProveedorResponse'][0]['usuarioProveedor'][0];
-        }
+      .subscribe(usuarioResponse => {
+        this.usuario = usuarioResponse;
         
         this.checkoutForm.setValue({
           nombre: this.usuario.nombre,
           edad: this.usuario.edad,
+          foto: this.usuario.foto,
           descripcion: this.usuario.descripcion,
           tipoUsuario: this.usuario.tipoUsuario,
           correo: this.usuario.correo,
@@ -60,6 +53,7 @@ export class EditProfileComponent implements OnInit {
     this.checkoutForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
+      foto: ['', Validators.required],
       descripcion: ['', Validators.required],
       tipoUsuario: this.userService.tipoDeUsuario(),
       correo: ['', Validators.required],
