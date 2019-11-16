@@ -1,8 +1,9 @@
 package co.edu.javeriana.eko.model;
 
 import co.edu.javeriana.eko.utils.TipoUsuario;
+import org.springframework.util.MultiValueMap;
 
-public abstract class Usuario {
+public abstract class Usuario{
 
     //Variables
 

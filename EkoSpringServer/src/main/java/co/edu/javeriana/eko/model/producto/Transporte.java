@@ -25,9 +25,9 @@ public class Transporte extends Producto {
 	}
 	
 	public Transporte(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
+			List<Calificacion> calificacion, List<Pregunta> pregunta ,TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto, TipoTransporte tipoTransporte,
 			int duracion, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;
@@ -36,9 +36,9 @@ public class Transporte extends Producto {
 	}
 
 	public Transporte(String _id, double precio, String infoPaisDestino,List<Disponibilidad> disponibilidad,
-			String descripcion, TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto,
+			List<Calificacion> calificacion, List<Pregunta> pregunta ,String descripcion, TipoProducto tipo, String horaSalida, String horaLlegada, List<String> trayecto,
 			TipoTransporte tipoTransporte, int duracion, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, descripcion, tipo, idUsuario, titulo);
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.trayecto = trayecto;

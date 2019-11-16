@@ -121,6 +121,8 @@ public final class DBController {
     public static void actualizarObjeto(String nombreColeccion, Document nDoc, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        System.out.println(nDoc);
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
         coleccion.findOneAndReplace(query, nDoc);
@@ -135,6 +137,7 @@ public final class DBController {
     public static Transporte buscarEnColeccionTransportePorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
 
         // Se crea el query con un objeto ID del tipo que utiliza MongoDB
         BasicDBObject query = new BasicDBObject();
@@ -275,6 +278,17 @@ public final class DBController {
         }
         return reservas;
     }
+    
+    
+    public static Reserva buscarEnColeccionReservaPorID(String nombreColeccion, String _id) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+        Document reserva = coleccion.find(query).first();
+        return Utils.deDocumentoAObjetoReserva(reserva);
+    }
 
     /**
      * Elimina en una colecci�n indicada un objeto por su ID
@@ -379,7 +393,7 @@ public final class DBController {
     /**
      * Modificar los cupos disponibles del producto
      */
-    public static void modificarCapacidadProductoAñadir(Producto producto) {
+    public static void modificarCapacidadProductoAnadir(Producto producto) {
         int cupos = 0;
         int disponibilidad = 0;
         List<Disponibilidad> listaProductoCopia = producto.getDisponibilidad();
@@ -415,7 +429,7 @@ public final class DBController {
     public static void actualizarProducto(Producto producto) {
         if (producto.getTipo().equals(TipoProducto.TRANSPORTE)) {
             Document nTransporteDoc = Utils.deObjetoTransporteADocumento((Transporte) producto);
-            actualizarObjeto("productos-trasporte", (Document) nTransporteDoc, producto.get_id());
+            actualizarObjeto("productos-transporte", (Document) nTransporteDoc, producto.get_id());
 
         }
         if (producto.getTipo().equals(TipoProducto.ALOJAMIENTO)) {
@@ -596,5 +610,272 @@ public final class DBController {
     }
 
 
+    /**
+     * Inserta en una colecci�n indicada una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void insertarPregunta(String nombreColeccion, Pregunta nPregunta) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(nPregunta.getId_Producto()) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Pregunta> pregunta = producto.getPregunta();        
+        pregunta.add(nPregunta);     
+        
+        producto.setPregunta(pregunta);        
+        actualizarProducto(producto);
+        
+    }
+    
+    
+    
+    /**
+     * Elimina en una colecci�n indicada una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void eliminarPregunta(String nombreColeccion, String idProducto, String idPregunta) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(idProducto) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Pregunta> pregunta = producto.getPregunta(); 
+        
+        
+        int posicion=0, remover = 0;        
+        for(Pregunta pre : pregunta) {
+        	if (pre.get_id().equals(idPregunta)) {        		
+        		remover=posicion;        		
+        	}
+        	posicion++;
+        }
+        pregunta.remove(remover);
+        producto.setPregunta(pregunta);        
+        actualizarProducto(producto);
+        
+    }
+    
+    
+    /**
+     * Retorna una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static Pregunta obtenerPregunta(String nombreColeccion, String idProducto, String idPregunta) {
+    	
+    	Pregunta preg = new Pregunta();
+    	
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(idProducto) );        
+        Document docProducto = coleccion.find(query).first();        
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Pregunta> pregunta = producto.getPregunta();        
+        int posicion=0, remover = 0;        
+        for(Pregunta pre : pregunta) {
+        	if (pre.get_id().equals(idPregunta)) {        		
+        		preg = pre;        		
+        	}
+        	posicion++;
+        }
+        
+        return preg;        
+    }
+    
+    /**
+     * Actualiza una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void actualizarPregunta(String nombreColeccion, Pregunta nPregunta) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(nPregunta.getId_Producto()) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Pregunta> pregunta = producto.getPregunta(); 
+        int posicion=0, remover = 0;        
+        for(Pregunta pre : pregunta) {
+        	if (pre.get_id().equals(nPregunta.get_id())) {        		
+        		remover=posicion;        		
+        	}
+        	posicion++;
+        }
+        pregunta.remove(remover);        
+        pregunta.add(nPregunta);     
+        
+        producto.setPregunta(pregunta);        
+        actualizarProducto(producto);
+        
+    }
+    
+
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * Inserta en una colecci�n indicada una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void insertarCalificacion(String nombreColeccion, Calificacion nCalificacion) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(nCalificacion.getId_Producto()) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Calificacion> calificacion = producto.getCalificacion();        
+        calificacion.add(nCalificacion);     
+        
+        producto.setCalificacion(calificacion);        
+        actualizarProducto(producto);
+        
+    }
+    
+    
+    /**
+     * Elimina en una colecci�n indicada una calificacion
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void eliminarCalificacion(String nombreColeccion, String idProducto, String idCalificacion) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(idProducto) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Calificacion> calificacion = producto.getCalificacion();
+        
+        int posicion=0, remover = 0;        
+        for(Calificacion cal : calificacion) {
+        	if (cal.get_id().equals(idCalificacion)) {        		
+        		remover=posicion;        		
+        	}
+        	posicion++;
+        }
+        calificacion.remove(remover);       
+                
+        producto.setCalificacion(calificacion);     
+        actualizarProducto(producto);
+        
+    }
+    
+    
+    /**
+     * Retorna una pregunta
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static Calificacion obtenerCalificacion(String nombreColeccion, String idProducto, String idCalificacion) {
+    	
+    	Calificacion nota = new Calificacion();
+    	
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(idProducto) );        
+        Document docProducto = coleccion.find(query).first();        
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Calificacion> calificacion = producto.getCalificacion();
+        
+        int posicion=0, remover = 0;        
+        for(Calificacion cal : calificacion) {
+        	if (cal.get_id().equals(idCalificacion)) {        		
+        		nota=cal;        		
+        	}
+        	posicion++;
+        }
+        
+        return nota;
+        
+    }
+    
+    /**
+     * Actualiza una calificacion
+     *
+     * @param nombreColeccion
+     * @param usuario
+     */
+    public static void actualizarCalificacion(String nombreColeccion, Calificacion nCalificacion) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(nCalificacion.getId_Producto()) );
+        
+        Document docProducto = coleccion.find(query).first();        
+        //System.out.println(docProducto.toJson());          
+        
+        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        List<Calificacion> calificacion = producto.getCalificacion();
+        
+        int posicion=0, remover = 0;        
+        for(Calificacion cal : calificacion) {
+        	if (cal.get_id().equals(nCalificacion.get_id())) {        		
+        		remover=posicion;        		
+        	}
+        	posicion++;
+        }
+        calificacion.remove(remover);           
+        calificacion.add(nCalificacion);     
+        
+        producto.setCalificacion(calificacion);        
+        actualizarProducto(producto);
+        
+    }
+    
 }
 
