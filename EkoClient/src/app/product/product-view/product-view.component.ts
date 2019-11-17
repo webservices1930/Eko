@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { CarritoService } from 'src/app/shared/services/carrito/carrito.service';
-import { Carrito } from 'src/app/shared/model/Carrito/carrito';
+import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 

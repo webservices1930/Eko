@@ -89,8 +89,6 @@ export class ProductService {
 
     finalURI += '/' + id;
 
-    console.log(finalURI)
-
     // Se realiza una petición POST
     return this.http.get<Producto>(
       finalURI,

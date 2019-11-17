@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from '../../utils/utils.service';
 import { HttpClient } from '@angular/common/http';
-import { Carrito } from '../../model/Carrito/carrito';
+import { Carrito } from '../../model/Carrito/Carrito';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
+
+  private carritoURI: string = this.utils.baseUrl + 'carrito';
 
   constructor(
     private http: HttpClient,
@@ -57,23 +59,16 @@ export class CarritoService {
    * Busca el carrito de un Usuario
    * @param id
    */
-  public buscarPorIDUsuario(id: string): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
+  public buscarPorIDUsuario(id: string): Observable<Carrito> {
+    let finalURI: string = this.carritoURI;
 
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <obtenerCarritoPorUsuario xmlns="http://iservice.eko.javeriana.edu.co/">
-          <usuarioID xmlns="">` + id + `</usuarioID>
-        </obtenerCarritoPorUsuario>
-      </Body>
-    </Envelope>`;
+    finalURI += '/usuario/' + id;
+    console.log(finalURI)
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/carrito?wsdl',
-      body,
-      httpOptions
+    return this.http.get<Carrito>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 

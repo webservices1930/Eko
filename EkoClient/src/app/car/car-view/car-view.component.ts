@@ -4,7 +4,7 @@ import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { CarritoService } from 'src/app/shared/services/carrito/carrito.service';
-import { Carrito } from 'src/app/shared/model/Carrito/carrito';
+import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { Reserva } from 'src/app/shared/model/Reserva';
 
 @Component({
@@ -28,24 +28,20 @@ export class CarViewComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.carritoService.buscarPorIDUsuario(this.userService.obtenerCorreoUsuario())
-      .subscribe(result => {
-        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        this.carrito = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerCarritoPorUsuarioResponse'][0]['listaCarritoUsuario'][0];
+      .subscribe(carritoResponse => {
         this.hayCarrito = true;
 
         for (let producto of this.carrito.productos) {
           this.productService.buscarPorID(producto)
-            .subscribe(result => {
-              const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-              let nProducto = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:buscarProductoPorIdResponse'][0]['producto'][0];
+            .subscribe(productoResponse => {
+              let nProducto = productoResponse;
 
               if (nProducto.tipo !== undefined) {
-
-                nProducto.verInfoProducto = false;
-                nProducto.reservas = [];
+                nProducto['verInfoProducto'] = false;
+                nProducto['reservas'] = [];
 
                 for (let disponibilidad of nProducto.disponibilidad) {
-                  disponibilidad.reserva = {};
+                  disponibilidad['reserva'] = {};
                 }
 
                 this.productos.push(nProducto);

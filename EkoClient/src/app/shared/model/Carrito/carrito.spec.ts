@@ -1,4 +1,4 @@
-import { Carrito } from './carrito';
+import { Carrito } from './Carrito';
 
 describe('Carrito', () => {
   it('should create an instance', () => {
