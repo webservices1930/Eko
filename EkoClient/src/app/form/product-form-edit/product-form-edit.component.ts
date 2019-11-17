@@ -39,6 +39,8 @@ export class ProductFormEditComponent implements OnInit {
   public descripcion: string = '';
   public tipo: string = '';
   public titulo: string = '';
+  public foto: string = '';
+  public ciudad: string = '';
 
   constructor(
     private productService: ProductService,
@@ -63,6 +65,8 @@ export class ProductFormEditComponent implements OnInit {
         this.listaDisponibilidad = this.producto.disponibilidad;
         this.infoPaisDestino = this.producto.infoPaisDestino;
         this.precio = this.producto.precio;
+        this.foto = productoResponse.foto;
+        this.ciudad = productoResponse.ciudad;
 
         if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA') {
           this.producto.trayecto.forEach(trayecto => {
@@ -195,6 +199,10 @@ export class ProductFormEditComponent implements OnInit {
         console.log('There was an error', error);
         console.log(error.status);
       });
+  }
+
+  public llenarLatitudYLongitud() {
+    
   }
 
 }

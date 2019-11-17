@@ -12,6 +12,8 @@ export abstract class Producto {
   public idUsuario: string;
   public calificacion: Calificacion[];
   public pregunta: Pregunta[];
+  public foto: string;
+  public ciudad: string;
 
   constructor() {
       this._id = '';
@@ -23,5 +25,7 @@ export abstract class Producto {
       this.idUsuario = '';
       this.calificacion = new Array<Calificacion>();
       this.pregunta = new Array<Pregunta>();
+      this.foto = '';
+      this.ciudad = '';
   }
 }

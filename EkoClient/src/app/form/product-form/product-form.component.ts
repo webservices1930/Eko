@@ -19,6 +19,7 @@ import { TipoDeEvento } from 'src/app/shared/model/TipoDeEvento';
 import { TipoExperiencia } from 'src/app/shared/model/TipoExperiencia';
 import { TipoSalida } from 'src/app/shared/model/TipoSalida';
 import { TipoDeSitio } from 'src/app/shared/model/TipoDeSitio';
+import { WeatherService } from 'src/app/shared/weather/weather.service';
 
 @Component({
   selector: 'app-product-form',
@@ -37,12 +38,15 @@ export class ProductFormComponent implements OnInit {
   public descripcion: string = '';
   public tipo: string = '';
   public titulo: string = '';
+  public foto: string = '';
+  public ciudad: string = '';
 
   constructor(
     private productService: ProductService,
     private utils: UtilsService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private weatherService: WeatherService
   ) {
     this.tiposProducto = this.utils.valoresDeEnum(TipoProducto);
   }
@@ -127,6 +131,8 @@ export class ProductFormComponent implements OnInit {
     this.producto.tipo = this.tipo;
     this.producto.idUsuario = this.userService.obtenerCorreoUsuario();
     this.producto.titulo = this.titulo;
+    this.producto.foto = this.foto;
+    this.producto.ciudad = this.ciudad;
 
     if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA') {
       this.listaTrayecto.forEach(trayecto => {
@@ -143,5 +149,15 @@ export class ProductFormComponent implements OnInit {
         console.log('There was an error: ', error);
         console.log(error.status);
       });
+  }
+
+  public llenarLatitudYLongitud() {
+    this.weatherService.obtenerInformacionClimaPorNombreCiudad(this.ciudad)
+      .subscribe(infoCiudadResponse => {
+        this.producto.latitud = infoCiudadResponse.coord.lat;
+        this.producto.longitud = infoCiudadResponse.coord.lon;
+      }, error => {
+        alert('No se encontró latitud y longitud para la ciudad dada');
+      })
   }
 }
