@@ -13,7 +13,7 @@ export class WeatherService {
     private utils: UtilsService
   ) { }
 
-  public obtenerLatitudLongitudCiudad(nombreCiudad): Observable<any> {
+  public obtenerInformacionClimaPorNombreCiudad(nombreCiudad): Observable<any> {
     return this.http.get(this.utils.weatherURI(nombreCiudad));
   }
 }

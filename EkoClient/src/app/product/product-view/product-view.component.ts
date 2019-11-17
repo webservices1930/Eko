@@ -57,7 +57,7 @@ export class ProductViewComponent implements OnInit {
 
         if (this.tieneTrayecto && this.producto.tipo === 'TRANSPORTE') {
           for (let lugar of this.producto.trayecto) {
-            this.weatherService.obtenerLatitudLongitudCiudad(lugar).subscribe(result => {
+            this.weatherService.obtenerInformacionClimaPorNombreCiudad(lugar).subscribe(result => {
               if (this.trayectos[this.trayectos.length - 1].origen === undefined) {
                 this.trayectos[this.trayectos.length - 1].origen = {
                   lat: result.coord.lat,
