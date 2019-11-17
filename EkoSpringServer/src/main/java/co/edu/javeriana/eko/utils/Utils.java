@@ -141,7 +141,7 @@ public final class Utils {
 		
 		return new Document("precio", transporte.getPrecio())	
 				.append("titulo", transporte.getTitulo())
-				.append("idusuario", transporte.getIdUsuario())
+				.append("idUsuario", transporte.getIdUsuario())
 				.append("infoPaisDestino", transporte.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("pregunta", preguntas)
@@ -168,7 +168,8 @@ public final class Utils {
 		List<Pregunta> pregunta = new ArrayList<Pregunta>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
-				
+		System.out.println("DOC TRANSPORTE");
+		System.out.println(docTransporte);
 		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta");	
 		List<Document> docCalificacion = (List<Document>) docTransporte.get("calificacion");
 		
@@ -270,7 +271,7 @@ public final class Utils {
 		
 		return new Document("precio", alojamiento.getPrecio())
 				.append("titulo", alojamiento.getTitulo())
-				.append("idusuario", alojamiento.getIdUsuario())
+				.append("idUsuario", alojamiento.getIdUsuario())
 				.append("infoPaisDestino", alojamiento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("pregunta", preguntas)
@@ -411,7 +412,7 @@ public final class Utils {
 		
 		return new Document("precio", sitio.getPrecio())
 				.append("titulo", sitio.getTitulo())
-				.append("idusuario", sitio.getIdUsuario())
+				.append("idUsuario", sitio.getIdUsuario())
 				.append("infoPaisDestino", sitio.getInfoPaisDestino())
 				.append("pregunta", preguntas)
 				.append("calificacion", calificaciones)
@@ -546,7 +547,7 @@ public final class Utils {
 		return new Document("precio", experiencia.getPrecio())
 				.append("titulo", experiencia.getTitulo())
 				.append("infoPaisDestino", experiencia.getInfoPaisDestino())
-				.append("idusuario", experiencia.getIdUsuario())
+				.append("idUsuario", experiencia.getIdUsuario())
 				.append("disponibilidad", disponibilidad)
 				.append("pregunta", preguntas)
 				.append("calificacion", calificaciones)
@@ -680,7 +681,7 @@ public final class Utils {
 		
 		return new Document("precio", salida.getPrecio())
 				.append("titulo", salida.getTitulo())
-				.append("idusuario", salida.getIdUsuario())
+				.append("idUsuario", salida.getIdUsuario())
 				.append("infoPaisDestino", salida.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("pregunta", preguntas)
@@ -813,7 +814,7 @@ public final class Utils {
 		
 		return new Document("precio", evento.getPrecio())
 				.append("titulo", evento.getTitulo())
-				.append("idusuario", evento.getIdUsuario())
+				.append("idUsuario", evento.getIdUsuario())
 				.append("infoPaisDestino", evento.getInfoPaisDestino())
 				.append("disponibilidad", disponibilidad)
 				.append("pregunta", preguntas)

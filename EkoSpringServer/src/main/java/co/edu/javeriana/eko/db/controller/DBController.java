@@ -137,7 +137,6 @@ public final class DBController {
     public static Transporte buscarEnColeccionTransportePorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-        
 
         // Se crea el query con un objeto ID del tipo que utiliza MongoDB
         BasicDBObject query = new BasicDBObject();

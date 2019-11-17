@@ -17,6 +17,7 @@ export class ProductViewComponent implements OnInit {
   public tipo: string = '';
   public id: string = '';
   public productoCargado: boolean = false;
+  public esMiProducto: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -32,6 +33,10 @@ export class ProductViewComponent implements OnInit {
       .subscribe(productoResponse => {
         this.producto = productoResponse;
         this.productoCargado = true;
+
+        if (this.producto.idUsuario === this.userService.obtenerCorreoUsuario()) {
+          this.esMiProducto = true;
+        }
       }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);

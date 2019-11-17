@@ -15,5 +15,7 @@ public interface IReservaService {
 	public void cancelarReservaPorID(String _id);
 	
 	public Reserva obtenerReservaPorID(String _id);
+	
+	public void finalizarReservaPorID(String _id);
 
 }

@@ -12,9 +12,13 @@
         <div class="col-1">
           <a class="eko-link" (click)="eliminarReserva(reserva)">Eliminar</a>
         </div>
+        <div class="col-1">
+          <a class="eko-link" (click)="finalizarReserva(reserva)">Finalizar</a>
+        </div>
         <br>
         <br>
         <br>
+        <app-rate-form class="col-12" [idProducto]="reserva.productoid" [idReserva]="reserva._id" *ngIf="reserva.finalizar"></app-rate-form>
       </ng-container>
     </div>
   </div>
@@ -25,7 +29,7 @@
       <h6 class="col-12">Productos en el carrito</h6>
       <ng-container *ngFor="let producto of productos">
         <div class="col-4">
-          ID: {{ producto._id }}
+          Producto: {{ producto.titulo }}
         </div>
         <div class="col-5">
           Descripcion: {{ producto.descripcion }}

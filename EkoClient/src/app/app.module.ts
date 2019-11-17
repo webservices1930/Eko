@@ -28,6 +28,7 @@ import { ProductFormEditComponent } from './form/product-form-edit/product-form-
 import { TwitterComponent } from './twitter/twitter.component';
 
 
+import { QuestionViewComponent } from './question/question-view/question-view.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TwitterComponent } from './twitter/twitter.component';
     QuestionFormComponent,
     RateFormComponent,
     ProductFormEditComponent,
-    TwitterComponent
+    TwitterComponent,
+    QuestionViewComponent
   ],
   imports: [
     RouterModule,

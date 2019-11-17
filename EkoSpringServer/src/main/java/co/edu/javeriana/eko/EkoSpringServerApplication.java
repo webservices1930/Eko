@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
       DataSourceTransactionManagerAutoConfiguration.class,
       HibernateJpaAutoConfiguration.class
     })
-class EkoSpringServerApplication {
+public class EkoSpringServerApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(EkoSpringServerApplication.class, args);
