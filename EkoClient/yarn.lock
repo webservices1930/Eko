@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0.tgz#b2a77d18fbffe04cd5c90cf2ead41a5663f89862"
+  integrity sha512-tgrobTyAHCZ3cdi21IdiBafiHLxsC5/6ncq6+f9RV+HrLg0XDuk+DA7upfdE34o2Ui3fNRDYDIgExRVFLsSPCw==
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular-devkit/architect@0.803.5":
   version "0.803.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.803.5.tgz#68c0cc0df19a7898ddf58ce684c3e47bdab493d9"
@@ -1176,6 +1183,11 @@ agentkeepalive@^3.4.1:
   integrity sha512-e0L/HNe6qkQ7H19kTlRRqUibEAwDK5AFk6y3PtMsuut2VAH6+Q4xZml1tNDJD7kSAyqmbG/K08K5WEJYtUrSlQ==
   dependencies:
     humanize-ms "^1.2.1"
+
+agm-direction@^0.7.9:
+  version "0.7.9"
+  resolved "https://registry.yarnpkg.com/agm-direction/-/agm-direction-0.7.9.tgz#5c52a26a089bd0ce636033962601f49543d74f34"
+  integrity sha512-62W/no1HimT2rS3jjqjcduPZHhJwHLa9V7f0cAk2rcjvpC2f18+IEVsdMBJ+Kv/YsTDoyzP5d0HhknUubFfx1w==
 
 ajv-errors@^1.0.0:
   version "1.0.1"

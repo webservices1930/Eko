@@ -13,43 +13,12 @@ import { ReservaService } from './shared/services/reserva-service.service';
 export class AppComponent implements OnInit {
   title = 'EkoClient';
   id = '';
-  idreservas='';
+  idreservas = '';
 
-  constructor(private router: Router) {}
+  lat = 51.678418;
+  lng = 7.809007;
 
-  ngOnInit() {}
+  constructor(private router: Router) { }
 
-  /**
-   * Llama al servicio para obtener todos los productos del MarketPlace en XML
-   *
-   * @param event
-   */
-  // public obetenerTodosLosProductos(event: Event) {
-  //   event.preventDefault();
-  //   this.productService.obtenerTodosLosProductos()
-  //   .subscribe(result => {
-  //     // console.log(result);
-  //     parseString(result, function (err, res) {
-  //       console.log(res['S:Envelope']['S:Body'][0]['ns2:obtenerTodosLosProductosResponse'][0]['marketPlace']);
-  //     });
-  //   },
-  //   error =>{
-  //     console.log('There was an error: ', error);
-  //     console.log(error.status);
-  //   });
-  // }
-
-  // public buscarPorID() {
-  //   this.productService.buscarPorID(this.id)
-  //   .subscribe(result => {
-  //     // console.log(result);
-  //     parseString(result, function (err, res) {
-  //       console.log(res);
-  //     });
-  //   },
-  //   error =>{
-  //     console.log('There was an error: ', error);
-  //     console.log(error.status);
-  //   });
-  // }
+  ngOnInit() { }
 }

@@ -13,7 +13,7 @@
           <p class="eko-producto__text">Información del pais destino: {{ producto.infoPaisDestino }}</p>
           <div class="eko-producto__disponibilidad">
             <h6 class="eko-producto__disponibilidad-row">Disponibilidad</h6>
-            <div *ngFor="let disponibilidad of producto.disponibilidad" class="eko-producto__disponibilidad-row">
+            <div *ngIf="producto.disponibilidad" class="eko-producto__disponibilidad-row">
               <p class="eko-producto__text-title">Fecha</p>
               <p class="eko-producto__text-tite">Cupos disponibles</p>
             </div>
@@ -22,6 +22,13 @@
               <p class="eko-producto__text">{{ disponibilidad.cuposDisponibles }}</p>
             </div>
           </div>
+          <!-- this creates a google map on the page with the given lat/lng from -->
+          <!-- the component as the initial center of the map: -->
+          <ng-container *ngIf="mostrarEnMapa">
+            <agm-map [latitude]="producto.latitud" [longitude]="producto.longitud">
+              <agm-marker [latitude]="producto.latitud" [longitude]="producto.longitud"></agm-marker>
+            </agm-map>
+          </ng-container>
           <!-- <p class="eko-producto__text">Usuario: {{ producto.idusuario }}</p> -->
           <ng-container *ngIf="tipo === 'ALOJAMIENTO'">
             <p class="eko-producto__text">Tipo alojamiento: {{ producto.tipoAlojamiento }}</p>
@@ -125,6 +132,16 @@
             <div *ngFor="let trayecto of producto.trayecto; let i = index">
               <p class="eko-producto__text">{{i}}: {{ trayecto }}</p>
             </div>
+            <ng-container *ngIf="tieneTrayecto && trayectos.length > 1">
+              <agm-map [latitude]="trayectos[0].lat" [longitude]="trayectos[0].lng">
+                <ng-container *ngFor="let coord of trayectos">
+                  <ng-container *ngIf="coord.destino !== undefined">
+                    <agm-direction [origin]="coord.origen" [destination]="coord.destino">
+                    </agm-direction>
+                  </ng-container>
+                </ng-container>
+              </agm-map>
+            </ng-container>
           </ng-container>
           <a class="eko-link" (click)="agregarAlCarrito()">Añadir al carrito</a>
           <br>

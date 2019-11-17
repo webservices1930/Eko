@@ -86,7 +86,7 @@ public final class DBController {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
         BasicDBObject query = new BasicDBObject();
-        query.put("idusuario", _id);
+        query.put("idUsuario", _id);
         MongoCursor<Document> cursor = coleccion.find(query).cursor();
         try {
             while (cursor.hasNext()) {

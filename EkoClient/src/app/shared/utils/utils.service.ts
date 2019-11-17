@@ -21,6 +21,7 @@ export class UtilsService {
 
   // public baseUrl: string = 'https://eko-server-test.herokuapp.com/api/';
   public baseUrl: string = 'http://localhost:8080/api/';
+  public weatherKEY: string = 'bf5d5874078f74e1bf2157e6ee127492';
 
   constructor() { }
 
@@ -31,5 +32,9 @@ export class UtilsService {
    */
   public valoresDeEnum(tipoEnum): string[] {
     return Object.keys(tipoEnum).filter(key => typeof tipoEnum[key as any] === 'number');
+  }
+
+  public weatherURI(ciudad: string): string {
+    return 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&APPID=' + this.weatherKEY + '&lang=es'
   }
 }
