@@ -64,4 +64,11 @@ public class ReservaServicesController {
 		return new ResponseEntity<Reserva>(reservaService.obtenerReservaPorID(idReserva),
 				HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/api/reserva/{idReserva}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> finalizarReserva(@PathVariable("idReserva") String idReserva) {
+		reservaService.finalizarReservaPorID(idReserva);
+		return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente el la reserva.\"}",
+				HttpStatus.OK);
+	}
 }

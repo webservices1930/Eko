@@ -71,6 +71,11 @@ public class ReservaService implements IReservaService {
 		productoService.actualizarProducto(producto);
 		DBController.eliminarEnColeccionPorID("reservas", _id);
 	}
+	
+	@Override
+	public void finalizarReservaPorID(String _id) {
+		DBController.eliminarEnColeccionPorID("reservas", _id);
+	}
 
 	@Override
 	public void actualizarReserva(Reserva nReserva) {

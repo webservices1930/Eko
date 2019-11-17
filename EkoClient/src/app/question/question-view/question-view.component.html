@@ -1,0 +1,20 @@
+<section class="eko-pregunta-view">
+  <h3 class="eko-pregunta-view__title">Pregunta hecha por {{ pregunta.id_Usuario }}</h3>
+  <label class="eko-pregunta-view__date">{{ pregunta.fecha_Creacion }}</label>
+  <div class="eko-pregunta-view__text">{{ pregunta.descripcion }}</div>
+  <form class="eko-pregunta-view__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)"
+    *ngIf="puedeResponder && pregunta.respuesta === ''">
+    <h5 class="eko-pregunta-view__form-title">Responde la pregunta</h5>
+    <div class="col-12">
+      <textarea placeholder="Respuesta" type="text" class="form-control" formControlName="respuesta" name="respuesta"
+        required></textarea>
+    </div>
+    <div class="col-6 offset-3">
+      <button [disabled]="checkoutForm.invalid" class="btn btn-dark btn-lg btn-block btn-sm" type="submit">
+        Reponder pregunta
+      </button>
+    </div>
+  </form>
+  <div class="eko-pregunta-view__text-response" *ngIf="pregunta.respuesta !== ''">
+    {{ pregunta.respuesta }}</div>
+</section>

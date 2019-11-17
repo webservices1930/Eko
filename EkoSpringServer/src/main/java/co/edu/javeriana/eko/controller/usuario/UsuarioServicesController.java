@@ -17,6 +17,8 @@ public class UsuarioServicesController {
 
     @RequestMapping(value = "/api/usuarios", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> iniciarSesion(@RequestParam ("correo") String correo, @RequestParam ("contrasena") String contrasena) {
+    	System.out.println(correo);
+    	System.out.println(contrasena);
         return new ResponseEntity<Usuario>(
                 (Usuario) usuarioService.iniciarSesion(correo,contrasena),
                 HttpStatus.OK);

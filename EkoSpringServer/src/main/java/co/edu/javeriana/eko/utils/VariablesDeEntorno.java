@@ -4,7 +4,6 @@ public final class VariablesDeEntorno {
 	// Url base para todos los End Points del servidor
 	public static final String urlDominio = "http://localhost:8080/eko/";
 	
-	// Variables para la impresión de texto de colores
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
