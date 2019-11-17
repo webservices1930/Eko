@@ -112,7 +112,7 @@ public final class DBController {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
         
-        System.out.println(nDoc);
+        System.out.println(_id);
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
         coleccion.findOneAndReplace(query, nDoc);

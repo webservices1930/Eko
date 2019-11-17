@@ -1016,10 +1016,9 @@ public final class Utils {
 	 */
 	public static Document deObjetoCatalogoADocumento(Catalogo catalogo) {
 		List<Document> productos = new ArrayList<Document>();
-		List<Document> disponibilidad = new ArrayList<Document>();
 		
-		for (String p: catalogo.getProductos()) {					
 			
+		for (String p: catalogo.getProductos()) {			
 			productos.add(					
 					new Document("idProducto", p)							
 			);
@@ -1030,6 +1029,7 @@ public final class Utils {
 				.append("nombre", catalogo.getNombre())
 				.append("precio", catalogo.getPrecio())
 				.append("productos", productos);
+				
 	}
 	
 	/**
