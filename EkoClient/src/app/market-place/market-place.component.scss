@@ -3,3 +3,36 @@
     text-align: center;
   }
 }
+
+.searchInput{
+  width: 80%;
+  border-style: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  display: block;
+  margin: 10px auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.123);
+}
+
+.searchContent{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.searchContent button{
+  border-style: none;
+  width: 10%;
+  text-align: center;
+  background-color: #333333;
+  border-radius: 3px;
+  color:white;
+  height: 30px;
+  margin: 0px 5px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.123);
+}
+
+.searchContent button:hover{
+  background-color: #3333339d;
+}

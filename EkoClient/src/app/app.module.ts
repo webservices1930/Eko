@@ -27,6 +27,9 @@ import { CarViewComponent } from './car/car-view/car-view.component';
 import { QuestionFormComponent } from './question/question-form/question-form.component';
 import { RateFormComponent } from './rate/rate-form/rate-form.component';
 import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
+import { TwitterComponent } from './twitter/twitter.component';
+
+
 import { QuestionViewComponent } from './question/question-view/question-view.component';
 import { AgmDirectionModule } from 'agm-direction';
 
@@ -46,6 +49,7 @@ import { AgmDirectionModule } from 'agm-direction';
     QuestionFormComponent,
     RateFormComponent,
     ProductFormEditComponent,
+    TwitterComponent,
     QuestionViewComponent
   ],
   imports: [

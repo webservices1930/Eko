@@ -198,4 +198,16 @@ export class ProductService {
       { withCredentials: true });
   }
 
+  public twitter(query: string){
+    const finalURI = this.productosURI + '/twitter/' + query;
+    return this.http.get(finalURI);
+  }
+
+  public queryProductos(query: string): Observable<Producto[]> {
+    const finalURI = this.productosURI + '/buscar/'+query;
+    return this.http.get<Producto[]>(
+      finalURI,
+      { withCredentials: true }
+    );
+  }
 }
