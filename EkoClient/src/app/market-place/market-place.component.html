@@ -1,7 +1,12 @@
 <app-twitter query="Turismo Colombia"></app-twitter>
 <div class="market-place container">
+  <h1 class="market-place__title eko-title col-12">EKO</h1>
+  <div class="searchContent">
+    <input class="searchInput" type="text" [(ngModel)]="search" placeholder="Búsqueda...">
+    <button type="button" (click)="searchInput()">Buscar</button>
+    <button type="button" (click)="verTodoProductos()">Todo</button>
+  </div>
   <div class="row">
-    <h1 class="market-place__title eko-title col-12">EKO</h1>
     <ng-container *ngFor="let producto of productos">
       <div class="col-4">
         <app-product-view-small [producto]="producto" [canEdit]="false"></app-product-view-small>

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MarketPlaceComponent implements OnInit {
   public productos: any[];
+  search:string = '';
 
   constructor(private productService: ProductService,
     private utils: UtilsService,
@@ -29,4 +30,23 @@ export class MarketPlaceComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchInput(){
+    this.productService.queryProductos(this.search)
+      .subscribe(productosResponse => {
+        this.productos = productosResponse;
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+  }
+
+  verTodoProductos(){
+    this.productService.obtenerTodosLosProductos()
+      .subscribe(productosResponse => {
+        this.productos = productosResponse;
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+  }
 }

@@ -203,5 +203,11 @@ export class ProductService {
     return this.http.get(finalURI);
   }
 
-
+  public queryProductos(query: string): Observable<Producto[]> {
+    const finalURI = this.productosURI + '/buscar/'+query;
+    return this.http.get<Producto[]>(
+      finalURI,
+      { withCredentials: true }
+    );
+  }
 }
