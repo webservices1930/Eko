@@ -24,8 +24,8 @@ public class Evento extends Producto{
 	}
 	public Evento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			List<Calificacion> calificacion, List<Pregunta> pregunta, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, String horaApertura, String horaCierre,
-			int maxPersonas, double latitud, double longitud, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
+			int maxPersonas, double latitud, double longitud, String idUsuario, String titulo,String foto, String ciudad) {
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo,foto,ciudad);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
 		this.restriccionEdad = restriccionEdad;
@@ -37,8 +37,8 @@ public class Evento extends Producto{
 	}
 	public Evento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, TipoEvento tipoEvento, String nombreEvento, int restriccionEdad, String horaApertura, String horaCierre,
-			int maxPersonas, double latitud, double longitud, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
+			int maxPersonas, double latitud, double longitud, String idUsuario, String titulo,String foto, String ciudad) {
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo,foto, ciudad);
 		this.tipoEvento = tipoEvento;
 		this.nombreEvento = nombreEvento;
 		this.restriccionEdad = restriccionEdad;
@@ -95,5 +95,7 @@ public class Evento extends Producto{
 	}
 	public void setLongitud(double longitud) {
 		this.longitud = longitud;
-	}		
+	}
+
+
 }

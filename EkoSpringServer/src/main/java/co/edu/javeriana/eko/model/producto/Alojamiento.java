@@ -20,9 +20,7 @@ public class Alojamiento extends Producto{
 	private boolean internet;
 	private boolean television;
 	private int numCamas;
-	private int numBanios;	
-	
-
+	private int numBanios;
 
 	public Alojamiento() {
 		
@@ -30,8 +28,8 @@ public class Alojamiento extends Producto{
 
 	public Alojamiento(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
 			List<Calificacion> calificacion, List<Pregunta> pregunta,TipoProducto tipo, TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
-		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo,String foto, String ciudad) {
+		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo, foto, ciudad);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -47,8 +45,8 @@ public class Alojamiento extends Producto{
 
 	public Alojamiento(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
 			List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo,TipoAlojamiento tipoAlojamiento, double latitud, double longitud, int habitaciones, boolean desayuno,
-			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo) {
-		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
+			boolean almuerzo, boolean cena, boolean internet, boolean television, int numCamas, int numBanios, String idUsuario, String titulo,String foto, String ciudad) {
+		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo,foto,ciudad);
 		this.tipoAlojamiento = tipoAlojamiento;
 		this.latitud = latitud;
 		this.longitud = longitud;
@@ -149,7 +147,7 @@ public class Alojamiento extends Producto{
 	public void setNumBanios(int numBanios) {
 		this.numBanios = numBanios;
 	}
-	
-	
-	
+
+
+
 }

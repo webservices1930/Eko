@@ -1,142 +1,165 @@
 package co.edu.javeriana.eko.model;
 
-import java.util.List;
-
 import co.edu.javeriana.eko.utils.TipoProducto;
 
+import java.util.List;
+
 public abstract class Producto {
-	
-	// VARIABLES
-	private String titulo;
-	private String _id;
-	private double precio;
-	private String infoPaisDestino;
-	private String idUsuario;
-	private List<Disponibilidad> disponibilidad;
-	private List<Calificacion> calificacion;
-	private List<Pregunta> pregunta;
-	private String descripcion;
-	private TipoProducto tipo;
 
-	// CONSTRUCTORES
-	public Producto() {}
-	
-	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			List<Calificacion> calificacion, List<Pregunta> pregunta ,String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
-		this.titulo = titulo;
-		this.precio = precio;
-		this.infoPaisDestino = infoPaisDestino;
-		this.disponibilidad = disponibilidad;
-		this.calificacion = calificacion;
-		this.pregunta = pregunta;
-		this.descripcion = descripcion;
-		this.tipo = tipo;
-		this.idUsuario = idUsuario;
-	}
-	
-	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad 
-			,List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
-		this.titulo = titulo;
-		this._id = _id;
-		this.precio = precio;
-		this.infoPaisDestino = infoPaisDestino;
-		this.disponibilidad = disponibilidad;
-		this.calificacion = calificacion;
-		this.pregunta = pregunta;
-		this.descripcion = descripcion;
-		this.tipo = tipo;
-		this.idUsuario = idUsuario;
-	}
+    // VARIABLES
+    private String titulo;
+    private String _id;
+    private double precio;
+    private String infoPaisDestino;
+    private String idUsuario;
+    private List<Disponibilidad> disponibilidad;
+    private List<Calificacion> calificacion;
+    private List<Pregunta> pregunta;
+    private String descripcion;
+    private TipoProducto tipo;
+    private String foto;
+    private String ciudad;
 
-	// GETTERS Y SETTERS
+    // CONSTRUCTORES
+    public Producto() {
+    }
 
-	public String get_id() {
-		return _id;
-	}
+    public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
+                    List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo, String foto, String ciudad) {
+        this.titulo = titulo;
+        this.precio = precio;
+        this.infoPaisDestino = infoPaisDestino;
+        this.disponibilidad = disponibilidad;
+        this.calificacion = calificacion;
+        this.pregunta = pregunta;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.idUsuario = idUsuario;
+        this.foto = foto;
+        this.ciudad = ciudad;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad
+            , List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo,String ciudad, String foto) {
+        this.titulo = titulo;
+        this._id = _id;
+        this.precio = precio;
+        this.infoPaisDestino = infoPaisDestino;
+        this.disponibilidad = disponibilidad;
+        this.calificacion = calificacion;
+        this.pregunta = pregunta;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.idUsuario = idUsuario;
+        this.foto = foto;
+        this.ciudad = ciudad;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    // GETTERS Y SETTERS
 
-	public void set_id(String _id) {
-		this._id = _id;
-	}
+    public String get_id() {
+        return _id;
+    }
 
-	public double getPrecio() {
-		return precio;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public String getInfoPaisDestino() {
-		return infoPaisDestino;
-	}
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
-	public void setInfoPaisDestino(String infoPaisDestino) {
-		this.infoPaisDestino = infoPaisDestino;
-	}
+    public double getPrecio() {
+        return precio;
+    }
 
-	public List<Disponibilidad> getDisponibilidad() {
-		return disponibilidad;
-	}
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 
-	public void setDisponibilidad(List<Disponibilidad> disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
+    public String getInfoPaisDestino() {
+        return infoPaisDestino;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setInfoPaisDestino(String infoPaisDestino) {
+        this.infoPaisDestino = infoPaisDestino;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public List<Disponibilidad> getDisponibilidad() {
+        return disponibilidad;
+    }
 
-	public TipoProducto getTipo() {
-		return tipo;
-	}
+    public void setDisponibilidad(List<Disponibilidad> disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
 
-	public void setTipo(TipoProducto tipo) {
-		this.tipo = tipo;
-	}	
-	
-	public List<Calificacion> getCalificacion() {
-		return calificacion;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public void setCalificacion(List<Calificacion> calificacion) {
-		this.calificacion = calificacion;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public List<Pregunta> getPregunta() {
-		return pregunta;
-	}
+    public TipoProducto getTipo() {
+        return tipo;
+    }
 
-	public void setPregunta(List<Pregunta> pregunta) {
-		this.pregunta = pregunta;
-	}
+    public void setTipo(TipoProducto tipo) {
+        this.tipo = tipo;
+    }
 
-	// M�TODOS
-	public double calcularCalificacionPromedio() {		
-		int promedio = 0 ;		
-		for (Calificacion calificacion : this.calificacion) {
-			 promedio += calificacion.getValoracion();
-		}		
-		return promedio/this.calificacion.size();
-	}
+    public List<Calificacion> getCalificacion() {
+        return calificacion;
+    }
 
-	public String getIdUsuario() {
-		return idUsuario;
-	}
+    public void setCalificacion(List<Calificacion> calificacion) {
+        this.calificacion = calificacion;
+    }
 
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	
+    public List<Pregunta> getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(List<Pregunta> pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    // M�TODOS
+    public double calcularCalificacionPromedio() {
+        int promedio = 0;
+        for (Calificacion calificacion : this.calificacion) {
+            promedio += calificacion.getValoracion();
+        }
+        return promedio / this.calificacion.size();
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
 }

@@ -152,7 +152,9 @@ public final class Utils {
 				.append("horaLlegada", transporte.getHoraLlegada())
 				.append("trayecto", transporte.getTrayecto())
 				.append("tipoTransporte", transporte.getTipoTransporte().toString())
-				.append("duracion", transporte.getDuracion());
+				.append("duracion", transporte.getDuracion())
+				.append("foto", transporte.getFoto())
+				.append("ciudad", transporte.getCiudad());
 	}
 
 	/**
@@ -236,6 +238,8 @@ public final class Utils {
 		transporte.setTipoTransporte(TipoTransporte.valueOf(docTransporte.getString("tipoTransporte")));
 		transporte.setDuracion(docTransporte.getInteger("duracion"));
 		transporte.setIdUsuario(docTransporte.getString("idUsuario"));
+		transporte.setFoto(docTransporte.getString("foto"));
+		transporte.setCiudad(docTransporte.getString("ciudad"));
 		
 		return transporte;
 	}
@@ -288,7 +292,10 @@ public final class Utils {
 				.append("internet", alojamiento.isInternet())
 				.append("television", alojamiento.isTelevision())
 				.append("numCamas", alojamiento.getNumCamas())
-				.append("numBanios", alojamiento.getNumBanios());
+				.append("numBanios", alojamiento.getNumBanios())
+				.append("foto", alojamiento.getFoto())
+				.append("ciudad", alojamiento.getCiudad()
+				);
 	}
 	
 	/**
@@ -352,7 +359,6 @@ public final class Utils {
 			List<Calificacion> caln = new ArrayList<Calificacion>(); 
 			alojamiento.setCalificacion(caln);			
 		}
-		
 
 		alojamiento.setTitulo(docAlojamiento.getString("titulo"));
 		alojamiento.setDisponibilidad(disponibilidad);
@@ -372,6 +378,8 @@ public final class Utils {
 		alojamiento.setNumCamas(docAlojamiento.getInteger("numCamas"));
 		alojamiento.setNumBanios(docAlojamiento.getInteger("numBanios"));
 		alojamiento.setIdUsuario(docAlojamiento.getString("idUsuario"));
+		alojamiento.setFoto(docAlojamiento.getString("foto"));
+		alojamiento.setCiudad(docAlojamiento.getString("ciudad"));
 
 		return alojamiento;
 	}
@@ -425,7 +433,9 @@ public final class Utils {
 				.append("restriccionEdad", sitio.getRestriccionEdad())
 				.append("consumoObligatorio", sitio.isConsumoObligatorio())
 				.append("horaApertura", sitio.getHoraApertura())
-				.append("horaCierre", sitio.getHoraCierre());
+				.append("horaCierre", sitio.getHoraCierre())
+				.append("foto", sitio.getFoto())
+				.append("ciudad", sitio.getCiudad());
 	}
 	
 	/**
@@ -507,6 +517,9 @@ public final class Utils {
 		sitio.setHoraApertura(docSitio.getString("horaApertura"));
 		sitio.setHoraCierre(docSitio.getString("horaCierre"));
 		sitio.setIdUsuario(docSitio.getString("idUsuario"));
+		sitio.setFoto(docSitio.getString("foto"));
+		sitio.setCiudad(docSitio.getString("ciudad"));
+
 				
 		return sitio;
 	}
@@ -559,7 +572,9 @@ public final class Utils {
 				.append("latitud", experiencia.getLatitud())
 				.append("longitud", experiencia.getLongitud())
 				.append("duracion", experiencia.getDuracion())
-				.append("horaLlegada", experiencia.getHoraLlegada());
+				.append("horaLlegada", experiencia.getHoraLlegada())
+				.append("foto", experiencia.getFoto())
+				.append("ciudad", experiencia.getCiudad());
 	}
 	
 	/**
@@ -641,6 +656,8 @@ public final class Utils {
 		experiencia.setDuracion(docExperiencia.getInteger("duracion"));
 		experiencia.setHoraLlegada(docExperiencia.getString("horaLlegada"));
 		experiencia.setIdUsuario(docExperiencia.getString("idUsuario"));
+		experiencia.setFoto(docExperiencia.getString("foto"));
+		experiencia.setCiudad(docExperiencia.getString("ciudad"));
 					
 		return experiencia;
 	}
@@ -692,7 +709,9 @@ public final class Utils {
 				.append("duracion", salida.getDuracion())
 				.append("trayecto", salida.getTrayecto())
 				.append("restriccionEdad", salida.getRestriccionEdad())
-				.append("guia", salida.getGuia());
+				.append("guia", salida.getGuia())
+				.append("foto", salida.getFoto())
+				.append("ciudad", salida.getCiudad());
 	}
 	
 	/**
@@ -774,6 +793,8 @@ public final class Utils {
 		salida.setDuracion(docSalida.getInteger("duracion"));
 		salida.setGuia(docSalida.getString("guia"));	
 		salida.setIdUsuario(docSalida.getString("idUsuario"));
+		salida.setFoto(docSalida.getString("foto"));
+		salida.setCiudad(docSalida.getString("ciudad"));
 		
 		return salida;
 	}
@@ -828,7 +849,9 @@ public final class Utils {
 				.append("horaCierre", evento.getHoraCierre())
 				.append("maxPersonas", evento.getMaxPersonas())
 				.append("latitud", evento.getLatitud())
-				.append("longitud", evento.getLongitud());
+				.append("longitud", evento.getLongitud())
+				.append("foto", evento.getFoto())
+				.append("ciudad", evento.getCiudad());
 	}
 	
 	/**
@@ -911,6 +934,8 @@ public final class Utils {
 		evento.setLatitud(docEvento.getDouble("latitud"));
 		evento.setLongitud(docEvento.getDouble("longitud"));
 		evento.setIdUsuario(docEvento.getString("idUsuario"));
+		evento.setFoto(docEvento.getString("foto"));
+		evento.setCiudad(docEvento.getString("ciudad"));
 		return evento;
 		
 	}
