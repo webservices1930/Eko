@@ -11,11 +11,14 @@ import { Sitio } from '../../model/Producto/Sitio';
 import { Reserva } from '../../model/Reserva';
 import { Pregunta } from '../../model/Pregunta';
 import { Calificacion } from '../../model/Calificacion';
+import { Producto } from '../../model/Producto/Producto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  private productosURI: string = this.utils.baseUrl + 'productos';
 
   constructor(
     private http: HttpClient,
@@ -28,52 +31,28 @@ export class ProductService {
    *
    * @param nProducto
    */
-  public agregarProducto(nProducto: any): Observable<any> {
-    // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.utils.crearHeadersXML();
+  public agregarProducto(nProducto: any): Observable<string> {
+    let finalURI: string = this.productosURI;
 
-    let accionXML: string = '';
-    let urlDestino: string = this.utils.baseUrl + 'productos';
-
-    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    // Se establece la URI para hacer la petición
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
-        accionXML = `
-          <agregarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearTransporteXML(nProducto as Transporte) +
-          `</agregarProductoTransporte>`;
-        urlDestino += '/transporte'
+        finalURI += '/transporte'
         break;
       case 'ALOJAMIENTO':
-        accionXML = `
-          <agregarProductoAlojamiento xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearAlojamientoXML(nProducto as Alojamiento) +
-          `</agregarProductoAlojamiento>`;
+        finalURI += '/alojamiento'
         break;
       case 'EVENTO':
-        accionXML = `
-          <agregarProductoEvento xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearEventoXML(nProducto as Evento) +
-          `</agregarProductoEvento>`;
+        finalURI += '/evento'
         break;
       case 'EXPERIENCIA':
-        accionXML = `
-          <agregarProductoExperiencia xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearExperienciaXML(nProducto as Experiencia) +
-          `</agregarProductoExperiencia>`;
+        finalURI += '/experiencia'
         break;
-
       case 'SALIDA':
-        accionXML = `
-          <agregarProductoSalida xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearSalidaXML(nProducto as Salida) +
-          `</agregarProductoSalida>`;
+        finalURI += '/salida'
         break;
       case 'SITIO':
-        accionXML = `
-          <agregarProductoSitio xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearSitioXML(nProducto as Sitio) +
-          `</agregarProductoSitio>`;
+        finalURI += '/sitio'
         break;
 
       default:
@@ -81,37 +60,23 @@ export class ProductService {
         break;
     }
 
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>`
-      + accionXML +
-      `</Body>
-    </Envelope>`;
-
     // Se realiza una petición POST
-    console.log(urlDestino);
-    return this.http.post(urlDestino, nProducto, { withCredentials: true });
+    return this.http.post<string>(
+      finalURI,
+      nProducto,
+      { withCredentials: true });
   }
 
   /**
    * Obtiene todos los productos del Market Place
    */
-  public obtenerTodosLosProductos(): Observable<any> {
+  public obtenerTodosLosProductos(): Observable<Producto[]> {
     const httpOptions: object = this.utils.crearHeadersXML();
 
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <obtenerProductos xmlns="http://iservice.eko.javeriana.edu.co/"/>
-      </Body>
-    </Envelope>`;
-
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
+    return this.http.get<Producto[]>(
+      this.productosURI,
+      { withCredentials: true }
     );
   }
 
@@ -119,23 +84,17 @@ export class ProductService {
    * Busca un producto de tipo Transporte por su ID en el Market Place
    * @param id
    */
-  public buscarPorID(id: string): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
+  public buscarPorID(id: string): Observable<Producto> {
+    let finalURI: string = this.productosURI;
 
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <buscarProductoPorId xmlns="http://iservice.eko.javeriana.edu.co/">
-          <productoID xmlns="">` + id + `</productoID>
-        </buscarProductoPorId>
-      </Body>
-    </Envelope>`;
+    finalURI += '/' + id;
+
+    console.log(finalURI)
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
+    return this.http.get<Producto>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
@@ -145,23 +104,15 @@ export class ProductService {
    * Busca el listado de productos de un Usuario
    * @param id
    */
-  public buscarPorIDUsuario(id: string): Observable<any> {
-    const httpOptions: object = this.utils.crearHeadersXML();
+  public buscarPorIDUsuario(id: string): Observable<Producto[]> {
+    let finalURI: string = this.productosURI;
 
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <obtenerProductosPorUsuario xmlns="http://iservice.eko.javeriana.edu.co/">
-          <usuarioID xmlns="">` + id + `</usuarioID>
-        </obtenerProductosPorUsuario>
-      </Body>
-    </Envelope>`;
+    finalURI += '/usuario/' + id;
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
+    return this.http.get<Producto[]>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 
@@ -172,50 +123,28 @@ export class ProductService {
   *
   * @param nProducto
   */
-  public actualizarProducto(nProducto: any): Observable<any> {
-    // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.utils.crearHeadersXML();
+  public actualizarProducto(nProducto: any): Observable<string> {
+    let finalURI: string = this.productosURI;
 
-    let accionXML: string = '';
-
-    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    // Se establece la URI para hacer la petición
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
-        accionXML = `
-          <actualizarProductoTransporte xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearTransporteXML(nProducto as Transporte) +
-          `</actualizarProductoTransporte>`;
+        finalURI += '/transporte'
         break;
       case 'ALOJAMIENTO':
-        accionXML = `
-          <actualizarProductoAlojamiento xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearAlojamientoXML(nProducto as Alojamiento) +
-          `</actualizarProductoAlojamiento>`;
+        finalURI += '/alojamiento'
         break;
       case 'EVENTO':
-        accionXML = `
-          <actualizarProductoEvento xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearEventoXML(nProducto as Evento) +
-          `</actualizarProductoEvento>`;
+        finalURI += '/evento'
         break;
       case 'EXPERIENCIA':
-        accionXML = `
-          <actualizarProductoExperiencia xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearExperienciaXML(nProducto as Experiencia) +
-          `</actualizarProductoExperiencia>`;
+        finalURI += '/experiencia'
         break;
-
       case 'SALIDA':
-        accionXML = `
-          <actualizarProductoSalida xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearSalidaXML(nProducto as Salida) +
-          `</actualizarProductoSalida>`;
+        finalURI += '/salida'
         break;
       case 'SITIO':
-        accionXML = `
-          <actualizarProductoSitio xmlns="http://iservice.eko.javeriana.edu.co/">`
-          + this.utils.crearSitioXML(nProducto as Sitio) +
-          `</actualizarProductoSitio>`;
+        finalURI += '/sitio'
         break;
 
       default:
@@ -223,22 +152,11 @@ export class ProductService {
         break;
     }
 
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>`
-      + accionXML +
-      `</Body>
-    </Envelope>`;
-
-    console.log(body)
-
-    // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
-    );
+    // Se realiza una petición PUT
+    return this.http.put<string>(
+      finalURI,
+      nProducto,
+      { withCredentials: true });
   }
 
   /**
@@ -247,52 +165,28 @@ export class ProductService {
  *
  * @param nProducto
  */
-  public eliminarProducto(nProducto: any): Observable<any> {
-    // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.utils.crearHeadersXML();
-    console.log(nProducto._id);
-    let accionXML: string = '';
+  public eliminarProducto(nProducto: any): Observable<string> {
+    let finalURI: string = this.productosURI;
 
-    console.log(nProducto)
-
-    // Se crea el cuerpo de la petición dependiendo del tipo de producto
+    // Se establece la URI para hacer la petición
     switch (nProducto['tipo']) {
       case 'TRANSPORTE':
-        accionXML = `
-          <eliminarProductoTransportePorID xmlns="http://iservice.eko.javeriana.edu.co/">
-            <transporteID xmlns="">` + nProducto._id + `</transporteID>
-          </eliminarProductoTransportePorID>`;
+        finalURI += '/transporte'
         break;
       case 'ALOJAMIENTO':
-        accionXML = `
-          <eliminarProductoAlojamientoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-           <alojamientoID xmlns="">` + nProducto._id + `</alojamientoID>
-          </eliminarProductoAlojamientoPorID>`;
+        finalURI += '/alojamiento'
         break;
       case 'EVENTO':
-        accionXML = `
-          <eliminarProductoEventoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-           <eventoID xmlns="">` + nProducto._id + `</eventoID>
-          </eliminarProductoEventoPorID>`;
+        finalURI += '/evento'
         break;
       case 'EXPERIENCIA':
-        accionXML = `
-          <eliminarProductoExperienciaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-           <experienciaID xmlns="">` + nProducto._id + `</experienciaID>
-          </eliminarProductoExperienciaPorID>`;
+        finalURI += '/experiencia'
         break;
-
       case 'SALIDA':
-        accionXML = `
-          <eliminarProductoSalidaPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-            <salidaID xmlns="">` + nProducto._id + `</salidaID>
-          </eliminarProductoSalidaPorID>`;
+        finalURI += '/salida'
         break;
       case 'SITIO':
-        accionXML = `
-          <eliminarProductoSitioPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-            <sitioID  xmlns="">` + nProducto._id + `</sitioID>
-          </eliminarProductoSitioPorID>`;
+        finalURI += '/sitio'
         break;
 
       default:
@@ -300,20 +194,12 @@ export class ProductService {
         break;
     }
 
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>`
-      + accionXML +
-      `</Body>
-    </Envelope>`;
+    finalURI += '/' + nProducto._id;
 
-    // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/producto?wsdl',
-      body,
-      httpOptions
-    );
+    // Se realiza una petición PUT
+    return this.http.delete<string>(
+      finalURI,
+      { withCredentials: true });
   }
 
   /**

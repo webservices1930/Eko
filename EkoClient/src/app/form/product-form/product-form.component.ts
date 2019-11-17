@@ -36,6 +36,7 @@ export class ProductFormComponent implements OnInit {
   public infoPaisDestino: string = '';
   public descripcion: string = '';
   public tipo: string = '';
+  public titulo: string = '';
 
   constructor(
     private productService: ProductService,
@@ -125,8 +126,9 @@ export class ProductFormComponent implements OnInit {
     this.producto.descripcion = this.descripcion;
     this.producto.tipo = this.tipo;
     this.producto.idUsuario = this.userService.obtenerCorreoUsuario();
+    this.producto.titulo = this.titulo;
 
-    if (this.tipo === 'TRANSPORTE') {
+    if (this.tipo === 'TRANSPORTE' || this.tipo === 'SALIDA') {
       this.listaTrayecto.forEach(trayecto => {
         this.producto.trayecto.push(trayecto.valor);
       });

@@ -29,11 +29,9 @@ export class ProductViewComponent implements OnInit {
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.id = this.route.snapshot.paramMap.get('id');
     this.productService.buscarPorID(this.id)
-      .subscribe(result => {
-        const infoRespuesta = this.utils.convertirXMLEnObjeto(result as string);
-        this.producto = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:buscarProductoPorIdResponse'][0]['producto'][0];
+      .subscribe(productoResponse => {
+        this.producto = productoResponse;
         this.productoCargado = true;
-        console.log(this.producto)
       }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);

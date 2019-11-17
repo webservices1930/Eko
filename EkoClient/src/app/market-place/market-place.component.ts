@@ -18,9 +18,8 @@ export class MarketPlaceComponent implements OnInit {
     private router: Router
   ) {
     this.productService.obtenerTodosLosProductos()
-      .subscribe(result => {
-        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        this.productos = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerProductosResponse'][0]['listadoProductos'];
+      .subscribe(productosResponse => {
+        this.productos = productosResponse;
       }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);
