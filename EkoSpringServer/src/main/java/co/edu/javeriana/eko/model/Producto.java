@@ -14,7 +14,7 @@ public abstract class Producto {
 	private String idUsuario;
 	private List<Disponibilidad> disponibilidad;
 	private List<Calificacion> calificacion;
-	private List<Pregunta> pregunta;
+	private List<String> pregunta;
 	private String descripcion;
 	private TipoProducto tipo;
 
@@ -22,7 +22,7 @@ public abstract class Producto {
 	public Producto() {}
 	
 	public Producto(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			List<Calificacion> calificacion, List<Pregunta> pregunta ,String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+			List<Calificacion> calificacion, List<String> pregunta ,String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
 		this.titulo = titulo;
 		this.precio = precio;
 		this.infoPaisDestino = infoPaisDestino;
@@ -35,7 +35,7 @@ public abstract class Producto {
 	}
 	
 	public Producto(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad 
-			,List<Calificacion> calificacion, List<Pregunta> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
+			,List<Calificacion> calificacion, List<String> pregunta, String descripcion, TipoProducto tipo, String idUsuario, String titulo) {
 		this.titulo = titulo;
 		this._id = _id;
 		this.precio = precio;
@@ -114,11 +114,13 @@ public abstract class Producto {
 		this.calificacion = calificacion;
 	}
 
-	public List<Pregunta> getPregunta() {
+	
+
+	public List<String> getPregunta() {
 		return pregunta;
 	}
 
-	public void setPregunta(List<Pregunta> pregunta) {
+	public void setPregunta(List<String> pregunta) {
 		this.pregunta = pregunta;
 	}
 

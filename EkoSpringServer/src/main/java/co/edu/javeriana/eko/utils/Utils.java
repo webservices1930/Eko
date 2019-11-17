@@ -125,10 +125,8 @@ public final class Utils {
 					.add(new Document("fecha", dis.getFecha()).append("cuposDisponibles", dis.getCuposDisponibles()));
 		}
 		
-		for (Pregunta pre : transporte.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
+		for (String pre : transporte.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}
 		
 		for (Calificacion cal : transporte.getCalificacion()) {			
@@ -165,11 +163,32 @@ public final class Utils {
 	public static Transporte deDocumentoAObjetoTransporte(Document docTransporte) {
 		Transporte transporte = new Transporte();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();		
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
-
+		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta");
+		
+		
+		
+		
+		
+				System.out.println("uno");
 				
-		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta");	
+				if (docPregunta.isEmpty()) {	System.out.println("que pasa?");}	
+				
+				
+				
+		if (docPregunta != null) {		
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
+			}	
+			transporte.setPregunta(pregunta);
+		}else {
+			System.out.println("dos");
+			List<String> preg = new ArrayList<String>(); 
+			transporte.setPregunta(preg);			
+		}	
+		System.out.println("tres");
+			
 		List<Document> docCalificacion = (List<Document>) docTransporte.get("calificacion");
 		
 		List<Document> docDisponibilidad = (List<Document>) docTransporte.get("disponibilidad");
@@ -187,22 +206,7 @@ public final class Utils {
 			disponibilidad.add(nDis);
 		}
 
-		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
-			}	
-			transporte.setPregunta(pregunta);
-		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
-			transporte.setPregunta(preg);			
-		}
+		
 		
 		
 		if (docCalificacion != null) {		
@@ -251,10 +255,8 @@ public final class Utils {
 		List<Document> preguntas = new ArrayList<Document>();
 		List<Document> calificaciones = new ArrayList<Document>();		
 		
-		for (Pregunta pre : alojamiento.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
+		for (String pre : alojamiento.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}		
 		for (Calificacion cal : alojamiento.getCalificacion()) {			
 			calificaciones
@@ -299,7 +301,7 @@ public final class Utils {
 	public static Alojamiento deDocumentoAObjetoAlojamiento(Document docAlojamiento) {
 		Alojamiento alojamiento = new Alojamiento();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
 				
@@ -316,21 +318,15 @@ public final class Utils {
 			nDis.setFecha((String) docDis.get("fecha"));
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
-		}
+		}	
+		
 		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
 			}	
 			alojamiento.setPregunta(pregunta);
 		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
+			List<String> preg = new ArrayList<String>(); 
 			alojamiento.setPregunta(preg);			
 		}
 		
@@ -388,11 +384,8 @@ public final class Utils {
 
 		
 		
-		for (Pregunta pre : sitio.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
-			
+		for (String pre : sitio.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}
 		
 		for (Calificacion cal : sitio.getCalificacion()) {			
@@ -436,7 +429,7 @@ public final class Utils {
 	public static Sitio deDocumentoAObjetoSitio(Document docSitio) {
 		Sitio sitio = new Sitio();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
 				
@@ -456,19 +449,12 @@ public final class Utils {
 		}
 		
 		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
 			}	
 			sitio.setPregunta(pregunta);
 		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
+			List<String> preg = new ArrayList<String>(); 
 			sitio.setPregunta(preg);			
 		}
 		
@@ -522,11 +508,8 @@ public final class Utils {
 
 		
 		
-		for (Pregunta pre : experiencia.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
-			
+		for (String pre : experiencia.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}
 		
 		for (Calificacion cal : experiencia.getCalificacion()) {			
@@ -570,7 +553,7 @@ public final class Utils {
 	public static Experiencia deDocumentoAObjetoExperiencia(Document docExperiencia) {
 		Experiencia experiencia= new Experiencia();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
 				
@@ -590,19 +573,12 @@ public final class Utils {
 		}
 		
 		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
 			}	
 			experiencia.setPregunta(pregunta);
 		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
+			List<String> preg = new ArrayList<String>(); 
 			experiencia.setPregunta(preg);			
 		}
 		
@@ -657,11 +633,8 @@ public final class Utils {
 
 		
 		
-		for (Pregunta pre : salida.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
-			
+		for (String pre : salida.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}
 		
 		for (Calificacion cal : salida.getCalificacion()) {			
@@ -703,7 +676,7 @@ public final class Utils {
 	public static Salida deDocumentoAObjetoSalida(Document docSalida) {
 		Salida salida= new Salida();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
 				
@@ -725,19 +698,12 @@ public final class Utils {
 		}
 		
 		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
 			}	
 			salida.setPregunta(pregunta);
 		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
+			List<String> preg = new ArrayList<String>(); 
 			salida.setPregunta(preg);			
 		}
 		
@@ -790,11 +756,8 @@ public final class Utils {
 
 		
 		
-		for (Pregunta pre : evento.getPregunta()) {			
-			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
-										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
-			
+		for (String pre : evento.getPregunta()) {			
+			preguntas.add(new Document("_id",pre));
 		}
 		
 		for (Calificacion cal : evento.getCalificacion()) {			
@@ -839,7 +802,7 @@ public final class Utils {
 	public static Evento deDocumentoAObjetoEvento(Document docEvento) {
 		Evento evento = new Evento();
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
-		List<Pregunta> pregunta = new ArrayList<Pregunta>();
+		List<String> pregunta = new ArrayList<String>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
 
 				
@@ -859,19 +822,12 @@ public final class Utils {
 		}
 		
 		if (docPregunta != null) {		
-			for (Document docPre : docPregunta) {
-				Pregunta nPre = new Pregunta();
-				nPre.set_id((String) docPre.get("_id"));
-				nPre.setId_Producto((String) docPre.get("id_Producto"));
-				nPre.setId_Usuario((String) docPre.get("id_Usuario"));
-				nPre.setDescripcion((String) docPre.get("descripcion"));
-				nPre.setRespuesta((String) docPre.get("respuesta"));	
-				nPre.setFecha_Creacion((String) docPre.get("fecha_Creacion"));	
-				pregunta.add(nPre);
+			for (Document docPre : docPregunta) {				
+				pregunta.add(docPre.toJson());
 			}	
 			evento.setPregunta(pregunta);
 		}else {
-			List<Pregunta> preg = new ArrayList<Pregunta>(); 
+			List<String> preg = new ArrayList<String>(); 
 			evento.setPregunta(preg);			
 		}
 		
@@ -1202,6 +1158,10 @@ public final class Utils {
 	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
 		
 		Pregunta pregunta = new Pregunta();		
+		
+		String salidaID = ((ObjectId)docPregunta.getObjectId("_id")).toString();		
+		pregunta.set_id(salidaID);
+		
 		
 		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
 		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));

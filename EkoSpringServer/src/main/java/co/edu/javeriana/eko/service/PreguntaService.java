@@ -26,7 +26,7 @@ public class PreguntaService implements IPreguntaService {
 		
 	}	
 	
-	
+	/*
 	public void eliminarPregunta(String idProducto, String idPregunta ) {
 		Producto producto = new Producto() {};				
 		String coleccion = nombreColeccion(idProducto);
@@ -50,7 +50,7 @@ public class PreguntaService implements IPreguntaService {
 		
 	}
 	
-	
+	*/
 	
 	
 	private String nombreColeccion(String id) {

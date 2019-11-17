@@ -34,6 +34,7 @@ public class PreguntaServicesController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha anexado correctamente la pregunta al producto.\"}",
 				HttpStatus.OK);
 	}
+	/*
 	
 	@RequestMapping(value = "/api/productos/pregunta/{idProducto}/{idPregunta}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> eliminarPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta ) {
@@ -55,5 +56,6 @@ public class PreguntaServicesController {
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente la pregunta.\"}",
 				HttpStatus.OK);
 	}
+	*/
 	
 }

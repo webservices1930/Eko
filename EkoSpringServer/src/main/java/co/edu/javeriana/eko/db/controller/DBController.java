@@ -558,32 +558,40 @@ public final class DBController {
      */
     public static void insertarPregunta(String nombreColeccion, Pregunta nPregunta) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
-        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        
+        // se crea la pregunta en la coleccion        
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection("producto-pregunta");
+        Document nPreguntaDoc = Utils.deObjetoPreguntaADocumento(nPregunta);
+        coleccion.insertOne(nPreguntaDoc);
+        
+        Document preguntaDoc = coleccion.find().sort(new BasicDBObject("_id",-1)).first();
+        Pregunta pregunta = Utils.deDocumentoAObjetoPregunta(preguntaDoc);        
         
         
+        // se busca la coleccion en la que va la pregunta
+        MongoCollection<Document> coleccionProducto = baseDeDatos.getCollection(nombreColeccion);        
         BasicDBObject query = new BasicDBObject();
-        query.put("_id", new ObjectId(nPregunta.getId_Producto()) );
-        
-        Document docProducto = coleccion.find(query).first();        
-        //System.out.println(docProducto.toJson());          
+        query.put("_id", new ObjectId(nPregunta.getId_Producto()) );        
+        Document docProducto = coleccion.find(query).first();                  
         
         Producto producto = deDocumentoAObjetoTransporte(docProducto);        
-        List<Pregunta> pregunta = producto.getPregunta();        
-        pregunta.add(nPregunta);     
+        List<String> preguntas = producto.getPregunta();        
+        preguntas.add(pregunta.get_id());     
         
-        producto.setPregunta(pregunta);        
+        producto.setPregunta(preguntas);        
         actualizarProducto(producto);
         
+        
     }
+  
+
     
     
     
-    /**
-     * Elimina en una colecci�n indicada una pregunta
-     *
-     * @param nombreColeccion
-     * @param usuario
-     */
+    /*
+    
+    
+    
     public static void eliminarPregunta(String nombreColeccion, String idProducto, String idPregunta) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
@@ -613,12 +621,7 @@ public final class DBController {
     }
     
     
-    /**
-     * Retorna una pregunta
-     *
-     * @param nombreColeccion
-     * @param usuario
-     */
+   
     public static Pregunta obtenerPregunta(String nombreColeccion, String idProducto, String idPregunta) {
     	
     	Pregunta preg = new Pregunta();
@@ -642,12 +645,7 @@ public final class DBController {
         return preg;        
     }
     
-    /**
-     * Actualiza una pregunta
-     *
-     * @param nombreColeccion
-     * @param usuario
-     */
+   
     public static void actualizarPregunta(String nombreColeccion, Pregunta nPregunta) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
@@ -676,7 +674,7 @@ public final class DBController {
         
     }
     
-
+*/
    
     
     

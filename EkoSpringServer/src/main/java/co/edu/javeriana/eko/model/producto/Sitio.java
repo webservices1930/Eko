@@ -23,7 +23,7 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad, String descripcion,
-			List<Calificacion> calificacion, List<Pregunta> pregunta, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
+			List<Calificacion> calificacion, List<String> pregunta, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario, String titulo) {
 		super(precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoDeSitio = tipoDeSitio;
@@ -36,7 +36,7 @@ public class Sitio extends Producto{
 	}
 
 	public Sitio(String _id, double precio, String infoPaisDestino, List<Disponibilidad> disponibilidad,
-			List<Calificacion> calificacion, List<Pregunta> pregunta,String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
+			List<Calificacion> calificacion, List<String> pregunta,String descripcion, TipoProducto tipo, TipoDeSitio tipoDeSitio, double latitud, double longitud, int restriccionEdad,
 			boolean consumoObligatorio, String horaApertura, String horaCierre, String idUsuario, String titulo) {
 		super(_id, precio, infoPaisDestino, disponibilidad, calificacion, pregunta, descripcion, tipo, idUsuario, titulo);
 		this.tipoDeSitio = tipoDeSitio;
