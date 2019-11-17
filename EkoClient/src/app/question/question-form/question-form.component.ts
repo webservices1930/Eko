@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { Pregunta } from 'src/app/shared/model/Pregunta';
 import { formatDate } from '@angular/common';
+import { PreguntaService } from 'src/app/shared/services/pregunta/pregunta.service';
 
 @Component({
   selector: 'app-question-form',
@@ -21,7 +22,8 @@ export class QuestionFormComponent implements OnInit {
     private userService: UserService,
     private utils: UtilsService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private preguntaService: PreguntaService
   ) {
     this.checkoutForm = this.formBuilder.group({
       descripcion: ['', Validators.required]
@@ -40,7 +42,7 @@ export class QuestionFormComponent implements OnInit {
     pregunta.id_Usuario = this.userService.obtenerCorreoUsuario();
     pregunta.respuesta = '';
 
-    this.productService.agregarPreguntaProducto(pregunta)
+    this.preguntaService.agregarPregunta(pregunta)
     .subscribe(result => {
       alert('Pregunta enviada con éxito')
       window.location.reload();

@@ -53,7 +53,6 @@ export class ProductViewComponent implements OnInit {
         carrito.productos.push(this.id);
         this.carritoService.actualizarCarrito(carrito)
           .subscribe(result => {
-            const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
             alert('Se ha agregado exitosamente al carrito');
           }, error => {
             console.log('There was an error: ', error);
@@ -65,7 +64,6 @@ export class ProductViewComponent implements OnInit {
         carrito.productos.push(this.id);
         this.carritoService.agregarCarrito(carrito)
           .subscribe(result => {
-            const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
             alert('Se ha agregado exitosamente al carrito');
           }, error => {
             console.log('There was an error: ', error);
