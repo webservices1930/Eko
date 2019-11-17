@@ -23,34 +23,13 @@ export class CarritoService {
    * @param nCarrito
    */
   public agregarCarrito(nCarrito: Carrito): Observable<any> {
-
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let productos = '';
-
-    nCarrito.productos.forEach(prod => {
-      productos += `<productos>` + prod + `</productos>`;
-    });
-
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <agregarCarrito xmlns="http://iservice.eko.javeriana.edu.co/">
-          <carrito xmlns="">
-              <idUsuario>` + nCarrito.idUsuario + `</idUsuario>
-              `
-              + productos +
-              `
-          </carrito>
-        </agregarCarrito>
-      </Body>
-    </Envelope>`;
+    let finalURI: string = this.carritoURI;
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/carrito?wsdl',
-      body,
-      httpOptions
+    return this.http.post<string>(
+      finalURI,
+      nCarrito,
+      { withCredentials: true }
     );
   }
 
@@ -63,7 +42,6 @@ export class CarritoService {
     let finalURI: string = this.carritoURI;
 
     finalURI += '/usuario/' + id;
-    console.log(finalURI)
 
     // Se realiza una petición POST
     return this.http.get<Carrito>(
@@ -78,36 +56,14 @@ export class CarritoService {
    *
    * @param nCarrito
    */
-  public actualizarCarrito(nCarrito: Carrito): Observable<any> {
-    // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.utils.crearHeadersXML();
-    let productos = '';
-
-    nCarrito.productos.forEach(prod => {
-      productos += `<productos>` + prod + `</productos>`;
-    });
-
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <actualizarCarrito xmlns="http://iservice.eko.javeriana.edu.co/">
-          <carrito xmlns="">
-              <idUsuario>` + nCarrito.idUsuario + `</idUsuario>
-              `
-              + productos +
-              `
-              <_id>` + nCarrito._id + `</_id>
-          </carrito>
-        </actualizarCarrito>
-      </Body>
-    </Envelope>`;
+  public actualizarCarrito(nCarrito: Carrito): Observable<string> {
+    let finalURI: string = this.carritoURI;
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/carrito?wsdl',
-      body,
-      httpOptions
+    return this.http.put<string>(
+      finalURI,
+      nCarrito,
+      { withCredentials: true }
     );
   }
 
@@ -118,24 +74,14 @@ export class CarritoService {
    * @param nCarrito
    */
   public eliminarCarrito(nCarrito: Carrito): Observable<any> {
-    // Se especifíca que la petición se hará por XML
-    const httpOptions: object = this.utils.crearHeadersXML();
+    let finalURI: string = this.carritoURI;
 
-    // Se crea la establece la información que se enviará al servidor
-    const body: string = `
-    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-      <Body>
-        <eliminarCarritoPorID xmlns="http://iservice.eko.javeriana.edu.co/">
-            <carritoID xmlns="">` + nCarrito._id + `</carritoID>
-        </eliminarCarritoPorID>
-      </Body>
-    </Envelope>`;
+    finalURI += '/usuario/' + nCarrito._id;
 
     // Se realiza una petición POST
-    return this.http.post(
-      this.utils.baseUrl + 'eko/carrito?wsdl',
-      body,
-      httpOptions
+    return this.http.delete<string>(
+      finalURI,
+      { withCredentials: true }
     );
   }
 

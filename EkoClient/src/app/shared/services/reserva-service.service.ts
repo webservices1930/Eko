@@ -16,46 +16,31 @@ export class ReservaService {
     private utils: UtilsService
   ) { }
 
-  /**
-   * Genera los Headers para una petición SOAP
-   */
-  public crearHeadersXML(): object {
-    return {
-      headers: new HttpHeaders().set('Content-Type', 'text/xml')
-        .append('Access-Control-Allow-Methods', 'GET')
-        .append('Access-Control-Allow-Origin', '*')
-        .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
-      responseType: 'text/html',
-      withCredentials: true
-    };
-  }
-
-
-  public crearReserva(nReserva: Reserva) {
+  public crearReserva(nReserva: Reserva): Observable<string> {
     return this.http.post<string>(
       this.reservaURI,
-      nReserva
+      nReserva,
+      { withCredentials: true }
     );
-
   }
 
-  public obtenerReservaPorUsuario(idUsuario: string) {
+  public obtenerReservaPorUsuario(idUsuario: string): Observable<Reserva[]> {
     const finalURI: string = this.reservaURI + 's/cliente/' + idUsuario;
-    return this.http.get(finalURI);
+    return this.http.get<Reserva[]>(finalURI, { withCredentials: true });
   }
 
-  public obtenerReserva(id: string) {
+  public obtenerReserva(id: string): Observable<Reserva> {
     const finalURI: string = this.reservaURI + '/' + id;
-    return this.http.get(finalURI);
+    return this.http.get<Reserva>(finalURI, { withCredentials: true });
   }
 
-  public actualizarReserva(nReserva: Reserva) {
-    return this.http.put(this.reservaURI , nReserva);
+  public actualizarReserva(nReserva: Reserva): Observable<string> {
+    return this.http.put<string>(this.reservaURI, nReserva, { withCredentials: true });
   }
 
-  public eliminarReserva(id: string) {
+  public eliminarReserva(id: string): Observable<string> {
     const finalURI: string = this.reservaURI + '/' + id;
-    return this.http.delete(finalURI);
+    return this.http.delete<string>(finalURI, { withCredentials: true });
   }
 
 }

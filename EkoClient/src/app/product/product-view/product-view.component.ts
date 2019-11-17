@@ -46,13 +46,15 @@ export class ProductViewComponent implements OnInit {
    */
   public agregarAlCarrito() {
     this.carritoService.buscarPorIDUsuario(this.userService.obtenerCorreoUsuario())
-      .subscribe(result => {
-        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        let carrito = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerCarritoPorUsuarioResponse'][0]['listaCarritoUsuario'][0];
+      .subscribe(carritoResponse => {
+        console.log(carritoResponse)
+        let carrito = carritoResponse;
+
         carrito.productos.push(this.id);
         this.carritoService.actualizarCarrito(carrito)
           .subscribe(result => {
             const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
+            alert('Se ha agregado exitosamente al carrito');
           }, error => {
             console.log('There was an error: ', error);
             console.log(error.status);
@@ -64,6 +66,7 @@ export class ProductViewComponent implements OnInit {
         this.carritoService.agregarCarrito(carrito)
           .subscribe(result => {
             const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
+            alert('Se ha agregado exitosamente al carrito');
           }, error => {
             console.log('There was an error: ', error);
             console.log(error.status);

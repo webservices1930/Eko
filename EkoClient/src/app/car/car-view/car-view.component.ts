@@ -6,6 +6,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 import { CarritoService } from 'src/app/shared/services/carrito/carrito.service';
 import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { Reserva } from 'src/app/shared/model/Reserva';
+import { ReservaService } from 'src/app/shared/services/reserva-service.service';
 
 @Component({
   selector: 'app-car-view',
@@ -25,11 +26,13 @@ export class CarViewComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private carritoService: CarritoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private reservaService: ReservaService
   ) {
     this.carritoService.buscarPorIDUsuario(this.userService.obtenerCorreoUsuario())
       .subscribe(carritoResponse => {
         this.hayCarrito = true;
+        this.carrito = carritoResponse;
 
         for (let producto of this.carrito.productos) {
           this.productService.buscarPorID(producto)
@@ -54,10 +57,11 @@ export class CarViewComponent implements OnInit {
             });
         }
 
-        this.productService.buscarReservaPorUsuario(this.userService.obtenerCorreoUsuario())
-          .subscribe(result => {
-            const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-            this.reservas = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:buscarReservasClientePorIDResponse'][0]['reservasCliente'];
+        this.reservaService.obtenerReservaPorUsuario(this.userService.obtenerCorreoUsuario())
+          .subscribe(reservasResponse => {
+            console.log(reservasResponse)
+            // const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
+            this.reservas = reservasResponse;
             this.hayReservas = true;
           }, error => {
             this.hayReservas = false;
@@ -105,7 +109,7 @@ export class CarViewComponent implements OnInit {
     nReserva.fechas = disponibilidad.fecha;
     nReserva.productoid = producto._id;
 
-    this.productService.agregarReserva(nReserva)
+    this.reservaService.crearReserva(nReserva)
       .subscribe(result => {
         alert('Reserva realizada')
         window.location.reload();
@@ -116,7 +120,7 @@ export class CarViewComponent implements OnInit {
   }
 
   public eliminarReserva(reserva: any) {
-    this.productService.eliminarReserva(reserva._id)
+    this.reservaService.eliminarReserva(reserva._id)
       .subscribe(result => {
         alert('Reserva eliminada con éxito');
         window.location.reload();
