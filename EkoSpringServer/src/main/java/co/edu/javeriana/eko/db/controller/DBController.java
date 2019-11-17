@@ -594,7 +594,9 @@ public final class DBController {
 				JSONObject j = new JSONObject();
 				j.append("userName", s.getUser().getName())
 				.append("text", s.getText())
-				.append("creation", s.getCreatedAt());
+				.append("creation", s.getCreatedAt())
+				.append("screenName", s.getUser().getScreenName())
+				.append("picture", s.getUser().get400x400ProfileImageURL());
 				tweets.put(j);
 			}
 			res = TwitterObjectFactory.getRawJSON(status);

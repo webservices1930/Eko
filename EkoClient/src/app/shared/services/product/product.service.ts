@@ -198,4 +198,10 @@ export class ProductService {
       { withCredentials: true });
   }
 
+  public twitter(query: string){
+    const finalURI = this.productosURI + '/twitter/' + query;
+    return this.http.get(finalURI);
+  }
+
+
 }
