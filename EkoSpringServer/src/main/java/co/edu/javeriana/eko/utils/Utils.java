@@ -104,6 +104,8 @@ public final class Utils {
 		producto.setDescripcion(docProducto.getString("descripcion"));
 		producto.setTipo(TipoProducto.valueOf(docProducto.getString("tipo")));
 		producto.setIdUsuario(docProducto.getString("idUsuario"));
+		producto.setFoto(docProducto.getString("foto"));
+		producto.setCiudad(docProducto.getString("ciudad"));
 	
 		return producto;
 	}
