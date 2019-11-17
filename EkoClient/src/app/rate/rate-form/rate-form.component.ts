@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { Calificacion } from 'src/app/shared/model/Calificacion';
 import { formatDate } from '@angular/common';
+import { CalificacionService } from 'src/app/shared/services/calificacion/calificacion.service';
 
 @Component({
   selector: 'app-rate-form',
@@ -21,7 +22,8 @@ export class RateFormComponent implements OnInit {
     private userService: UserService,
     private utils: UtilsService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private calificacionService: CalificacionService
   ) {
     this.checkoutForm = this.formBuilder.group({
       comentario: ['', Validators.required],
@@ -41,7 +43,7 @@ export class RateFormComponent implements OnInit {
     calificacion.id_Usuario = this.userService.obtenerCorreoUsuario();
     calificacion.valoracion = nCalificacion.valoracion;
 
-    this.productService.agregarCalificacionProducto(calificacion)
+    this.calificacionService.agregarCalificacion(calificacion)
     .subscribe(result => {
       alert('Calificación enviada con éxito')
       window.location.reload();

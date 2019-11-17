@@ -40,10 +40,10 @@ public class CalificacionServicesController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idPregunta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Calificacion> obtenerCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta) {
+	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idCalificacion}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Calificacion> obtenerCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idCalificacion") String idCalificacion) {
 		return new ResponseEntity<Calificacion>(
-				(Calificacion) calificacionService.obtenerCalificacion(idProducto, idPregunta),
+				(Calificacion) calificacionService.obtenerCalificacion(idProducto, idCalificacion),
 				HttpStatus.OK);
 	}
 	
