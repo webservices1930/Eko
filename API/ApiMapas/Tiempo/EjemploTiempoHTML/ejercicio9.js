@@ -1,7 +1,7 @@
 'use strict'
 class Meteo {
   constructor() {
-    this.apikey = '?'
+    this.apikey = 'bf5d5874078f74e1bf2157e6ee127492'
     this.ciudad = 'Oviedo'
     this.tipo = "&mode=xml";
     this.codigoPais = 'ES'

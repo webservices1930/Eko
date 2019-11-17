@@ -71,7 +71,7 @@ public class PreguntaService implements IPreguntaService {
 		if(validator) {
 			
 			nombreColeccion = "productos-evento";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
+			producto = DBController.buscarEnColeccionEventoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
 				return nombreColeccion;
 			}		
@@ -80,7 +80,7 @@ public class PreguntaService implements IPreguntaService {
 		if(validator) {
 			
 			nombreColeccion = "productos-experiencia";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
+			producto = DBController.buscarEnColeccionExperienciaPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
 				return nombreColeccion;
 			}		
@@ -89,7 +89,7 @@ public class PreguntaService implements IPreguntaService {
 		if(validator) {
 			
 			nombreColeccion = "productos-salida";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
+			producto = DBController.buscarEnColeccionSalidaPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
 				return nombreColeccion;
 			}		
@@ -98,7 +98,7 @@ public class PreguntaService implements IPreguntaService {
 		if(validator) {
 			
 			nombreColeccion = "productos-sitio";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
+			producto = DBController.buscarEnColeccionSitioPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
 				return nombreColeccion;
 			}		
@@ -106,7 +106,7 @@ public class PreguntaService implements IPreguntaService {
 		
 		if(validator) {
 			
-			nombreColeccion = "productos-transporte";
+			nombreColeccion = "productos-alojamiento";
 			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
 			if(producto.get_id()!="") {
 				return nombreColeccion;

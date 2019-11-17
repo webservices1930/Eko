@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { CarritoService } from 'src/app/shared/services/carrito/carrito.service';
 import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { WeatherService } from 'src/app/shared/weather/weather.service';
 
 
 @Component({
@@ -18,6 +19,9 @@ export class ProductViewComponent implements OnInit {
   public id: string = '';
   public productoCargado: boolean = false;
   public esMiProducto: boolean = false;
+  public mostrarEnMapa: boolean = false;
+  public trayectos: any[] = [{origen: undefined, destino: undefined}];
+  public tieneTrayecto: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -25,7 +29,8 @@ export class ProductViewComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private carritoService: CarritoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private weatherService: WeatherService
   ) {
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.id = this.route.snapshot.paramMap.get('id');
@@ -36,6 +41,38 @@ export class ProductViewComponent implements OnInit {
 
         if (this.producto.idUsuario === this.userService.obtenerCorreoUsuario()) {
           this.esMiProducto = true;
+        }
+
+        if (this.producto.longitud !== undefined && this.producto.latitud !== undefined) {
+          this.mostrarEnMapa = true;
+        } else {
+          this.mostrarEnMapa = false;
+        }
+
+        if (this.producto.trayecto !== undefined) {
+          this.tieneTrayecto = true;
+        } else {
+          this.tieneTrayecto = false;
+        }
+
+        if (this.tieneTrayecto && this.producto.tipo === 'TRANSPORTE') {
+          for (let lugar of this.producto.trayecto) {
+            this.weatherService.obtenerInformacionClimaPorNombreCiudad(lugar).subscribe(result => {
+              if (this.trayectos[this.trayectos.length - 1].origen === undefined) {
+                this.trayectos[this.trayectos.length - 1].origen = {
+                  lat: result.coord.lat,
+                  lng: result.coord.lon
+                };
+              } else {
+                this.trayectos[this.trayectos.length - 1].destino = {
+                  lat: result.coord.lat,
+                  lng: result.coord.lon
+                };
+                this.trayectos.push({origen: undefined, destino: undefined});
+              }
+            });
+          }
+          console.log(this.trayectos)
         }
       }, error => {
         console.log('There was an error: ', error);

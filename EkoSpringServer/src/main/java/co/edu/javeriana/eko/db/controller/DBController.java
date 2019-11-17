@@ -86,7 +86,7 @@ public final class DBController {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
         BasicDBObject query = new BasicDBObject();
-        query.put("idusuario", _id);
+        query.put("idUsuario", _id);
         MongoCursor<Document> cursor = coleccion.find(query).cursor();
         try {
             while (cursor.hasNext()) {
@@ -593,7 +593,9 @@ public final class DBController {
 				JSONObject j = new JSONObject();
 				j.append("userName", s.getUser().getName())
 				.append("text", s.getText())
-				.append("creation", s.getCreatedAt());
+				.append("creation", s.getCreatedAt())
+				.append("screenName", s.getUser().getScreenName())
+				.append("picture", s.getUser().get400x400ProfileImageURL());
 				tweets.put(j);
 			}
 			res = TwitterObjectFactory.getRawJSON(status);
@@ -626,7 +628,26 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);
+        
+        
+        
         List<Pregunta> pregunta = producto.getPregunta();        
         pregunta.add(nPregunta);     
         
@@ -654,7 +675,23 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);  
+        
         List<Pregunta> pregunta = producto.getPregunta(); 
         
         
@@ -688,7 +725,23 @@ public final class DBController {
         query.put("_id", new ObjectId(idProducto) );        
         Document docProducto = coleccion.find(query).first();        
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
         List<Pregunta> pregunta = producto.getPregunta();        
         int posicion=0, remover = 0;        
         for(Pregunta pre : pregunta) {
@@ -718,7 +771,23 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);  
+        
         List<Pregunta> pregunta = producto.getPregunta(); 
         int posicion=0, remover = 0;        
         for(Pregunta pre : pregunta) {
@@ -765,7 +834,23 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
         List<Calificacion> calificacion = producto.getCalificacion();        
         calificacion.add(nCalificacion);     
         
@@ -792,7 +877,23 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
         List<Calificacion> calificacion = producto.getCalificacion();
         
         int posicion=0, remover = 0;        
@@ -826,7 +927,23 @@ public final class DBController {
         query.put("_id", new ObjectId(idProducto) );        
         Document docProducto = coleccion.find(query).first();        
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);   
+        
         List<Calificacion> calificacion = producto.getCalificacion();
         
         int posicion=0, remover = 0;        
@@ -858,7 +975,23 @@ public final class DBController {
         Document docProducto = coleccion.find(query).first();        
         //System.out.println(docProducto.toJson());          
         
-        Producto producto = deDocumentoAObjetoTransporte(docProducto);        
+        Producto producto = new Producto() {};      
+        
+        if (nombreColeccion ==  "productos-transporte") 
+        	producto= Utils.deDocumentoAObjetoTransporte(docProducto);        
+
+        if (nombreColeccion ==  "productos-experiencia")
+            producto= Utils.deDocumentoAObjetoExperiencia(docProducto);
+        
+        if (nombreColeccion ==  "productos-salida")
+            producto= Utils.deDocumentoAObjetoSalida(docProducto);
+        
+        if (nombreColeccion ==  "productos-sitio")
+            producto= Utils.deDocumentoAObjetoSitio(docProducto);
+        
+        if (nombreColeccion ==  "productos-alojamiento")
+            producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
         List<Calificacion> calificacion = producto.getCalificacion();
         
         int posicion=0, remover = 0;        

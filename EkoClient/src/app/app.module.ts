@@ -13,6 +13,8 @@ import { NgxSoapModule } from 'ngx-soap';
 import { LoginComponent } from './user/login/login.component';
 import { MenuComponent } from './nav/menu/menu.component';
 
+import { AgmCoreModule } from '@agm/core';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { MarketPlaceComponent } from './market-place/market-place.component';
@@ -25,7 +27,11 @@ import { CarViewComponent } from './car/car-view/car-view.component';
 import { QuestionFormComponent } from './question/question-form/question-form.component';
 import { RateFormComponent } from './rate/rate-form/rate-form.component';
 import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
+import { TwitterComponent } from './twitter/twitter.component';
+
+
 import { QuestionViewComponent } from './question/question-view/question-view.component';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,7 @@ import { QuestionViewComponent } from './question/question-view/question-view.co
     QuestionFormComponent,
     RateFormComponent,
     ProductFormEditComponent,
+    TwitterComponent,
     QuestionViewComponent
   ],
   imports: [
@@ -52,7 +59,11 @@ import { QuestionViewComponent } from './question/question-view/question-view.co
     FormsModule,
     HttpClientModule,
     NgxSoapModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmDirectionModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBmxwM96lYp-weLUJO-D_73HhgHXqdckuk'
+    })
   ],
   providers: [
     CookieService
