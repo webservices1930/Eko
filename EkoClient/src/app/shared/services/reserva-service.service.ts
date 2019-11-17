@@ -43,4 +43,9 @@ export class ReservaService {
     return this.http.delete<string>(finalURI, { withCredentials: true });
   }
 
+  public finalizarReserva(id: string): Observable<string> {
+    const finalURI: string = this.reservaURI + '/' + id;
+    return this.http.put<string>(finalURI, { withCredentials: true });
+  }
+
 }

@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 import { Calificacion } from 'src/app/shared/model/Calificacion';
 import { formatDate } from '@angular/common';
 import { CalificacionService } from 'src/app/shared/services/calificacion/calificacion.service';
+import { ReservaService } from 'src/app/shared/services/reserva-service.service';
 
 @Component({
   selector: 'app-rate-form',
@@ -15,15 +16,17 @@ import { CalificacionService } from 'src/app/shared/services/calificacion/califi
 })
 export class RateFormComponent implements OnInit {
   @Input() idProducto: string;
+  @Input() idReserva: any;
   public checkoutForm: FormGroup;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private utils: UtilsService,
     private router: Router,
     private productService: ProductService,
-    private calificacionService: CalificacionService
+    private calificacionService: CalificacionService,
+    private reservaService: ReservaService
   ) {
     this.checkoutForm = this.formBuilder.group({
       comentario: ['', Validators.required],
@@ -43,15 +46,21 @@ export class RateFormComponent implements OnInit {
     calificacion.id_Usuario = this.userService.obtenerCorreoUsuario();
     calificacion.valoracion = nCalificacion.valoracion;
 
+    console.log(this.idProducto)
+
     this.calificacionService.agregarCalificacion(calificacion)
-    .subscribe(result => {
-      alert('Calificación enviada con éxito')
-      window.location.reload();
-      this.router.navigate(['home']);
-    }, error => {
+      .subscribe(resultCalificacion => {
+        this.reservaService.finalizarReserva(this.idReserva)
+          .subscribe(resultReserva => {
+            alert('Reserva eliminada con éxito');
+            window.location.reload();
+          }, error => {
+            console.log('There was an error: ', error);
+            console.log(error.status);
+          });
+      }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);
       });
   }
-
 }

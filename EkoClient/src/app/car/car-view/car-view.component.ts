@@ -59,10 +59,12 @@ export class CarViewComponent implements OnInit {
 
         this.reservaService.obtenerReservaPorUsuario(this.userService.obtenerCorreoUsuario())
           .subscribe(reservasResponse => {
-            console.log(reservasResponse)
-            // const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
             this.reservas = reservasResponse;
             this.hayReservas = true;
+
+            for (let nReserva of this.reservas) {
+              nReserva['finalizar'] = false;
+            }
           }, error => {
             this.hayReservas = false;
             console.log('There was an error: ', error);
@@ -128,6 +130,21 @@ export class CarViewComponent implements OnInit {
         console.log('There was an error: ', error);
         console.log(error.status);
       })
+  }
+
+  public calificarReserva(reserva: any) {
+    this.reservaService.finalizarReserva(reserva._id)
+      .subscribe(result => {
+        alert('Reserva eliminada con éxito');
+        window.location.reload();
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      })
+  }
+
+  public finalizarReserva(reserva: any) {
+    reserva.finalizar = !reserva.finalizar;
   }
 
 }
