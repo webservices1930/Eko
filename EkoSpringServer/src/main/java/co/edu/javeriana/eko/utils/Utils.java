@@ -286,8 +286,8 @@ public final class Utils {
 				.append("cena", alojamiento.isCena())
 				.append("internet", alojamiento.isInternet())
 				.append("television", alojamiento.isTelevision())
-				.append("numeroCamas", alojamiento.getNumCamas())
-				.append("numeroBanios", alojamiento.getNumBanios());
+				.append("numCamas", alojamiento.getNumCamas())
+				.append("numBanios", alojamiento.getNumBanios());
 	}
 	
 	/**
@@ -368,8 +368,8 @@ public final class Utils {
 		alojamiento.setCena(docAlojamiento.getBoolean("cena"));
 		alojamiento.setInternet(docAlojamiento.getBoolean("internet"));
 		alojamiento.setTelevision(docAlojamiento.getBoolean("television"));
-		alojamiento.setNumCamas(docAlojamiento.getInteger("numeroCamas"));
-		alojamiento.setNumBanios(docAlojamiento.getInteger("numeroBanios"));
+		alojamiento.setNumCamas(docAlojamiento.getInteger("numCamas"));
+		alojamiento.setNumBanios(docAlojamiento.getInteger("numBanios"));
 		alojamiento.setIdUsuario(docAlojamiento.getString("idUsuario"));
 
 		return alojamiento;

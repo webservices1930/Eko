@@ -32,9 +32,8 @@ export class ProfileComponent implements OnInit {
 
 
     this.productService.buscarPorIDUsuario(this.userService.obtenerCorreoUsuario())
-      .subscribe(result => {
-        const infoRespuesta = this.utils.convertirXMLEnObjeto(result);
-        this.productos = infoRespuesta['S:Envelope']['S:Body'][0]['ns2:obtenerProductosPorUsuarioResponse'][0]['listaProductosUsuario'];
+      .subscribe(productosResponse => {
+        this.productos = productosResponse;
       }, error => {
         console.log('There was an error: ', error);
         console.log(error.status);

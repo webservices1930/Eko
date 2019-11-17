@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { TipoUsuario } from 'src/app/shared/model/TipoUsuario';
 import { UtilsService } from 'src/app/shared/utils/utils.service';
 import { Proveedor } from 'src/app/shared/model/Usuario/Proveedor';
+import { ReservaService } from '../../shared/services/reserva-service.service';
+import { Reserva } from '../../shared/model/Reserva';
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,11 +26,10 @@ export class EditProfileComponent implements OnInit {
     private router: Router
   ) {
     this.tiposDeUsuario = Object.keys(TipoUsuario).filter(key => typeof TipoUsuario[key as any] === 'number');
-
     this.userService.obtenerInformacionUsuarioActualPorCorreo()
       .subscribe(usuarioResponse => {
         this.usuario = usuarioResponse;
-        
+
         this.checkoutForm.setValue({
           nombre: this.usuario.nombre,
           edad: this.usuario.edad,

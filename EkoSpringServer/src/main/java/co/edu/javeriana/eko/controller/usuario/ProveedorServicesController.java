@@ -45,8 +45,8 @@ public class ProveedorServicesController {
     }
 
 
-    @RequestMapping(value = "/api/usuarios/proveedor", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> actualizarUsuarioProovedor(@RequestBody Proveedor cliente,@PathVariable("correo") String correo) {
+    @RequestMapping(value = "/api/usuarios/proveedor/{correo}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> actualizarUsuarioProovedor(@RequestBody Proveedor cliente, @PathVariable("correo") String correo) {
         usuarioService.actualizarUsuarioProovedor(cliente,correo);
         return new ResponseEntity<String>("{\"respuesta\": \"Se ha actualizado correctamente el proveedor.\"}",
                 HttpStatus.OK);

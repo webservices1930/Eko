@@ -108,48 +108,6 @@ export class UtilsService {
     </transporte>`;
   }
 
-  /**
-   * Toma un objeto de tipo ALOJAMIENTO y lo transforma a su interpretación
-   * en XML en el servidor
-   */
-  public crearAlojamientoXML(nAlojamiento: Alojamiento): string {
-    let disponibilidad: string = '';
-
-    // Añade todos los tags de las disponibilidades del producto
-    nAlojamiento.disponibilidad.forEach(dispo => {
-      let dis: Disponibilidad = dispo;
-
-      disponibilidad += '<disponibilidad>';
-      disponibilidad += '<cuposDisponibles>' + dis.cuposDisponibles + '</cuposDisponibles>'
-      disponibilidad += '<fecha>' + dis.fecha + '</fecha>'
-      disponibilidad += '</disponibilidad>';
-    });
-
-    // Construye todo el XML con los datos del producto
-    return `
-    <alojamiento xmlns="">
-        <_id>` + nAlojamiento._id + `</_id>
-        <descripcion>` + nAlojamiento.descripcion + `</descripcion>
-        `
-      + disponibilidad +
-      `<idUsuario>` + nAlojamiento.idUsuario + `</idUsuario>
-        <infoPaisDestino>` + nAlojamiento.infoPaisDestino + `</infoPaisDestino>
-        <precio>` + nAlojamiento.precio + `</precio>
-        <tipo>ALOJAMIENTO</tipo>
-        <almuerzo>` + nAlojamiento.almuerzo + `</almuerzo>
-        <cena>` + nAlojamiento.cena + `</cena>
-        <desayuno>` + nAlojamiento.desayuno + `</desayuno>
-        <habitaciones>` + nAlojamiento.habitaciones + `</habitaciones>
-        <internet>` + nAlojamiento.internet + `</internet>
-        <latitud>` + nAlojamiento.latitud + `</latitud>
-        <longitud>` + nAlojamiento.longitud + `</longitud>
-        <numBanios>` + nAlojamiento.numBanios + `</numBanios>
-        <numCamas>` + nAlojamiento.numCamas + `</numCamas>
-        <television>` + nAlojamiento.television + `</television>
-        <tipoAlojamiento>` + nAlojamiento.tipoAlojamiento + `</tipoAlojamiento>
-    </alojamiento>`;
-  }
-
 
   /**
   * Toma un objeto de tipo EVENTO y lo transforma a su interpretación

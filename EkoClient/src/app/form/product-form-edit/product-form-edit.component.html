@@ -6,6 +6,10 @@
     <h3 class="eko-register__form-title">Actualizar producto</h3>
     <div class="eko-register__form-wrapper row">
       <div class="col-12">
+        <label for="">Título</label>
+        <input type="text" class="form-control" [(ngModel)]="titulo" name="titulo" required>
+      </div>
+      <div class="col-12">
         <label for="">Descripción</label>
         <textarea placeholder="Descripción" type="text" class="form-control" [(ngModel)]="descripcion"
           name="descripcion" required></textarea>
@@ -151,11 +155,11 @@
         </div>
         <div class="col-6">
           <label for="">Número de camas</label>
-          <input type="number" class="form-control" [(ngModel)]="producto.numeroCamas" name="numCamas" required>
+          <input type="number" class="form-control" [(ngModel)]="producto.numCamas" name="numCamas" required>
         </div>
         <div class="col-6">
           <label for="">Número de baños</label>
-          <input type="number" class="form-control" [(ngModel)]="producto.numeroBanos" name="numBanios" required>
+          <input type="number" class="form-control" [(ngModel)]="producto.numBanios" name="numBanios" required>
         </div>
       </ng-container>
       <!-- EVENTO -->

@@ -6,9 +6,10 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 col-11">
         <div class="eko-producto__info">
-          <h1 class="eko-producto__title eko-title">{{ producto.descripcion }}</h1>
+          <h1 class="eko-producto__title eko-title">{{ producto.titulo }}</h1>
           <h5 class="eko-producto__type">{{ producto.tipo }}</h5>
           <p class="eko-producto__text">${{ producto.precio }}</p>
+          <p class="eko-producto__text">{{ producto.descripcion }}</p>
           <p class="eko-producto__text">Información del pais destino: {{ producto.infoPaisDestino }}</p>
           <div class="eko-producto__disponibilidad">
             <h6 class="eko-producto__disponibilidad-row">Disponibilidad</h6>
