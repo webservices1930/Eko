@@ -1129,8 +1129,6 @@ public final class Utils {
 	 * @return
 	 */
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {
-
-		String _id =
 		return new Document("id_Producto", pregunta.getId_Producto())
 				.append("_id", pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
