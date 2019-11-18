@@ -129,13 +129,13 @@ public final class Utils {
 
 		for (Pregunta pre : transporte.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 		}
 
 		for (Calificacion cal : transporte.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 		}
 
@@ -260,12 +260,12 @@ public final class Utils {
 
 		for (Pregunta pre : alojamiento.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 		}
 		for (Calificacion cal : alojamiento.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 		}
 		for (Disponibilidad dis : alojamiento.getDisponibilidad()) {
@@ -401,14 +401,14 @@ public final class Utils {
 
 		for (Pregunta pre : sitio.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 
 		}
 
 		for (Calificacion cal : sitio.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 
 		}
@@ -540,14 +540,14 @@ public final class Utils {
 
 		for (Pregunta pre : experiencia.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 
 		}
 
 		for (Calificacion cal : experiencia.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 
 		}
@@ -679,14 +679,14 @@ public final class Utils {
 
 		for (Pregunta pre : salida.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 
 		}
 
 		for (Calificacion cal : salida.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 
 		}
@@ -816,14 +816,14 @@ public final class Utils {
 
 		for (Pregunta pre : evento.getPregunta()) {
 			preguntas
-					.add(new Document("_id",pre.get_id()).append("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
+					.add(new Document("id_Producto", pre.getId_Producto()).append("id_Usuario", pre.getId_Usuario())
 										.append("descripcion", pre.getDescripcion()).append("respuesta", pre.getRespuesta()).append("fecha_Creacion", pre.getFecha_Creacion()));
 
 		}
 
 		for (Calificacion cal : evento.getCalificacion()) {
 			calificaciones
-					.add(new Document("_id",cal.get_id()).append("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
+					.add(new Document("valoracion", cal.getValoracion()).append("id_Producto", cal.getId_Producto())
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 
 		}
