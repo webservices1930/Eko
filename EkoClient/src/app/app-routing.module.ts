@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'product/:tipo/:id', component: ProductViewComponent },
   { path: 'market-place', component: MarketPlaceComponent },
   { path: 'product-edit/:id', component: ProductFormEditComponent },
-  { path: 'car', component: CarViewComponent },
+  { path: 'car', component: CarViewComponent, canActivate: [NoAuthGuard] },
   { path: 'twitter', component: TwitterComponent },
   { path: 'weather', component: WeatherComponent },
 ];

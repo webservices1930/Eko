@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   lng = 7.809007;
 
   constructor(private router: Router) {
-    this.router.navigate(['user/login']);
+    // this.router.navigate(['user/login']);
   }
 
   ngOnInit() { }

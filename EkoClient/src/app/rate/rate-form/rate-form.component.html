@@ -1,15 +1,15 @@
 <section class="eko-rate-form">
   <form class="eko-rate-form__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
     <h3 class="eko-rate-form__form-title">Enviar una calificacion</h3>
-    <div class="col-12">
+    <div class="col-12" class="eko-rate-form__form-stars">
       <label for="">Valoracion</label>
       <input type="number" class="form-control" formControlName="valoracion" name="valoracion" required min="0" max="5">
     </div>
-    <div class="col-12">
+    <div class="col-12" class="eko-rate-form__form-text">
       <textarea placeholder="Comentario" type="text" class="form-control" formControlName="comentario" name="comentario"
         required></textarea>
     </div>
-    <div class="col-6 offset-3">
+    <div class="col-6 offset-3" class="eko-rate-form__form-btn">
       <button [disabled]="checkoutForm.invalid" class="btn btn-dark btn-lg btn-block btn-sm" type="submit">
         Enviar calificación y finalizar reserva
       </button>
