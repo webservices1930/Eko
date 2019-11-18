@@ -171,6 +171,12 @@ public final class Utils {
 
 		System.out.println("DOC TRANSPORTE");
 		System.out.println(docTransporte);
+
+		String id =  java.util.UUID.randomUUID().toString();
+
+		System.out.println("ID" + id);
+
+
 		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta");
 		List<Document> docCalificacion = (List<Document>) docTransporte.get("calificacion");
 
@@ -1093,7 +1099,7 @@ public final class Utils {
 	 */
 	public static Document deObjetoCalificacionADocumento(Calificacion calificacion) {
 		String id =  java.util.UUID.randomUUID().toString();
-		return new Document("valoracion", calificacion.getValoracion()).append(id,calificacion.get_id())
+		return new Document("valoracion", calificacion.getValoracion()).append("_id",id)
 				.append("id_Producto", calificacion.getId_Producto())
 				.append("comentario", calificacion.getComentario())
 				.append("fecha_Creacion", calificacion.getFecha_Creacion());
@@ -1108,8 +1114,6 @@ public final class Utils {
 	 */
 	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
 		Calificacion calificacion = new Calificacion();
-
-		String preg = ((ObjectId)docCalificacion.getObjectId("_id")).toString();
 
 		calificacion.set_id(docCalificacion.getString("_id"));
 		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
@@ -1148,7 +1152,7 @@ public final class Utils {
 
 		Pregunta pregunta = new Pregunta();
 
-		String preg = ((ObjectId)docPregunta.getObjectId("_id")).toString();
+		String id =  java.util.UUID.randomUUID().toString();
 
 		pregunta.set_id(docPregunta.getString("_id"));
 		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
