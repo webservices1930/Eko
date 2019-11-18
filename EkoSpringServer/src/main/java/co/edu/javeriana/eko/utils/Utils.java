@@ -128,11 +128,11 @@ public final class Utils {
 		}
 
 		for (Pregunta pre : transporte.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : transporte.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 		System.out.println("Ut_deObTaD -> "+transporte.getTitulo());
@@ -243,11 +243,11 @@ public final class Utils {
 		List<Document> calificaciones = new ArrayList<Document>();
 
 		for (Pregunta pre : alojamiento.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : alojamiento.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 		for (Disponibilidad dis : alojamiento.getDisponibilidad()) {
@@ -370,11 +370,11 @@ public final class Utils {
 
 
 		for (Pregunta pre : sitio.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : sitio.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 
@@ -492,11 +492,11 @@ public final class Utils {
 
 
 		for (Pregunta pre : experiencia.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : experiencia.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 
@@ -613,11 +613,11 @@ public final class Utils {
 
 
 		for (Pregunta pre : salida.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : salida.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 		for (Disponibilidad dis : salida.getDisponibilidad()) {
@@ -733,11 +733,11 @@ public final class Utils {
 
 
 		for (Pregunta pre : evento.getPregunta()) {
-			deObjetoPreguntaADocumento(pre);
+			preguntas.add(deObjetoPreguntaADocumento(pre));
 		}
 
 		for (Calificacion cal : evento.getCalificacion()) {
-			deObjetoCalificacionADocumento(cal);
+			calificaciones.add(deObjetoCalificacionADocumento(cal));
 		}
 
 
@@ -1103,7 +1103,7 @@ public final class Utils {
 	/**
 	 * M�todo que convierte un Documento con datos de Calificacion a un objeto de tipo Calificacion
 	 *
-	 * @param calificacion
+	 * @param docCalificacion
 	 * @return
 	 */
 	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
@@ -1130,6 +1130,7 @@ public final class Utils {
 	 */
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {
 
+		String _id =
 		return new Document("id_Producto", pregunta.getId_Producto())
 				.append("_id", pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
@@ -1141,7 +1142,7 @@ public final class Utils {
 	/**
 	 * M�todo que convierte un Documento con datos de Pregunta a un objeto de tipo Pregunta
 	 *
-	 * @param pregunta
+	 * @param docPregunta
 	 * @return
 	 */
 	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
