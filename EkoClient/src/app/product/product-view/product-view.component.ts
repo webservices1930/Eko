@@ -57,16 +57,20 @@ export class ProductViewComponent implements OnInit {
           this.tieneTrayecto = false;
         }
 
-        this.weatherService.obtenerInformacionCapital(this.producto.ciudad)
-          .subscribe(capitalResponse => {
-            this.infoCiudad = {
-              pais: capitalResponse[0].name,
-              code: capitalResponse[0].alpha2Code,
-              bandera: capitalResponse[0].flag
-            };
+        this.weatherService.obtenerInformacionClimaPorNombreCiudad(this.producto.ciudad)
+          .subscribe(climaResponse => {
+            this.weatherService.obtenerInformacionCapital(climaResponse.sys.country)
+              .subscribe(capitalResponse => {
+                this.infoCiudad = {
+                  pais: capitalResponse.name,
+                  code: capitalResponse.alpha2Code,
+                  bandera: capitalResponse.flag
+                };
 
-            this.tieneInfoCiudad = true;
-          });
+                this.tieneInfoCiudad = true;
+              });
+          })
+
 
         if (this.tieneTrayecto && this.producto.tipo === 'TRANSPORTE') {
           for (let lugar of this.producto.trayecto) {
