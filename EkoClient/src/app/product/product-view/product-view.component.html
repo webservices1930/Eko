@@ -1,5 +1,5 @@
-<app-weather ciudad="{{producto.ciudad}}"></app-weather>
-<app-twitter query="Turismo {{producto.ciudad}}"></app-twitter>
+<app-weather ciudad="{{producto.ciudad}}" *ngIf="productoCargado"></app-weather>
+<app-twitter query="Turismo {{producto.ciudad}}" *ngIf="productoCargado"></app-twitter>
 <article class="eko-producto" *ngIf="productoCargado">
   <div class="eko-producto__container container">
     <div class="row justify-content-center">

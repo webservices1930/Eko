@@ -80,7 +80,7 @@ export class ProductViewComponent implements OnInit {
                   lat: result.coord.lat,
                   lng: result.coord.lon
                 };
-              } else {
+              } else if (this.trayectos[this.trayectos.length - 1].destino === undefined) {
                 this.trayectos[this.trayectos.length - 1].destino = {
                   lat: result.coord.lat,
                   lng: result.coord.lon
