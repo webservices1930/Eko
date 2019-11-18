@@ -620,8 +620,7 @@ public final class DBController {
     public static void insertarPregunta(String nombreColeccion, Pregunta nPregunta) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-        
-        
+
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(nPregunta.getId_Producto()) );
         
