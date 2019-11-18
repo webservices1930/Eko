@@ -137,7 +137,6 @@ public final class Utils {
 										.append("id_Usuario", cal.getId_Usuario()).append("comentario", cal.getComentario()).append("fecha_Creacion", cal.getFecha_Creacion()));
 		}
 		
-		System.out.println("Ut_deObTaD -> "+transporte.getTitulo());
 		
 		return new Document("precio", transporte.getPrecio())	
 				.append("titulo", transporte.getTitulo())
