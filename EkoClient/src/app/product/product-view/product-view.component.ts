@@ -24,6 +24,8 @@ export class ProductViewComponent implements OnInit {
   public tieneTrayecto: boolean = false;
   public tieneInfoCiudad: boolean = false;
   public infoCiudad: any = undefined;
+  public calificacion = 5;
+  public calificaciones:any = [];
 
   constructor(
     private productService: ProductService,

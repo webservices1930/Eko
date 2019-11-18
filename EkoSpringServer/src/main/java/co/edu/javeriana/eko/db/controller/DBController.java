@@ -1008,5 +1008,25 @@ public final class DBController {
         
     }
     
+    public static List<Pregunta> obtenerPreguntasPorProducto(String nombreColeccion, String _id) {
+        List<Pregunta> preguntas= new ArrayList<Pregunta>();
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        BasicDBObject query = new BasicDBObject();
+        query.put("id_Producto", _id);
+        MongoCursor<Document> cursor = coleccion.find(query).cursor();
+        try {
+            while (cursor.hasNext()) {
+                Pregunta p = new Pregunta() {};
+                Document doc = cursor.next();
+                p = Utils.deDocumentoAObjetoPregunta(doc);
+                preguntas.add(p);
+            }
+        } finally {
+            cursor.close();
+        }
+        return preguntas;
+    }
+    
 }
 
