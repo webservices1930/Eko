@@ -1130,7 +1130,8 @@ public final class Utils {
 	 * @return
 	 */
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {
-		return new Document("id_Producto", pregunta.getId_Producto())
+		String id =  java.util.UUID.randomUUID().toString();
+		return new Document( "id_Producto", pregunta.getId_Producto()).append("_id",id)
 				.append("id_Usuario", pregunta.getId_Usuario())
 				.append("descripcion", pregunta.getDescripcion())
 				.append("respuesta", pregunta.getRespuesta())
