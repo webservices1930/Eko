@@ -690,6 +690,9 @@ public final class DBController {
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);
         
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
+        
         
         
         List<Pregunta> pregunta = producto.getPregunta();        
@@ -735,6 +738,9 @@ public final class DBController {
         
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);  
+        
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
         
         List<Pregunta> pregunta = producto.getPregunta(); 
         
@@ -786,6 +792,9 @@ public final class DBController {
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
         
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
+        
         List<Pregunta> pregunta = producto.getPregunta();        
         int posicion=0, remover = 0;        
         for(Pregunta pre : pregunta) {
@@ -831,6 +840,9 @@ public final class DBController {
         
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);  
+        
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
         
         List<Pregunta> pregunta = producto.getPregunta(); 
         int posicion=0, remover = 0;        
@@ -895,6 +907,9 @@ public final class DBController {
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
         
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
+        
         List<Calificacion> calificacion = producto.getCalificacion();        
         calificacion.add(nCalificacion);     
         
@@ -937,6 +952,9 @@ public final class DBController {
         
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
         
         List<Calificacion> calificacion = producto.getCalificacion();
         
@@ -988,6 +1006,9 @@ public final class DBController {
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto);   
         
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
+        
         List<Calificacion> calificacion = producto.getCalificacion();
         
         int posicion=0, remover = 0;        
@@ -1035,6 +1056,9 @@ public final class DBController {
         
         if (nombreColeccion ==  "productos-alojamiento")
             producto= Utils.deDocumentoAObjetoAlojamiento(docProducto); 
+        
+        if (nombreColeccion ==  "productos-evento")
+            producto= Utils.deDocumentoAObjetoEvento(docProducto);
         
         List<Calificacion> calificacion = producto.getCalificacion();
         
