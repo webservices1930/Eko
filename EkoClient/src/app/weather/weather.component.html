@@ -1,0 +1,12 @@
+<aside  *ngIf="clima != null">
+    <header class="head">
+      <h4>Clima {{clima.name}}</h4>
+      <img src="https://openweathermap.org/img/wn/{{clima.weather[0].icon}}@2x.png">
+    </header>
+    <section class="main" style="margin-top: 20px;">
+      <p>Temperatura: {{temperatura}}°</p>
+      <p>Descripción: {{clima.weather[0].description}}</p>
+      <p>Humedad: {{clima.main.humidity}}</p>
+    </section>
+
+  </aside>

@@ -1,9 +1,7 @@
+<app-weather ciudad="{{producto.ciudad}}"></app-weather>
+<app-twitter query="Turismo {{producto.ciudad}}"></app-twitter>
 <article class="eko-producto" *ngIf="productoCargado">
-  <app-twitter query="Turismo Colombia - {{producto.tipo}}"></app-twitter>
   <div class="eko-producto__container container">
-    <figure class="eko-producto__fig">
-      <img src="https://source.unsplash.com/collection/{{id}}/1920x1080">
-    </figure>
     <div class="row justify-content-center">
       <div class="col-lg-8 col-11">
         <div class="eko-producto__info">
@@ -154,6 +152,9 @@
           <a class="eko-link" (click)="agregarAlCarrito()">Añadir al carrito</a>
           <br>
           <br>
+          <figure class="eko-producto__fig">
+            <img style="border-radius: 10px;" src="https://source.unsplash.com/collection/{{id}}/1920x1080">
+          </figure>
           <br>
           <!-- <app-rate-form [idProducto]="producto._id"></app-rate-form> -->
           <app-question-form [idProducto]="producto._id"></app-question-form>

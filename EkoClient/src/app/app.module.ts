@@ -32,6 +32,7 @@ import { TwitterComponent } from './twitter/twitter.component';
 
 import { QuestionViewComponent } from './question/question-view/question-view.component';
 import { AgmDirectionModule } from 'agm-direction';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AgmDirectionModule } from 'agm-direction';
     RateFormComponent,
     ProductFormEditComponent,
     TwitterComponent,
-    QuestionViewComponent
+    QuestionViewComponent,
+    WeatherComponent
   ],
   imports: [
     RouterModule,

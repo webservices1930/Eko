@@ -12,6 +12,7 @@ import { ProductViewComponent } from './product/product-view/product-view.compon
 import { CarViewComponent } from './car/car-view/car-view.component';
 import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
 import { TwitterComponent } from './twitter/twitter.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   { path: 'product/add', component: ProductFormComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'market-place', component: MarketPlaceComponent },
   { path: 'product-edit/:id', component: ProductFormEditComponent },
   { path: 'car', component: CarViewComponent },
-  { path: 'twitter', component: TwitterComponent }
+  { path: 'twitter', component: TwitterComponent },
+  { path: 'weather', component: WeatherComponent }
 ];
 
 
