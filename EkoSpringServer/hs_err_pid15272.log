@@ -1,0 +1,218 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 2249936 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:389), pid=15272, tid=0x00000000000023e8
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_211-b12) (build 1.8.0_211-b12)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.211-b12 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000015872800):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=9192, stack(0x0000000016f00000,0x0000000017000000)]
+
+Stack: [0x0000000016f00000,0x0000000017000000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+Current CompileTask:
+C2:  19562 4444   !   4       org.springframework.util.ReflectionUtils::doWithMethods (176 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000001c844800 JavaThread "DestroyJavaVM" [_thread_blocked, id=8820, stack(0x0000000003100000,0x0000000003200000)]
+  0x000000001c845800 JavaThread "http-nio-8080-AsyncTimeout" daemon [_thread_blocked, id=11216, stack(0x000000001f970000,0x000000001fa70000)]
+  0x000000001c846000 JavaThread "http-nio-8080-Acceptor-0" daemon [_thread_in_native, id=11716, stack(0x000000001f870000,0x000000001f970000)]
+  0x000000001a87a000 JavaThread "http-nio-8080-ClientPoller-1" daemon [_thread_in_native, id=6772, stack(0x000000001f770000,0x000000001f870000)]
+  0x000000001a87e800 JavaThread "http-nio-8080-ClientPoller-0" daemon [_thread_in_native, id=16520, stack(0x000000001f670000,0x000000001f770000)]
+  0x000000001a879800 JavaThread "http-nio-8080-exec-10" daemon [_thread_blocked, id=15844, stack(0x000000001f570000,0x000000001f670000)]
+  0x000000001a878800 JavaThread "http-nio-8080-exec-9" daemon [_thread_blocked, id=5372, stack(0x000000001f470000,0x000000001f570000)]
+  0x000000001a87e000 JavaThread "http-nio-8080-exec-8" daemon [_thread_blocked, id=15380, stack(0x000000001f370000,0x000000001f470000)]
+  0x000000001a87b000 JavaThread "http-nio-8080-exec-7" daemon [_thread_blocked, id=16092, stack(0x000000001f270000,0x000000001f370000)]
+  0x000000001a878000 JavaThread "http-nio-8080-exec-6" daemon [_thread_blocked, id=18232, stack(0x000000001f170000,0x000000001f270000)]
+  0x000000001a87d000 JavaThread "http-nio-8080-exec-5" daemon [_thread_blocked, id=16544, stack(0x000000001f070000,0x000000001f170000)]
+  0x000000001a87c800 JavaThread "http-nio-8080-exec-4" daemon [_thread_blocked, id=15968, stack(0x000000001ef70000,0x000000001f070000)]
+  0x000000001a87b800 JavaThread "http-nio-8080-exec-3" daemon [_thread_blocked, id=17884, stack(0x000000001ee70000,0x000000001ef70000)]
+  0x000000001cda6000 JavaThread "http-nio-8080-exec-2" daemon [_thread_blocked, id=17888, stack(0x000000001ed70000,0x000000001ee70000)]
+  0x000000001cda5800 JavaThread "http-nio-8080-exec-1" daemon [_thread_blocked, id=12820, stack(0x000000001ea50000,0x000000001eb50000)]
+  0x0000000017a28800 JavaThread "NioBlockingSelector.BlockPoller-1" daemon [_thread_in_native, id=18092, stack(0x000000001e950000,0x000000001ea50000)]
+  0x000000001875c800 JavaThread "CleanCursors-1-thread-1" daemon [_thread_blocked, id=14452, stack(0x000000001e750000,0x000000001e850000)]
+  0x0000000017a7c000 JavaThread "cluster-ClusterId{value='5dd1d083bddc88455ba48ae6', description='null'}-localhost:27017" daemon [_thread_blocked, id=15388, stack(0x000000001e650000,0x000000001e750000)]
+  0x000000001ba44800 JavaThread "container-0" [_thread_blocked, id=16424, stack(0x000000001e150000,0x000000001e250000)]
+  0x000000001c4cf000 JavaThread "ContainerBackgroundProcessor[StandardEngine[Tomcat]]" daemon [_thread_blocked, id=6728, stack(0x000000001e050000,0x000000001e150000)]
+  0x000000001a7be800 JavaThread "localhost-startStop-1" daemon [_thread_blocked, id=1616, stack(0x000000001dd50000,0x000000001de50000)]
+  0x0000000017cdc000 JavaThread "Tomcat-startStop-1" daemon [_thread_blocked, id=17416, stack(0x000000001c9a0000,0x000000001caa0000)]
+  0x00000000158cc000 JavaThread "Service Thread" daemon [_thread_blocked, id=1264, stack(0x0000000017600000,0x0000000017700000)]
+  0x00000000158a3800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=5944, stack(0x0000000017100000,0x0000000017200000)]
+  0x0000000015886000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=18012, stack(0x0000000017000000,0x0000000017100000)]
+=>0x0000000015872800 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=9192, stack(0x0000000016f00000,0x0000000017000000)]
+  0x0000000015870800 JavaThread "Attach Listener" daemon [_thread_blocked, id=15316, stack(0x0000000016e00000,0x0000000016f00000)]
+  0x000000001586f800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=11284, stack(0x0000000016d00000,0x0000000016e00000)]
+  0x000000001585f800 JavaThread "Finalizer" daemon [_thread_blocked, id=504, stack(0x0000000016ae0000,0x0000000016be0000)]
+  0x0000000015839000 JavaThread "Reference Handler" daemon [_thread_blocked, id=15140, stack(0x00000000169e0000,0x0000000016ae0000)]
+
+Other Threads:
+  0x0000000015837800 VMThread [stack: 0x00000000168e0000,0x00000000169e0000] [id=12088]
+  0x00000000158cd000 WatcherThread [stack: 0x0000000017700000,0x0000000017800000] [id=14844]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000000c2400000, size: 988 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ PSYoungGen      total 145408K, used 58761K [0x00000000eb700000, 0x00000000f5780000, 0x0000000100000000)
+  eden space 133632K, 37% used [0x00000000eb700000,0x00000000ee834d80,0x00000000f3980000)
+  from space 11776K, 71% used [0x00000000f4c00000,0x00000000f542d890,0x00000000f5780000)
+  to   space 15360K, 0% used [0x00000000f3980000,0x00000000f3980000,0x00000000f4880000)
+ ParOldGen       total 33792K, used 21372K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 63% used [0x00000000c2400000,0x00000000c38df1a8,0x00000000c4500000)
+ Metaspace       used 40543K, capacity 42200K, committed 42240K, reserved 1085440K
+  class space    used 5324K, capacity 5610K, committed 5632K, reserved 1048576K
+
+Card table byte_map: [0x00000000126c0000,0x00000000128b0000] byte_map_base: 0x00000000120ae000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000058435ce0
+ Begin Bits: [0x0000000012e00000, 0x0000000013d70000)
+ End Bits:   [0x0000000013d70000, 0x0000000014ce0000)
+
+Polling page: 0x0000000001240000
+
+CodeCache: size=245760Kb used=15434Kb max_used=15693Kb free=230325Kb
+ bounds [0x0000000003300000, 0x0000000004270000, 0x0000000012300000]
+ total_blobs=4498 nmethods=4063 adapters=347
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 18.626 Thread 0x00000000158a3800 4617   !   2       org.springframework.util.ConcurrentReferenceHashMap$Segment::clear (63 bytes)
+Event: 18.627 Thread 0x00000000158a3800 nmethod 4617 0x00000000036770d0 code [0x0000000003677280, 0x0000000003677598]
+Event: 18.628 Thread 0x00000000158a3800 4615       2       org.springframework.util.ConcurrentReferenceHashMap$Segment::createReferenceArray (13 bytes)
+Event: 18.628 Thread 0x00000000158a3800 nmethod 4615 0x0000000003631fd0 code [0x0000000003632140, 0x0000000003632308]
+Event: 18.629 Thread 0x00000000158a3800 4616       2       org.springframework.util.ConcurrentReferenceHashMap::getLoadFactor (5 bytes)
+Event: 18.629 Thread 0x00000000158a3800 nmethod 4616 0x0000000003582450 code [0x00000000035825a0, 0x00000000035826f0]
+Event: 18.629 Thread 0x00000000158a3800 4618       2       java.util.concurrent.ConcurrentHashMap$BaseIterator::remove (37 bytes)
+Event: 18.630 Thread 0x00000000158a3800 nmethod 4618 0x00000000035c7150 code [0x00000000035c72c0, 0x00000000035c7518]
+Event: 18.636 Thread 0x00000000158a3800 4619       2       org.springframework.core.$Proxy5::<init> (6 bytes)
+Event: 18.636 Thread 0x00000000158a3800 nmethod 4619 0x0000000003975690 code [0x0000000003975800, 0x0000000003975a28]
+
+GC Heap History (10 events):
+Event: 12.792 GC heap before
+{Heap before GC invocations=10 (full 1):
+ PSYoungGen      total 101888K, used 101859K [0x00000000eb700000, 0x00000000f2b80000, 0x0000000100000000)
+  eden space 92160K, 100% used [0x00000000eb700000,0x00000000f1100000,0x00000000f1100000)
+  from space 9728K, 99% used [0x00000000f1d80000,0x00000000f26f8c20,0x00000000f2700000)
+  to   space 12800K, 0% used [0x00000000f1100000,0x00000000f1100000,0x00000000f1d80000)
+ ParOldGen       total 33792K, used 13916K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 41% used [0x00000000c2400000,0x00000000c31970d8,0x00000000c4500000)
+ Metaspace       used 32192K, capacity 33390K, committed 33664K, reserved 1079296K
+  class space    used 4174K, capacity 4411K, committed 4480K, reserved 1048576K
+Event: 12.829 GC heap after
+Heap after GC invocations=10 (full 1):
+ PSYoungGen      total 104960K, used 12793K [0x00000000eb700000, 0x00000000f2b80000, 0x0000000100000000)
+  eden space 92160K, 0% used [0x00000000eb700000,0x00000000eb700000,0x00000000f1100000)
+  from space 12800K, 99% used [0x00000000f1100000,0x00000000f1d7e7c0,0x00000000f1d80000)
+  to   space 9728K, 0% used [0x00000000f1d80000,0x00000000f1d80000,0x00000000f2700000)
+ ParOldGen       total 33792K, used 16567K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 49% used [0x00000000c2400000,0x00000000c342dc98,0x00000000c4500000)
+ Metaspace       used 32192K, capacity 33390K, committed 33664K, reserved 1079296K
+  class space    used 4174K, capacity 4411K, committed 4480K, reserved 1048576K
+}
+Event: 14.293 GC heap before
+{Heap before GC invocations=11 (full 1):
+ PSYoungGen      total 104960K, used 104953K [0x00000000eb700000, 0x00000000f2b80000, 0x0000000100000000)
+  eden space 92160K, 100% used [0x00000000eb700000,0x00000000f1100000,0x00000000f1100000)
+  from space 12800K, 99% used [0x00000000f1100000,0x00000000f1d7e7c0,0x00000000f1d80000)
+  to   space 9728K, 0% used [0x00000000f1d80000,0x00000000f1d80000,0x00000000f2700000)
+ ParOldGen       total 33792K, used 16567K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 49% used [0x00000000c2400000,0x00000000c342dc98,0x00000000c4500000)
+ Metaspace       used 33637K, capacity 35008K, committed 35200K, reserved 1079296K
+  class space    used 4386K, capacity 4624K, committed 4736K, reserved 1048576K
+Event: 14.323 GC heap after
+Heap after GC invocations=11 (full 1):
+ PSYoungGen      total 101888K, used 8346K [0x00000000eb700000, 0x00000000f2b80000, 0x0000000100000000)
+  eden space 92160K, 0% used [0x00000000eb700000,0x00000000eb700000,0x00000000f1100000)
+  from space 9728K, 85% used [0x00000000f1d80000,0x00000000f25a69b8,0x00000000f2700000)
+  to   space 12800K, 0% used [0x00000000f1100000,0x00000000f1100000,0x00000000f1d80000)
+ ParOldGen       total 33792K, used 25851K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 76% used [0x00000000c2400000,0x00000000c3d3ef98,0x00000000c4500000)
+ Metaspace       used 33637K, capacity 35008K, committed 35200K, reserved 1079296K
+  class space    used 4386K, capacity 4624K, committed 4736K, reserved 1048576K
+}
+Event: 14.414 GC heap before
+{Heap before GC invocations=12 (full 1):
+ PSYoungGen      total 101888K, used 10987K [0x00000000eb700000, 0x00000000f2b80000, 0x0000000100000000)
+  eden space 92160K, 2% used [0x00000000eb700000,0x00000000eb994368,0x00000000f1100000)
+  from space 9728K, 85% used [0x00000000f1d80000,0x00000000f25a69b8,0x00000000f2700000)
+  to   space 12800K, 0% used [0x00000000f1100000,0x00000000f1100000,0x00000000f1d80000)
+ ParOldGen       total 33792K, used 25851K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 76% used [0x00000000c2400000,0x00000000c3d3ef98,0x00000000c4500000)
+ Metaspace       used 34104K, capacity 35424K, committed 35456K, reserved 1079296K
+  class space    used 4434K, capacity 4720K, committed 4736K, reserved 1048576K
+Event: 14.432 GC heap after
+Heap after GC invocations=12 (full 1):
+ PSYoungGen      total 104960K, used 352K [0x00000000eb700000, 0x00000000f5b80000, 0x0000000100000000)
+  eden space 92160K, 0% used [0x00000000eb700000,0x00000000eb700000,0x00000000f1100000)
+  from space 12800K, 2% used [0x00000000f1100000,0x00000000f1158000,0x00000000f1d80000)
+  to   space 15872K, 0% used [0x00000000f4c00000,0x00000000f4c00000,0x00000000f5b80000)
+ ParOldGen       total 33792K, used 33159K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 98% used [0x00000000c2400000,0x00000000c4461da0,0x00000000c4500000)
+ Metaspace       used 34104K, capacity 35424K, committed 35456K, reserved 1079296K
+  class space    used 4434K, capacity 4720K, committed 4736K, reserved 1048576K
+}
+Event: 14.432 GC heap before
+{Heap before GC invocations=13 (full 2):
+ PSYoungGen      total 104960K, used 352K [0x00000000eb700000, 0x00000000f5b80000, 0x0000000100000000)
+  eden space 92160K, 0% used [0x00000000eb700000,0x00000000eb700000,0x00000000f1100000)
+  from space 12800K, 2% used [0x00000000f1100000,0x00000000f1158000,0x00000000f1d80000)
+  to   space 15872K, 0% used [0x00000000f4c00000,0x00000000f4c00000,0x00000000f5b80000)
+ ParOldGen       total 33792K, used 33159K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 98% used [0x00000000c2400000,0x00000000c4461da0,0x00000000c4500000)
+ Metaspace       used 34104K, capacity 35424K, committed 35456K, reserved 1079296K
+  class space    used 4434K, capacity 4720K, committed 4736K, reserved 1048576K
+Event: 14.585 GC heap after
+Heap after GC invocations=13 (full 2):
+ PSYoungGen      total 104960K, used 0K [0x00000000eb700000, 0x00000000f5b80000, 0x0000000100000000)
+  eden space 92160K, 0% used [0x00000000eb700000,0x00000000eb700000,0x00000000f1100000)
+  from space 12800K, 0% used [0x00000000f1100000,0x00000000f1100000,0x00000000f1d80000)
+  to   space 15872K, 0% used [0x00000000f4c00000,0x00000000f4c00000,0x00000000f5b80000)
+ ParOldGen       total 33792K, used 21364K [0x00000000c2400000, 0x00000000c4500000, 0x00000000eb700000)
+  object space 33792K, 63% used [0x00000000c2400000,0x00000000c38dd1a8,0x00000000c4500000)
+ Metaspace       used 34104K, capacity 35424K, committed 35456K, reserved 1079296K
+  class space    used 4434K, capacity 4720K, committed 4736K, reserved 1048576K
+}
+Event: 17.700 GC heap before
+Event: 17.724 GC heap after
+
+Deoptimization events (10 events):
+Event: 16.245 Thread 0x0000000003205800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000003fbc874 method=java.util.regex.Pattern$Curly.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 19
+Event: 16.245 Thread 0x0000000003205800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000003fbc768 method=java.util.regex.Pattern$Curly.match0(Ljava/util/regex/Matcher;IILjava/lang/CharSequence;)Z @ 77
+Event: 16.886 
+
+
+
+

@@ -28,6 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoTransporte;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoAlojamiento;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoEvento;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoExperiencia;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoProducto;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoSalida;
+import static co.edu.javeriana.eko.utils.Utils.deDocumentoAObjetoSitio;
+
+
 import static com.mongodb.client.model.Filters.eq;
 
 public final class DBController {
@@ -137,14 +145,20 @@ public final class DBController {
     public static Transporte buscarEnColeccionTransportePorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Transporte transp = new Transporte() {};
         // Se crea el query con un objeto ID del tipo que utiliza MongoDB
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
 
         Document transporte = coleccion.find(query).first();
+        
+        if(transporte != null) {
         Transporte transporte1 = deDocumentoAObjetoTransporte(transporte);
         return transporte1;
+        }
+        
+        transp.set_id("");
+        return transp;
     }
 
     /**
@@ -156,13 +170,18 @@ public final class DBController {
     public static Alojamiento buscarEnColeccionAlojamientoPorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Alojamiento aloja = new Alojamiento() {};
         // Se crea el query con un objeto ID del tipo que utiliza MongoDB
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
 
         Document alojamiento = coleccion.find(query).first();
+        if(alojamiento != null) {
         return Utils.deDocumentoAObjetoAlojamiento(alojamiento);
+        }
+        
+        aloja.set_id("");
+        return aloja;
     }
 
     /**
@@ -174,11 +193,17 @@ public final class DBController {
     public static Experiencia buscarEnColeccionExperienciaPorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Experiencia expe = new Experiencia() {};
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
         Document experiencia = coleccion.find(query).first();
+        
+        if(experiencia != null) {
         return Utils.deDocumentoAObjetoExperiencia(experiencia);
+        }
+        
+        expe.set_id("");
+        return expe;
     }
 
     /**
@@ -190,11 +215,17 @@ public final class DBController {
     public static Salida buscarEnColeccionSalidaPorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Salida salir = new Salida() {};
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
         Document salida = coleccion.find(query).first();
+        
+        if(salida != null) {
         return Utils.deDocumentoAObjetoSalida(salida);
+        }
+        
+        salir.set_id("");
+        return salir;
     }
 
     /**
@@ -206,11 +237,18 @@ public final class DBController {
     public static Evento buscarEnColeccionEventoPorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Evento event = new Evento () {};
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
         Document evento = coleccion.find(query).first();
+        
+        if(evento != null) {
         return Utils.deDocumentoAObjetoEvento(evento);
+        }
+        
+        event.set_id("");
+        return event;
+        
     }
 
     /**
@@ -222,13 +260,19 @@ public final class DBController {
     public static Sitio buscarEnColeccionSitioPorID(String nombreColeccion, String _id) {
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
-
+        Sitio sit = new Sitio() {};
         // Se crea el query con un objeto ID del tipo que utiliza MongoDB
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
 
         Document sitio = coleccion.find(query).first();
+        if(sitio != null) {
         return Utils.deDocumentoAObjetoSitio(sitio);
+        }
+        sit.set_id("");
+        return sit;
+        
+        
     }
 
     /**
@@ -616,6 +660,9 @@ public final class DBController {
      * @param usuario
      */
     public static void insertarPregunta(String nombreColeccion, Pregunta nPregunta) {
+    	
+    	
+    	
         MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
         MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
         
@@ -623,8 +670,7 @@ public final class DBController {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(nPregunta.getId_Producto()) );
         
-        Document docProducto = coleccion.find(query).first();        
-        //System.out.println(docProducto.toJson());          
+        Document docProducto = coleccion.find(query).first();           
         
         
         Producto producto = new Producto() {};      
@@ -650,7 +696,7 @@ public final class DBController {
         pregunta.add(nPregunta);     
         
         producto.setPregunta(pregunta);        
-        actualizarProducto(producto);
+        actualizarProducto(producto);       
         
     }
     

@@ -21,7 +21,7 @@ public class PreguntaService implements IPreguntaService {
 	public void crearPregunta(Pregunta nPregunta) {		
 		
 		Producto producto = new Producto() {};				
-		String coleccion = nombreColeccion(nPregunta.getId_Producto());
+		String coleccion = nombreColeccion(nPregunta.getId_Producto());		
 		DBController.insertarPregunta(coleccion, nPregunta);		
 		
 	}	
@@ -53,65 +53,58 @@ public class PreguntaService implements IPreguntaService {
 	
 	
 	
-	private String nombreColeccion(String id) {
+	private String nombreColeccion(String id) {		
 		
 		Producto producto = new Producto() {};		
 		Boolean validator = true;	
 		String nombreColeccion;
 		
-		if(validator) {
-			
-			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, id);			
-			if(producto.get_id()!="") {					
+		
+		if (validator) {
+		nombreColeccion = "productos-transporte";
+		producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, id);		
+			if(producto.get_id() != "") {	
 				return nombreColeccion;
 			}		
 		}
 		
-		if(validator) {
-			
-			nombreColeccion = "productos-evento";
+		
+		if (validator) {
+			nombreColeccion = "productos-evento";			
 			producto = DBController.buscarEnColeccionEventoPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
+			if(producto.get_id() != "") {				
 				return nombreColeccion;
-			}		
+			}
 		}
 		
-		if(validator) {
-			
+		if (validator) {
 			nombreColeccion = "productos-experiencia";
 			producto = DBController.buscarEnColeccionExperienciaPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
+			if(producto.get_id() != "") {
 				return nombreColeccion;
-			}		
+			}
 		}
-		
-		if(validator) {
-			
+		if (validator) {
 			nombreColeccion = "productos-salida";
 			producto = DBController.buscarEnColeccionSalidaPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
+			if(producto.get_id() != "") {
 				return nombreColeccion;
-			}		
+			}
 		}
-		
-		if(validator) {
-			
+		if (validator) {
 			nombreColeccion = "productos-sitio";
 			producto = DBController.buscarEnColeccionSitioPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
+			if(producto.get_id() != "") {
 				return nombreColeccion;
-			}		
+			}
 		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-alojamiento";
+		if (validator) {
+			nombreColeccion = "productos-alojamiento";			
 			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
+			if(producto.get_id() != "") {
 				return nombreColeccion;
-			}		
-		}		
+			}	
+		}
 		
 		
 		return "";

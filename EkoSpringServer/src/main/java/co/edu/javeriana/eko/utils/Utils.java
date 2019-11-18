@@ -167,10 +167,8 @@ public final class Utils {
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();		
 		List<Pregunta> pregunta = new ArrayList<Pregunta>();
 		List<Calificacion> calificacion = new ArrayList<Calificacion>();
-
-		System.out.println("DOC TRANSPORTE");
-		System.out.println(docTransporte);
-		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta");	
+		
+		List<Document> docPregunta = (List<Document>) docTransporte.get("pregunta")  ;			
 		List<Document> docCalificacion = (List<Document>) docTransporte.get("calificacion");
 		
 		List<Document> docDisponibilidad = (List<Document>) docTransporte.get("disponibilidad");
@@ -180,14 +178,14 @@ public final class Utils {
 		String transporteID = ((ObjectId) docTransporte.getObjectId("_id")).toString();
 
 		transporte.set_id(transporteID);
-
+		
 		for (Document docDis : docDisponibilidad) {
 			Disponibilidad nDis = new Disponibilidad();
 			nDis.setFecha((String) docDis.get("fecha"));
 			nDis.setCuposDisponibles((Integer) docDis.get("cuposDisponibles"));
 			disponibilidad.add(nDis);
 		}
-
+		
 		if (docPregunta != null) {		
 			for (Document docPre : docPregunta) {
 				Pregunta nPre = new Pregunta();
