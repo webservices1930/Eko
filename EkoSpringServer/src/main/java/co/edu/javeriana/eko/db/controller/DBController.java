@@ -511,6 +511,18 @@ public final class DBController {
         return Utils.deDocumentoAObjetoPregunta(pregunta);
     }
 
+    
+    public static Calificacion buscarCalidicacionPorID(String nombreColeccion, String _id) {
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+
+        // Se crea el query con un objeto ID del tipo que utiliza MongoDB
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+
+        Document calificacion = coleccion.find(query).first();
+        return Utils.deDocumentoAObjetoCalificacion(calificacion);
+    }
 
     /**
      * Actualiza en una colecci�n indicada un objeto por su correo
@@ -1026,6 +1038,26 @@ public final class DBController {
             cursor.close();
         }
         return preguntas;
+    }
+    
+    public static List<Calificacion> obtenerCalificacionPorProducto(String nombreColeccion, String _id) {
+        List<Calificacion> calificaciones= new ArrayList<Calificacion>();
+        MongoDatabase baseDeDatos = clienteMongo.getDatabase(nombreDB);
+        MongoCollection<Document> coleccion = baseDeDatos.getCollection(nombreColeccion);
+        BasicDBObject query = new BasicDBObject();
+        query.put("id_Producto", _id);
+        MongoCursor<Document> cursor = coleccion.find(query).cursor();
+        try {
+            while (cursor.hasNext()) {
+                Calificacion p = new Calificacion() {};
+                Document doc = cursor.next();
+                p = Utils.deDocumentoAObjetoCalificacion(doc);
+                calificaciones.add(p);
+            }
+        } finally {
+            cursor.close();
+        }
+        return calificaciones;
     }
     
 }
