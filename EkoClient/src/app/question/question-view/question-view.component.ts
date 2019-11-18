@@ -20,7 +20,7 @@ export class QuestionViewComponent implements OnInit {
     private formBuilder: FormBuilder,
     private utils: UtilsService,
     private router: Router,
-    private preguntaService: PreguntaService
+    private preguntaService: PreguntaService,
   ) {
     this.checkoutForm = this.formBuilder.group({
       respuesta: ['', Validators.required]

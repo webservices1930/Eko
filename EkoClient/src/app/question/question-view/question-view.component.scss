@@ -1,0 +1,26 @@
+.eko-pregunta-view {
+  background: white;
+  margin: 24px 0 0 0;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  &__title {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &__date {
+    color: #bbb;
+  }
+
+  &__form {
+    padding: 0;
+    margin-top: 20px;
+
+    &-input {
+      padding: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
