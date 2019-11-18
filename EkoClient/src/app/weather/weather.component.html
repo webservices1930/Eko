@@ -1,4 +1,5 @@
 <aside  *ngIf="clima != null">
+  <div class="asidePanel">
     <header class="head">
       <h4>Clima {{clima.name}}</h4>
       <img src="https://openweathermap.org/img/wn/{{clima.weather[0].icon}}@2x.png">
@@ -8,5 +9,23 @@
       <p>Descripción: {{clima.weather[0].description}}</p>
       <p>Humedad: {{clima.main.humidity}}</p>
     </section>
+  </div>
 
-  </aside>
+  <div class="asidePanel">
+    <header class="head">
+      <h4 style="text-align: start;">Pronóstico</h4>
+    </header>
+    <section class="main" style="margin-top: 20px;">
+      <div *ngFor="let p of pronostico">
+        <div class="pronostico">
+          <div class="pronosticoContent">
+            <p><span style="font-weight: bold;">Fecha:</span> {{p.dt_txt}}</p>
+            <p><span style="font-weight: bold;">Temp:</span> {{p.main.temp}}°</p>
+            <p style="text-transform: capitalize;">{{p.weather[0].description}}°</p>
+          </div>
+          <img src="https://openweathermap.org/img/wn/{{p.weather[0].icon}}@2x.png">
+        </div>
+      </div>
+    </section>
+  </div>
+</aside>
