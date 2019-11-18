@@ -13,6 +13,7 @@ import { CarViewComponent } from './car/car-view/car-view.component';
 import { ProductFormEditComponent } from './form/product-form-edit/product-form-edit.component';
 import { TwitterComponent } from './twitter/twitter.component';
 import { WeatherComponent } from './weather/weather.component';
+import { UserAuthGuard } from './guard/user-auth/user-auth.guard';
 
 const routes: Routes = [
   { path: 'product/add', component: ProductFormComponent },
@@ -20,14 +21,14 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [NoAuthGuard] },
   { path: 'user/edit', component: EditProfileComponent, canActivate: [NoAuthGuard] },
-  { path: 'home', component: MarketPlaceComponent, canActivate: [NoAuthGuard] },
-  { path: 'product/add', component: ProductFormComponent },
+  { path: 'home', component: MarketPlaceComponent },
+  { path: 'product/add', component: ProductFormComponent, canActivate: [UserAuthGuard] },
   { path: 'product/:tipo/:id', component: ProductViewComponent },
   { path: 'market-place', component: MarketPlaceComponent },
   { path: 'product-edit/:id', component: ProductFormEditComponent },
-  { path: 'car', component: CarViewComponent },
+  { path: 'car', component: CarViewComponent, canActivate: [NoAuthGuard] },
   { path: 'twitter', component: TwitterComponent },
-  { path: 'weather', component: WeatherComponent }
+  { path: 'weather', component: WeatherComponent },
 ];
 
 

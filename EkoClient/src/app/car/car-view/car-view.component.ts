@@ -64,6 +64,11 @@ export class CarViewComponent implements OnInit {
 
             for (let nReserva of this.reservas) {
               nReserva['finalizar'] = false;
+
+              this.productService.buscarPorID(nReserva.productoid)
+                .subscribe(productoResponse => {
+                  nReserva['nomProducto'] = productoResponse.titulo;
+                })
             }
           }, error => {
             this.hayReservas = false;

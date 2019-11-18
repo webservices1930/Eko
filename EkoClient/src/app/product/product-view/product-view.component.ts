@@ -38,8 +38,10 @@ export class ProductViewComponent implements OnInit {
   ) {
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log('ID', this.id)
     this.productService.buscarPorID(this.id)
       .subscribe(productoResponse => {
+        console.log(productoResponse)
         this.producto = productoResponse;
         this.productoCargado = true;
 

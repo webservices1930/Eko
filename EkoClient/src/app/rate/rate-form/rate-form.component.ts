@@ -18,6 +18,8 @@ export class RateFormComponent implements OnInit {
   @Input() idProducto: string;
   @Input() idReserva: any;
   public checkoutForm: FormGroup;
+  public stars: any = [];
+  public valoracion: number = 5;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,9 +31,17 @@ export class RateFormComponent implements OnInit {
     private reservaService: ReservaService
   ) {
     this.checkoutForm = this.formBuilder.group({
-      comentario: ['', Validators.required],
-      valoracion: ['', Validators.required]
+      comentario: ['', Validators.required]
     });
+
+    for (let i=1; i<=5; ++i) {
+      this.stars.push({
+        class: '',
+        value: i
+      });
+    }
+
+    console.log(this.checkoutForm)
   }
 
   ngOnInit() {
@@ -39,14 +49,13 @@ export class RateFormComponent implements OnInit {
 
   public onSubmit(nCalificacion: Calificacion) {
     let calificacion: Calificacion = new Calificacion();
-
+    
     calificacion.comentario = nCalificacion.comentario;
     calificacion.fecha_Creacion = formatDate(new Date(), 'dd/MM/yyy', 'en');
     calificacion.id_Producto = this.idProducto;
     calificacion.id_Usuario = this.userService.obtenerCorreoUsuario();
-    calificacion.valoracion = nCalificacion.valoracion;
+    calificacion.valoracion = this.valoracion;
 
-    console.log(this.idProducto)
 
     this.calificacionService.agregarCalificacion(calificacion)
       .subscribe(resultCalificacion => {
@@ -62,5 +71,17 @@ export class RateFormComponent implements OnInit {
         console.log('There was an error: ', error);
         console.log(error.status);
       });
+  }
+
+  public seleccionarEstrella(valor: number) {
+    this.valoracion = valor;
+
+    for (let i=0; i<5; ++i) {
+      if (i < valor) {
+        this.stars[i].class = 'selected';
+      } else {
+        this.stars[i].class = '';
+      }
+    }
   }
 }
