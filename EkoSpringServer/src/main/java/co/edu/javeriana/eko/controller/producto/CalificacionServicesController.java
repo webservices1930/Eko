@@ -33,17 +33,17 @@ public class CalificacionServicesController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idCalificacion}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> eliminarCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idCalificacion") String idCalificacion ) {
-		calificacionService.eliminarCalificacion(idProducto, idCalificacion );
+	@RequestMapping(value = "/api/productos/calificacion/{idCalificacion}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> eliminarCalificacion(@PathVariable("idCalificacion") String idCalificacion ) {
+		calificacionService.eliminarCalificacion(idCalificacion );
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente la calificacion.\"}",
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/productos/calificacion/{idProducto}/{idCalificacion}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Calificacion> obtenerCalificacion(@PathVariable("idProducto") String idProducto, @PathVariable("idCalificacion") String idCalificacion) {
+	@RequestMapping(value = "/api/productos/calificacion/{idCalificacion}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Calificacion> obtenerCalificacion(@PathVariable("idCalificacion") String idCalificacion) {
 		return new ResponseEntity<Calificacion>(
-				(Calificacion) calificacionService.obtenerCalificacion(idProducto, idCalificacion),
+				(Calificacion) calificacionService.obtenerCalificacion(idCalificacion),
 				HttpStatus.OK);
 	}
 	
@@ -54,5 +54,11 @@ public class CalificacionServicesController {
 				HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/api/productos/calificacion/producto/{idProducto}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> obtenerPreguntasProducto(@PathVariable("idProducto") String idProducto) {
+		return new ResponseEntity(
+				calificacionService.calificacionProProducto(idProducto),
+				HttpStatus.OK);
+	}
 
 }

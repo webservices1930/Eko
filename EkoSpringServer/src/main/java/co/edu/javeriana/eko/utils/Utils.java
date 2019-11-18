@@ -1098,8 +1098,8 @@ public final class Utils {
 	 * @return
 	 */
 	public static Document deObjetoCalificacionADocumento(Calificacion calificacion) {
-		String id =  java.util.UUID.randomUUID().toString();
-		return new Document("valoracion", calificacion.getValoracion()).append("_id",id)
+		
+		return new Document("valoracion", calificacion.getValoracion())
 				.append("id_Producto", calificacion.getId_Producto())
 				.append("comentario", calificacion.getComentario())
 				.append("fecha_Creacion", calificacion.getFecha_Creacion());
@@ -1115,7 +1115,7 @@ public final class Utils {
 	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
 		Calificacion calificacion = new Calificacion();
 
-		calificacion.set_id(docCalificacion.getString("_id"));
+		calificacion.set_id(docCalificacion.get("_id").toString());
 		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Producto"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Usuario"));
@@ -1137,7 +1137,6 @@ public final class Utils {
 
 
 		return new Document("id_Producto", pregunta.getId_Producto())
-				.append("_id",pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
 				.append("descripcion", pregunta.getDescripcion())
 				.append("respuesta", pregunta.getRespuesta())
