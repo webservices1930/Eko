@@ -38,7 +38,7 @@ export class UtilsService {
     return 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&APPID=' + this.weatherKEY + '&lang=es'
   }
 
-  public capitalURI(capital: string): string {
-    return 'https://restcountries.eu/rest/v2/capital/' + capital;
+  public capitalURI(codigoPais: string): string {
+    return 'https://restcountries.eu/rest/v2/alpha/' + codigoPais;
   }
 }
