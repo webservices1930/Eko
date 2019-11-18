@@ -15,16 +15,16 @@
       </div>
       <div *ngFor="let reserva of reservas" class="car-view__container-row-item col-12 row">
         <div class="col-5">
-          ID Producto: {{ reserva.nomProducto }}
+          {{ reserva.nomProducto }}
         </div>
         <div class="col-5">
-          Fecha: {{ reserva.fechas }}
+          {{ reserva.fechas }}
         </div>
         <div class="col-1">
-          <a class="eko-link" (click)="eliminarReserva(reserva)">Eliminar</a>
+          <a class="eko-link eko-link-light" (click)="eliminarReserva(reserva)">Eliminar</a>
         </div>
         <div class="col-1">
-          <a class="eko-link" (click)="finalizarReserva(reserva)">Finalizar</a>
+          <a class="eko-link eko-link-light" (click)="finalizarReserva(reserva)">Finalizar</a>
         </div>
         <app-rate-form class="col-12" [idProducto]="reserva.productoid" [idReserva]="reserva._id" *ngIf="reserva.finalizar"></app-rate-form>
       </div>

@@ -3,24 +3,34 @@
     padding: 0 0 24px 0;
     
     &-row {
+      border: 1px solid #FFF;
+
       &-title {
         margin-bottom: 0;
         text-align: center;
         font-size: 20px;
-        color: #caffcd;
+        color: #FFF;
         text-transform: uppercase;
-        background-color: #222;
+        background-color: #000;
         padding: 20px;
         border-bottom: 1px solid #FFF;
       }
       
       &-item {
+        text-align: center;
         color: #FFF;
-        background-color: #333;
+        background-color: #444;
         border-bottom: 1px solid #FFF;
         margin: 0;
+        padding: 0;
+
+        > div {
+          padding: 12px;
+          border-right: 1px solid #FFF;
+        }
 
         &.titles {
+          background-color: #222;
           text-transform: uppercase;
           font-size: 16px;
           font-weight: 700;
@@ -28,4 +38,8 @@
       }
     }
   }
+}
+
+app-rate-form {
+  padding: 0;
 }

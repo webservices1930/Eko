@@ -1,6 +1,6 @@
-<section class="eko-pregunta-form">
-  <form class="eko-pregunta-form__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-    <h3 class="eko-pregunta-form__form-title">Enviar una calificacion</h3>
+<section class="eko-rate-form">
+  <form class="eko-rate-form__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <h3 class="eko-rate-form__form-title">Enviar una calificacion</h3>
     <div class="col-12">
       <label for="">Valoracion</label>
       <input type="number" class="form-control" formControlName="valoracion" name="valoracion" required min="0" max="5">
