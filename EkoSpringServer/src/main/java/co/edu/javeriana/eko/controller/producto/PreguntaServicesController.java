@@ -35,17 +35,24 @@ public class PreguntaServicesController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/productos/pregunta/{idProducto}/{idPregunta}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> eliminarPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta ) {
-		preguntaService.eliminarPregunta(idProducto, idPregunta );
+	@RequestMapping(value = "/api/productos/pregunta/{idPregunta}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> eliminarPregunta(@PathVariable("idPregunta") String idPregunta ) {
+		preguntaService.eliminarPregunta(idPregunta);
 		return new ResponseEntity<String>("{\"respuesta\": \"Se ha eliminado correctamente la pregunta.\"}",
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/productos/pregunta/{idProducto}/{idPregunta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("idProducto") String idProducto, @PathVariable("idPregunta") String idPregunta) {
+	@RequestMapping(value = "/api/productos/pregunta/producto/{idProducto}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> obtenerPreguntasProducto(@PathVariable("idProducto") String idProducto) {
+		return new ResponseEntity(
+				preguntaService.preguntasProducto(idProducto),
+				HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/api/productos/pregunta/{idProducto}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("idProducto") String idProducto) {
 		return new ResponseEntity<Pregunta>(
-				(Pregunta) preguntaService.obtenerPregunta(idProducto, idPregunta),
+				(Pregunta) preguntaService.obtenerPregunta(idProducto),
 				HttpStatus.OK);
 	}
 	

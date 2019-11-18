@@ -1215,6 +1215,7 @@ public final class Utils {
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {		
 	
 		return new Document("id_Producto", pregunta.getId_Producto())
+				.append("_id",pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
 				.append("descripcion", pregunta.getDescripcion())				
 				.append("respuesta", pregunta.getRespuesta())
@@ -1230,7 +1231,7 @@ public final class Utils {
 	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
 		
 		Pregunta pregunta = new Pregunta();		
-		
+		pregunta.set_id(docPregunta.get("_id").toString());
 		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
 		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));
 		pregunta.setDescripcion(docPregunta.getString("descripcion"));

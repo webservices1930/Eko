@@ -20,103 +20,37 @@ public class PreguntaService implements IPreguntaService {
 	@Override
 	public void crearPregunta(Pregunta nPregunta) {		
 		
-		Producto producto = new Producto() {};				
-		String coleccion = nombreColeccion(nPregunta.getId_Producto());
-		DBController.insertarPregunta(coleccion, nPregunta);		
+		Document pregunta = Utils.deObjetoPreguntaADocumento(nPregunta);			
+		DBController.insertarObjeto("producto-pregunta", pregunta);	
 		
 	}	
 	
 	
-	public void eliminarPregunta(String idProducto, String idPregunta ) {
-		Producto producto = new Producto() {};				
-		String coleccion = nombreColeccion(idProducto);
-		DBController.eliminarPregunta(coleccion, idProducto, idPregunta);
+	public void eliminarPregunta(String idPregunta ) {
+		DBController.eliminarEnColeccionPorID("producto-pregunta", idPregunta);
 		
 	}
 	
-	public Pregunta obtenerPregunta (String idProducto, String idPregunta) {
-		
-		Producto producto = new Producto() {};				
-		String coleccion = nombreColeccion(idProducto);
-		return DBController.obtenerPregunta(coleccion, idProducto, idPregunta);		 
-		
+	public Pregunta obtenerPregunta (String idPregunta) {
+		return DBController.buscarPreguntaPorID("producto-pregunta", idPregunta);
 	}
 	
-	public void actualizarPregunta(Pregunta nPregunta) {		
-		
-		Producto producto = new Producto() {};				
-		String coleccion = nombreColeccion(nPregunta.getId_Producto());
-		DBController.actualizarPregunta(coleccion, nPregunta);		
-		
+	public void actualizarPregunta(Pregunta nPregunta) {			
+		Document nPreguntaDoc = Utils.deObjetoPreguntaADocumento(nPregunta);		
+		DBController.actualizarObjeto("producto-pregunta", nPreguntaDoc, nPregunta.get_id());
 	}
-	
-	
-	
-	
-	private String nombreColeccion(String id) {
-		
-		Producto producto = new Producto() {};		
-		Boolean validator = true;	
-		String nombreColeccion;
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-transporte";
-			producto = DBController.buscarEnColeccionTransportePorID(nombreColeccion, id);			
-			if(producto.get_id()!="") {					
-				return nombreColeccion;
-			}		
-		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-evento";
-			producto = DBController.buscarEnColeccionEventoPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
-				return nombreColeccion;
-			}		
-		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-experiencia";
-			producto = DBController.buscarEnColeccionExperienciaPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
-				return nombreColeccion;
-			}		
-		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-salida";
-			producto = DBController.buscarEnColeccionSalidaPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
-				return nombreColeccion;
-			}		
-		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-sitio";
-			producto = DBController.buscarEnColeccionSitioPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
-				return nombreColeccion;
-			}		
-		}
-		
-		if(validator) {
-			
-			nombreColeccion = "productos-alojamiento";
-			producto = DBController.buscarEnColeccionAlojamientoPorID(nombreColeccion, id);	
-			if(producto.get_id()!="") {
-				return nombreColeccion;
-			}		
-		}		
-		
-		
-		return "";
-	} 
-	
 
+
+	@Override
+	public List<Pregunta> preguntasProducto(String idProducto) {
+		
+		return DBController.obtenerPreguntasPorProducto("producto-pregunta",idProducto);
+	}
+
+
+
+	
+	
+	
 	
 }
