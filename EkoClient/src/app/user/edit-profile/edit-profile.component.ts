@@ -39,10 +39,10 @@ export class EditProfileComponent implements OnInit {
           correo: this.usuario.correo,
           contrasena: '',
           verificarContrasena: '',
-          telefono: this.usuario['telefono'],
-          paginaWeb: this.usuario['paginaWeb'],
-          contactoFacebook: this.usuario['contactoFacebook'],
-          contactoTwitter: this.usuario['contactoTwitter']
+          telefono: this.usuario['telefono'] === undefined ? '' : this.usuario['telefono'],
+          paginaWeb: this.usuario['paginaWeb'] === undefined ? '' : this.usuario['paginaWeb'],
+          contactoFacebook: this.usuario['contactoFacebook'] === undefined ? '' : this.usuario['contactoFacebook'],
+          contactoTwitter: this.usuario['contactoTwitter'] === undefined ? '' : this.usuario['contactoTwitter']
         })
 
       },
