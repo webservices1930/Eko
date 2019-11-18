@@ -26,10 +26,10 @@ export class CalificacionService {
     )
   }
 
-  public eliminarCalificacion(idProducto: string, idCalificacion: string): Observable<string> {
+  public eliminarCalificacion(idCalificacion: string): Observable<string> {
     let finalURI: string = this.calificacionURI;
 
-    finalURI += '/' + idProducto + '/' + idCalificacion;
+    finalURI += '/' + idCalificacion;
 
     return this.http.delete<string>(
       finalURI,
@@ -37,10 +37,21 @@ export class CalificacionService {
     )
   }
 
-  public obtenerCalificacion(idProducto: string, idCalificacion: string): Observable<Calificacion> {
+  public obtenerCalificacionProducto(idProducto: string): Observable<Calificacion> {
     let finalURI: string = this.calificacionURI;
 
-    finalURI += '/' + idProducto + '/' + idCalificacion;
+    finalURI += '/producto/'  + idProducto;
+
+    return this.http.get<Calificacion>(
+      finalURI,
+      { withCredentials: true }
+    )
+  }
+
+  public obtenerCalificacion(idCalificacion: string): Observable<Calificacion> {
+    let finalURI: string = this.calificacionURI;
+
+    finalURI += '/'  + idCalificacion;
 
     return this.http.get<Calificacion>(
       finalURI,

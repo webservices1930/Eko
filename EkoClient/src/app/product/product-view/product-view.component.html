@@ -158,8 +158,21 @@
           <br>
           <div class="calificacion">
             <h4>Calificación</h4>
+            <select name="valoracion" id="" [(ngModel)]="valoracion">
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+            <input type="text" placeholder="Comentarios..." [(ngModel)]="comentarios">
+            <button type="button" (click)="agregarCalificacion()">Agregar</button>
             <div class="stars" >
-              <img src="https://img.freepik.com/free-vector/start_53876-25533.jpg?size=338&ext=jpg" >
+              <div *ngFor="let c of calificaciones">
+                <p>Comentario: {{c.comentario}}</p>
+                <p>Valoracion: {{c.valoracion}}</p>
+                <p>Fecha: {{c.fecha_Creacion}}</p>
+              </div>
             </div>
           </div>
           <!-- <app-rate-form [idProducto]="producto._id"></app-rate-form> -->

@@ -6,6 +6,8 @@ import { CarritoService } from 'src/app/shared/services/carrito/carrito.service'
 import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { WeatherService } from 'src/app/shared/weather/weather.service';
+import { CalificacionService } from '../../shared/services/calificacion/calificacion.service';
+import { Calificacion } from '../../shared/model/Calificacion';
 
 
 @Component({
@@ -26,6 +28,9 @@ export class ProductViewComponent implements OnInit {
   public infoCiudad: any = undefined;
   public calificacion = 5;
   public calificaciones:any = [];
+  public comentarios: string = '';
+  public valoracion = 0;
+
 
   constructor(
     private productService: ProductService,
@@ -34,7 +39,8 @@ export class ProductViewComponent implements OnInit {
     private router: Router,
     private carritoService: CarritoService,
     private route: ActivatedRoute,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private calificacionService: CalificacionService
   ) {
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.id = this.route.snapshot.paramMap.get('id');
@@ -99,9 +105,19 @@ export class ProductViewComponent implements OnInit {
         console.log('There was an error: ', error);
         console.log(error.status);
       });
+
   }
 
   ngOnInit() {
+    this.calificacionService.obtenerCalificacionProducto(this.id)
+      .subscribe(response =>{
+        this.calificaciones = response;
+        console.log(this.calificaciones);
+
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
   }
 
   /**
@@ -133,5 +149,23 @@ export class ProductViewComponent implements OnInit {
             console.log(error.status);
           });
       });
+  }
+
+  agregarCalificacion(){
+    var calificacion = new Calificacion();
+    calificacion.comentario = this.comentarios;
+    var d = new Date();
+    calificacion.fecha_Creacion = d.toString();
+    calificacion.id_Producto = this.id;
+    calificacion.valoracion = this.valoracion;
+    console.log(calificacion);
+    this.calificacionService.agregarCalificacion(calificacion)
+      .subscribe(response =>{
+        console.log('Creado');
+      }, error => {
+        console.log('There was an error: ', error);
+        console.log(error.status);
+      });
+
   }
 }
