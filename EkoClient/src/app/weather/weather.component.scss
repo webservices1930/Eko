@@ -1,12 +1,15 @@
 aside{
   float: left;
   width: 20%;
+  margin: 20px;
+}
+
+.asidePanel{
+  margin: 0px 0px 10px 0px;
   background-color: white;
   padding: 20px;
-  margin: 20px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius: 10px;
-
 }
 
 .head{
@@ -14,3 +17,17 @@ aside{
   justify-content: center;
   align-items: center;
 }
+
+.pronostico{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom-style:solid ;
+  border-bottom-color: rgba(128, 128, 128, 0.37);
+}
+
+.pronosticoContent{
+  display: flex;
+  flex-direction: column;
+}
+

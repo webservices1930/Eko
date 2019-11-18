@@ -35,7 +35,11 @@ export class UtilsService {
   }
 
   public weatherURI(ciudad: string): string {
-    return 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&APPID=' + this.weatherKEY + '&lang=es'
+    return 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&APPID=' + this.weatherKEY + '&lang=es';
+  }
+
+  public forecastURI(ciudad: string): string {
+    return 'https://api.openweathermap.org/data/2.5/forecast?q=' + ciudad + '&APPID=' + this.weatherKEY + '&lang=es';
   }
 
   public capitalURI(codigoPais: string): string {
