@@ -16,4 +16,9 @@ export class WeatherService {
   public obtenerInformacionClimaPorNombreCiudad(nombreCiudad): Observable<any> {
     return this.http.get(this.utils.weatherURI(nombreCiudad));
   }
+
+  public obtenerInformacionCapital(codigoPais): Observable<any> {
+    console.log(this.utils.capitalURI(codigoPais))
+    return this.http.get(this.utils.capitalURI(codigoPais));
+  }
 }

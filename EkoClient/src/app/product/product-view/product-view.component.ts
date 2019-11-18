@@ -20,8 +20,10 @@ export class ProductViewComponent implements OnInit {
   public productoCargado: boolean = false;
   public esMiProducto: boolean = false;
   public mostrarEnMapa: boolean = false;
-  public trayectos: any[] = [{origen: undefined, destino: undefined}];
+  public trayectos: any[] = [{ origen: undefined, destino: undefined }];
   public tieneTrayecto: boolean = false;
+  public tieneInfoCiudad: boolean = false;
+  public infoCiudad: any = undefined;
 
   constructor(
     private productService: ProductService,
@@ -55,6 +57,21 @@ export class ProductViewComponent implements OnInit {
           this.tieneTrayecto = false;
         }
 
+        this.weatherService.obtenerInformacionClimaPorNombreCiudad(this.producto.ciudad)
+          .subscribe(climaResponse => {
+            this.weatherService.obtenerInformacionCapital(climaResponse.sys.country)
+              .subscribe(capitalResponse => {
+                this.infoCiudad = {
+                  pais: capitalResponse.name,
+                  code: capitalResponse.alpha2Code,
+                  bandera: capitalResponse.flag
+                };
+
+                this.tieneInfoCiudad = true;
+              });
+          })
+
+
         if (this.tieneTrayecto && this.producto.tipo === 'TRANSPORTE') {
           for (let lugar of this.producto.trayecto) {
             this.weatherService.obtenerInformacionClimaPorNombreCiudad(lugar).subscribe(result => {
@@ -68,7 +85,7 @@ export class ProductViewComponent implements OnInit {
                   lat: result.coord.lat,
                   lng: result.coord.lon
                 };
-                this.trayectos.push({origen: undefined, destino: undefined});
+                this.trayectos.push({ origen: undefined, destino: undefined });
               }
             });
           }
