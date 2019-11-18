@@ -1179,7 +1179,8 @@ public final class Utils {
 	 */
 	public static Document deObjetoCalificacionADocumento(Calificacion calificacion) {		
 		
-		return new Document("valoracion", calificacion.getValoracion())				
+		return new Document("valoracion", calificacion.getValoracion())
+				.append("_id", calificacion.get_id())
 				.append("id_Producto", calificacion.getId_Producto())
 				.append("comentario", calificacion.getComentario())
 				.append("fecha_Creacion", calificacion.getFecha_Creacion());
@@ -1193,8 +1194,9 @@ public final class Utils {
 	 * @return
 	 */
 	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
-		Calificacion calificacion = new Calificacion();					
-		
+		Calificacion calificacion = new Calificacion();
+
+		calificacion.set_id(docCalificacion.getString("_id"));
 		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Producto"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Usuario"));
@@ -1215,6 +1217,7 @@ public final class Utils {
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {		
 	
 		return new Document("id_Producto", pregunta.getId_Producto())
+				.append("_id", pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
 				.append("descripcion", pregunta.getDescripcion())				
 				.append("respuesta", pregunta.getRespuesta())
@@ -1229,8 +1232,8 @@ public final class Utils {
 	 */
 	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
 		
-		Pregunta pregunta = new Pregunta();		
-		
+		Pregunta pregunta = new Pregunta();
+		pregunta.set_id(docPregunta.getString("_id"));
 		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
 		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));
 		pregunta.setDescripcion(docPregunta.getString("descripcion"));
