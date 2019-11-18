@@ -10,7 +10,6 @@ public class Carrito {
 	
 	public Carrito() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Carrito(String _id, String idUsuario, List<String> productos) {
