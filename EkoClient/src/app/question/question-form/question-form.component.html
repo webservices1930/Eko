@@ -1,8 +1,8 @@
 <section class="eko-pregunta-form">
   <form class="eko-pregunta-form__form container" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-    <h3 class="eko-pregunta-form__form-title">Preguntar</h3>
-    <div class="col-12">
-      <textarea placeholder="Descripción" type="text" class="form-control" formControlName="descripcion"
+    <h5 class="eko-pregunta-form__form-title">Preguntar</h5>
+    <div class="col-12 eko-pregunta-form__form-input">
+      <textarea placeholder="¿Qué quieres preguntar?" type="text" class="form-control" formControlName="descripcion"
         name="descripcion" required></textarea>
     </div>
     <div class="col-6 offset-3">

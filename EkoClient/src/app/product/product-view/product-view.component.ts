@@ -6,6 +6,7 @@ import { CarritoService } from 'src/app/shared/services/carrito/carrito.service'
 import { Carrito } from 'src/app/shared/model/Carrito/Carrito';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { WeatherService } from 'src/app/shared/weather/weather.service';
+import { PreguntaService } from 'src/app/shared/services/pregunta/pregunta.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class ProductViewComponent implements OnInit {
     private router: Router,
     private carritoService: CarritoService,
     private route: ActivatedRoute,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private preguntaService: PreguntaService
   ) {
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.id = this.route.snapshot.paramMap.get('id');
@@ -60,6 +62,12 @@ export class ProductViewComponent implements OnInit {
         } else {
           this.tieneTrayecto = false;
         }
+
+        this.preguntaService.obtenerPreguntasProducto(this.id)
+          .subscribe(preguntasResponse => {
+            console.log(preguntasResponse);
+            this.producto.pregunta = preguntasResponse;
+          });
 
         this.weatherService.obtenerInformacionClimaPorNombreCiudad(this.producto.ciudad)
           .subscribe(climaResponse => {
