@@ -14,6 +14,14 @@
         <textarea placeholder="Descripción" type="text" class="form-control" [(ngModel)]="descripcion"
           name="descripcion" required></textarea>
       </div>
+      <div class="col-12">
+        <label for="">Foto</label>
+        <input placeholder="Link foto" type="text" class="form-control" name="foto" [(ngModel)]="foto">
+      </div>
+      <div class="col-12">
+        <label for="">Ciudad</label>
+        <input placeholder="Ciudad" type="text" class="form-control" name="ciudad" [(ngModel)]="ciudad">
+      </div>
       <h6>
         <strong class="col-12">Disponibilidad</strong>
       </h6>
@@ -49,8 +57,8 @@
       <div class="col-6">
         <label for="tiposProducto">Tipo de producto</label>
         <select class="form-control" [(ngModel)]="tipo" name="tiposProducto" required
-        (ngModelChange)="seleccionarTipo()">
-        <option *ngFor="let tipoProducto of tiposProducto" [ngValue]="tipoProducto">{{tipoProducto}}</option>
+          (ngModelChange)="seleccionarTipo()">
+          <option *ngFor="let tipoProducto of tiposProducto" [ngValue]="tipoProducto">{{tipoProducto}}</option>
         </select>
       </div>
       <!-- TRANSPORTE -->
@@ -108,6 +116,11 @@
         <div class="col-6">
           <label for="">Longitud</label>
           <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-info btn-sm btn-block" style="margin: 20px 0;" (click)="llenarLatitudYLongitud()">
+            Llenar latitud y longitud atuomáticamente
+          </button>
         </div>
         <div class="col-6">
           <label for="">Número de habitaciones</label>
@@ -201,11 +214,16 @@
           <label for="">Longitud</label>
           <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
         </div>
+        <div class="col-12">
+          <button class="btn btn-info btn-sm btn-block" style="margin: 20px 0;" (click)="llenarLatitudYLongitud()">
+            Llenar latitud y longitud atuomáticamente
+          </button>
+        </div>
       </ng-container>
       <!-- EXPERIENCIA -->
       <ng-container *ngIf="tipo === 'EXPERIENCIA'">
         <div class="col-12">
-          <label for="tiposExperiencia">Tipo de Evento</label>
+          <label for="tiposExperiencia">Tipo de Experiencia</label>
           <select class="form-control" [(ngModel)]="producto.tipoExperiencia" name="tiposExperiencia" required>
             <option *ngFor="let tipoExperiencia of tiposProductoEspecifico" [ngValue]="tipoExperiencia">
               {{tipoExperiencia}}
@@ -229,6 +247,11 @@
           <label for="">Longitud</label>
           <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
         </div>
+        <div class="col-12">
+          <button class="btn btn-info btn-sm btn-block" style="margin: 20px 0;" (click)="llenarLatitudYLongitud()">
+            Llenar latitud y longitud atuomáticamente
+          </button>
+        </div>
         <div class="col-6">
           <label for="">Duración</label>
           <input type="number" class="form-control" [(ngModel)]="producto.duracion" name="duracion" required>
@@ -241,7 +264,7 @@
       <!-- SALIDA -->
       <ng-container *ngIf="tipo === 'SALIDA'">
         <div class="col-12">
-          <label for="tiposSalida">Tipo de Evento</label>
+          <label for="tiposSalida">Tipo de Salida</label>
           <select class="form-control" [(ngModel)]="producto.tipoSalida" name="tiposSalida" required>
             <option *ngFor="let tipoSalida of tiposProductoEspecifico" [ngValue]="tipoSalida">
               {{tipoSalida}}
@@ -281,7 +304,7 @@
       <!-- SITIO -->
       <ng-container *ngIf="tipo === 'SITIO'">
         <div class="col-6">
-          <label for="tiposSitio">Tipo de Evento</label>
+          <label for="tiposSitio">Tipo de Sitio</label>
           <select class="form-control" [(ngModel)]="producto.tipoDeSitio" name="tiposSitio" required>
             <option *ngFor="let tipoSitio of tiposProductoEspecifico" [ngValue]="tipoSitio">
               {{tipoSitio}}
@@ -306,6 +329,11 @@
           <input type="number" class="form-control" [(ngModel)]="producto.longitud" name="longitud" required>
         </div>
         <div class="col-12">
+          <button class="btn btn-info btn-sm btn-block" style="margin: 20px 0;" (click)="llenarLatitudYLongitud()">
+            Llenar latitud y longitud atuomáticamente
+          </button>
+        </div>
+        <div class="col-12">
           <label for="">Restriccion de edad</label>
           <input type="number" class="form-control" [(ngModel)]="producto.restriccionEdad" name="restriccionEdad"
             required>
@@ -325,7 +353,8 @@
           [disabled]="!f.valid">Crear</button> -->
       </div>
       <div class="col-6">
-        <button class="btn btn-outline-danger btn-lg btn-block" style="margin: 20px 0;" (click)="eliminar()">Eliminar</button>
+        <button class="btn btn-outline-danger btn-lg btn-block" style="margin: 20px 0;"
+          (click)="eliminar()">Eliminar</button>
       </div>
     </div>
   </form>

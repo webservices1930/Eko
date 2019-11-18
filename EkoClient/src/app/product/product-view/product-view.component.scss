@@ -16,12 +16,12 @@
   }
 
   &__container {
-    margin-top: 20px;
-    width: 50%;
+    width: 54%;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 10px;
-    padding: 24px 0;
+    padding: 24px 0px;
     background-color: #FFFFFF;
+    float: right;
 
     #{$self}__type {
       margin-bottom: 32px;
