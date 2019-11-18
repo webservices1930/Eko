@@ -1,8 +1,8 @@
-<article *ngIf="hayReservas">
-  <div class="container">
-    <div class="row">
-      <h6 class="col-12">Reservas del usuario</h6>
-      <ng-container *ngFor="let reserva of reservas">
+<article *ngIf="hayReservas" class="car-view">
+  <div class="container car-view__container">
+    <div class="row car-view__container-row">
+      <h6 class="col-12 car-view__container-row-title">Reservas del usuario</h6>
+      <div *ngFor="let reserva of reservas" class="car-view__container-row-item col-12 row">
         <div class="col-5">
           ID Producto: {{ reserva.productoid }}
         </div>
@@ -19,7 +19,7 @@
         <br>
         <br>
         <app-rate-form class="col-12" [idProducto]="reserva.productoid" [idReserva]="reserva._id" *ngIf="reserva.finalizar"></app-rate-form>
-      </ng-container>
+      </div>
     </div>
   </div>
 </article>
