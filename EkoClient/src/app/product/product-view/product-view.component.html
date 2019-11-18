@@ -8,11 +8,11 @@
           <h1 class="eko-producto__title eko-title">{{ producto.titulo }}</h1>
           <h5 class="eko-producto__type">{{ producto.tipo }}</h5>
           <div class="eko-producto__info-ciudad">
-              <p class="eko-producto__text">{{ producto.ciudad }}</p>
-              <ng-container *ngIf="tieneInfoCiudad">
-                  <p class="eko-producto__text-title">{{ infoCiudad.pais }} - {{ infoCiudad.code }}</p>
-                  <img src="{{ infoCiudad.bandera }}" alt="Bandera {{ infoCiudad.pais }}" height="30px">
-              </ng-container>
+            <p class="eko-producto__text">{{ producto.ciudad }}</p>
+            <ng-container *ngIf="tieneInfoCiudad">
+              <p class="eko-producto__text-title">{{ infoCiudad.pais }} - {{ infoCiudad.code }}</p>
+              <img src="{{ infoCiudad.bandera }}" alt="Bandera {{ infoCiudad.pais }}" height="30px">
+            </ng-container>
           </div>
           <p class="eko-producto__text">${{ producto.precio }}</p>
           <p class="eko-producto__text">{{ producto.descripcion }}</p>
@@ -156,32 +156,43 @@
             <img style="border-radius: 10px;" src="{{ producto.foto }}">
           </figure>
           <br>
-          <div class="calificacion">
-            <h4>Calificación</h4>
-            <select name="valoracion" id="" [(ngModel)]="valoracion">
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-            </select>
-            <input type="text" placeholder="Comentarios..." [(ngModel)]="comentarios">
-            <button type="button" (click)="agregarCalificacion()">Agregar</button>
-            <div class="stars" >
-              <div *ngFor="let c of calificaciones">
-                <p>Comentario: {{c.comentario}}</p>
-                <p>Valoracion: {{c.valoracion}}</p>
-                <p>Fecha: {{c.fecha_Creacion}}</p>
-              </div>
+          <!-- <app-rate-form [idProducto]="producto._id"></app-rate-form> -->
+          <div class="container calificacion">
+            <div class="row justify-content-center">
+              <h4>Calificación</h4>
+              <select name="valoracion" id="" [(ngModel)]="valoracion">
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+              <input type="text" placeholder="Comentarios..." [(ngModel)]="comentarios">
+              <button type="button" (click)="agregarCalificacion()">Agregar</button>
             </div>
           </div>
-          <!-- <app-rate-form [idProducto]="producto._id"></app-rate-form> -->
-          <app-question-form [idProducto]="producto._id"></app-question-form>
-          <ng-container *ngFor="let pregunta of producto.pregunta">
-            <app-question-view [pregunta]="pregunta" [puedeResponder]="esMiProducto"></app-question-view>
-          </ng-container>
+          <div >
+            <div class="stars" *ngFor="let c of calificaciones">
+
+              <p>Comentario: {{c.comentario}}</p>
+              <p>Valoracion: {{c.valoracion}}</p>
+              <p>Fecha: {{c.fecha_Creacion}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-11">
+          <app-question-form [idProducto]="producto._id" *ngIf="!esMiProducto"></app-question-form>
+        </div>
+        <div *ngFor="let pregunta of producto.pregunta" class="col-lg-8 col-11">
+          <app-question-view [pregunta]="pregunta" [puedeResponder]="esMiProducto"></app-question-view>
         </div>
       </div>
     </div>
   </div>
+
+
 </article>

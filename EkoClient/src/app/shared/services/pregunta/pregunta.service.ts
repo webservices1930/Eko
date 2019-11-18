@@ -57,4 +57,15 @@ export class PreguntaService {
       { withCredentials: true }
     )
   }
+
+  public obtenerPreguntasProducto(idProducto: string): Observable<Pregunta[]> {
+    let finalURI: string = this.preguntaURI;
+
+    finalURI += '/producto/' + idProducto;
+
+    return this.http.get<Pregunta[]>(
+      finalURI,
+      { withCredentials: true }
+    )
+  }
 }

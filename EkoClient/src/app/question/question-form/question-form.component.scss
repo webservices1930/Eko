@@ -1,0 +1,21 @@
+.eko-pregunta-form {
+  background: white;
+  margin: 24px 0 0 0;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  &__form-title {
+    text-align: center;
+    padding-bottom: 12px;
+  }
+
+  &__form {
+    padding: 0;
+
+    &-input {
+      padding: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
