@@ -81,6 +81,7 @@ public final class Utils {
 	 * @param docProducto
 	 * @return
 	 */
+
 	public static Producto deDocumentoAObjetoProducto(Document docProducto) {
 		Producto producto= new Producto() {};
 		List<Disponibilidad> disponibilidad = new ArrayList<Disponibilidad>();
@@ -1108,9 +1109,8 @@ public final class Utils {
 	 */
 	public static Calificacion deDocumentoAObjetoCalificacion(Document docCalificacion) {
 		Calificacion calificacion = new Calificacion();
-
-		String calificacionID = ((ObjectId) docCalificacion.getObjectId("_id")).toString();
-		calificacion.set_id(calificacionID);
+		
+		calificacion.set_id(docCalificacion.getString("_id"));
 		calificacion.setValoracion(docCalificacion.getInteger("valoracion"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Producto"));
 		calificacion.setId_Usuario(docCalificacion.getString("id_Usuario"));
@@ -1130,7 +1130,7 @@ public final class Utils {
 	 */
 	public static Document deObjetoPreguntaADocumento(Pregunta pregunta) {
 
-		String _id =
+
 		return new Document("id_Producto", pregunta.getId_Producto())
 				.append("_id", pregunta.get_id())
 				.append("id_Usuario", pregunta.getId_Usuario())
@@ -1148,8 +1148,9 @@ public final class Utils {
 	public static Pregunta deDocumentoAObjetoPregunta(Document docPregunta) {
 
 		Pregunta pregunta = new Pregunta();
-		String pg = ((ObjectId) docPregunta.getObjectId("_id")).toString();
-		pregunta.set_id(pg);
+
+
+		pregunta.set_id(docPregunta.getString("_id").toString());
 		pregunta.setId_Producto(docPregunta.getString("id_Producto"));
 		pregunta.setId_Usuario(docPregunta.getString("id_Usuario"));
 		pregunta.setDescripcion(docPregunta.getString("descripcion"));
