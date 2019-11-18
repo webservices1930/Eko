@@ -12,7 +12,10 @@
         <nav class="eko-menu__sub-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLinkProducto">
           <ul class="eko-menu__list">
             <li class="eko-menu__item dropdown-item">
-              <a class="eko-menu__link" routerLink="/product/add">Crear producto</a>
+              <a class="eko-menu__link" routerLink="/product/add" *ngIf="esUsuarioProveedor">Crear producto</a>
+            </li>
+            <li class="eko-menu__item dropdown-item">
+              <a class="eko-menu__link" routerLink="/home">Ver productos</a>
             </li>
           </ul>
         </nav>
@@ -41,8 +44,8 @@
           </ul>
         </nav>
       </li>
-      <li class="eko-menu__item">
-        <a class="eko-menu__link" routerLink="/car">Carrito</a>
+      <li class="eko-menu__item" *ngIf="haySesionDeUsuario">
+        <a class="eko-menu__link nav-link" routerLink="/car">Carrito</a>
       </li>
     </ul>
   </div>

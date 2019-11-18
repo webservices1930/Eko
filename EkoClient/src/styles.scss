@@ -56,21 +56,21 @@ img {
 }
 
 .eko-link-light {
-  color: #A1D6A4;
+  color: #A1D6A4 !important;
   
   &:hover {
-    color: #1F8524;
+    color: #1F8524 !important;
   }
   
   &-button {
     padding: 8px;
-    border-color: #A1D6A4;
-    color: #A1D6A4;
+    border-color: #A1D6A4 !important;
+    color: #A1D6A4 !important;
     border-radius: 8px;
     
     &:hover {
-      border: 1px solid #1F8524;
-      color: #1F8524;
+      border: 1px solid #1F8524 !important;
+      color: #1F8524 !important;
     }
   }
 }

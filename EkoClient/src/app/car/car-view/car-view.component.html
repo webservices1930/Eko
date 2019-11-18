@@ -1,68 +1,95 @@
-<article *ngIf="hayReservas">
-  <div class="container">
-    <div class="row">
-      <h6 class="col-12">Reservas del usuario</h6>
-      <ng-container *ngFor="let reserva of reservas">
+<article *ngIf="hayReservas" class="car-view">
+  <div class="container car-view__container">
+    <div class="row car-view__container-row">
+      <h6 class="col-12 car-view__container-row-title">Reservas del usuario</h6>
+      <div class="car-view__container-row-item titles col-12 row">
         <div class="col-5">
-          ID Producto: {{ reserva.productoid }}
+          Producto
         </div>
         <div class="col-5">
-          Fecha: {{ reserva.fechas }}
+          Fecha
+        </div>
+        <div class="col-2">
+          Acciones
+        </div>
+      </div>
+      <div *ngFor="let reserva of reservas" class="car-view__container-row-item col-12 row">
+        <div class="col-5">
+          {{ reserva.nomProducto }}
+        </div>
+        <div class="col-5">
+          {{ reserva.fechas }}
         </div>
         <div class="col-1">
-          <a class="eko-link" (click)="eliminarReserva(reserva)">Eliminar</a>
+          <a class="eko-link eko-link-light" (click)="eliminarReserva(reserva)">Cancelar</a>
         </div>
         <div class="col-1">
-          <a class="eko-link" (click)="finalizarReserva(reserva)">Finalizar</a>
+          <a class="eko-link eko-link-light" (click)="finalizarReserva(reserva)">Finalizar</a>
         </div>
-        <br>
-        <br>
-        <br>
-        <app-rate-form class="col-12" [idProducto]="reserva.productoid" [idReserva]="reserva._id" *ngIf="reserva.finalizar"></app-rate-form>
-      </ng-container>
+        <app-rate-form class="col-12" [idProducto]="reserva.productoid" [idReserva]="reserva._id"
+          *ngIf="reserva.finalizar"></app-rate-form>
+      </div>
     </div>
   </div>
 </article>
-<article *ngIf="hayCarrito">
-  <div class="container">
-    <div class="row">
-      <h6 class="col-12">Productos en el carrito</h6>
-      <ng-container *ngFor="let producto of productos">
+<article *ngIf="hayCarrito car-view">
+  <div class="container car-view__container">
+    <div class="row car-view__container-row">
+      <h6 class="col-12 car-view__container-row-title">Productos en el carrito</h6>
+      <div class="car-view__container-row-item titles col-12 row">
         <div class="col-4">
-          Producto: {{ producto.titulo }}
+          Producto
         </div>
         <div class="col-5">
-          Descripcion: {{ producto.descripcion }}
+          Descripcion
         </div>
-        <div class="col-1">
-          <a class="eko-link" (click)="eliminarDelCarrito(producto._id)">Eliminar</a>
+        <div class="col-3">
+          Acciones
         </div>
-        <div class="col-1">
-          <a class="eko-link" routerLink="/product/{{ producto.tipo }}/{{producto._id}}"
+      </div>
+      <div *ngFor="let producto of productos" class="car-view__container-row-item col-12 row">
+        <div class="col-4">
+          {{ producto.titulo }}
+        </div>
+        <div class="col-5">
+          {{ producto.descripcion }}
+        </div>
+        <div class="col-1 actions">
+          <a class="eko-link eko-link-light" (click)="eliminarDelCarrito(producto._id)">Eliminar</a>
+        </div>
+        <div class="col-1 actions">
+          <a class="eko-link eko-link-light" routerLink="/product/{{ producto.tipo }}/{{producto._id}}"
             routerLinkActive="router-link-active">Ver</a>
         </div>
-        <div class="col-1">
-          <a class="eko-link" (click)="abrirInfoReserva(producto)">Expandir</a>
+        <div class="col-1 actions">
+          <a class="eko-link eko-link-light" (click)="abrirInfoReserva(producto)">Expandir</a>
         </div>
-        <ng-container *ngIf="producto.verInfoProducto">
-          <ng-container *ngFor="let disponibilidad of producto.disponibilidad">
-            <h6 class="col-12">Disponibilidad</h6>
+        <section *ngIf="producto.verInfoProducto" class="car-view__container-row-item col-12 row disponibilidad">
+          <h6 class="col-12 car-view__container-row-title title">Disponibilidad</h6>
+          <div class="car-view__container-row-item titles col-12 row">
             <div class="col-5">
-              Fecha: {{ disponibilidad.fecha }}
+              Fecha
             </div>
             <div class="col-5">
-              Cupos disponibles: {{ disponibilidad.cuposDisponibles }}
+              Cupos disponibles
+            </div>
+            <div class="col-2">
+              Acciones
+            </div>
+          </div>
+          <ng-container *ngFor="let disponibilidad of producto.disponibilidad">
+            <div class="col-5">
+              {{ disponibilidad.fecha }}
+            </div>
+            <div class="col-5">
+              {{ disponibilidad.cuposDisponibles }}
             </div>
             <div class="col-2">
               <a class="eko-link" (click)="reservarProducto(producto, disponibilidad)">Reservar</a>
             </div>
           </ng-container>
-        </ng-container>
-        <br>
-        <br>
-        <br>
-        <br>
-      </ng-container>
+        </section>
+      </div>
     </div>
   </div>
 </article>

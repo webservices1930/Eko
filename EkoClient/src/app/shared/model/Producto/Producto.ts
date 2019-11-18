@@ -14,6 +14,7 @@ export abstract class Producto {
   public pregunta: Pregunta[];
   public foto: string;
   public ciudad: string;
+  public titulo: string;
 
   constructor() {
       this._id = '';
@@ -27,5 +28,6 @@ export abstract class Producto {
       this.pregunta = new Array<Pregunta>();
       this.foto = '';
       this.ciudad = '';
+      this.titulo = '';
   }
 }
